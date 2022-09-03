@@ -6,3 +6,7 @@ Dieses Projekt umfasst die studentische Tätigkeit zur Erzielung einer Markanaly
 * ELM
 * HTML
 * CSS
+* LaTex
+
+## Datenherkunft
+
