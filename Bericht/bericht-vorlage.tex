@@ -15,9 +15,9 @@
 \begin{document}
 % ----------------------------------------------------------------------------
 \subject{Projektbericht zum Modul Information Retrieval und Visualisierung Sommersemester 2022}
-\title{Titel des Dokuments}
-%\subtitle{Untertitel}% optional
-\author{Das bin ich}% obligatorisch
+\title{Marktanalyse des Videospielemarktes}
+\subtitle{Analyse und Visualsierung der Verkaufszahlen der Videospiele auf der Platform XBoxOne}
+\author{Lena Arloth}% obligatorisch
 %\date{10.9.2022}
 \maketitle% verwendet die zuvor gemachte Angaben zur Gestaltung eines Titels
 % ----------------------------------------------------------------------------
@@ -27,15 +27,47 @@
 % Gliederung und Text:
 
 \section{Einleitung}
-Tipps zu Latex und Koma-Script für Hausarbeiten sind im \href{http://mirrors.ctan.org/info/latex-refsheet/LaTeX_RefSheet.pdf}{LaTeX Reference Sheet for a thesis with KOMA-Script} von Marion Lammarsch und Elke Schubert zusammengefasst. 
-Der Bericht fällt in die Kategorie von InfoVis-Paper, die Tamara Munzner Design Study nennt \cite{Munzner2008}: In der Einleitung sollen sie zuerst das Zielproblem beschrieben. Daraus sollen sie Fragestellungen motivieren, die mittels Techniken der Informationsvisualisierung beantwortet werden können. In dem Abschnitt direkt unter der Überschrift Einleitung sollen Sie nach einer kurzen Einleitung Fragestellungen und das Zielproblem motivieren und besschreiben. 
+\subsubsection {Motivation:} Der Spielemarkt ist groß, es steckt viel Geld dahinter und für die Entwicklung von neuen Spielen sind viele finanzielle Mittel nötig. Es braucht also eine gewisse Sicherheit, dass sich die Investitionen lohnen. Dazu braucht es eine Anaylse der verganenen Daten. XBox als Platform sehr beliebt, wenn auch hinter Playstation. Vergleichbarkeit der Spiele pro Platform, da zB XBox Spieler nicht mit Playstation-Spielern spielen können und Konsole nicht mit PC.
+\subsubsection {Zielproblem:} Marktanalyse der Spieleindustrie der Platform XBox One aus Sicht der Publisher zur Ermittlung der Konkurrenz, der Erlangung von Kenntnissen über den Markt und über die eigenen Erfolge/den eigenen Standpunkt im Markt zur besseren Ausrichtung und Kontrolle des Unternehmens/Publishers anhand eines Marktüberblicks und genaueren Verkaufsfakten.
+\subsubsection {Relevanz:} Jedes Unternehmen braucht eine Marktanalyse, so auch Spieleunternehmen/Publisher. Ein Publisher muss wissen, was er zukünftig mit guten Verkaufschancen entwickeln kann und in welchem Genre. Wo liegt der Schwerpunkt des Unternehmens.
+\subsubsection {Fragestellungen:} 
+\subsubsubsection {Überblick:} Welche Genres bedient ein Publisher aus seiner Sichtweise und wieviele Spiele bietet er in diesem Genre an? Wo liegt der Fokus/Schwerpunkt des Publishers? Wer ist die Konkurrenz in den verschiedenen Genres, der zB mehr Spiele in dem Genre anbietet?
+\subsubsubsection {tiefere Marktanalyse:} Wie gut verkauften sich Spiele im Einzelnen eines Publishers eines Genres im Vergleich zu anderen Spielen des Genres? Wo gibt es Verbesserungspotenzial, wo gibt es Marktlücken, wo gibt es viel Konkurrenz? Gibt es Spiele in einem Genre eines Publishers, die sich nicht mehr lohnen?
+\subsubsubsection {konkreter Blick auf jedes Spiel einzeln:} Wie verkauften sich Spiele des Publishers im einzelnen im direkten Vergleich auf den verschiedenen Märkten/Regionen der Welt?
+\subsubsubsection {allgemein:} Welche Spiele waren gut, welche schlecht? Welche Spiele soll der Publisher anbieten in welchem Genre? Wo liegt Verbesserungspotenzial?
+
+%Tipps zu Latex und Koma-Script für Hausarbeiten sind im \href{http://mirrors.ctan.org/info/latex-refsheet/LaTeX_RefSheet.pdf}{LaTeX Reference Sheet for a thesis with KOMA-Script} von Marion Lammarsch und Elke Schubert zusammengefasst. 
+%Der Bericht fällt in die Kategorie von InfoVis-Paper, die Tamara Munzner Design Study nennt \cite{Munzner2008}: In der Einleitung sollen sie zuerst das Zielproblem beschrieben. Daraus sollen sie Fragestellungen motivieren, die mittels Techniken der Informationsvisualisierung beantwortet werden können. In dem Abschnitt direkt unter der Überschrift Einleitung sollen Sie nach einer kurzen Einleitung Fragestellungen und das Zielproblem motivieren und besschreiben. 
 
 \subsection{Anwendungshintergrund}
-Sie müssen genug Hintergrund bereitstellen, so dass die Lesenden sich ein Urteil bilden können, ob ihre Lösung funktioniert. Sie sollen die Lesenden jedoch nicht mit Anwendungsdetails so überschütten, dass der Fokus auf die Fragen zur Informationsvisualisierung untergehen. 
+Sinn der Marktanalyse in Unternehmen
+Sinn der Vergleiche von Genres
+Fakten zu Größe und Volumen des Spielemarkts ingesamt und in verschiedenen Regionen
+Fakten XBoxOne und Platformen 
+Fakten zu Anzahl Publisher und wieviele Spiele ein Publisher ungefähr bietet
+Was die Anwendung/Visualisierung bringen soll
+
+%Sie müssen genug Hintergrund bereitstellen, so dass die Lesenden sich ein Urteil bilden können, ob ihre Lösung funktioniert. Sie sollen die Lesenden jedoch nicht mit Anwendungsdetails so überschütten, dass der Fokus auf die Fragen zur Informationsvisualisierung untergehen. 
+
 \subsection{Zielgruppen}
-Beschreiben sie die Personengruppe oder Personengruppen, die das von ihnen benannte Anwendungsproblem lösen möchte. Auf welches Vorwissen können sie in dieser Gruppen von Anwenderinnen aufbauen? Welche Informations"-bedürf"-nisse werden durch die Visualisierungen adressiert?
+Publisher und dort oberes und mittleres Management/die Entscheider
+Vorwissen: Kein detailliertes Vorwissen zu speziellen Visualisierungstechniken. Aber Vorwissen zu BWL-Analysen, da sie im Grunde Analysten sind. Kennen also aus ihrer täglichen Arbeit Diagramme, Scatterplots, Koordinatensysteme, Baumdiagramme, Zeitreihendiagramme und parallele Koordinaten. Eventuell auch Forces und Recursive Pattern. Kennen also nicht die ganz spezifischen Visualisierungstechniken/haben kein ganz spezifisches Vorwissen, sodass hier viel erklärt werden müsste, was nicht zielführend wäre. Das was sie kennen, vor allem Diagramme, Scatterplots, Bäume und Zeitreihendiagramme verstehen sie schnell, da sie es gut kennen und intuitiv damit arbeiten können. 
+Zusätzlich müssen sie die Visualisierungen u.U. auch Business Partnern zeigen oder im eigenen Unternehmen dem weiteren Management. D.h. sie müssen immer wieder auch schnell auf den ersten Blick sehen können, was gezeigt ist und die Visualisierung sagen soll und es entsprechend schnell und intuitiv anderen erklären können. 
+Informationsbedürnis: Harte Fakten. Was bietet der Publisher an? Denn großer Publisher = viele Entwickeler = viele Projekte/Spiele = eventuell braucht das Management erstmal eine Übersicht, was sie überhaupt alles anbieten und in welchen Genres die Spiele eingeordnet sind zur Erinnerung. Zusätzlich zum Überblick über die Konkurrenz in gleicher Weise. Wie sind die Zahlen der Spiele im Detail in den verschiedenen Märkten? Wie sind die Zahlen der Spiele des Genres im Vergleich zur Konkurrenz in dem Genre? Wo liegt das Verbesserungspotenzial des Publishers in seiner Ausrichtung der Spiele? Wo gibt es Marktlücken und wo liegen die Stärken? 
+
+%Beschreiben sie die Personengruppe oder Personengruppen, die das von ihnen benannte Anwendungsproblem lösen möchte. Auf welches Vorwissen können sie in dieser Gruppen von Anwenderinnen aufbauen? Welche Informations"-bedürf"-nisse werden durch die Visualisierungen adressiert?
+
 \subsection{Überblick und Beiträge}
-In diesem Abschnitt geben sie einen kurzen Überblick über die Daten und verwendeten Visualisierungen. Dann benennen sie die Beiträge ihres Projekts. Diese Beiträge müssen sie in den hinteren Teilen des Berichts genauer ausführen und belegen.
+Überblick Daten: XBoxOne Datensätze aus 2016 mit den Attributen Position in der Tabelle, Publisher, Jahr der Veröffentlichung, Genre, Verkaufszahlen global, VK NA, VK EU, VK Asien, VK andere von der Platform Kaggel. Info Datenherkunft auf Kaggle hinzufügen. relevant: alle außer Jahr der Veröffentlichung
+Überblick Visualsierungen:  
+Visualisierung 1: explizites Baumdiagramm zur Übersicht über Publisher und den von ihnen jeweils bedienten Genres und den Spielen in den Genres jeweils zur Beantwortung Fragengruppe 1
+Visualierung 2: Scatterplot zur Beantwortung von Fragegruppe 2, der tieferen Marktanalyse, also wie sich die Spiele in einem Genre im Vergleich verkauften mit Zusammenhängen zwischen globalen Verkäufen und Verkäufen in den auswählbaren Regionen. So kann ein Publisher vergleichen, wie seine Spiele eines Genres im Vergelich zur Konkurrenz verkauft wurden bzw wie erfolgreich seine Spiele waren.
+Visualisierung 3: parallele Koordinaten zur Beantwortung von Fragegruppe 3, damit Publisher auf einen Blick vergleichen können, wie ein konkretes Spiel von ihnen in den verschienden Regionen/Märkten verkauft werden konnte. Auf welchen Märkten war es am erfolgreichsten, welche Märkte sollten stärker beworben werden, auf welche sollte der Fokus gelegt werden? Spiele auswählbar je nach Genre.
+Beitrag allgemein der Visualisierungen: Lösung Problemstellung und Fragegruppe 4, also der allgemeinen. schnellerer Überlick über Erfolg der Spiele des Publishers in den Märkten und in Konkurrenz zu den anderen Spielen eines Genres zur zukünftigen Ausrichtung des Publishers.
+kurze Vorstellung des Vorgehens im Projektbericht: 1. Daten, 2. Visualisierungsbeschreibung + Interaktion, 3. Konkrete Umsetzung/Implementierung, 4. Konkreter Anwendungsfall, also ein Publisher aussuchen und durch die Visualisierungen gehen und dabei die oben beschriebenen Fragen beantworten und Problem lösen, 5. Verwandte Arbeiten vorstellen am besten in Kombi BWL und Visual Analytics und Spielemarkt, 6. Zusammenfassung und ausblick. Für Ausblick kann integriert werden, dass die analyse erweritert werden kann mit adäquaten intern erhobnen Daten der Publisher zu Umsätzen und Gewinnen insgesamt und pro Spiel + zu Kosten pro Spiel für die Entwicklung/Marktreife + Kosten Spiel auf dem Mart zur tieferen Analyse der Verkaufszahlen
+
+
+%In diesem Abschnitt geben sie einen kurzen Überblick über die Daten und verwendeten Visualisierungen. Dann benennen sie die Beiträge ihres Projekts. Diese Beiträge müssen sie in den hinteren Teilen des Berichts genauer ausführen und belegen.
 
 \section{Daten}
 Beschreiben Sie vorhandenen Daten. Gehen sie kritisch darauf ein, in wie weit sich die Daten für die Bearbeitung der Fragestellungen und dem Erreichen von Lösungen für die oben beschriebene Zielgruppen eignen. Haben sie die Daten sinnvoll mit weiteren Datenquellen ergänzt? Wenn ja, wie?
