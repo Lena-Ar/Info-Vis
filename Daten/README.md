@@ -12,3 +12,9 @@ Anlegen einer .ods-Datei mit den modifizierten Daten für das Projekt. Löschen 
 
 ## Schritt 4 
 In der modifizierten CSV- und ODS-Datei den Namen des Publishers "Namco Bandai Games" austauschen durch "Bandai Namco Games", da beide denselben Publisher repräsentieren. "Namco Bandai Games" wurde 2014 zu "Bandai Namco Games" umbenannt. So werden die Daten für das Projekt einheitlicher und eindeutiger. 
+
+## Schritt 5
+Erstellung einer neuen CSV-Datei, die die Abhängigkeiten für die gewünschte Baumstruktur für die Konvertierung in JSON enthält. Aufgrund des gewählten Anwendungsfalles sind nur Publisher, Genres und Titel der Spiele nötig.
+
+## Schritt 6
+Konvertierung der CSV-Datei in JSON mittels des Online-Tools https://www.convertcsv.com/csv-to-json.htm . Entstehenden Code in ein neues JSON-Dokument eintragen und im passenden Ordner einchecken.
