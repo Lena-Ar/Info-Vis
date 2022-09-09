@@ -18,3 +18,6 @@ Erstellung einer neuen CSV-Datei, die die Abhängigkeiten für die gewünschte B
 
 ## Schritt 6
 Konvertierung der CSV-Datei in JSON mittels des Online-Tools https://www.convertcsv.com/csv-to-json.htm . Entstehenden Code in ein neues JSON-Dokument eintragen und im passenden Ordner einchecken.
+
+## Schritt 7 
+Revision des JSON-Codes und Verbesserung um flasch gesetzte Abhängigkeiten in dieser Datei und der zugrunde liegenden CSV-Datei. Löschen der leeren Felder/Knoten. Hinzufügen eines Wurzelknotens.
