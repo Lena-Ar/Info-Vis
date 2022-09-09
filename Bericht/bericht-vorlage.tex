@@ -70,11 +70,95 @@ kurze Vorstellung des Vorgehens im Projektbericht: 1. Daten, 2. Visualisierungsb
 %In diesem Abschnitt geben sie einen kurzen Überblick über die Daten und verwendeten Visualisierungen. Dann benennen sie die Beiträge ihres Projekts. Diese Beiträge müssen sie in den hinteren Teilen des Berichts genauer ausführen und belegen.
 
 \section{Daten}
-Beschreiben Sie vorhandenen Daten. Gehen sie kritisch darauf ein, in wie weit sich die Daten für die Bearbeitung der Fragestellungen und dem Erreichen von Lösungen für die oben beschriebene Zielgruppen eignen. Haben sie die Daten sinnvoll mit weiteren Datenquellen ergänzt? Wenn ja, wie?
-Erklären sie die technische Bereitstellung der Daten.
-Wie sind die Daten zugänglich? Welche Formate werden genutzt. Gibt es Besonderheiten beim Lesen der Formate?
-Beschreiben sie die Datenvorverarbeitung.
-Welche Datenvorverarbeitungsschritte sind notwendig? Beschreiben Sie die einzelnen Schritte und begründen sie sie, z.B. warum werden manche Daten weggelassen, über welche Mengen werden Durchschnitte berechnet, warum sind die so berechneten Werte aussagekräftiger als andere Werte. Wenn möglich sollen sie die Datenvorverarbeitung in Elm programmieren, so dass ihre Anwendung auf eine Änderung der Rohdaten reagieren kan. 
+Der für das vorliegende Visualisierungsprojekt verwendete Datensatz stammt von der Plattform \textit{"Kaggle"} von dem Nutzer \textit{"SID_TWR"} mit dem Titel \textit{"Video Games Sales Dataset"}. Die Daten entstanden laut Nutzer durch Erweiterung der Daten eines Web Scrapes von \textit{"VGChartz Video Games Sales"} motiviert durch Gregpry Smith um weitere Attribute aus einem Web Scrape von \textit{"Metacrtitic"}.  %hier einfügen Link/Bibliografie zu Kaggle & zu VG Chartz 
+
+Der Nutzer stellt drei Datensätze zur Verfügung, von denen für dieses Projekt der Datensatz \textit{"XBoxOne_GameSales"} ausgewählt wurde. Hierbei ist zu beachten, dass die zuvor erwähnten Erweiterungen um Attribute stammend von \textit{"Metacrtitics"} in diesem Datensatz nicht enthalten sind. 
+Der Originaldatensatz liegt als CSV-Datei vor und beinhaltet zehn Spalten mit 613 einzelnen Positionen, also Videospielen. 
+Zunächst ist eine eindeutige Identifikationsnummern gegeben, hier als \textit{"Positionen"} bezeichnet. Weiterhin sind der Videospielnamen sowie das jeweilige Jahr der Veröffentlichung der Spiele aufgelistet. 
+Das Attribut \textit{"Genre"} kategorisiert die Videospiele in verschiedene Genre und \textit{"Publisher"} ordnet jedem Videospiel seinen Verleger zu. 
+Zuletzt sind die Attribute \textit{"North America"}, \textit{"Europe"}, \textit{"Japan"}, \textit{"Rest of World"} und \textit{"Global"} aufgeführt. Sie stellen die Verkäufe der Videospiele in den Regeionen Nordamerika, Europa, Japan, dem Rest der Welt und auf globaler Ebene dar. 
+Die Einheit ist hier bei allen \textit{"millions of units"}, also Millionen Stück verkaufter Kopien, was durch eine Recherche auf VGChartz Video Games Sales deutlich wird. %hier Link/Bibliografie zu VGChartz
+Hochgeladen wurden die Daten circa vor drei Jahren. Der für das Projekt ausgewählte Datensatz bildet Videospiele von 2013 bis ungefähr 2020 ab, wobei seit dem Veröffentlichungsjahr 2019 keine Verkaufszahlen mehr eingetragen sind. 
+Auch auf \textit{"VGChartz Video Games Sales"} finden sich schon im Laufe des Veröffentlichungsjahres 2018 weniger bis keine Verkaufszahlen. Zwar wurden die Videospiele bis heute weiter eingetragen, jedoch ohne Aktualisierung der Verkaufszahlen. 
+So ist davon auszugehen, dass die für das Projekt verwendeten Daten Verkaufszahlen ab 2013 bis circa 2018 abbilden. Der Stand der Zahlen hat sich auch laut \textit{"VGChartz Video Games Sales"} aufgrund unbekannter Gründe nicht geändert. 
+Es werden die kumulierten Verkaufszahlen in Millionen Stück in den Jahren seit Erscheinungsdatum bis circa Ende 2018 dargestellt. 
+
+Insgesamt werden die vorhandenen Daten als gut geeignet für die anvisierte Zielgruppe des oberen und mittleren Managements der Verleger von Videospielen für die Platform XBox One und das zuvor eingeleitete Zielproblem eingeschätzt. 
+Die Daten ermöglichen eine grobe Übersicht über die verschiedenen Verleger und ihre Angebote in Form von Videospielen und bedienten Genres. 
+Weiterhin schlüsseln sie detailliert auf, wie sich ein Videospiel seit seiner Veröffentlichung global, aber auch in den einzelnen Weltregionen verkaufte. Auf Basis dieser Daten ist eine Marktanalyse zur Lösung des Problems der fehlenden Übersicht und Kenntnis der Leistung der Videospiele eines Publishers am Markt sowie seiner direkten Konkurrenz im Genre möglich. 
+Denkbar ist jedoch für eine weitergehende und tiefere Analyse die Einbeziehung von Daten zu Kritiken, Entwicklungskosten, Kosten pro Videospielkopie am Markt sowie die durch den Verkauf eines Spiels erzielten Umsätze. 
+Diese Daten sind jedoch größtenteils nicht öffentlich zugänglich, unvollständig oder müssten mit sehr hohem Zeitaufwand aus diversen Quellen zusammengetragen werden. 
+Die Visualisierung dieser Daten würde das hier gesetze Zielproblem ergänzen, jedoch die anvisierte überblicksartige Marktanalyse überschreiten. In einer unabhängigen, weiteren Martkanalyse und den zugehörigen Visualisierungen wäre dies jedoch denkbar.    
+
+Der Datensatz enthält jeodch auch fehlende Werte bei den Verlegern, fortan Publisher genannt, und den Verkaufszahlen jeder Region. Die Daten werden also um jene Videospiele bereinigt, denen kein Publisher zugeordnet ist oder deren Publisher unbekannt ist. 
+Weiterhin werden jene Videospieldaten gelöscht, deren Verkäufe in allen Regionen bzw. global einen Wert von Null aufweisen. 
+Zuletzt wird die Zahl der Videospiele um jene reduziert, deren Publisher nur ein Spiel herausgibt.  
+Die Spalte des Erscheinungsjahres des jeweiligen Videospiels wird aus der hier durchgeführten Marktanalyse und ihrer Visualsierung ausgegliedert. 
+Hieraus können weder Daten für ein Zeitreihendiagramm extrahiert werden, noch macht ein spezifischer Vergleich der Verkaufszahlen in Relation zum Erscheinungsjahr für die Problemstellung und deren Lösung in einem ersten Überblick Sinn. Eine Analyse dieser Daten gliedert sich in mögliche weiterführende Visualisierungen, wie im obigen Abschnitt beschrieben, ein. 
+
+\subsection{Bereitstellung der Daten}
+Wie zuvor beschrieben, werden die originalen Daten über \textit{Kaggle} zur Verfügung gestellt. Diese werden als CSV-Datei heruntergeladen und zusätzlich zur Bearbeitung in das ODS-Format überführt. 
+Alle Daten sowie das Projekt und dieser Bericht werden in einem öffentlichen GitHub Repository bereitgestellt. 
+Die Datendateien sind im Ordner \textit{Daten} in den Unterordnern \textit{CSV}, \textit{JSON} und \textit{Tabelle} je nach Format zu finden. Die Dateien mit den Originaldaten enthalten die Endung \textit{_Original}, Dateien mit Testdaten die Endung {_test} und finale für das Projekt nutzbare Dateien die Endung \textit{_Projekt}.
+Die in Tabellenform überführten Originaldaten werden im ODS-Format bearbeitet, gelöscht, in einer neuen Tabellendatei gespeichert und wieder in CSV konvertiert. Die Datenvorverarbeitung im Detail ist im folgenden Unterkapitel einsehbar. 
+Die CSV-Datei mit der Endung \textit{_JSON} bildet die Grundlage für die Erstellung der JSON-Datei.
+
+Um die Visualisierung mittels explizitem Baumdiagramm zu erstellen, wird eine JSON-Datei benötigt, in der die Beziehungen der Publisher, Genre und Videospiele zueinander beschrieben sind. 
+Videospiele sind hier Kinder der Genres, die wiederum Kinder der Publisher sind und unter einem Wurzelknoten zusammengefasst werden. Für jeden Publisher sind die Genres als Kinder beschrieben, die er bedient. Unter jedem Genres, das ein Publisher bedient werden dann die Videospiele kategorisiert. 
+Die Datei findet sich im Ordner \textit{Daten/JSON} mit der Bezeichung \textit{XBoxOne_GamesSales_Projekt.json}.
+
+Für die Realisierung der Visualisierungstechniken des Scatterplots und der parallelen Koordinaten wird dieselbe CSV-Datei benötigt. Sie ist im Ordner \textit{Daten/CSV} mit der Bezeichnung \textit{XBoxOne_GamesSales_Projekt} zu finden. 
+In dieser Datei sind die nachfolgend detailliert beschriebenen Modifikationen enthalten. 
+Sie beinhaltet entsprechend die alle Positionen, Videospielnamen, Genres, Publisher, Verkäufe in Nordamerika, Europa, Japan, dem Rest der Welt und die globalen Verkäufe. 
+Dezimaltrennzeichen sind als Punkt realisiert und die einzelnen Werte in der Datei sind mit Kommata voneinander getrennt. 
+
+\subsection{Datenvorverarbeitung}
+Zur besseren Nachvollziehbarkeit der Datenvorberarbeitung wird im GitHub Repository im Ordner \textit{Daten} eine zweite README.md-Datei erstellt, die den Fortlauf der Vorverarbeitung dokumentiert. 
+Da der originale Datensatz einige Anpassungen verlangt, um für die Visualisierung sinnvoll nutzbar zu sein, ist eine Datenvorberarbeitung und Modifikation unausweichlich. Die benötigte Datengrundlage wird in sieben Schritten erreicht.
+
+Zuerst werden die Daten als CSV-Datei heruntergeladen und unter der Bezeichnung \textit{XBoxOne_GamesSales_Original.csv} im Ordner \textit{Daten/CSV} gespeichert. 
+Außerdem wird die CSV-Datei in ein ODS-Format konvertiert, um mit dem Programm \textit{Open Office Calc} besser bearbeitet werden zu können. Dies Datei ist unter \textit{XBoxOne_GamesSales_Original.ods} im Ordner \textit{Daten/Tabelle} zu finden. 
+
+In einem zweiten Schritt werden Testversionen der Originaldaten mit den ersten 20 Positionen erstellt im CSV- und ODS-Format erstellt. Mit ihnen können die Visualisierungen zunächst übersichtlich auf Funktionaltität getestet werden. 
+Erst in einem späteren Schritt werden dann nur die Quellen für die Daten im Programm ausgetauscht. Die Testdaten werden zudem um die Spalte des Erscheinungsjahres reduziert. Eine Erklärung folgt in Schritt drei.
+Die Testdateien werden unter \textit{XBoxOne_GamesSales_test.csv} und \textit{XBoxOne_GamesSales_Original.ods} in den Ordnern \textit{Daten/CSV} und \textit{Daten/Tabelle} gespeichert.
+
+Im dritten Schritt erfolgt die eigentliche Modifikation in den Originaldaten in originaler Größe. Die Originaldatei im ODS-Format wird zusätzlich als \textit{XBoxOne_GamesSales_Projekt.csv} im Ordner \textit{Daten/Tabelle} gespeichert, sodass hier ohne Veränderung der Originaldaten modifiziert werden kann.
+Zunächst wird die Spalte  \textit{Year} gelöscht. Diese Daten sind für die Visualisierungen nicht nötig. Die Daten geben keine Grundlage für eine Visualisierung als Zeitreihe. 
+Das Erscheinungsjahr könnte jedoch in Relation zu den Verkaufszahlen betrachtet werden, da diese im ersten Moment durch die Kumulation der Verkaufszahlen über die Jahre größer sein können, je länger das Spiel auf dem Markt ist. 
+Jedoch kann auch ein bspw. erst 2017 erschienenes Videospiel höhere Verkaufszahlen aufweisen als eines, das bspw. im Jahr 2013. Zuverlässige, eindeutige und schnell erkennbare Schlüsse, die für eine hier angestrebte überblicksartige Marktanalyse nötig sind, können somit nicht ermöglicht werden. 
+Es werden zusätzlich jene Positionen, also Videospiele, eliminiert, die einen Wert von Null in allen Regionen der Verkäufe enthalten. 
+Auch unter Anbetracht der Tatsache, dass hier zumindest geringe Verkäufe unter 100.000 verkauften Stück erzielt worden sein könnten, ist ein Vergleich und eine Visualisierung sinnlos.
+Weiterhin werden die Positionen gelöscht, die keinen Publisher oder den Wert  \textit{Unknown} an dieser Stelle enthalten. Sie sind für die Zielgruppe und das Zielproblem irrelevant.
+Zusätzlich wird der Datensatz um die Positionenen minimiert, die von einem Publisher stammen, der nur dieses eine Videospiel verlegt. Ein Vergleich der Spiele des Publishers untereinander und mit Konkurrenten in dem Genre ist nicht sinnvoll. 
+Zudem ist damit zu rechnen, dass sich jene Publisher sehr spezifisch ausgerichtet haben und keine hier visualisierte überischtsartige Marktanalyse benötigen.
+Die entstehende Datei wird zuletzt wieder in das CSV-Format konvertiert und unter \textit{XBoxOne_GamesSales_Projekt.csv} im Ordner \textit{Daten/CSV} gespeichert.
+
+Im vierten Schritt wird der Name des Publishers \textit{Namco Bandai Games} in \textit{Bandai Namco Games} vereinheitlicht, da beide denselben Verleger darstellen. Dieser wurde 2014 in letzteren umbenannt
+
+Als Vorbereitung für die Erstellung der JSON-Datei wird im fünften Schritt eine weitere CSV-Datei erstellt, die die Abhängigkeiten für die gewünschte Baumstruktur als Spaltenüberschriften enthält. 
+Die benötigten Daten des Publishers, Genres und Videospielnamens werden entsprechend der Struktur übertragen. Die Datei ist unter \textit{XBoxOne_GamesSales_JSON.csv} im Ordner \textit{Daten/CSV} zu finden.
+
+Der fünfte Schritt beinhaltet die Konvertiertung der erstellten CSV-Datei mit den Abhängigkeiten in eine JSON-Datei. Diese wurde mittels des Online-Tools \textit{convertcsv.com} vorgenommen. %hier Link/Bibliografie dazu
+Der entstandene Code wird im Editor \textit{Visual Studio Code} in eine neue Datei kopiert und zunächst unter \textit{Daten/JSON} gespeichert.
+
+Zuletzt wird der JSON-Code auf Fehler in den Abhängigkeiten konrolliert und verbessert. Dasselbe wird respektive in der Datei \textit{XBoxOne_GamesSales_JSOn.csv} vorgenommen. 
+In der JSON-Datei wird ein Wurzelknoten hinzugefügt und die leeren Felder, die im expliziten Baumdiagramm leere Blattknoten darstellen würden, gelöscht.
+
+Für das in diesem Projekt anvisierte Ziel und den beschriebenen Anwendungsfall sind weitere Berechnungen nicht nötig. %eventuell falls sinnvoll Durchschnittswerte in Elm der globalen Verkaufszahlen in einem Genre berechnen für Scatterplot
+Desweiteren ist eine Umrechnung der Einheiten der Verkäufe nicht ratsam, da sie in der vorliegenden Form sehr übersichtlich sind. 
+Bei einer Umrechnung in bspw. Tausend Stück würde die Zahl schon zu unübversichtlich und nicht auf den ersten Blick erkennbar sein, wie es für die Zielgruppe notwendig ist. Zur Erläuterung der Einheiten wird ein Informationstext erstellt und die Achsenbeschriftungen entsprechend angepasst.
+
+Zunächst wurde eine Filterung der Daten auf Null-Werte in den Verkäufen jeder Region in Betracht gezogen, sodass diese Videospiele, sollten sie auch nur in einer Region einen Null-Wert enthalten, nicht angezeigt würden. 
+Dies ergibt jedoch wenig Sinn im Zusammenhang einer übersichtsartigen Marktanalyse. Hierfür sind auch Informationen über keine erfolgten Verkäufe und die Region, in der nichts verkauft werden konnte, wichtig. 
+Zu beachten ist jedoch, dass als Null-Werte auch solche aufgeführt sind, deren Verkaufszahlen bei unter 0.01 Millionen Stück verkaufter Videospielkopien liegt. In Anbetracht der Größe der Märkte sind diese sehr geringen Verkaufszahlen jedoch als Null und entsprechend verbesserungswürdig anzusehen.
+Entsprechende Erklärtexte sind notwendig.
+
+%Beschreiben Sie vorhandenen Daten. Gehen sie kritisch darauf ein, in wie weit sich die Daten für die Bearbeitung der Fragestellungen und dem Erreichen von Lösungen für die oben beschriebene Zielgruppen eignen. Haben sie die Daten sinnvoll mit weiteren Datenquellen ergänzt? Wenn ja, wie?
+%Erklären sie die technische Bereitstellung der Daten.
+%Wie sind die Daten zugänglich? Welche Formate werden genutzt. Gibt es Besonderheiten beim Lesen der Formate?
+%Beschreiben sie die Datenvorverarbeitung.
+%Welche Datenvorverarbeitungsschritte sind notwendig? Beschreiben Sie die einzelnen Schritte und begründen sie sie, z.B. warum werden manche Daten weggelassen, über welche Mengen werden Durchschnitte berechnet, warum sind die so berechneten Werte aussagekräftiger als andere Werte. Wenn möglich sollen sie die Datenvorverarbeitung in Elm programmieren, so dass ihre Anwendung auf eine Änderung der Rohdaten reagieren kan. 
 
 \section{Visualisierungen}
 \subsection{Analyse der Anwendungsaufgaben}
