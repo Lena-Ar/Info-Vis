@@ -161,13 +161,94 @@ Entsprechende Erklärtexte sind notwendig.
 %Welche Datenvorverarbeitungsschritte sind notwendig? Beschreiben Sie die einzelnen Schritte und begründen sie sie, z.B. warum werden manche Daten weggelassen, über welche Mengen werden Durchschnitte berechnet, warum sind die so berechneten Werte aussagekräftiger als andere Werte. Wenn möglich sollen sie die Datenvorverarbeitung in Elm programmieren, so dass ihre Anwendung auf eine Änderung der Rohdaten reagieren kan. 
 
 \section{Visualisierungen}
+Im Folgenden Kapitel wird zunächst eine Analyse der Anwendung zur Lösung des Zielproblems einer überblicksartigen Marktanalyse der Verkaufszahlen von Videospielen der Plattform XBoxOne durchgeführt anhand derer Anforderungen an die Visualisierungen abgeleitet werden. 
+Schließlich werden die Visualisierungen und Interaktionen präsentiert.
+
 \subsection{Analyse der Anwendungsaufgaben}
-Analysieren sie die konkreten Anwendungsaufgaben, die die Lösung des Zielproblems durch die Anwender:innen bearbeitet werden müssen. 
-Welche sinnvollen mentale Modelle helfen den Personen bei der Bearbeitung. 
+Das Zielproblem dieses Projekts ist eine überblicksartige Marktanalyse des Videospielemarktes der Plattform XBoxOne anhand der Verkaufszahlen der Videospiele global und in einzelnen Regionen der Welt.
+Ziel der Marktanalyse aus Sicht der Publisher ist eine Übersicht über das eigene Verlagshaus sowie die Konkurrenz, die eigenen Videospielerfolge und Kenntnisse über den Markt zur Erfolgskontrolle vergangener Jahre und informierteren Ausrichtung des Publishers in der Zukunft.
+Hieraus ergeben sich drei Unterziele zur Lösung des Gesamtproblems, die nachfolgend analysiert werden.
+
+Zunächst soll die Frage nach den angebotenen Videospielen der Publisher und ihrer Konkurrenz in einem ersten, eher qualitativen Überblick beantwortet werden. 
+Hierbei liegt der Fokus aufgrund der gegebenen Daten und deren guten Übersichtsmöglichkeiten auf der Identifikation der von einem Publisher angebotenen Genres und der Videospiele, die jenen zugeordnet werden können. 
+So lässt sich erkennen, welche Schwerpunkte der Publisher in der Vergangenheit bzgl. des Genres legte und wieviele Spiele er in welchem Genre anbot. 
+Besonders für größere Publisher, die viele Videospiele und/oder viele Genres anbieten, ist dieser Überlick sinnvoll.
+In Kombination mit einer Übersicht über die konkurrierenden Publisher in derselben Art, kann ermittelt werden, welcher Publisher eine starke Konkurrenz in welchem Genres darstellen kann, welche Genres stark oder weniger stark angeboten werden und wieviele Videospiele ihnen zugeordnet werden können.
+Somit können erste potenzielle Marktlücken, aber auch Sättigungen identifiziert werden, die für eine zukünftige Ausrichtung des Publishers eine Rolle spielen können. 
+Aufgrund der Zielgruppe des oberen und mittleren Managements der einzelnen Publisher, kann es durchaus der Fall sein, dass u.a. besonders die Darstellung zur Lösung des ersten Unterziels auch Geschäftspartnern und anderen Stakeholdern vorgestellt werden muss, die weniger stark in die Einzelheiten und Strukturen des Verlags eingebunden sind. 
+Weiterhin wird die Annahme getroffen, dass die Zielgruppe häufig und in unregelmäßigen Abständen den Überblick über ihre Videospiele, deren Genres und ihre Konkurrenz auf den ersten Blick benötigt, um sie diese Daten ins Gedächtnis zu rufen.
+Mental soll bei den Personen der Zielgruppe ein Modell der Hierarchie und Zugehörigkeit der Videospiele zu Genres und dieser Genres zu den Publishern entstehen, um eine Übersicht zu ermöglichen. Dieses mentale Modell soll sich auch in der Visualisierung zeigen.
+Durch eine Visualisierung der Eltern-Kind-Beziehungen, also der Hierarchie, ist eine Lösung der Fragestellung des ersten Unterziels möglich.
+
+Das zweite Unterziel beschäftigt sich mit einem konkreteren Blick auf die einzelnen Videospiele innerhalb eines Genres in den verschiedenen Regionen der Welt im Vergleich. 
+Hierbei soll die Frage beantwortet werden, wie sich die Videospiele eines Genres im direkten Vergleich in den Regionen der Welt verkauften. Gleichzeitig soll verglichen werden können, wie performant konkurrierende Videospiele des Genres waren.
+Für Publisher X soll erkennbar sein, welche seiner Spiele in dem ausgewählten Genre in welchen Regionen erfolgreich waren und welche nicht. 
+Durch den Vergleich mit der Konkurrenz kann er möglich Gründe für die Verkaufszahlen seiner Spiele feststellen. Wenn bspw. eines seiner Spiele in allen oder nur einzelnen Regionen nicht gut verkauft werden konnte, ein Spiel eines Konkurrenten aber in diesen Regionen aber gut, dann deutet das auf einen starken Konkurrenten hin. 
+Sind alle oder die meisten Spiele der Konkurrenz in allen oder einzelnen Regionen besser verkauft worden, als das Videospiel von Publisher X, dann deutet dies auf einen gesättigten Markt des Genres mit starker Konkurrenz hin, in das sich möglicherweise weitere Investititonen nicht lohnen. 
+Andersherum können sich auch Marktlücken pro Genre identifizieren lassen. 
+Bei der Bearbeitung dieser Probleme helfen vor allem Übersichten und Vergleiche als mentale Modelle mit Visualisierungen von Daten auf Positionen auf Achsen und der Verbindung der Daten eines jeden Videospiels. 
+So kann sich ein zusammenhängendes Bild über die Verkaufszahlen in den Regionen ergeben ähnlich zu einem Motiv, dass sich durch das Verbinden von Zahlen in einem Zahlenbild für Kinder ergibt. Werden verschiedene solcher Bilder übereinandergelegt, hier entsprechend der konkurrierenden Videospiele, lassen sich Unterschiede erkennen.
+Sie sind mitunter nicht zwingend zur Lösung nötig, verbessern das Verständnis gerade in Bezug auf Schnelligkeit und Überischtlichkeit aber ungemein.
+
+Zuletzt stellt sich die Frage, wie gut sich die Videospiele im Vergleich zu anderen Spielen des Genres im genaueren Vergleich verkauften. 
+Hierbei legt sich der Fokus auf die möglichen Korrelationen zwischen den einzelnen Regionen und den globalen Verkäufen, aber auch auf konkreter sichtbare Verhältnisse von Verkaufszahlen eines Videospiels eines Genres auch im Vergleich zur Konkurrenz.
+So lassen sich zum einen anhand konkreter sichtbarer Zahlen als in der zweiten Visualisierung der Erfolg eines Videospiel im Genre kontrollieren, aber zum anderen auch Kenntnisse zu neuen Positionierungen des Publishers für neue Videospiele ermöglichen.
+Gibt es bspw. viele Videospiele eines Genre, die in der Region Europa schlecht verkauft werden konnten, aber mittelmäßige bis gute globale Verkaufszahlen zeigen, so kann das auf eine Präferenz der Region für andere Genres deuten. 
+Sollte es zudem einen oder weitere wenige Ausreißer geben, die besonders gute Verkaufszahlen in dieser Region und global haben, dann deutet das auf eine Bedarfsdeckung dieser Region durch das entsprechende Videospiel hin. 
+Eine weitere Investition in diese Region in dem Genre wäre entsprechend zu überdenken. Ist aber bswp. ein Videospiel des Publishers X in dieser Region der Ausreißer und besitzt auch global gute Verkaufszahlen, so ist eine Investition in weitere Videospiele dieser Reihe eine sinnvolle Option.
+In einem mentalen Modell können diese Analysen durch räumliche Abbildungen bzw. Abbildungen der Daten auf Positionen in einem Kontext dargestellt werden. Zur Unterstützung der einfachen Erkennung von Korrelationen ist ein Modell mit nur zwei Dimensionen sinnvoll. 
+Die Visualisierung soll auch die im mentalen Modell gewünschten, möglicherweise entstehenden Cluster abbilden können. 
+Für die Bearbeitung dieses Unterziels ist das entstehende räumliche mentalte Modell der Abbildung der Daten auf Positionen sehr wichtig und notwendig, um vor allem die Korrelationen und Cluster zwischen den Regionen erkennen zu können.
+
+Insgesamt gliedern sich die Unterziele von einer groben, überblicksartigen Analyse in und zwischen Publishern in und zwischen Genres 
+zu einer konkreteren, aber dennoch überblickartigen Analyse der Verkaufszahlen innerhalb der Genres zur Erfolgskontrolle und Vergleich mit der Konkurrenz 
+bis hin zu einer detaillierten Analyse der Verkaufszahlen im Vergleich von nur zwei Regionen und auch auf Korrelationen und Clustern zwischen den Regionen.
+
+%Analysieren sie die konkreten Anwendungsaufgaben, die die Lösung des Zielproblems durch die Anwender:innen bearbeitet werden müssen. 
+%Welche sinnvollen mentale Modelle helfen den Personen bei der Bearbeitung. 
 %Welche Visualisierungen helfen den Personen, die die Software verwenden, sinnvolle mentale Modelle aufzubauen. 
-Sind diese mentalen Modelle für sie notwendig, um die Aufgaben lösen zu können? Gehen sie bei ihrer Argumentation von den Anwendungsaufgaben aus und kommen sie dann zu den mentalen Modellen, deren Aufbau durch Visualisierungen unterstützt wird. 
+%Sind diese mentalen Modelle für sie notwendig, um die Aufgaben lösen zu können? Gehen sie bei ihrer Argumentation von den Anwendungsaufgaben aus und kommen sie dann zu den mentalen Modellen, deren Aufbau durch Visualisierungen unterstützt wird. 
 \subsection{Anforderungen an die Visualisierungen}
-Leiten sie Anforderungen an das Design der Visualisierungen ab, die sich durch ihre Analyse des Zielproblems ergeben.
+Aus den zuvor analysierten Anwendungsaufgaben und Unterzielen leiten sich diverse Anforderungen an die Visualisierungen ab. 
+Allgemein sollen alle Visualsierungen effizient, expressiv und angemessen sein. So ist bedingt durch die Zielgruppe vorrangig wichtig, dass die Inhalte intuitiv und ohne viele Erklärungen erkennbar werden. 
+Weiterhin muss die Aussagekraft eindeutig sein, um unbeabsichtigte Suggestionen zu vermeiden. Zuletzt sollte besonders im Kontext einer betriebswirtschaftlich orientierten Analyse auch die Angemessenheit gegeben sein. 
+Zwar ist eine hier anvisierte Marktanalyse essentiell für ein Verlagshaus und entsprechend auch bezüglich des Ressourchenverbrauchs wertvoll, jedoch werden besonders hier die Kosten in Bezug zur Effektivität gestellt. 
+Es ergibt also wenig Sinn, besonders komplexe, tiefgründige Visualsierungen zu nutzen, die viele Ressourcen verbrauchen, wenn es gerade in Bezug auf die Zielgruppe sinnvollere, eventuell weniger komplexe, 
+aber dafür leichter und schneller verständliche Visualisierungstechniken gibt, die entsprechend weniger Ressourcen in der Erstellung benötigen. 
+%Bibliografie dazu
+
+Zur Beantwortung des ersten Unterziels, welches sich mit den angebotenen Videospielen und Genres der Publisher und ihrer Konkurrenz beschäftigt, ist eine Darstellung eben dieser Daten notwendig. 
+Es müssen alle Publisher, sowie die jeweils von ihnen abgedeckten Genres und angebotenen Videospiele überblicksartig dargestellt werden. Wichtig ist Darstellung, die von den jeweiligen Publishern ausgeht und dann spezifischer wird. 
+Um die eigenen Angebote schnell erkennen zu können, sollte nicht nur die Anzahl und Art der Genres je Publisher dargestellt werden. Zur mentalen Gewichtung der abgedeckten Genres ist auch die Darstellung der Anzahl der ihnen zugeordneten Videospiele je Publisher nötig. 
+Aufgrund des geforderten Überblicks und der konkreten Darstellung der Videospiele, müssen auch die Titel der Spiele abgebildet werden. 
+Weiterhin ist es zur Ermittlung der möglichen Konkurrenz nötig, alle Publisher in einer Übersicht in derselben Art und Weise darzustellen. 
+Neben den oben beschriebenen Anforderungen ist eine der wichtigsten jedoch die schnelle Übersicht, vor allem über das eigene Verlagshaus. 
+Es muss ohne viel Nachdenken und viele Erklärungen sowohl für die Zielgruppe, als auch für Stakeholder des Verlages ersichtlich werden, welche Genres der Publisher anbietet und welche und wieviele Spiele unter diesen Genres katgorisiert sind.
+Auf dieselbe Art muss entsprechend auch die Konkurrenz leicht und schnell ablesbar sein. 
+Die Hauptaufgabe der ersten Visualisierung liegt in der Präsentation der schon klar bestimmten Daten des Sachverhaltes der Publisher, der von ihnen abgedeckten Genres und den ihnen zugeordneten Videospielen in einer schnell verständlichen, hierarchischen Darstellung.
+
+Aus der Analyse des zweiten Unterziels ergibt sich die übergeordnete Anforderung der visuellen Analyse der Datenmenge für die zweite Visualisierung. 
+Es muss in der Visualisierung in einem Vergleich auf einen Blick erkennbar werden, in welchen Regionen der Welt sich welche Spiele eines Genres gut verkauften und wo entsprechend nicht. 
+Weiterhin muss in derselben Darstellung sichtbar werden, wie die konkurrierenden Spiele abschnitten.
+Somit ist es von Nöten, alle in den Daten gegebenen Regionen in einer Darstellung abzutragen, in der sie miteinander verglichen werden können. 
+Für eine bessere Vergleichbarkeit der Daten soll nach Genre kategorierisiert werden und dieses je nach Betrachtungswunsch ausgewählt werden. 
+In der Visualisierung soll hauptsächlich ein Spiel in verschiedenen Regionen verglichen werden, jedoch auch Spiele untereinander. Entsprechend ist es für das Design wichtig, dass Werte eines Videospiels miteinander verbunden werden. 
+Für ein einheitliches Verständnis soll dies auf dieselbe Weise mit den konkurrierenden Videospielen passieren. Entsprechend braucht es aber eine deutliche Unterscheidung der Spiele untereinander, bspw. mittels Farbe, sowie eine Beschriftung mit den Titeln der Videospiele.
+Die Ausprägung der Verkaufszahlen muss zumindest grob ablesbar sein, wobei der visuelle Vergleich zur Unterstützung des mentalen Modells des übersichtsartigen Vergleichens vor expliziten, genauen Zahlen Vorrang hat.
+
+Die übergeordnete Anforderung an die dritte Visualisierung ist wieder die visuelle Analyse der Datenmenge. Hierbei soll es der Zielgruppe möglich sein, Korrelationen zwischen den Regionen der Videospielverkäufe und den globalen Verkäufen zu erkennen. 
+So kann erkannt werden, wie die Zusammenhänge zwischen bspw. sehr guten Verkaufszahlen einer Region zu den Verkaufszahlen global gegeben sind. 
+Weiterhin sollen noch einmal präziser die Verkaufszahlen der Videospiele der Publisher in einem Genre im Kontext dargestellt werden. Hierzu sollen nur die globalen Verkaufszahlen und die einer auswählbaren weiteren Region aufgezeigt werden. 
+Auch hier besteht die Anforderung, die Analyse und Visualisierung im Kontext des Genres vorzunehmen, damit die Zielgruppen die einzlenen Videospiele konkreter vergleichen können.
+In dieser Visualisierung muss die Relation von zwei Regionen zueinander dargestellt werden, sowie der Titel des entsprechendes Videospiel ersichtlich werden. 
+Zum präzisen Vergleich von Verkaufszahlen in den Regionen müssen auch die exakten Zahlen zu finden sein und möglichst nicht nur rein visuell abgetragen werden. 
+Für eine Visualisierung der möglichen Cluster und Zusammenhänge zwischen den Verkaufszahlen konkurrierender Spiele, müssen alle Titel aller Publisher des Genres vertreten sein.
+Durch die gewünschte detaillierte Analyse ist eine intuitiv verständliche Visualisierung sowie ein gut verständliches Design dieser wichtig. 
+
+Allen spezifischen Anforderungen voran steht die Anforderung der leichten, möglichst intuitiven Erkennbarkeit der Zusammenhänge und der schnellen, überischtsartigen Vergleichbarkeit,
+die für die eingangs beschriebende Zielgruppe notwendig ist.
+
+%Leiten sie Anforderungen an das Design der Visualisierungen ab, die sich durch ihre Analyse des Zielproblems ergeben.
 \subsection{Präsentation der Visualisierungen}
 Präsentieren sie die visuelle Abbildungen und Kodierungen der Daten und Interaktionsmöglichkeiten. 
 Sie müssen  begründen, warum und wie gut ihre Designentscheidungen die erstellten Anforderungen erfüllen. 
