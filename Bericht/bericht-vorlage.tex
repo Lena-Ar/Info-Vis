@@ -250,20 +250,101 @@ die für die eingangs beschriebende Zielgruppe notwendig ist.
 
 %Leiten sie Anforderungen an das Design der Visualisierungen ab, die sich durch ihre Analyse des Zielproblems ergeben.
 \subsection{Präsentation der Visualisierungen}
-Präsentieren sie die visuelle Abbildungen und Kodierungen der Daten und Interaktionsmöglichkeiten. 
-Sie müssen  begründen, warum und wie gut ihre Designentscheidungen die erstellten Anforderungen erfüllen. 
-Weiterhin müssen sie begründen, warum die gewählte visuelle Kodierung der Daten für das zulösenden Problem passend ist.
-Typische Argumente würden hier auf Wahrnehmungsprinzipien und Theorie über Informationsvisualisierung verweisen. 
-Die besten Begründungen diskutieren explizit die konkrete Auswahl der Visualisierungen im Kontext von mehreren verschiedenen Alternativen. 
-Machen sie hier nicht den Fehler, einfach nur Visualisierung aus den vorgegebenen Bereichen zu diskutieren, weil das in der Regel nicht sinnvoll ist.
-Wenn sie sich für einen Scatterplot entschieden haben, ist ein Zeitreihendiagramm in der Regel keine Alternative.
-Diskutieren sie also nicht einfach Zeitreihendiagramme, weil sie in den Anforderungenen an das Projekt neben Scatterplots stehen, sondern suchen sie nach echten alternativen Visualisierungen, die zum Aufbau eines vergleichbaren mentalen Modells führen. 
-Diskutieren sie die Expressivität und die Effektivität der einzelnen Visualisierungen. 
+Zur Erfüllung der Anaylsen und Anforderungen werden die Visualisierungstechniken \textit{explizites Baumdiagramm}, \textit{parallele Koordinate} und \textit{Scatterplot} gewählt.
+Nachfolgend werden die ausgesuchten Visualisierungen vorgestellt und diskutiert. 
+%Präsentieren sie die visuelle Abbildungen und Kodierungen der Daten und Interaktionsmöglichkeiten. 
+%Sie müssen  begründen, warum und wie gut ihre Designentscheidungen die erstellten Anforderungen erfüllen. 
+%Weiterhin müssen sie begründen, warum die gewählte visuelle Kodierung der Daten für das zulösenden Problem passend ist.
+%Typische Argumente würden hier auf Wahrnehmungsprinzipien und Theorie über Informationsvisualisierung verweisen. 
+%Die besten Begründungen diskutieren explizit die konkrete Auswahl der Visualisierungen im Kontext von mehreren verschiedenen Alternativen. 
+%Machen sie hier nicht den Fehler, einfach nur Visualisierung aus den vorgegebenen Bereichen zu diskutieren, weil das in der Regel nicht sinnvoll ist.
+%Wenn sie sich für einen Scatterplot entschieden haben, ist ein Zeitreihendiagramm in der Regel keine Alternative.
+%Diskutieren sie also nicht einfach Zeitreihendiagramme, weil sie in den Anforderungenen an das Projekt neben Scatterplots stehen, sondern suchen sie nach echten alternativen Visualisierungen, die zum Aufbau eines vergleichbaren mentalen Modells führen. 
+%Diskutieren sie die Expressivität und die Effektivität der einzelnen Visualisierungen. 
+%Die eben beschriebenen Präsentationen und Begründungen sollen für jede der drei folgenden Visualisierungen durchgeführt werden. 
 
-Die eben beschriebenen Präsentationen und Begründungen sollen für jede der drei folgenden Visualisierungen durchgeführt werden. 
 \subsubsection{Visualisierung Eins}
+Zur Erfüllung der Anforderungen und in der Analyse gefundenen Problemstellungen wird für die erste Visualisierung ein explizites Baumdiagramm gewählt.
+%warum Baum + Theorie + Wahrnehmungsprinzip
+
+In der Visualisierung gibt es einen Wurzelknoten aus dem hierarchisch die Kindknoten der Publisher abgehen. 
+Für jeden Publisher gibt es wiederum Kindknoten, die aus den vom Publisher abgedeckten Genres bestehen. Zur besseren Übersicht und Vergleichbarkeit werden nur diejenigen Genres pro Publisher abgebildet, die dieser Publisher anbietet. 
+Die Genreknoten werden für jeden Publisher in derselben alphabetischen Reihenfolge aufgeführt.
+Die Genreknoten besitzen noch einmal Kindknoten, die die Titel der Videospiele, die dem entsprechenden Genre zugeordnet sind, tragen. So entsteht eine hierarchische Übersicht über das Angebot jedes Publishers, sodass dieser sowohl sich selbst, als auch die Konkurrenz in wenigen Blicken erfassen kann. 
+Die Anforderungen an eine schnelle, intuitive und für jeden verständliche Übersicht werden größtenteils erfüllt. 
+Jedoch besteht der Nachteil der Größe des Baumes durch die vielen Publisher- und Genreknoten. 
+Trotzdem kann der Baum durch seine Nutzung der Hierarchie, also Abbbildung der nominalen Daten auf eine Position im Raum, sowie durch die Nutzung von Verbindungslinien zur Unterstützung der Positionierung und damit Erstellung des mentalen Modells der gewünschten Hierarchie die Anforderungen an Effektivität gut erfüllen.
+Entsprechende visuelle Variablen werden als sehr effektive Abbildungsmethodik für nominale Daten eingestuft. Expressiv und damit ohne viele Erklärungen und Missverständnisse ist diese Technik zudem. %evtl Bibliografie
+Jedoch leidet die Expressivität etwas unter der Menge an Knoten und damit der Größe des Baumes.
+Auch angemessen ist eine Visualsierung als explizites Baumdiagramm, da es wenig Ressourcen fordert. 
+
+Es gibt verschiedene Alternativen zu dieser Darstellung bestehend aus impliziten Baumdiagrammen, radialen Baumdarstellungen und hyperbolischen Bäumen. 
+Implizite Baumdarstellungen können ebenso wie explizite die Hierarchien zwischen Eltern- und Kind-Knoten darstellen. 
+%Grund
+%umschließen, unüberischtlichkeit, nicht so direkt verständlich mit vielen Erklärungen & beschriftungen
+Radiale und hyperbolische Bäume sind gute Alternativen für Darstellungen mit vielen Knoten wie es in dieser Visualisierung auch der Fall ist. 
+%Grund
+%macht Sinn wegen anzahl knoten, aber probleme mit überschneidungen, schnelles lesen, platz knoten wächst linear mit umfang aber Knoten können exponentiell wachsen
+%Platzierungsprobleme nicht, aber durch Darstellung evtl schwieriger zu veregleich mit Konkurrenz, angemessenheit nicht 100, da viel aufwand ressourcen zum erstellen und mehr zum lesen bei der eig überblicksartigsten & einfachsten Visualisierung
+Vor allem letztere Alternativen bieten in Bezug auf Expressivität, Effektivität und Angemessenheit nahezu dieselben Vorteile wie die expliziten Bäume. 
+Letztlich wird die Entscheidung für ein explizites Baumdiagramm trotz des Nachteils der vielen Knoten, die durch hyperbolische und radiale Bäume übersichtlicher gestaltet werden könnten, aufgrund der Übersichtlichkeit durch Intuitivität der expliziten Baumdarstellungen getroffen. 
+Dies mag paradox wirken, jedoch sind explizite Bäume durch ihr häufigeres Vorkommen in allen Lebenssituationen noch ein wenig intuitiver und damit effektiver verständlich als die Alternativen. 
+Da die Anforderung vor allem auf schnellem Erkennen und Wiedererkennen insbesondere des eingenen Verlagshauses der Zielgruppe und deren Stakeholdern liegt, wird diesem Aspekt eine hohe Gewichtung gegeben.
+
 \subsubsection{Visualisierung Zwei}
+Als zweite Visualisierungstechnik zur Lösung des in der Analyse gestellten Unterziels zwei und seinen Anforderungen werden die parallelen Koordinaten gewählt.
+%warum parallele + Tehorie + Wahrnehnumgsprinzip
+
+Für diese Visualisierung werden die Datenpunkte als Abfolge von Liniensegmenten dargestellt, wobei der Attributwert der jeweilige Endpunkt des Liniensegments ist. Die Wertebereiche der Attribute sind die Liniensegmente.
+Die Liniensegmente sind im hier vorliegenden Fall die Wertebereiche der Attribute \textit{"North America"}, \textit{"Europe"}, \textit{"Japan"}, \textit{"Rest of World"} und \textit{"Global"}, welche die Verkaufszahlen in Millionen Einheiten der Videospiele in den verschiedenen Regionen darstellen.
+Durch die Verbindung der Liniensegmente und den jeweiligen Endpunkten auf den parallelen Liniensegmenten bzw. Achsen kann die Zielgruppe die Attributwerte dieser fünf Attribute ablesen. 
+Durch die Darstellung aller Videospiele als eine solche Sequenz von Liniensegmenten, aber entsprechend immer anderen Attributwerten, können Unterschiede erkannt werden. 
+Wie in den Anforderungen beschrieben, soll es zur besseren Vergleichbarkeit der Datenpunkte und damit Videospiele eine Filterung nach Genres geben, die mittels eines Drop-Down-Menüs umgesetzt wird. 
+Da es bei parallelen Koordinaten zu Problemen mit dem Überzeichenen von Liniensegmenten kommen kann, wenn es zu viele Datenpunkte gibt, schafft die Filterung hierbei zudem Abhilfe. 
+Zur Erkennung des Videospieltitels und des Publishers, wird beim Hovern über ein Liniensegment beides eingeblendet. Zudem wird das entsprechende Segment mittels Farbe hervorgehoben, um das Segment eindeutig erkennbar zu machen.
+Durch dieses Designentscheidungen werden die allgemeinen Anforderungen an Expressivität und Effektivität erfüllt. Quantitative Daten werden zudem am besten mit den visuellen Variablen Position, aber auch Orientierung dargestellt. %evtl Bibliografie
+Beides wird in den parallelen Koordinaten umgesetzt, die Orientierung vor allem durch die Sequenz an verbundenen Liniensegmenten, die parallelen Achsen und den entstehenden Kontext der Daten. 
+Die Expressivität wird zusätzlich durch die eindeutige Beschriftung der Liniensegmente beim Hovern, die Einfärbung und die eindeutige Beschriftung der Achsen, die jeweils dieselbe Einheit besitzen erreicht. 
+Auch die weiteren Anforderungen vor allem an die Vergleichbarkeit und allgemeine Übersicht über die Verkaufszahlen der Videospiele in einer leicht verständlichen Art und Weise wird erfüllt.
+Zusätzlich können leicht Cluster erkannt werden, wenn bestimmte Videospiele, bspw. eine Reihe in einem Genre, alle in allen Attributen, sprich Regionen, gute Werte aufzeigen. Auch dies bietet Aufschlüsse über den Markt und entsprechende Konkurrenz.
+Die konkreten Zahlen sind anhand der Achsenbeschriftung zumindest ungefähr ablesbar, jedoch überwiegt wie gewünscht das visuelle Erkennen und Vergleichen. Aus der Anforderung nach einer Vergleichbarkeit mit zumindest groben Datenwerten leitet sich zudem ab, dass keine Techniken der Datentinte verwendet werden.
+Dies wird vor allem durch dieselben Einheiten jeder parallelen Achse, der Vergleichbarkeit dieser dadurch und damit der intuitiven Einordnung von \textit{hoch} und \textit{niedrig} entlang der Achsen möglich.
+
+Auch zu den parallelen Koordinaten gibt es Alternativen. 
+Eine dieser Alternativen sind die Stickfigure Plots. Sie werden jedoch als weniger gut im Vergleich zu den parallelen Koordinaten eingeschätzt.
+%Grund
+Auch Section und Prosection wäre eine legitime Alternative, da auch hier mehrdimensionale Daten dargestellt werden können. Das Problem liegt 
+%Grund
+Zuletzt bieten Sternkoordinaten und auch Polar Plots alternative Möglichkeiten der Darstellung mehrdimensionaler Daten. Allerdings
+%Grund
+
 \subsubsection{Visualisierung Drei}
+Zuletzt wird das dritte Unterziel und die abgeleiteten Anforderungen durch die Visualisierungtechnik Scatterplot umgesetzt. 
+%Scatterplot + Grund + Theorie + Wahrnehmungsprinzip
+
+In diesem Scatterplot wird auf die X-Achse der Wertebereich des Attributs \textit{"Global"} abgebildet. Die Y-Achse zeigt je nach Auswahlwunsch des Betrachters je den Wertebereich der Attribute \textit{"North America"}, \textit{"Europe"}, \textit{"Japan"}, \textit{"Rest of World"}.
+Auch hier sind die Einheiten wieder gleich und somit gut vergleichbar. Die Skalierung der X-Achse muss durch die globalen Verkaufszahlen jedoch etwas verkleinert werden bzw. die Skalierung der Y-Achse etwas vergrößert. So können die Werte der Datenpunkte leichter anhand der Achsenbeschriftungen abgelesen werden. 
+Es werden je die Datenpunkte visualisiert, die dem per Drop-Down-Menü ausgewählten Genre entsprechen. 
+Die Datenpunkte werden klassisch als ungefüllte Kreise dargestellt, wobei sich ihre Position aus den Werten der oben beschriebenen, momentan ausgewählten Atribute bestimmt. 
+Beim Hovern über die Punkte werden diese eingefärbt und ein weiteres Attribut, der Titel des Videospiels angezeigt. Zur exakten Erkennung der Attributwerte der Verkaufszahlen werden diese hinter dem Titel in Klammern aufgelistet. 
+Es wird zuerst der Wert für die X-Achse, dann der Wert für die Y-Achse dargestellt.
+Durch diese Designentscheidungen werden die zuvor formulierten Anforderungen erfüllt. Die Kodierung der Daten auf die Punkte im Scatterplot, also Koordinatensystem ermöglichen ein Wahrnehmen und damit eine Orientierung im Raum, der mental entsteht und das Verständnis für die Relation der Datenpunkte zueinander verbessert.
+Weiterhin ist dadurch die visuelle Darstellung von möglichen Korrelationen zwischen zwei Attributen erkennbar. 
+Durch die zweidimensionale Darstellung der Attribute eine genauere Betrachtung dieser erfolgen. Entsprechend kann auch die Konkurrenz noch einmal anders und möglichlerweise genauer je nach Regionseinstellung wahrgenommen werden.
+Durch die Einblendung der exakten Attributwerte ist auch diese Anforderung erfüllt. 
+Die eher klassische Darstellung als Punkte erleichtert das Erkennen von Punktwolken respektive Cluster durch Intuittion, insbesondere sollte es Korrelationen zwischen einer Region und den globalen Verkaufszahlen geben. 
+Ähnlich wie in Visualisierung zwei werden auch in Scatterplots die für quantitative Daten gut geeigneten visuellen Variablen Position, Orientierung und Gebiet genutzt. 
+Weiterhin ist diese Darstellungsweise allgemein bekannt, sodass eine schnelle Analyse einzelner Wertpaare, aber auch Korrelationen und Ausreißer möglich ist. Dadurch und durch die oben genannten Aspekte ist die Effektivität gegeben. 
+Auch expressiv ist diese Visualisierung, da die Darstellung der Datenpunkte als Kreise auch ohne Legende schnell erkannt wird. Durch die Einblendung der exakten Werte beim Hovern wird eine mögliche Verwirrung durch Überlagerung verschiedener Symbole, Farben oder Größen der Punkte verhindert. 
+Dank der Filterung in Genre und der recht unkomplizierten Darstellung ist auch die Angemessenheit gegeben. Wie in allen drei Visualisierungen gilt hier auch die Angemessenheit durch Effektivität. 
+
+Alternativ bestehen in diesem Kontext vor allem drei weitere Visualisierungsmöglichkeiten. Diese sind Q- & QQ-Plots, Histogramme und Korrelationstabellen. 
+QQ-Plots eignen sich zwar auch zur Darstellung von paarweisen Vergleichen und Entdeckung von Korrelationen und Ausreißern, jedoch sind sie weniger intuitiv, benötigen ein gewissen Vorwissen und sind nicht schnell erkennbar.
+%QQ + Grund
+Histogramme wiederum 
+%Histogramme + Grund
+Eine weitere Alternative sind Korrelationstabellen. 
+%Grund
 
 \subsection{Interaktion}
 Die präsentierten Visualisierungstechniken müssen interaktiv zu einer Anwendung verknüpft werden.
