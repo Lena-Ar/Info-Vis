@@ -143,7 +143,8 @@ Der fünfte Schritt beinhaltet die Konvertiertung der erstellten CSV-Datei mit d
 Der entstandene Code wird im Editor \textit{Visual Studio Code} in eine neue Datei kopiert und zunächst unter \textit{Daten/JSON} gespeichert.
 
 Zuletzt wird der JSON-Code auf Fehler in den Abhängigkeiten konrolliert und verbessert. Dasselbe wird respektive in der Datei \textit{XBoxOne_GamesSales_JSOn.csv} vorgenommen. 
-In der JSON-Datei wird ein Wurzelknoten hinzugefügt und die leeren Felder, die im expliziten Baumdiagramm leere Blattknoten darstellen würden, gelöscht.
+In der JSON-Datei wird ein Wurzelknoten hinzugefügt und die leeren Felder, die im expliziten Baumdiagramm leere Blattknoten darstellen würden, gelöscht. Zusätzlich wird pro Genre der jeweilige Eltern-Publisher wenn möglich abgekürzt
+in Klammern hinzugefügt. Somit können die Genres eindeutig identifiziert werden und es kommt nicht zu Überschneidungen der Pfade und mehreren eingehenden Pfaden pro Knoten respektive mehreren Elternknoten pro Kindknoten. 
 
 Für das in diesem Projekt anvisierte Ziel und den beschriebenen Anwendungsfall sind weitere Berechnungen nicht nötig. %eventuell falls sinnvoll Durchschnittswerte in Elm der globalen Verkaufszahlen in einem Genre berechnen für Scatterplot
 Desweiteren ist eine Umrechnung der Einheiten der Verkäufe nicht ratsam, da sie in der vorliegenden Form sehr übersichtlich sind. 
