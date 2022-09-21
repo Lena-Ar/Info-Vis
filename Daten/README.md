@@ -21,3 +21,6 @@ Konvertierung der CSV-Datei in JSON mittels des Online-Tools https://www.convert
 
 ## Schritt 7 
 Revision des JSON-Codes und Verbesserung um flasch gesetzte Abhängigkeiten in dieser Datei und der zugrunde liegenden CSV-Datei. Löschen der leeren Felder/Knoten. Hinzufügen eines Wurzelknotens.
+
+## Schritt 8
+Zweite Revision des JSON-Codes. Ergänzen der Abkürzungen der Publisher hinter den jeweiligen Genres zur eindeutigen Identifizierung für die Baumdarstellung, da pro Knoten nur ein eingehender Pfad gewünscht ist. Sonst käme es zum Überkreuzen von Pfaden und entsprechend mehreren eingehenden Pfaden pro Knoten bzw. mehreren Eltern pro Kind. 
