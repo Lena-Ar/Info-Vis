@@ -10,7 +10,7 @@
       "children": [
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (2K)"
             },
             "children": [
                {
@@ -22,7 +22,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (2K)"
             },
             "children": [
                {
@@ -49,7 +49,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (2K)"
             },
             "children": [
                {
@@ -61,7 +61,7 @@
          },
          {
             "data": {
-               "id": "Strategy"
+               "id": "Strategy (2K)"
             },
             "children": [
                {
@@ -80,7 +80,7 @@
       "children": [
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (2KSports)"
             },
             "children": [
                {
@@ -129,7 +129,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (505)"
             },
             "children": [
                {
@@ -146,7 +146,7 @@
          },
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (505)"
             },
             "children": [
                {
@@ -168,7 +168,7 @@
          },
          {
             "data": {
-               "id": "Platform"
+               "id": "Platform (505)"
             },
             "children": [
                {
@@ -180,7 +180,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (505)"
             },
             "children": [
                {
@@ -202,7 +202,7 @@
          },
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (505)"
             },
             "children": [
                {
@@ -214,7 +214,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (505)"
             },
             "children": [
                {
@@ -236,7 +236,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (505)"
             },
             "children": [
                {
@@ -248,7 +248,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (505)"
             },
             "children": [
                {
@@ -267,7 +267,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Activision)"
             },
             "children": [
                {
@@ -304,7 +304,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (Activision)"
             },
             "children": [
                {
@@ -321,7 +321,7 @@
          },
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (Activision)"
             },
             "children": [
                {
@@ -333,7 +333,7 @@
          },
          {
             "data": {
-               "id": "Misc"
+               "id": "Misc (Activision)"
             },
             "children": [
                {
@@ -345,7 +345,7 @@
          },
          {
             "data": {
-               "id": "Music"
+               "id": "Music (Activision)"
             },
             "children": [
                {
@@ -357,7 +357,7 @@
          },
          {
             "data": {
-               "id": "Platform"
+               "id": "Platform (Activision)"
             },
             "children": [
                {
@@ -374,7 +374,7 @@
          },
          {
             "data": {
-               "id": "Puzzle"
+               "id": "Puzzle (Activision)"
             },
             "children": [
                {
@@ -386,7 +386,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Activision)"
             },
             "children": [
                {
@@ -448,7 +448,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (Activision)"
             },
             "children": [
                {
@@ -467,7 +467,7 @@
       "children": [
          {
             "data": {
-               "id": "Misc"
+               "id": "Misc (Atari)"
             },
             "children": [
                {
@@ -491,7 +491,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (BNG)"
             },
             "children": [
                {
@@ -513,7 +513,7 @@
          },
          {
             "data": {
-               "id": "Fighting"
+               "id": "Fighting (BNG)"
             },
             "children": [
                {
@@ -555,7 +555,7 @@
          },
          {
             "data": {
-               "id": "Platform"
+               "id": "Platform (BNG)"
             },
             "children": [
                {
@@ -567,7 +567,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (BNG)"
             },
             "children": [
                {
@@ -589,7 +589,7 @@
          },
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (BNG)"
             },
             "children": [
                {
@@ -623,7 +623,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Bethesda)"
             },
             "children": [
                {
@@ -650,7 +650,7 @@
          },
          {
             "data": {
-               "id": "Misc"
+               "id": "Misc (Bethesda)"
             },
             "children": [
                {
@@ -662,7 +662,7 @@
          },
          {
             "data": {
-               "id": "MMO"
+               "id": "MMO (Bethesda)"
             },
             "children": [
                {
@@ -679,7 +679,7 @@
          },
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (Bethesda)"
             },
             "children": [
                {
@@ -696,7 +696,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Bethesda)"
             },
             "children": [
                {
@@ -740,7 +740,7 @@
       "children": [
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (Bigben)"
             },
             "children": [
                {
@@ -752,7 +752,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (Bigben)"
             },
             "children": [
                {
@@ -774,7 +774,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Bigben)"
             },
             "children": [
                {
@@ -786,7 +786,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (Bigben)"
             },
             "children": [
                {
@@ -810,7 +810,7 @@
       "children": [
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (Blizzard)"
             },
             "children": [
                {
@@ -822,7 +822,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Blizzard)"
             },
             "children": [
                {
@@ -841,7 +841,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Capcom)"
             },
             "children": [
                {
@@ -893,7 +893,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (Capcom)"
             },
             "children": [
                {
@@ -910,7 +910,7 @@
          },
          {
             "data": {
-               "id": "Fighting"
+               "id": "Fighting (Capcom)"
             },
             "children": [
                {
@@ -927,7 +927,7 @@
          },
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (Capcom)"
             },
             "children": [
                {
@@ -939,7 +939,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Capcom)"
             },
             "children": [
                {
@@ -958,7 +958,7 @@
       "children": [
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (Codemasters)"
             },
             "children": [
                {
@@ -997,7 +997,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Deep Silver)"
             },
             "children": [
                {
@@ -1024,7 +1024,7 @@
          },
          {
             "data": {
-               "id": "Platform"
+               "id": "Platform (Deep Silver)"
             },
             "children": [
                {
@@ -1036,7 +1036,7 @@
          },
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (Deep Silver)"
             },
             "children": [
                {
@@ -1058,7 +1058,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Deep Silver)"
             },
             "children": [
                {
@@ -1075,7 +1075,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (Deep Silver)"
             },
             "children": [
                {
@@ -1094,7 +1094,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Disney)"
             },
             "children": [
                {
@@ -1106,7 +1106,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (Disney)"
             },
             "children": [
                {
@@ -1118,7 +1118,7 @@
          },
          {
             "data": {
-               "id": "Music"
+               "id": "Music (Disney)"
             },
             "children": [
                {
@@ -1137,7 +1137,7 @@
       "children": [
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (EA Sports)"
             },
             "children": [
                {
@@ -1241,7 +1241,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (EA)"
             },
             "children": [
                {
@@ -1253,7 +1253,7 @@
          },
          {
             "data": {
-               "id": "Fighting"
+               "id": "Fighting (EA)"
             },
             "children": [
                {
@@ -1265,7 +1265,7 @@
          },
          {
             "data": {
-               "id": "Platform"
+               "id": "Platform (EA)"
             },
             "children": [
                {
@@ -1277,7 +1277,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (EA)"
             },
             "children": [
                {
@@ -1299,7 +1299,7 @@
          },
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (EA)"
             },
             "children": [
                {
@@ -1316,7 +1316,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (EA)"
             },
             "children": [
                {
@@ -1368,7 +1368,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (EA)"
             },
             "children": [
                {
@@ -1380,7 +1380,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (EA)"
             },
             "children": [
                {
@@ -1409,7 +1409,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Focus Home Interactive)"
             },
             "children": [
                {
@@ -1421,7 +1421,7 @@
          },
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (Focus Home Interactive)"
             },
             "children": [
                {
@@ -1433,7 +1433,7 @@
          },
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (Focus Home Interactive)"
             },
             "children": [
                {
@@ -1455,7 +1455,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (Focus Home Interactive)"
             },
             "children": [
                {
@@ -1484,7 +1484,7 @@
       "children": [
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (Game Mill)"
             },
             "children": [
                {
@@ -1496,7 +1496,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Game Mill)"
             },
             "children": [
                {
@@ -1508,7 +1508,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (Game Mill)"
             },
             "children": [
                {
@@ -1527,7 +1527,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Gearbox)"
             },
             "children": [
                {
@@ -1544,7 +1544,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (Gearbox)"
             },
             "children": [
                {
@@ -1556,7 +1556,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Gearbox)"
             },
             "children": [
                {
@@ -1580,7 +1580,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Kalypso)"
             },
             "children": [
                {
@@ -1592,7 +1592,7 @@
          },
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (Kalypso)"
             },
             "children": [
                {
@@ -1604,7 +1604,7 @@
          },
          {
             "data": {
-               "id": "Puzzle"
+               "id": "Puzzle (Kalypso)"
             },
             "children": [
                {
@@ -1616,7 +1616,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (Kalypso)"
             },
             "children": [
                {
@@ -1628,7 +1628,7 @@
          },
          {
             "data": {
-               "id": "Strategy"
+               "id": "Strategy (Kalypso)"
             },
             "children": [
                {
@@ -1657,7 +1657,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Koch)"
             },
             "children": [
                {
@@ -1669,7 +1669,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (Koch)"
             },
             "children": [
                {
@@ -1686,7 +1686,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (Koch)"
             },
             "children": [
                {
@@ -1703,7 +1703,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (Koch)"
             },
             "children": [
                {
@@ -1722,7 +1722,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Konami)"
             },
             "children": [
                {
@@ -1744,7 +1744,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (Konami)"
             },
             "children": [
                {
@@ -1756,7 +1756,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (Konami)"
             },
             "children": [
                {
@@ -1790,7 +1790,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Maximum)"
             },
             "children": [
                {
@@ -1812,7 +1812,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (Maximum)"
             },
             "children": [
                {
@@ -1824,7 +1824,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Maximum)"
             },
             "children": [
                {
@@ -1836,7 +1836,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (Maximum)"
             },
             "children": [
                {
@@ -1860,7 +1860,7 @@
       "children": [
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (Microids)"
             },
             "children": [
                {
@@ -1884,7 +1884,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Microsoft)"
             },
             "children": [
                {
@@ -1911,7 +1911,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (Microsoft)"
             },
             "children": [
                {
@@ -1943,7 +1943,7 @@
          },
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (Microsoft)"
             },
             "children": [
                {
@@ -1955,7 +1955,7 @@
          },
          {
             "data": {
-               "id": "Fighting"
+               "id": "Fighting (Microsoft)"
             },
             "children": [
                {
@@ -1967,7 +1967,7 @@
          },
          {
             "data": {
-               "id": "Misc"
+               "id": "Misc (Microsoft)"
             },
             "children": [
                {
@@ -1989,7 +1989,7 @@
          },
          {
             "data": {
-               "id": "Platform"
+               "id": "Platform (Microsoft)"
             },
             "children": [
                {
@@ -2001,7 +2001,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (Microsoft)"
             },
             "children": [
                {
@@ -2033,7 +2033,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Microsoft)"
             },
             "children": [
                {
@@ -2065,7 +2065,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (Microsoft)"
             },
             "children": [
                {
@@ -2082,7 +2082,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (Microsoft)"
             },
             "children": [
                {
@@ -2094,7 +2094,7 @@
          },
          {
             "data": {
-               "id": "Strategy"
+               "id": "Strategy (Microsoft)"
             },
             "children": [
                {
@@ -2113,7 +2113,7 @@
       "children": [
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (Milestone)"
             },
             "children": [
                {
@@ -2157,7 +2157,7 @@
       "children": [
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (MLB)"
             },
             "children": [
                {
@@ -2181,7 +2181,7 @@
       "children": [
          {
             "data": {
-               "id": "Puzzle"
+               "id": "Puzzle (Nighthawk)"
             },
             "children": [
                {
@@ -2193,7 +2193,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (Nighthawk)"
             },
             "children": [
                {
@@ -2212,7 +2212,7 @@
       "children": [
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (Nordic Games)"
             },
             "children": [
                {
@@ -2224,7 +2224,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (Nordic Games)"
             },
             "children": [
                {
@@ -2236,7 +2236,7 @@
          },
          {
             "data": {
-               "id": "Strategy"
+               "id": "Strategy (Nordic Games)"
             },
             "children": [
                {
@@ -2255,7 +2255,7 @@
       "children": [
          {
             "data": {
-               "id": "Fighting"
+               "id": "Fighting (PQube)"
             },
             "children": [
                {
@@ -2267,7 +2267,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (PQube)"
             },
             "children": [
                {
@@ -2291,7 +2291,7 @@
       "children": [
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Rebellion)"
             },
             "children": [
                {
@@ -2315,7 +2315,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Rockstar)"
             },
             "children": [
                {
@@ -2327,7 +2327,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (Rockstar)"
             },
             "children": [
                {
@@ -2339,7 +2339,7 @@
          },
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (Rockstar)"
             },
             "children": [
                {
@@ -2358,7 +2358,7 @@
       "children": [
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (Sega)"
             },
             "children": [
                {
@@ -2370,7 +2370,7 @@
          },
          {
             "data": {
-               "id": "Platform"
+               "id": "Platform (Sega)"
             },
             "children": [
                {
@@ -2394,7 +2394,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Soedesco)"
             },
             "children": [
                {
@@ -2406,7 +2406,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Soedesco)"
             },
             "children": [
                {
@@ -2418,7 +2418,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (Soedesco)"
             },
             "children": [
                {
@@ -2437,7 +2437,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Sold Out)"
             },
             "children": [
                {
@@ -2454,7 +2454,7 @@
          },
          {
             "data": {
-               "id": "Platform"
+               "id": "Platform (Sold Out)"
             },
             "children": [
                {
@@ -2466,7 +2466,7 @@
          },
          {
             "data": {
-               "id": "Strategy"
+               "id": "Strategy (Sold Out)"
             },
             "children": [
                {
@@ -2485,7 +2485,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Square Enix)"
             },
             "children": [
                {
@@ -2502,7 +2502,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (Square Enix)"
             },
             "children": [
                {
@@ -2529,7 +2529,7 @@
          },
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (Square Enix)"
             },
             "children": [
                {
@@ -2546,7 +2546,7 @@
          },
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (Square Enix)"
             },
             "children": [
                {
@@ -2580,7 +2580,7 @@
       "children": [
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (Techland)"
             },
             "children": [
                {
@@ -2592,7 +2592,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (Techland)"
             },
             "children": [
                {
@@ -2611,7 +2611,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Tecmo Koei)"
             },
             "children": [
                {
@@ -2643,7 +2643,7 @@
          },
          {
             "data": {
-               "id": "Fighting"
+               "id": "Fighting (Tecmo Koei)"
             },
             "children": [
                {
@@ -2662,7 +2662,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Telltale)"
             },
             "children": [
                {
@@ -2674,7 +2674,7 @@
          },
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (Telltale)"
             },
             "children": [
                {
@@ -2716,7 +2716,7 @@
          },
          {
             "data": {
-               "id": "Misc"
+               "id": "Misc (Telltale)"
             },
             "children": [
                {
@@ -2735,7 +2735,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (THQ)"
             },
             "children": [
                {
@@ -2752,7 +2752,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (THQ)"
             },
             "children": [
                {
@@ -2764,7 +2764,7 @@
          },
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (THQ)"
             },
             "children": [
                {
@@ -2781,7 +2781,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (THQ)"
             },
             "children": [
                {
@@ -2798,7 +2798,7 @@
          },
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (THQ)"
             },
             "children": [
                {
@@ -2820,7 +2820,7 @@
          },
          {
             "data": {
-               "id": "Simulation"
+               "id": "Simulation (THQ)"
             },
             "children": [
                {
@@ -2832,7 +2832,7 @@
          },
          {
             "data": {
-               "id": "Strategy"
+               "id": "Strategy (THQ)"
             },
             "children": [
                {
@@ -2851,7 +2851,7 @@
       "children": [
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (Tru Blu)"
             },
             "children": [
                {
@@ -2880,7 +2880,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (Ubisoft)"
             },
             "children": [
                {
@@ -2942,7 +2942,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (Ubisoft)"
             },
             "children": [
                {
@@ -2959,7 +2959,7 @@
          },
          {
             "data": {
-               "id": "Fighting"
+               "id": "Fighting (Ubisoft)"
             },
             "children": [
                {
@@ -2971,7 +2971,7 @@
          },
          {
             "data": {
-               "id": "Misc"
+               "id": "Misc (Ubisoft)"
             },
             "children": [
                {
@@ -2998,7 +2998,7 @@
          },
          {
             "data": {
-               "id": "Music"
+               "id": "Music (Ubisoft)"
             },
             "children": [
                {
@@ -3050,7 +3050,7 @@
          },
          {
             "data": {
-               "id": "Platform"
+               "id": "Platform (Ubisoft)"
             },
             "children": [
                {
@@ -3062,7 +3062,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (Ubisoft)"
             },
             "children": [
                {
@@ -3094,7 +3094,7 @@
          },
          {
             "data": {
-               "id": "Role-Playing"
+               "id": "Role-Playing (Ubisoft)"
             },
             "children": [
                {
@@ -3106,7 +3106,7 @@
          },
          {
             "data": {
-               "id": "Shooter"
+               "id": "Shooter (Ubisoft)"
             },
             "children": [
                {
@@ -3133,7 +3133,7 @@
          },
          {
             "data": {
-               "id": "Sports"
+               "id": "Sports (Ubisoft)"
             },
             "children": [
                {
@@ -3157,7 +3157,7 @@
       "children": [
          {
             "data": {
-               "id": "Action"
+               "id": "Action (WB)"
             },
             "children": [
                {
@@ -3234,7 +3234,7 @@
          },
          {
             "data": {
-               "id": "Action-Adventure"
+               "id": "Action-Adventure (WB)"
             },
             "children": [
                {
@@ -3256,7 +3256,7 @@
          },
          {
             "data": {
-               "id": "Adventure"
+               "id": "Adventure (WB)"
             },
             "children": [
                {
@@ -3278,7 +3278,7 @@
          },
          {
             "data": {
-               "id": "Fighting"
+               "id": "Fighting (WB)"
             },
             "children": [
                {
@@ -3295,7 +3295,7 @@
          },
          {
             "data": {
-               "id": "Misc"
+               "id": "Misc (WB)"
             },
             "children": [
                {
@@ -3307,7 +3307,7 @@
          },
          {
             "data": {
-               "id": "Platform"
+               "id": "Platform (WB)"
             },
             "children": [
                {
@@ -3319,7 +3319,7 @@
          },
          {
             "data": {
-               "id": "Racing"
+               "id": "Racing (WB)"
             },
             "children": [
                {
