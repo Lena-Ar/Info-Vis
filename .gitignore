@@ -1,0 +1,2 @@
+# Ignorieren des elm-stuff Ordners, da dieser Build-Dateien enthält
+elm-stuff/
