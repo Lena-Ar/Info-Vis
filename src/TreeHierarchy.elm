@@ -51,7 +51,7 @@ treeDecoder =
                 Just c ->
                     Tree.tree name c
         )
-        (Json.Decode.field "name" Json.Decode.string)
+        (Json.Decode.field "data" (Json.Decode.field "id" Json.Decode.string))
         (Json.Decode.maybe <|
             Json.Decode.field "children" <|
                 Json.Decode.list <|
