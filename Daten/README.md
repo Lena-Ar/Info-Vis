@@ -17,7 +17,7 @@ In der modifizierten CSV- und ODS-Datei den Namen des Publishers "Namco Bandai G
 Erstellung einer neuen CSV-Datei, die die Abhängigkeiten für die gewünschte Baumstruktur für die Konvertierung in JSON enthält. Aufgrund des gewählten Anwendungsfalles sind nur Publisher, Genres und Titel der Spiele nötig.
 
 ## Schritt 6
-Konvertierung der CSV-Datei in JSON mittels des Online-Tools https://www.convertcsv.com/csv-to-json.htm . Entstehenden Code in ein neues JSON-Dokument eintragen und im passenden Ordner einchecken.
+Konvertierung der CSV-Datei in JSON mittels des Online-Tools https://www.convertcsv.com/csv-to-json.htm . Entstehenden Code in ein neues JSON-Dokument eintragen und im passenden Ordner einchecken. Zusätzlich ein Test-File mit nur 20 Spielen erstellen zum übersichtlichen Entwickeln der Baumhierarchie. Späterer, einfacher Austausch mit der großen JSON-Datei.
 
 ## Schritt 7 
 Revision des JSON-Codes und Verbesserung um flasch gesetzte Abhängigkeiten in dieser Datei und der zugrunde liegenden CSV-Datei. Löschen der leeren Felder/Knoten. Hinzufügen eines Wurzelknotens.
