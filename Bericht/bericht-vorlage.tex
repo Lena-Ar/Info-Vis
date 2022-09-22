@@ -140,7 +140,8 @@ Als Vorbereitung für die Erstellung der JSON-Datei wird im fünften Schritt ein
 Die benötigten Daten des Publishers, Genres und Videospielnamens werden entsprechend der Struktur übertragen. Die Datei ist unter \textit{XBoxOne_GamesSales_JSON.csv} im Ordner \textit{Daten/CSV} zu finden.
 
 Der fünfte Schritt beinhaltet die Konvertiertung der erstellten CSV-Datei mit den Abhängigkeiten in eine JSON-Datei. Diese wurde mittels des Online-Tools \textit{convertcsv.com} vorgenommen. %hier Link/Bibliografie dazu
-Der entstandene Code wird im Editor \textit{Visual Studio Code} in eine neue Datei kopiert und zunächst unter \textit{Daten/JSON} gespeichert.
+Der entstandene Code wird im Editor \textit{Visual Studio Code} in eine neue Datei kopiert und zunächst unter \textit{Daten/JSON} gespeichert. Zusätzlich wird eine Testdatei im JSON-Format mit nur 20 Videospielen erstellt, um schneller und übersichtlicher 
+entwickeln und das Entwickelte testen zu können. Auch diese Datei wird im entsprechenden Ordner gespeichert. Die weiteren Schritte werden sowohl für die Testdatei, als auch für die große, später genutzte JSON-Datei durchgeführt.
 
 Zuletzt wird der JSON-Code auf Fehler in den Abhängigkeiten konrolliert und verbessert. Dasselbe wird respektive in der Datei \textit{XBoxOne_GamesSales_JSOn.csv} vorgenommen. 
 In der JSON-Datei wird ein Wurzelknoten hinzugefügt und die leeren Felder, die im expliziten Baumdiagramm leere Blattknoten darstellen würden, gelöscht. Zusätzlich wird pro Genre der jeweilige Eltern-Publisher wenn möglich abgekürzt
