@@ -1,0 +1,233 @@
+{
+    "data": {
+      "id": "games"
+    },
+    "children": [
+       {
+          "data": {
+          "id": "Activision"
+          },
+          "children": [
+             {
+                "data": {
+                "id": "Shooter (Activision)"
+                },
+                "children": [
+                   {
+                      "data": {
+                      "id": "Call of Duty: Advanced Warfare"
+                      }
+                   },
+                   {
+                      "data": {
+                      "id": "Call of Duty: Black Ops 3"
+                      }
+                   },
+                   {
+                      "data": {
+                      "id": "Call of Duty: Infinite Warfare"
+                   }
+                   },
+                   {
+                      "data": {
+                      "id": "Call of Duty: WWII"
+                      }
+                   },
+                   {
+                      "data": {
+                      "id": "Destiny"
+                      }
+                   }
+                ]
+             }
+          ]
+       },
+       {
+          "data": {
+          "id": "Bethesda Softworks"
+          },
+          "children": [
+             {
+                "data": {
+                "id": "Role-Playing (Bethesda)"
+                },
+                "children": [
+                   {
+                      "data": {
+                      "id": "Fallout 4"
+                      }
+                   }
+                ]
+             }
+          ]
+       },
+       {
+          "data": {
+          "id": "EA Sports"
+          },
+          "children": [
+             {
+                "data": {
+                "id": "Sports (EA Sports)"
+                },
+                "children": [
+                   {
+                      "data": {
+                      "id": "FIFA 16"
+                      }
+                   },
+                   {
+                      "data": {
+                         "id": "FIFA18"
+                      }
+                   }
+                ]
+             }
+          ]
+       },
+       {
+          "data": {
+          "id": "Electronic Arts"
+          },
+          "children": [
+             {
+                "data": {
+                "id": "Shooter (EA)"
+                },
+                "children": [
+                   {
+                      "data": {
+                      "id": "Battlefield 1"
+                   }
+                   },
+                   {
+                      "data": {
+                      "id": "Star Wars Battlefront (2015)"
+                      }
+                   }
+                ]
+             },
+             {
+                "data": {
+                "id": "Sports (EA)"
+                },
+                "children": [
+                   {
+                      "data": {
+                      "id": "FIFA 17"
+                      }
+                   }
+                ]
+             }
+          ]
+       },
+       {
+          "data": {
+          "id": "Microsoft Studios"
+          },
+          "children": [
+       {
+          "data": {
+             "id": "Shooter (Microsoft)"
+          },
+          "children": [
+             {
+                "data": {
+                   "id": "Gears of War 4"
+                }
+             },
+             {
+                "data": {
+                   "id": "Gears of War: Ultimate Edition"
+                }
+             },
+             {
+                "data": {
+                   "id": "Halo 5: Guardians"
+                }
+             },
+             {
+                "data": {
+                   "id": "Halo: The Master Chief Collection"
+                }
+             }
+          ]
+       },
+       {
+          "data": {
+             "id": "Racing (Microsoft)"
+          },
+          "children": [
+             {
+                "data": {
+                   "id": "Forza Horizon 3"
+                }
+             }
+          ]
+       },
+       {
+          "data": {
+             "id": "Misc (Microsoft)"
+          },
+          "children": [
+             {
+                "data": {
+                   "id": "MineCraft"
+                }
+             }
+          ]
+       }
+    ]
+ },
+  {
+    "data": {
+       "id": "Rockstar Games"
+    },
+    "children": [
+       {
+          "data": {
+             "id": "Action (Rockstar)"
+          },
+          "children": [
+             {
+                "data": {
+                   "id": "Grand Theft Auto V"
+                }
+             }
+          ]
+       },
+       {
+          "data": {
+             "id": "Action-Adventure (Rockstar)"
+          },
+          "children": [
+             {
+                "data": {
+                   "id": "Red Dead Redemption 2"
+                }
+             }
+          ]
+       }
+    ]
+ },
+  {
+    "data": {
+       "id": "Ubisoft"
+    },
+    "children": [
+       {
+          "data": {
+             "id": "Action (Ubisoft)"
+          },
+          "children": [
+             {
+                "data": {
+                   "id": "Assassin's Creed: Unity"
+                }
+             }
+          ]
+       }
+    ]
+ }
+ ]
+ }
