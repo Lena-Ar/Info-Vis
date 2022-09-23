@@ -83,31 +83,20 @@ update msg model =
 view : Model -> Html Msg
 view model =
     let
-        testTree =
-            Tree.tree "root"
-                [ Tree.tree "home"
-                    [ Tree.tree "user1" []
-                    , Tree.tree "user2" []
-                    ]
-                , Tree.tree "etc" []
-                , Tree.tree "var" [ Tree.tree "log" [] ]
-                ]
-
-        convertedTestTree : List ( String, Maybe String )
-        convertedTestTree =
-            testTree
+        convertedTree : List ( String, Maybe String )
+        convertedTree =
+            model.tree
                 |> Tree.map (\v -> ( v, Nothing ))
                 |> convert
                 |> Tree.flatten
 
-        layoutTestTree : Dict.Dict String { x : Float, y : Float }
-        layoutTestTree =
-            -- layout für Textausgabe berechnen
-            Dict.fromList []
+        layoutTree : Dict.Dict String { x : Float, y : Float }
+        layoutTree =
+            TreeLayout.treeLayout 2 convertedTree
     in
     div []
-        [ treePlot 1 convertedTestTree
-        , Html.div [] [ Html.text "Converted testTree (Child, Maybe Parent)" ]
+        [ treePlot 1 convertedTree
+        , Html.div [] [ Html.text "Hierarchy of publishers, genres and videogames (Child, Maybe Parent)" ]
         , Html.ul [] <|
             List.map
                 (\( child, parent ) ->
@@ -120,8 +109,8 @@ view model =
                                 ++ ")"
                         ]
                 )
-                convertedTestTree
-        , Html.div [] [ Html.text "Tree Layout" ]
+                convertedTree
+        , Html.div [] [ Html.text "Hierarchy as Tree Layout" ]
         , Html.ul [] <|
             List.map
                 (\( node, { x, y } ) ->
@@ -137,7 +126,7 @@ view model =
                         ]
                 )
             <|
-                Dict.toList layoutTestTree
+                Dict.toList layoutTree
         ]
 
 --for converting the tree
