@@ -59,6 +59,7 @@ treeDecoder =
                         (\_ -> treeDecoder)
         )
 
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -128,6 +129,100 @@ view model =
             <|
                 Dict.toList layoutTree
         ]
+
+
+--plotting tree
+treePlot : Float -> List ( String, Maybe String ) -> Svg msg
+treePlot minDist tree =
+    let
+        -- layout berechnen
+        xValues : List Float
+        xValues =
+            -- muss aus dem Layout berechnet werden
+            []
+
+        yValues : List Float
+        yValues =
+            -- muss aus dem Layout berechnet werden
+            []
+
+        xScaleLocal : Scale.ContinuousScale Float
+        xScaleLocal =
+            xScale xValues
+
+        yScaleLocal : Scale.ContinuousScale Float
+        yScaleLocal =
+            yScale yValues
+    in
+    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
+        [ style []
+            [ TypedSvg.Core.text """
+            .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
+            .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
+            .point text { display: none; }
+            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgba(118, 214, 78,1); }
+            .point:hover text { display: inline; }
+          """ ]
+        , g
+            [ transform [ Translate padding padding ] ]
+            ([]
+                -- Kanten zeichnen
+                ++ []
+             -- Knoten zeichnen
+            )
+        ]
+
+
+--general settings for visualization
+w : Float
+w =
+    400
+
+
+h : Float
+h =
+    200
+
+
+padding : Float
+padding =
+    60
+
+
+radius : Float
+radius =
+    5.0
+
+
+defaultExtent : ( number, number1 )
+defaultExtent =
+    ( 0, 100 )
+
+
+xScale : List Float -> Scale.ContinuousScale Float
+xScale values =
+    Scale.linear ( 0, w - 2 * padding ) <| (Statistics.extent values |> Maybe.withDefault defaultExtent)
+
+
+yScale : List Float -> Scale.ContinuousScale Float
+yScale values =
+    Scale.linear ( 0, h - 2 * padding ) <| (Statistics.extent values |> Maybe.withDefault defaultExtent)
+
+
+wideExtent : List Float -> ( Float, Float )
+wideExtent values =
+    let
+        closeExtent =
+            Statistics.extent values
+                |> Maybe.withDefault defaultExtent
+
+        extension =
+            (Tuple.second closeExtent - Tuple.first closeExtent) / toFloat (2 * 10)
+    in
+    ( Tuple.first closeExtent - extension |> max 0
+    , Tuple.second closeExtent + extension
+    )
+
 
 --for converting the tree
 convert : Tree ( String, Maybe String ) -> Tree ( String, Maybe String )
