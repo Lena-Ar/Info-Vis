@@ -82,11 +82,81 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
+    let
+        testTree =
+            Tree.tree "root"
+                [ Tree.tree "home"
+                    [ Tree.tree "user1" []
+                    , Tree.tree "user2" []
+                    ]
+                , Tree.tree "etc" []
+                , Tree.tree "var" [ Tree.tree "log" [] ]
+                ]
+
+        convertedTestTree : List ( String, Maybe String )
+        convertedTestTree =
+            testTree
+                |> Tree.map (\v -> ( v, Nothing ))
+                |> convert
+                |> Tree.flatten
+
+        layoutTestTree : Dict.Dict String { x : Float, y : Float }
+        layoutTestTree =
+            -- layout für Textausgabe berechnen
+            Dict.fromList []
+    in
     div []
-        [ Html.text model.errorMsg
-        , Tree.restructure labelToHtml toListItems model.tree
+        [ treePlot 1 convertedTestTree
+        , Html.div [] [ Html.text "Converted testTree (Child, Maybe Parent)" ]
+        , Html.ul [] <|
+            List.map
+                (\( child, parent ) ->
+                    Html.li []
+                        [ Html.text <|
+                            "(  "
+                                ++ child
+                                ++ ", "
+                                ++ Maybe.withDefault "Nothing" parent
+                                ++ ")"
+                        ]
+                )
+                convertedTestTree
+        , Html.div [] [ Html.text "Tree Layout" ]
+        , Html.ul [] <|
+            List.map
+                (\( node, { x, y } ) ->
+                    Html.li []
+                        [ Html.text <|
+                            "("
+                                ++ node
+                                ++ ", x="
+                                ++ String.fromFloat x
+                                ++ ",y="
+                                ++ String.fromFloat y
+                                ++ ")"
+                        ]
+                )
+            <|
+                Dict.toList layoutTestTree
         ]
 
+--for converting the tree
+convert : Tree ( String, Maybe String ) -> Tree ( String, Maybe String )
+convert t =
+    let
+        ( currentLabel, _ ) =
+            Tree.label t
+    in
+    Tree.mapChildren
+        (\listChildren ->
+            listChildren
+                |> List.map
+                    (\c ->
+                        convert c
+                            |> Tree.mapLabel (\( a, _ ) -> ( a, Just currentLabel ))
+                    )
+        )
+        t
 
 --helpers for Tree structure
 labelToHtml : String -> Html msg
