@@ -200,7 +200,7 @@ treePlot minDist tree =
             .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
             .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
             .point text { display: none; }
-            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgba(118, 214, 78,1); }
+            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgba(0, 204, 0,1); }
             .point:hover text { display: inline; }
           """ ]
         , g
@@ -237,7 +237,7 @@ line scaleX scaleY xyPoint =
 point scaleX scaleY xyPoint =
     g
         [ class [ "point" ]
-        , fontSize <| Px 18.0
+        , fontSize <| Px 15.0
         , fontFamily [ "serif" ]
         , transform
             [ Translate
@@ -251,6 +251,7 @@ point scaleX scaleY xyPoint =
                 , textAnchor AnchorMiddle
                 , transform 
                     [ Translate -5.5 -20.5
+                    , Rotate 90.0 0.0 0.0
                     ] 
                 ] 
                 [ Html.text xyPoint.label ]
