@@ -11,7 +11,7 @@ import TypedSvg exposing (circle, g, line, path, rect, style, svg, text_)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Attributes exposing (d, class, stroke, strokeWidth, fill, textAnchor, transform, fontFamily, fontSize, viewBox)
 import TypedSvg.Attributes.InPx exposing (cx, cy, r, x1, x2, y1, y2, x, y)
-import TypedSvg.Types as ST exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
+import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
 import Color
 import TreeLayout
 import Tree exposing (Tree)
@@ -180,19 +180,19 @@ treePlot minDist tree =
                         label =
                             node
                     in
-                    nodeValues childx childy parentx parenty label
+                    NodeValues childx childy parentx parenty label
                 )
                 tree
         --to avoid root node getting a path as it has no parent node
         checkRootNegative data = 
             if (data.parentx < 0) && (data.parenty < 0) then
-                nodeValues 0 1 data.childx data.childy data.label
+                NodeValues 0 1 data.childx data.childy data.label
             else
-                nodeValues data.childx data.childy data.parentx data.parenty data.label
+                NodeValues data.childx data.childy data.parentx data.parenty data.label
 
-        nodeValuesPath : List nodeValues
+        nodeValuesPath : List NodeValues
         nodeValuesPath =
-            List.map2 nodeValues
+            List.map checkRootNegative nodeValues
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
         [ style []
@@ -205,18 +205,18 @@ treePlot minDist tree =
           """ ]
         , g
             [ transform [ Translate padding padding ] ]
-            (List.map (line xScaleLocal yScaleLocal) lineData2)
+            (List.map (line xScaleLocal yScaleLocal) nodeValuesPath)
         , g
             [ transform [ Translate padding padding ] ]
-            (List.map (point xScaleLocal yScaleLocal) lineData)
+            (List.map (point xScaleLocal yScaleLocal) nodeValues)
         ]
 
 --list of floats for values of child and parent x and y and label as string
 type alias NodeValues =
-    { kindx : Float
-    , kindy : Float
-    , elternx : Float
-    , elterny : Float
+    { childx : Float
+    , childy : Float
+    , parentx : Float
+    , parenty : Float
     , label : String
     }
 
@@ -225,10 +225,10 @@ line scaleX scaleY xyPoint =
     g
         [ class [ "point" ] ]
         [ TypedSvg.line
-            [ x1 (Scale.convert scaleX xyPoint.kindx)
-            , y1 (Scale.convert scaleY xyPoint.kindy)
-            , x2 (Scale.convert scaleX xyPoint.elternx)
-            , y2 (Scale.convert scaleY xyPoint.elterny)
+            [ x1 (Scale.convert scaleX xyPoint.childx)
+            , y1 (Scale.convert scaleY xyPoint.childy)
+            , x2 (Scale.convert scaleX xyPoint.parentx)
+            , y2 (Scale.convert scaleY xyPoint.parenty)
             ]
             []
         ]
@@ -241,8 +241,8 @@ point scaleX scaleY xyPoint =
         , fontFamily [ "serif" ]
         , transform
             [ Translate
-                (Scale.convert scaleX xyPoint.kindx)
-                (Scale.convert scaleY xyPoint.kindy)
+                (Scale.convert scaleX xyPoint.childx)
+                (Scale.convert scaleY xyPoint.childy)
             ]
         ]
         [ circle [ cx 0, cy 0, r 1.5 ] []
