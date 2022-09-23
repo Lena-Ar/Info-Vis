@@ -205,11 +205,10 @@ treePlot minDist tree =
           """ ]
         , g
             [ transform [ Translate padding padding ] ]
-            ([]
-                -- Kanten zeichnen
-                ++ []
-             -- Knoten zeichnen
-            )
+            (List.map (line xScaleLocal yScaleLocal) lineData2)
+        , g
+            [ transform [ Translate padding padding ] ]
+            (List.map (point xScaleLocal yScaleLocal) lineData)
         ]
 
 --list of floats for values of child and parent x and y and label as string
@@ -220,6 +219,42 @@ type alias NodeValues =
     , elterny : Float
     , label : String
     }
+
+--for drawing line
+line scaleX scaleY xyPoint =
+    g
+        [ class [ "point" ] ]
+        [ TypedSvg.line
+            [ x1 (Scale.convert scaleX xyPoint.kindx)
+            , y1 (Scale.convert scaleY xyPoint.kindy)
+            , x2 (Scale.convert scaleX xyPoint.elternx)
+            , y2 (Scale.convert scaleY xyPoint.elterny)
+            ]
+            []
+        ]
+
+--for drawing circle and text for circle
+point scaleX scaleY xyPoint =
+    g
+        [ class [ "point" ]
+        , fontSize <| Px 18.0
+        , fontFamily [ "serif" ]
+        , transform
+            [ Translate
+                (Scale.convert scaleX xyPoint.kindx)
+                (Scale.convert scaleY xyPoint.kindy)
+            ]
+        ]
+        [ circle [ cx 0, cy 0, r 1.5 ] []
+        , text_ [ x 0
+                , y -10
+                , textAnchor AnchorMiddle
+                , transform 
+                    [ Translate -5.5 -20.5
+                    ] 
+                ] 
+                [ Html.text xyPoint.label ]
+        ]
 
 --general settings for visualization
 w : Float
