@@ -96,7 +96,11 @@ view model =
             TreeLayout.treeLayout 2 convertedTree
     in
     div []
-        [ treePlot 1 convertedTree
+        [ Html.div [] [Html.text "this is a placeholder for header"]
+        , Html.div [] [Html.text "this is a placeholder for description of project"]
+        , Html.div [] [Html.text "this is a placeholder for header for tree"]
+        , Html.div [] [Html.text "this is another placeholder for description for tree"]
+        , treePlot 1 convertedTree
         , Html.div [] [ Html.text "Hierarchy of publishers, genres and videogames (Child, Maybe Parent)" ]
         , Html.ul [] <|
             List.map
@@ -194,7 +198,7 @@ treePlot minDist tree =
         nodeValuesPath =
             List.map checkRootNegative nodeValues
     in
-    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
+    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 180, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
         [ style []
             [ TypedSvg.Core.text """
             .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
@@ -237,7 +241,7 @@ line scaleX scaleY xyPoint =
 point scaleX scaleY xyPoint =
     g
         [ class [ "point" ]
-        , fontSize <| Px 15.0
+        , fontSize <| Px 18.0
         , fontFamily [ "serif" ]
         , transform
             [ Translate
@@ -245,7 +249,7 @@ point scaleX scaleY xyPoint =
                 (Scale.convert scaleY xyPoint.childy)
             ]
         ]
-        [ circle [ cx 0, cy 0, r 1.5 ] []
+        [ circle [ cx 0, cy 0, r 3 ] []
         , text_ [ x 0
                 , y -10
                 , textAnchor AnchorMiddle
@@ -260,17 +264,17 @@ point scaleX scaleY xyPoint =
 --general settings for visualization
 w : Float
 w =
-    400
+    2800
 
 
 h : Float
 h =
-    200
+    400
 
 
 padding : Float
 padding =
-    60
+    50
 
 
 radius : Float
