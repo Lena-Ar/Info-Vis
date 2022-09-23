@@ -135,16 +135,20 @@ view model =
 treePlot : Float -> List ( String, Maybe String ) -> Svg msg
 treePlot minDist tree =
     let
-        -- layout berechnen
+        --computing layout
+        layout : Dict.Dict String { x : Float, y : Float }
+        layout = 
+            TreeLayout.treeLayout 2 tree
+
         xValues : List Float
         xValues =
-            -- muss aus dem Layout berechnet werden
-            []
+            Dict.toList layout
+                |> List.map (\( a, b ) -> b.x )
 
         yValues : List Float
         yValues =
-            -- muss aus dem Layout berechnet werden
-            []
+            Dict.toList layout
+                |> List.map (\( a, b ) -> b.y )
 
         xScaleLocal : Scale.ContinuousScale Float
         xScaleLocal =
@@ -153,6 +157,42 @@ treePlot minDist tree =
         yScaleLocal : Scale.ContinuousScale Float
         yScaleLocal =
             yScale yValues
+
+        --dependencies for treePlot to draw lines/paths from parent to child node
+        --to get x and y values from parent and child nodes
+        nodeValues : List NodeValues
+        nodeValues =
+            List.map
+                (\( node, parent ) ->
+                    let
+                        childx =
+                            Dict.get node layout |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
+
+                        childy =
+                            Dict.get node layout |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
+
+                        parentx =
+                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
+
+                        parenty =
+                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
+
+                        label =
+                            node
+                    in
+                    nodeValues childx childy parentx parenty label
+                )
+                tree
+        --to avoid root node getting a path as it has no parent node
+        checkRootNegative data = 
+            if (data.parentx < 0) && (data.parenty < 0) then
+                nodeValues 0 1 data.childx data.childy data.label
+            else
+                nodeValues data.childx data.childy data.parentx data.parenty data.label
+
+        nodeValuesPath : List nodeValues
+        nodeValuesPath =
+            List.map2 nodeValues
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
         [ style []
@@ -172,6 +212,14 @@ treePlot minDist tree =
             )
         ]
 
+--list of floats for values of child and parent x and y and label as string
+type alias NodeValues =
+    { kindx : Float
+    , kindy : Float
+    , elternx : Float
+    , elterny : Float
+    , label : String
+    }
 
 --general settings for visualization
 w : Float
