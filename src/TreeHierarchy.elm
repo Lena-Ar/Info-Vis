@@ -32,7 +32,7 @@ type alias Model =
 init : () -> ( Model, Cmd Msg )
 init () =
     ( { tree = Tree.singleton "", errorMsg = "Loading ..." }
-    , Http.get { url = "../Daten/JSON/XBoxOne_GamesSales_test.json", expect = Http.expectJson GotFlare treeDecoder }
+    , Http.get { url = "../Daten/JSON/XBoxOne_GamesSales_Projekt.json", expect = Http.expectJson GotFlare treeDecoder }
     )
 
 
