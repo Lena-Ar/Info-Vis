@@ -1,8 +1,8 @@
 module ParallelPlot exposing (..)
 
 import Browser
-import Csv
-import Csv.Decode
+import Csv exposing (parse)
+import Csv.Decode exposing (..)
 import Html exposing (Html, pre, text)
 import Http
 main : Program () Model Msg
@@ -20,29 +20,32 @@ type Msg
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.none
-
+{-}
 daten : List String
 daten =
     [ "XBoxOne_GameSales_test" ]
-
+--}
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( Loading
-    , loadingGameSales GotText
+    , Http.get
+        { url = "https://raw.githubusercontent.com/Lena-Ar/Info-Vis/main/Daten/CSV/XboxOne_GameSales_test.csv"
+        , expect = Http.expectString GotText
+        }
     )
-
+{--
 loadingGameSales : (Result Http.Error String -> Msg) -> Cmd Msg
 loadingGameSales game = 
     daten
         |> List.map
             (\d ->
                 Http.get
-                    { url = "../Daten/CSV" ++ d
-                    , expect = Http.expectString game
+                    { url = "https://raw.githubusercontent.com/Lena-Ar/Info-Vis/main/Daten/CSV/" ++ d
+                    , expect = Http.expectString GotText
                     }
             )
         |> Cmd.batch
-
+--}
 type alias GameSales =
     { game : String
     , genre : String
@@ -58,44 +61,48 @@ type alias GameSales =
 type Model
   = Error
   | Loading
-  | Success 
-    { data : List GameSales
-    }
+  | Success (List String)
 
 --Decoder
-decodeGameSales : Csv.Decode.Decoder (GameSales -> a) a
+decodeGameSales : Csv.Decode.Decoder ((String, Float) -> a) a
 decodeGameSales =
-    Csv.Decode.map GameSales
+    Csv.Decode.map (\a b -> (a, b))
         (Csv.Decode.field "Game" Ok
-            |> Csv.Decode.andMap (Csv.Decode.field "Genre" Ok)
-            |> Csv.Decode.andMap (Csv.Decode.field "Publisher" Ok)
-            |> Csv.Decode.andMap (Csv.Decode.field "North America" (String.toFloat >> Result.fromMaybe "error parsing string"))
-            |> Csv.Decode.andMap (Csv.Decode.field "Europe" (String.toFloat >> Result.fromMaybe "error parsing string"))
             |> Csv.Decode.andMap (Csv.Decode.field "Japan" (String.toFloat >> Result.fromMaybe "error parsing string"))
-            |> Csv.Decode.andMap (Csv.Decode.field "Rest of World" (String.toFloat >> Result.fromMaybe "error parsing string"))
-            |> Csv.Decode.andMap (Csv.Decode.field "Global" (String.toFloat >> Result.fromMaybe "error parsing string"))
         )
 
-csvString_to_data : String -> List GameSales
+csvString_to_data : String -> List (String, Float)
 csvString_to_data csvRaw =
     Csv.parse csvRaw
         |> Csv.Decode.decodeCsv decodeGameSales
         |> Result.toMaybe
         |> Maybe.withDefault []
 
-gamesSalesList :List String -> List GameSales
+gamesSalesList :List (String, Float) -> Html Msg
 gamesSalesList listGame =
-    List.map(\t -> csvString_to_data t) listGame
-        |> List.concat
+    Html.ul []
+        (List.map (\( a, b ) -> Html.li [] [ text <| a ++ ", " ++ (String.fromFloat b) ]) listGame)
 
 --cases for buttons to be added
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
+    let
+        liste =
+            case model of
+                Success list ->
+                    list
+
+                Error ->
+                    []
+
+                Loading ->
+                    []
+    in
     case msg of
         GotText result ->
             case result of
                 Ok fullText ->
-                    ( Success <| { data = gamesSalesList [ fullText ]}, Cmd.none )
+                    ( Success <| liste ++ [ fullText ], Cmd.none )
 
                 Err _ ->
                     ( model, Cmd.none )
@@ -103,15 +110,16 @@ update msg model =
 
 
 --view to be coded
-{--
+
 view : Model -> Html Msg
 view model =
     case model of
         Error ->
-            Html.text "Opening the data for sales of games on XBoxOne failed"
+            text "Opening the data for sales of games on XBoxOne failed"
 
         Loading ->
-            Html.text "Loading GameSales data..."
+            text "Loading GameSales data..."
         
-        Success 
---}
+        Success list ->
+            Html.div [] <|
+                List.map (\fulltext -> pre [] [ gamesSalesList  <| csvString_to_data fulltext ]) list
