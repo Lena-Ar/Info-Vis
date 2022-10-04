@@ -108,26 +108,72 @@ gamesSalesList listGame =
         (List.map (\( a, b ) -> Html.li [] [ text <| a ++ ", " ++ (String.fromFloat b) ]) listGame)
 
 --mapping games to point---
-assignment : Car -> Maybe Point
-assignment car =
-    Maybe.map2
-        (\cityMPG retailPrice ->
-            Point
-                (car.vehicleName ++ " (" ++ String.fromInt cityMPG ++ "," ++ String.fromInt retailPrice ++ ")")
-                (toFloat cityMPG)
-                (toFloat retailPrice)
-        )
-        car.cityMPG
-        car.retailPrice
+--helpers for mapping because of lacking Maybe.map6--
 
----filtering games---
-filterAndReduceCars : List Car -> XyData
-filterAndReduceCars games =
+{-- 
+based on https://package.elm-lang.org/packages/elm/core/latest/Maybe#map2
+; helper which helps with piping (which is a function)/applying map2 to be bigger one following
+--}
+
+map2pipe : Maybe a -> Maybe ( a -> b) -> Maybe b
+map2pipe = 
+    Maybe.map2 (|>)
+
+{-- first try: basically just did map5 but without the helper map5
+; instead piping; tried with too many arguments; not thought through 
+helpMap : (a -> b -> c -> d -> e -> f) -> Maybe a -> Maybe b -> Maybe c -> Maybe d -> Maybe e -> Maybe f
+helpMap apply m1 m2 m3 m4 m5 m6 = 
+    Just apply
+        |> m1
+        |> m2
+        |> m3
+        |> m4
+        |> m5
+        |> m6
+--}
+{-- 
+now: based on https://package.elm-lang.org/packages/elm/core/latest/Maybe#map5 but with one more to transform
+; therefore map2pipe needed to handle one more than map5 would do
+; applying map2pipe to transform all like a map6 would do if it existed
+; with helper of map2 in map2pipe 
+--}
+helpMapBig : (nam -> na -> eu -> ja -> row -> gl) -> Maybe nam -> Maybe na -> Maybe eu -> Maybe ja -> Maybe row -> Maybe gl
+helpMapBig apply a b c d e = 
+    Just apply
+        |> map2pipe a
+        |> map2pipe b
+        |> map2pipe c
+        |> map2pipe d
+        |> map2pipe e
+
+-- based on https://ellie-app.com/hhZMpcRnTwFa1 (my code for exercise 1) --
+assignment : GameSales -> Maybe Point
+assignment game =
+    helpMapBig
+        (\northAmerica europe japan restOfWorld global ->
+            Point
+                (game.game ++ " (" ++ game.publisher ++ ")")
+                (northAmerica)
+                (europe)
+                (japan)
+                (restOfWorld)
+                (global)
+        )
+        (Just game.northAmerica)
+        (Just game.europe)
+        (Just game.japan)
+        (Just game.restOfWorld)
+        (Just game.global)
+
+-- filtering games --
+-- based on https://ellie-app.com/hhZMpcRnTwFa1 (my code for exercise 1) --
+filterAndReduceGames : List GameSales -> XyData
+filterAndReduceGames games =
     let
         filter =
             List.filterMap assignment games
     in
-    XyData "cityMPG" "retailPrice" filter
+    XyData "North America" "Europe" filter
 
 
 
