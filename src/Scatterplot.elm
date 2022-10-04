@@ -69,7 +69,7 @@ type alias GameSales =
 type Model
   = Error
   | Loading
-  | Success (List String)
+  | Success (List GameSales)
 
 type alias Point =
     { pointGame : String
@@ -186,23 +186,11 @@ filterAndReduceGames games =
 --cases for buttons to be added
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    let
-        liste =
-            case model of
-                Success list ->
-                    list
-
-                Error ->
-                    []
-
-                Loading ->
-                    []
-    in
     case msg of
         GotText result ->
             case result of
                 Ok fullText ->
-                    ( Success <| liste ++ [ fullText ], Cmd.none )
+                    ( Success <| gamesSalesList [fullText], Cmd.none )
 
                 Err _ ->
                     ( model, Cmd.none )
@@ -220,9 +208,25 @@ view model =
         Loading ->
             text "Loading GameSales data..."
         
-        Success list ->
-            Html.div [] <|
-                List.map (\fulltext -> pre [] [ gamesSalesList  <| csvString_to_data fulltext ]) list
+        Success fullText ->
+            let 
+                gameSalesData: List GameSales
+                gameSalesData = 
+                    fullText
+
+                number_games: Int
+                number_games =
+                    List.length gameSalesData
+                
+                xy_games = 
+                    filterAndReduceGames fullText
+            
+            in
+            Html.div [] 
+                [Html.p []
+                    [ Html.text (String.fromInt number_games) ]
+                , scatterplot xy_games
+                ]
 
 ----------point--------------
 ---test with North America on x-Axis and Europe on y-Axis, description is name of game---
