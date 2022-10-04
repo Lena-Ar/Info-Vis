@@ -88,24 +88,30 @@ type alias XyData =
     }
 
 --Decoder
-decodeGameSales : Csv.Decode.Decoder ((String, Float) -> a) a
+decodeGameSales : Csv.Decode.Decoder (GameSales -> a) a
 decodeGameSales =
-    Csv.Decode.map (\a b -> (a, b))
+    Csv.Decode.map GameSales
         (Csv.Decode.field "Game" Ok
+            |> Csv.Decode.andMap (Csv.Decode.field "Genre" Ok)
+            |> Csv.Decode.andMap (Csv.Decode.field "Publisher" Ok)
+            |> Csv.Decode.andMap (Csv.Decode.field "North America" (String.toFloat >> Result.fromMaybe "error parsing string"))
+            |> Csv.Decode.andMap (Csv.Decode.field "Europe" (String.toFloat >> Result.fromMaybe "error parsing string"))
             |> Csv.Decode.andMap (Csv.Decode.field "Japan" (String.toFloat >> Result.fromMaybe "error parsing string"))
+            |> Csv.Decode.andMap (Csv.Decode.field "Rest of World" (String.toFloat >> Result.fromMaybe "error parsing string"))
+            |> Csv.Decode.andMap (Csv.Decode.field "Global" (String.toFloat >> Result.fromMaybe "error parsing string"))
         )
 
-csvString_to_data : String -> List (String, Float)
+csvString_to_data : String -> List GameSales
 csvString_to_data csvRaw =
     Csv.parse csvRaw
         |> Csv.Decode.decodeCsv decodeGameSales
         |> Result.toMaybe
         |> Maybe.withDefault []
 
-gamesSalesList :List (String, Float) -> Html Msg
+gamesSalesList :List String -> List GameSales
 gamesSalesList listGame =
-    Html.ul []
-        (List.map (\( a, b ) -> Html.li [] [ text <| a ++ ", " ++ (String.fromFloat b) ]) listGame)
+    List.map(\x -> csvString_to_data x) listGame
+        |> List.concat
 
 --mapping games to point---
 --helpers for mapping because of lacking Maybe.map6--
