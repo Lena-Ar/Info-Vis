@@ -72,7 +72,13 @@ type Model
   | Success (List String)
 
 type alias Point =
-    { pointName : String, x : Float, y : Float }
+    { pointGame : String
+    , pointNorthAmerica : Float
+    , pointEurope : Float
+    , pointJapan : Float
+    , pointRestOfWorld : Float
+    , pointGlobal : Float
+    }
 
 
 type alias XyData =
@@ -143,6 +149,8 @@ view model =
                 List.map (\fulltext -> pre [] [ gamesSalesList  <| csvString_to_data fulltext ]) list
 
 ----------point--------------
+---test with North America on x-Axis and Europe on y-Axis, description is name of game---
+
 point : ContinuousScale Float -> ContinuousScale Float -> Point -> Svg msg
 point scaleX scaleY xyPoint =
     g
@@ -153,8 +161,8 @@ point scaleX scaleY xyPoint =
         --Positionierung der Punkte
         , transform
             [ Translate
-                (Scale.convert scaleX xyPoint.x)
-                (Scale.convert scaleY xyPoint.y)
+                (Scale.convert scaleX xyPoint.pointNorthAmerica)
+                (Scale.convert scaleY xyPoint.pointEurope)
             ]
         ]
         {--Vom Testpunkt kopiert, nur Text geändert und Radius der Kreise zur 
@@ -162,7 +170,7 @@ point scaleX scaleY xyPoint =
         [ circle [ cx 0, cy 0, r 4 ] []
         , text_
             [ x 0, y -15, TypedSvg.Attributes.textAnchor AnchorMiddle ]
-            [ TypedSvg.Core.text xyPoint.pointName ]
+            [ TypedSvg.Core.text xyPoint.pointGame ]
         ]
 
 
@@ -172,22 +180,15 @@ point scaleX scaleY xyPoint =
 scatterplot : XyData -> Svg msg
 scatterplot model =
     let
-        --Testpunkt
-        kreisbeschriftung : String
-        kreisbeschriftung =
-            Maybe.withDefault
-                "Kein Punkt gefunden"
-                (Maybe.map (\o -> o.pointName) (List.head model.data))
-
-        --x-Werte/cityMPG
+        --x-Werte/NorthAmerica
         xValues : List Float
         xValues =
-            List.map .x model.data
+            List.map .pointNorthAmerica model.data
 
-        --y-Werte/retailPrice
+        --y-Werte/Europe
         yValues : List Float
         yValues =
-            List.map .y model.data
+            List.map .pointEurope model.data
 
         --Abbildungen/Umrechnungen auf SVG
         xScaleLocal : ContinuousScale Float
