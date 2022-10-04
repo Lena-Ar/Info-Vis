@@ -247,7 +247,7 @@ point scaleX scaleY xyPoint =
         ]
         {--Vom Testpunkt kopiert, nur Text geändert und Radius der Kreise zur 
         besseren Sichtbarkeit/Unterscheidung der Punkte--}
-        [ circle [ cx 0, cy 0, r 4 ] []
+        [ circle [ cx 0, cy 0, r 5 ] []
         , text_
             [ x 0, y -15, TypedSvg.Attributes.textAnchor AnchorMiddle ]
             [ TypedSvg.Core.text xyPoint.pointGame ]
