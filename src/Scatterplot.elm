@@ -107,6 +107,30 @@ gamesSalesList listGame =
     Html.ul []
         (List.map (\( a, b ) -> Html.li [] [ text <| a ++ ", " ++ (String.fromFloat b) ]) listGame)
 
+--mapping games to point---
+assignment : Car -> Maybe Point
+assignment car =
+    Maybe.map2
+        (\cityMPG retailPrice ->
+            Point
+                (car.vehicleName ++ " (" ++ String.fromInt cityMPG ++ "," ++ String.fromInt retailPrice ++ ")")
+                (toFloat cityMPG)
+                (toFloat retailPrice)
+        )
+        car.cityMPG
+        car.retailPrice
+
+---filtering games---
+filterAndReduceCars : List Car -> XyData
+filterAndReduceCars games =
+    let
+        filter =
+            List.filterMap assignment games
+    in
+    XyData "cityMPG" "retailPrice" filter
+
+
+
 --cases for buttons to be added
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
