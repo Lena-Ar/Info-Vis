@@ -158,7 +158,7 @@ assignment game =
     helpMapBig
         (\northAmerica europe japan restOfWorld global ->
             Point
-                (game.game ++ " (" ++ game.publisher ++ ")")
+                (game.game ++ " , " ++  game.publisher ++ " (" ++ String.fromFloat northAmerica ++ ", " ++ String.fromFloat europe ++ ")")
                 (northAmerica)
                 (europe)
                 (japan)
