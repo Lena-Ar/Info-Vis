@@ -5,6 +5,15 @@ import Csv exposing (parse)
 import Csv.Decode exposing (..)
 import Html exposing (Html, pre, text)
 import Http
+import Axis
+import Scale exposing (ContinuousScale, domain)
+import Statistics
+import TypedSvg exposing (circle, g, line, rect, style, svg, text_)
+import TypedSvg.Attributes exposing (class, fontFamily, fontSize, stroke, strokeWidth, textAnchor, transform, viewBox)
+import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y, y1, y2)
+import TypedSvg.Core exposing (Svg)
+import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
+
 main : Program () Model Msg
 main =
     Browser.element
@@ -20,10 +29,10 @@ type Msg
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.none
-{-}
+{--
 daten : List String
 daten =
-    [ "XBoxOne_GameSales_test" ]
+    [ "XBoxOne_GameSales_test.csv" ]
 --}
 init : () -> ( Model, Cmd Msg )
 init _ =
@@ -35,13 +44,13 @@ init _ =
     )
 {--
 loadingGameSales : (Result Http.Error String -> Msg) -> Cmd Msg
-loadingGameSales game = 
+loadingGameSales gotText = 
     daten
         |> List.map
             (\d ->
                 Http.get
                     { url = "https://raw.githubusercontent.com/Lena-Ar/Info-Vis/main/Daten/CSV/" ++ d
-                    , expect = Http.expectString GotText
+                    , expect = Http.expectString gotText
                     }
             )
         |> Cmd.batch
@@ -123,3 +132,71 @@ view model =
         Success list ->
             Html.div [] <|
                 List.map (\fulltext -> pre [] [ gamesSalesList  <| csvString_to_data fulltext ]) list
+
+---------------------------------------------
+------------general settings for scatterplot----------
+
+
+w : Float
+w =
+    900
+
+
+h : Float
+h =
+    450
+
+
+padding : Float
+padding =
+    60
+
+
+radius : Float
+radius =
+    5.0
+
+
+tickCount : Int
+tickCount =
+    5
+
+
+xAxis : List Float -> Svg msg
+xAxis values =
+    Axis.bottom [ Axis.tickCount tickCount ] (xScale values)
+
+
+yAxis : List Float -> Svg msg
+yAxis values =
+    Axis.left [ Axis.tickCount tickCount ] (yScale values)
+
+
+xScale : List Float -> ContinuousScale Float
+xScale values =
+    Scale.linear ( 0, w - 2 * padding ) (wideExtent values)
+
+
+yScale : List Float -> ContinuousScale Float
+yScale values =
+    Scale.linear ( h - 2 * padding, 0 ) (wideExtent values)
+
+
+wideExtent : List Float -> ( Float, Float )
+wideExtent values =
+    let
+        closeExtent =
+            Statistics.extent values
+                |> Maybe.withDefault defaultExtent
+
+        extension =
+            (Tuple.second closeExtent - Tuple.first closeExtent) / toFloat (2 * tickCount)
+    in
+    ( Tuple.first closeExtent - extension |> max 0
+    , Tuple.second closeExtent + extension
+    )
+
+
+defaultExtent : ( number, number1 )
+defaultExtent =
+    ( 0, 100 )
