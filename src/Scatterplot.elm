@@ -66,11 +66,20 @@ type alias GameSales =
     , global : Float
     }
 
---cases for buttons to be added
 type Model
   = Error
   | Loading
   | Success (List String)
+
+type alias Point =
+    { pointName : String, x : Float, y : Float }
+
+
+type alias XyData =
+    { xDescription : String
+    , yDescription : String
+    , data : List Point
+    }
 
 --Decoder
 decodeGameSales : Csv.Decode.Decoder ((String, Float) -> a) a
@@ -132,6 +141,122 @@ view model =
         Success list ->
             Html.div [] <|
                 List.map (\fulltext -> pre [] [ gamesSalesList  <| csvString_to_data fulltext ]) list
+
+----------point--------------
+point : ContinuousScale Float -> ContinuousScale Float -> Point -> Svg msg
+point scaleX scaleY xyPoint =
+    g
+        [ class [ "point" ]
+        , fontSize <| Px 10.0
+        , fontFamily [ "sans-serif" ]
+
+        --Positionierung der Punkte
+        , transform
+            [ Translate
+                (Scale.convert scaleX xyPoint.x)
+                (Scale.convert scaleY xyPoint.y)
+            ]
+        ]
+        {--Vom Testpunkt kopiert, nur Text geändert und Radius der Kreise zur 
+        besseren Sichtbarkeit/Unterscheidung der Punkte--}
+        [ circle [ cx 0, cy 0, r 4 ] []
+        , text_
+            [ x 0, y -15, TypedSvg.Attributes.textAnchor AnchorMiddle ]
+            [ TypedSvg.Core.text xyPoint.pointName ]
+        ]
+
+
+
+----Scatterplot--------------------
+------------------------------------
+scatterplot : XyData -> Svg msg
+scatterplot model =
+    let
+        --Testpunkt
+        kreisbeschriftung : String
+        kreisbeschriftung =
+            Maybe.withDefault
+                "Kein Punkt gefunden"
+                (Maybe.map (\o -> o.pointName) (List.head model.data))
+
+        --x-Werte/cityMPG
+        xValues : List Float
+        xValues =
+            List.map .x model.data
+
+        --y-Werte/retailPrice
+        yValues : List Float
+        yValues =
+            List.map .y model.data
+
+        --Abbildungen/Umrechnungen auf SVG
+        xScaleLocal : ContinuousScale Float
+        xScaleLocal =
+            xScale xValues
+
+        yScaleLocal : ContinuousScale Float
+        yScaleLocal =
+            yScale yValues
+
+        half : ( Float, Float ) -> Float
+        half t =
+            (Tuple.second t - Tuple.first t) / 2
+
+        labelPositions : { x : Float, y : Float }
+        labelPositions =
+            { x = wideExtent xValues |> half
+            , y = wideExtent yValues |> Tuple.second
+            }
+    in
+    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
+        [ style [] [ TypedSvg.Core.text """
+            .point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 255, 255,0.3); }
+            .point text { display: none; }
+            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgb(118, 214, 78); }
+            .point:hover text { display: inline; fill: rgb(18, 132, 90)}
+            """ ]
+
+        , g
+            [ transform [ Translate (padding - 1) (padding - 1) ]
+            , class [ "point" ]
+            , fontSize <| Px 10.0
+            , fontFamily [ "sans-serif" ]
+            ]
+            []
+        --x-Achse
+        , g
+            [ transform [ Translate padding (h - padding) ] ]
+            [ xAxis xValues
+            , text_
+                [ x (Scale.convert xScaleLocal labelPositions.x + 25)
+                , y 35
+                , TypedSvg.Attributes.textAnchor AnchorMiddle
+                , fontSize <| Px 17.0
+                , fontFamily [ "sans-serif" ]
+                ]
+                [ Html.text model.xDescription ]
+            ]
+
+        -- y-Achse
+        , g
+            [ transform [ Translate padding padding ] ]
+            [ yAxis yValues
+            , text_
+                [ x 0
+                , y (Scale.convert yScaleLocal labelPositions.y - 15)
+                , TypedSvg.Attributes.textAnchor AnchorMiddle
+                , fontSize <| Px 17.0
+                , fontFamily [ "sans-serif" ]
+                ]
+                [ Html.text model.yDescription ]
+            ]
+
+        --SVG der Points
+        , g [ transform [ Translate padding padding ] ]
+            (List.map (point xScaleLocal yScaleLocal) model.data)
+        ]
+
+
 
 ---------------------------------------------
 ------------general settings for scatterplot----------
