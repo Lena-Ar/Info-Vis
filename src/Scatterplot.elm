@@ -365,6 +365,9 @@ view model =
                 gameSalesData = 
                     fullText.data
                 
+                gameSalesDataFiltered = 
+                    filterGenre fullText.data fullText.genre
+                
                 number_clearedGames: Int
                 number_clearedGames = 
                     List.length gameSalesDataCleared.data
@@ -372,6 +375,10 @@ view model =
                 number_games: Int
                 number_games =
                     List.length gameSalesData
+
+                number_filteredGames : Int
+                number_filteredGames =
+                    List.length gameSalesDataFiltered
                 
                 gameSalesDataCleared = 
                     filterAndReduceGames (filterGenre fullText.data fullText.genre)
@@ -379,9 +386,13 @@ view model =
             in
             Html.div [] 
                 [Html.p []
+                    [buttonGenreType]
+                , Html.p []
                     [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games) 
                     , Html.br [] []
                     , Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_clearedGames) 
+                    , Html.br [] []
+                    , Html.text ("Number of games in selected genre: " ++ String.fromInt number_filteredGames)
                     ]
                 , scatterplot gameSalesDataCleared
                 ]
