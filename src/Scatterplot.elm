@@ -27,7 +27,7 @@ main =
 
 type Msg
     = GotText (Result Http.Error String)
-    | ChangeGenreType GenreType
+    | ChangeGenreType String
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -74,9 +74,10 @@ type Model
   | Loading
   | Success 
     { data: List GameSales
-    , genre: GenreType
+    , genre: String
+    --, genre: GenreType
     }
-
+{--
 type GenreType
     = Action
     | Action_Adventure
@@ -93,7 +94,7 @@ type GenreType
     | Simulation
     | Sports
     | Strategy
-
+--}
 type alias Point =
     { pointGame : String
     , pointNorthAmerica : Float
@@ -208,8 +209,8 @@ filterAndReduceGames games =
 
 filterGenre : List GameSales -> String -> List GameSales
 filterGenre allGames genretype =
-    List.filter (\c -> c.genreType == genretype) allGames
-
+    List.filter (\c -> c.genre == genretype) allGames
+{--
 --genre ändern
 genreTypeToString : GenreType -> String
 genreTypeToString genreType =
@@ -305,11 +306,11 @@ stringToGenreType stringGenreType =
     
     else
         Strategy
-
+--}
 buttonGenreType : Html Msg
 buttonGenreType =
     Html.select
-        [ onInput (\au -> stringToGenreType au |> ChangeGenreType) ]
+        [ onInput ChangeGenreType ]
         [ Html.option [ value "Action" ] [ Html.text "Action" ]
         , Html.option [ value "Action-Adventure" ] [ Html.text "Action-Adventure" ]
         , Html.option [ value "Adventure" ] [ Html.text "Adventure" ]
@@ -335,7 +336,7 @@ update msg model =
         GotText result ->
             case result of
                 Ok fullText ->
-                    ( Success <| { data = gamesSalesList [fullText], genre = Action }, Cmd.none )
+                    ( Success <| { data = gamesSalesList [fullText], genre = "Action" }, Cmd.none )
                 Err _ ->
                     (model, Cmd.none)
 
@@ -368,9 +369,13 @@ view model =
                 gameSalesDataFiltered = 
                     filterGenre fullText.data fullText.genre
                 
+                
+                gameSalesDataNull =
+                    filterAndReduceGames (fullText.data)
+            
                 number_clearedGames: Int
                 number_clearedGames = 
-                    List.length gameSalesDataCleared.data
+                    List.length gameSalesDataNull.data
 
                 number_games: Int
                 number_games =
