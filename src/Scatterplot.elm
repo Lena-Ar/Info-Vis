@@ -28,8 +28,8 @@ main =
 type Msg
     = GotText (Result Http.Error String)
     | ChangeGenreType String
-    | ChangeRegionX RegionType
-    | ChangeRegionY RegionType
+   -- | ChangeRegionX RegionType
+   -- | ChangeRegionY RegionType
 
 
 subscriptions : Model -> Sub Msg
@@ -78,8 +78,8 @@ type Model
   | Success 
     { data: List GameSales
     , genre: String
-    , xaxis: RegionType
-    , yaxis: RegionType
+   -- , xaxis: RegionType
+   -- , yaxis: RegionType
     --, genre: GenreType
     }
 {--
@@ -102,12 +102,15 @@ type GenreType
 --}
 
 --maybe error bc of field from decoding -> maybe change csv?
+{--
 type RegionType
     = NorthAmerica
     | Europe
     | Japan
     | RestOfWorld
     | Global
+--}
+
 type alias Point =
     { pointGame : String
     , pointNorthAmerica : Float
@@ -321,7 +324,7 @@ stringToGenreType stringGenreType =
         Strategy
 --}
 
-
+{--
 --attributType/region
 regionTypeToString : RegionType -> String
 regionTypeToString regionType =
@@ -358,7 +361,7 @@ stringToRegionType stringRegionType =
 
     else
         Global
-
+--}
 buttonGenreType : Html Msg
 buttonGenreType =
     Html.select
@@ -380,6 +383,7 @@ buttonGenreType =
         , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
         ]
 
+{--
 buttonRegionTypeX : Html Msg
 buttonRegionTypeX =
     Html.select
@@ -401,7 +405,7 @@ buttonRegionTypeY =
         , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
-
+--}
 --cases for buttons to be added
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -421,7 +425,7 @@ update msg model =
                     (Success <| { data = a.data, genre = new_genre }, Cmd.none ) 
                 _ ->
                     ( model, Cmd.none )
-        
+        {--
         ChangeRegionX new_regionx -> 
             case model of
                 Success a -> 
@@ -435,7 +439,7 @@ update msg model =
                     (Success <| { data = a.data, genre = a.genre, xaxis = a.xaxis, yaxis = new_regiony}, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
-
+--}
 
 --to be adjusted for axisChange/region--
 view : Model -> Html Msg
