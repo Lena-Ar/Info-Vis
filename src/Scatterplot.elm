@@ -71,6 +71,13 @@ type Model
   | Loading
   | Success (List GameSales)
 
+type CarType
+    = Small_Sporty_Compact_Large_Sedan
+    | Sports_Car
+    | SUV
+    | Wagon
+    | Minivan
+    | Pickup
 type alias Point =
     { pointGame : String
     , pointNorthAmerica : Float
@@ -181,7 +188,68 @@ filterAndReduceGames games =
     in
     XyData "North America" "Europe" filter
 
+--filter for genre--
 
+filterCar : List Car -> CarType -> List Car
+filterCar autosKomplett autotyp =
+    List.filter (\c -> c.carType == autotyp) autosKomplett
+
+
+autotypZuString : CarType -> String
+autotypZuString autoTyp =
+    case autoTyp of
+        Small_Sporty_Compact_Large_Sedan ->
+            "Small_Sporty_Compact_Large_Sedan"
+
+        Sports_Car ->
+            "Sportwagen"
+
+        SUV ->
+            "SUV"
+
+        Wagon ->
+            "Wagon"
+
+        Minivan ->
+            "Minivan"
+
+        Pickup ->
+            "Pickup"
+
+
+
+stringZuAutotyp : String -> CarType
+stringZuAutotyp stringAutoTyp =
+    if stringAutoTyp == "Small_Sporty_Compact_Large_Sedan" then
+        Small_Sporty_Compact_Large_Sedan
+
+    else if stringAutoTyp == "Sportwagen" then
+        Sports_Car
+
+    else if stringAutoTyp == "SUV" then
+        SUV
+
+    else if stringAutoTyp == "Wagon" then
+        Wagon
+
+    else if stringAutoTyp == "Minivan" then
+        Minivan
+
+    else
+        Pickup
+
+
+buttonAutotyp : Html Msg
+buttonAutotyp =
+    Html.select
+        [ onInput (\au -> stringZuAutotyp au |> ChangeAutotyp) ]
+        [ Html.option [ value "SUV" ] [ Html.text "SUV" ]
+        , Html.option [ value "Small_Sporty_Compact_Large_Sedan" ] [ Html.text "Small_Sporty_Compact_Large_Sedan" ]
+        , Html.option [ value "Sportwagen" ] [ Html.text "Sportwagen" ]
+        , Html.option [ value "Wagon" ] [ Html.text "Wagon" ]
+        , Html.option [ value "Minivan" ] [ Html.text "Minivan" ]
+        , Html.option [ value "Pickup" ] [ Html.text "Pickup" ]
+        ]
 
 --cases for buttons to be added
 update : Msg -> Model -> ( Model, Cmd Msg )
