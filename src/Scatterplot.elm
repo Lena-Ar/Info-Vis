@@ -28,6 +28,9 @@ main =
 type Msg
     = GotText (Result Http.Error String)
     | ChangeGenreType String
+    | ChangeRegionX RegionType
+    | ChangeRegionY RegionType
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -75,6 +78,8 @@ type Model
   | Success 
     { data: List GameSales
     , genre: String
+    , xaxis: RegionType
+    , yaxis: RegionType
     --, genre: GenreType
     }
 {--
@@ -95,6 +100,14 @@ type GenreType
     | Sports
     | Strategy
 --}
+
+--maybe error bc of field from decoding -> maybe change csv?
+type RegionType
+    = NorthAmerica
+    | Europe
+    | Japan
+    | RestOfWorld
+    | Global
 type alias Point =
     { pointGame : String
     , pointNorthAmerica : Float
@@ -307,6 +320,45 @@ stringToGenreType stringGenreType =
     else
         Strategy
 --}
+
+
+--attributType/region
+regionTypeToString : RegionType -> String
+regionTypeToString regionType =
+    case regionType of
+        NorthAmerica -> 
+            "North America"
+
+        Europe ->
+            "Europe"
+
+        Japan ->
+            "Japan"
+
+        RestOfWorld ->
+            "Rest of world"
+
+        Global ->
+            "Global"
+
+        
+stringToRegionType : String -> RegionType
+stringToRegionType stringRegionType =
+    if stringRegionType == "North America" then
+        NorthAmerica
+
+    else if stringRegionType == "Europe" then
+        Europe
+
+    else if stringRegionType == "Japan" then
+        Japan
+
+    else if stringRegionType == "Rest of world" then
+        RestOfWorld
+
+    else
+        Global
+
 buttonGenreType : Html Msg
 buttonGenreType =
     Html.select
@@ -328,29 +380,64 @@ buttonGenreType =
         , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
         ]
 
+buttonRegionTypeX : Html Msg
+buttonRegionTypeX =
+    Html.select
+        [ onInput (\rx -> stringToRegionType rx |> ChangeRegionX) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+buttonRegionTypeY : Html Msg
+buttonRegionTypeY =
+    Html.select
+        [ onInput (\ry -> stringToRegionType ry |> ChangeRegionY) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
 --cases for buttons to be added
---könnte klappen -> nachschauen
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         GotText result ->
             case result of
                 Ok fullText ->
+                --to be included with regions according to model
                     ( Success <| { data = gamesSalesList [fullText], genre = "Action" }, Cmd.none )
                 Err _ ->
                     (model, Cmd.none)
 
         ChangeGenreType new_genre -> 
+                --to be included with regions according to model
             case model of
                 Success a ->
                     (Success <| { data = a.data, genre = new_genre }, Cmd.none ) 
                 _ ->
                     ( model, Cmd.none )
+        
+        ChangeRegionX new_regionx -> 
+            case model of
+                Success a -> 
+                    (Success <| { data = a.data, genre = a.genre, xaxis = new_regionx, yaxis = a.yaxis}, Cmd.none ) 
+                _ -> 
+                    ( model, Cmd.none )
+        
+        ChangeRegionY new_regiony ->
+            case model of
+                Success a -> 
+                    (Success <| { data = a.data, genre = a.genre, xaxis = a.xaxis, yaxis = new_regiony}, Cmd.none ) 
+                _ -> 
+                    ( model, Cmd.none )
 
 
-
---view to be coded
---Buttons noch einfügen
+--to be adjusted for axisChange/region--
 view : Model -> Html Msg
 view model =
     case model of
@@ -404,7 +491,7 @@ view model =
 
 ----------point--------------
 ---test with North America on x-Axis and Europe on y-Axis, description is name of game---
-
+---to be adjusted with axisChange/region---
 point : ContinuousScale Float -> ContinuousScale Float -> Point -> Svg msg
 point scaleX scaleY xyPoint =
     g
@@ -431,6 +518,7 @@ point scaleX scaleY xyPoint =
 
 ----Scatterplot--------------------
 ------------------------------------
+--to be adjusted with axisChange/region--
 scatterplot : XyData -> Svg msg
 scatterplot model =
     let
