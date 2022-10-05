@@ -4,6 +4,8 @@ import Browser
 import Csv exposing (parse)
 import Csv.Decode exposing (..)
 import Html exposing (Html, pre, text, br)
+import Html.Events exposing (onInput)
+import Html.Attributes exposing (value)
 import Http
 import Axis
 import Scale exposing (ContinuousScale, domain)
@@ -25,6 +27,7 @@ main =
 
 type Msg
     = GotText (Result Http.Error String)
+    | ChangeGenreType GenreType
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -69,15 +72,28 @@ type alias GameSales =
 type Model
   = Error
   | Loading
-  | Success (List GameSales)
+  | Success 
+    { data: List GameSales
+    , genre: GenreType
+    }
 
-type CarType
-    = Small_Sporty_Compact_Large_Sedan
-    | Sports_Car
-    | SUV
-    | Wagon
-    | Minivan
-    | Pickup
+type GenreType
+    = Action
+    | Action_Adventure
+    | Adventure
+    | Fighting
+    | Misc
+    | MMO
+    | Music
+    | Platform
+    | Puzzle
+    | Racing
+    | Role_Playing
+    | Shooter
+    | Simulation
+    | Sports
+    | Strategy
+
 type alias Point =
     { pointGame : String
     , pointNorthAmerica : Float
@@ -190,83 +206,150 @@ filterAndReduceGames games =
 
 --filter for genre--
 
-filterCar : List Car -> CarType -> List Car
-filterCar autosKomplett autotyp =
-    List.filter (\c -> c.carType == autotyp) autosKomplett
+filterGenre : List GameSales -> String -> List GameSales
+filterGenre allGames genretype =
+    List.filter (\c -> c.genreType == genretype) allGames
 
+--genre ändern
+genreTypeToString : GenreType -> String
+genreTypeToString genreType =
+    case genreType of
+        Action -> 
+            "Action"
 
-autotypZuString : CarType -> String
-autotypZuString autoTyp =
-    case autoTyp of
-        Small_Sporty_Compact_Large_Sedan ->
-            "Small_Sporty_Compact_Large_Sedan"
+        Action_Adventure ->
+            "Action-Adventure"
 
-        Sports_Car ->
-            "Sportwagen"
+        Adventure ->
+            "Adventure"
 
-        SUV ->
-            "SUV"
+        Fighting ->
+            "Fighting"
 
-        Wagon ->
-            "Wagon"
+        Misc ->
+            "Misc"
 
-        Minivan ->
-            "Minivan"
+        MMO ->
+            "MMO"
 
-        Pickup ->
-            "Pickup"
+        Music ->
+            "Music"
+        
+        Platform ->
+            "Platform"
+        
+        Puzzle ->
+            "Puzzle"
+        
+        Racing ->
+            "Racing"
+        
+        Role_Playing ->
+            "Role-Playing"
+        
+        Shooter ->
+            "Shooter"
+        
+        Simulation ->
+            "Simulation"
+        
+        Sports ->
+            "Sports"
+        
+        Strategy ->
+            "Strategy"
 
+stringToGenreType : String -> GenreType
+stringToGenreType stringGenreType =
+    if stringGenreType == "Action" then
+        Action
 
+    else if stringGenreType == "Action-Adventure" then
+        Action_Adventure
 
-stringZuAutotyp : String -> CarType
-stringZuAutotyp stringAutoTyp =
-    if stringAutoTyp == "Small_Sporty_Compact_Large_Sedan" then
-        Small_Sporty_Compact_Large_Sedan
+    else if stringGenreType == "Adventure" then
+        Adventure
 
-    else if stringAutoTyp == "Sportwagen" then
-        Sports_Car
+    else if stringGenreType == "Fighting" then
+        Fighting
 
-    else if stringAutoTyp == "SUV" then
-        SUV
+    else if stringGenreType == "Misc" then
+        Misc
 
-    else if stringAutoTyp == "Wagon" then
-        Wagon
+    else if stringGenreType == "MMO" then
+        MMO
 
-    else if stringAutoTyp == "Minivan" then
-        Minivan
+    else if stringGenreType == "Music" then
+        Music
 
+    else if stringGenreType == "Platform" then
+        Platform
+
+    else if stringGenreType == "Puzzle" then
+        Puzzle
+    
+    else if stringGenreType == "Racing" then
+        Racing
+    
+    else if stringGenreType == "Role-Playing" then
+        Role_Playing
+    
+    else if stringGenreType == "Shooter" then
+        Shooter
+    
+    else if stringGenreType == "Simulation" then
+        Simulation
+
+    else if stringGenreType == "Sports" then
+        Sports
+    
     else
-        Pickup
+        Strategy
 
-
-buttonAutotyp : Html Msg
-buttonAutotyp =
+buttonGenreType : Html Msg
+buttonGenreType =
     Html.select
-        [ onInput (\au -> stringZuAutotyp au |> ChangeAutotyp) ]
-        [ Html.option [ value "SUV" ] [ Html.text "SUV" ]
-        , Html.option [ value "Small_Sporty_Compact_Large_Sedan" ] [ Html.text "Small_Sporty_Compact_Large_Sedan" ]
-        , Html.option [ value "Sportwagen" ] [ Html.text "Sportwagen" ]
-        , Html.option [ value "Wagon" ] [ Html.text "Wagon" ]
-        , Html.option [ value "Minivan" ] [ Html.text "Minivan" ]
-        , Html.option [ value "Pickup" ] [ Html.text "Pickup" ]
+        [ onInput (\au -> stringToGenreType au |> ChangeGenreType) ]
+        [ Html.option [ value "Action" ] [ Html.text "Action" ]
+        , Html.option [ value "Action-Adventure" ] [ Html.text "Action-Adventure" ]
+        , Html.option [ value "Adventure" ] [ Html.text "Adventure" ]
+        , Html.option [ value "Fighting" ] [ Html.text "Fighting" ]
+        , Html.option [ value "Misc" ] [ Html.text "Misc" ]
+        , Html.option [ value "MMO" ] [ Html.text "MMO" ]
+        , Html.option [ value "Music" ] [ Html.text "Music" ]
+        , Html.option [ value "Platform" ] [ Html.text "Platform" ]
+        , Html.option [ value "Puzzle" ] [ Html.text "Puzzle" ]
+        , Html.option [ value "Racing" ] [ Html.text "Racing" ] 
+        , Html.option [ value "Role-Playing" ] [ Html.text "Role-Playing" ] 
+        , Html.option [ value "Shooter" ] [ Html.text "Shooter" ] 
+        , Html.option [ value "Simulation" ] [ Html.text "Simulation" ] 
+        , Html.option [ value "Sports" ] [ Html.text "Sports" ]
+        , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
         ]
 
 --cases for buttons to be added
+--könnte klappen -> nachschauen
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         GotText result ->
             case result of
                 Ok fullText ->
-                    ( Success <| gamesSalesList [fullText], Cmd.none )
-
+                    ( Success <| { data = gamesSalesList [fullText], genre = Action }, Cmd.none )
                 Err _ ->
+                    (model, Cmd.none)
+
+        ChangeGenreType new_genre -> 
+            case model of
+                Success a ->
+                    (Success <| { data = a.data, genre = new_genre }, Cmd.none ) 
+                _ ->
                     ( model, Cmd.none )
 
 
 
 --view to be coded
-
+--Buttons noch einfügen
 view : Model -> Html Msg
 view model =
     case model of
@@ -280,7 +363,7 @@ view model =
             let 
                 gameSalesData: List GameSales
                 gameSalesData = 
-                    fullText
+                    fullText.data
                 
                 number_clearedGames: Int
                 number_clearedGames = 
@@ -291,7 +374,7 @@ view model =
                     List.length gameSalesData
                 
                 gameSalesDataCleared = 
-                    filterAndReduceGames fullText
+                    filterAndReduceGames (filterGenre fullText.data fullText.genre)
             
             in
             Html.div [] 
