@@ -3,7 +3,7 @@ module Scatterplot exposing (..)
 import Browser
 import Csv exposing (parse)
 import Csv.Decode exposing (..)
-import Html exposing (Html, pre, text)
+import Html exposing (Html, pre, text, br)
 import Http
 import Axis
 import Scale exposing (ContinuousScale, domain)
@@ -213,19 +213,26 @@ view model =
                 gameSalesData: List GameSales
                 gameSalesData = 
                     fullText
+                
+                number_clearedGames: Int
+                number_clearedGames = 
+                    List.length gameSalesDataCleared.data
 
                 number_games: Int
                 number_games =
                     List.length gameSalesData
                 
-                xy_games = 
+                gameSalesDataCleared = 
                     filterAndReduceGames fullText
             
             in
             Html.div [] 
                 [Html.p []
-                    [ Html.text (String.fromInt number_games) ]
-                , scatterplot xy_games
+                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games) 
+                    , Html.br [] []
+                    , Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_clearedGames) 
+                    ]
+                , scatterplot gameSalesDataCleared
                 ]
 
 ----------point--------------
