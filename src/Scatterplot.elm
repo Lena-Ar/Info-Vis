@@ -28,8 +28,8 @@ main =
 type Msg
     = GotText (Result Http.Error String)
     | ChangeGenreType String
-   -- | ChangeRegionX RegionType
-   -- | ChangeRegionY RegionType
+    | ChangeRegionX RegionType
+    | ChangeRegionY RegionType
 
 
 subscriptions : Model -> Sub Msg
@@ -78,8 +78,8 @@ type Model
   | Success 
     { data: List GameSales
     , genre: String
-   -- , xaxis: RegionType
-   -- , yaxis: RegionType
+    , xaxis: RegionType
+    , yaxis: RegionType
     --, genre: GenreType
     }
 {--
@@ -102,14 +102,14 @@ type GenreType
 --}
 
 --maybe error bc of field from decoding -> maybe change csv?
-{--
+
 type RegionType
     = NorthAmerica
     | Europe
     | Japan
     | RestOfWorld
     | Global
---}
+
 
 type alias Point =
     { pointGame : String
@@ -325,7 +325,6 @@ stringToGenreType stringGenreType =
         Strategy
 --}
 
-{--
 --attributType/region
 regionTypeToString : RegionType -> String
 regionTypeToString regionType =
@@ -362,7 +361,7 @@ stringToRegionType stringRegionType =
 
     else
         Global
---}
+
 buttonGenreType : Html Msg
 buttonGenreType =
     Html.select
@@ -384,7 +383,7 @@ buttonGenreType =
         , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
         ]
 
-{--
+
 buttonRegionTypeX : Html Msg
 buttonRegionTypeX =
     Html.select
@@ -406,7 +405,7 @@ buttonRegionTypeY =
         , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
---}
+
 --cases for buttons to be added
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -415,7 +414,7 @@ update msg model =
             case result of
                 Ok fullText ->
                 --to be included with regions according to model
-                    ( Success <| { data = gamesSalesList [fullText], genre = "Action" }, Cmd.none )
+                    ( Success <| { data = gamesSalesList [fullText], genre = "Action", xaxis = NorthAmerica , yaxis = NorthAmerica}, Cmd.none )
                 Err _ ->
                     (model, Cmd.none)
 
@@ -423,10 +422,10 @@ update msg model =
                 --to be included with regions according to model
             case model of
                 Success a ->
-                    (Success <| { data = a.data, genre = new_genre }, Cmd.none ) 
+                    (Success <| { data = a.data, genre = new_genre, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
                 _ ->
                     ( model, Cmd.none )
-        {--
+        
         ChangeRegionX new_regionx -> 
             case model of
                 Success a -> 
@@ -440,7 +439,7 @@ update msg model =
                     (Success <| { data = a.data, genre = a.genre, xaxis = a.xaxis, yaxis = new_regiony}, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
---}
+
 
 --to be adjusted for axisChange/region--
 view : Model -> Html Msg
@@ -478,12 +477,40 @@ view model =
                     List.length gameSalesDataFiltered
                 
                 gameSalesDataCleared = 
-                    filterAndReduceGames (filterGenre fullText.data fullText.genre)
-            
+                    filterAndReduceGames (gameSalesDataFiltered)
+                
+                regionFilter : List GameSales -> RegionType -> List Float
+                regionFilter points regionType =
+                    case regionType of
+                        NorthAmerica ->
+                            List.map .northAmerica points
+
+                        Europe ->
+                            List.map .europe points
+
+                        Japan ->
+                            List.map .japan points
+
+                        RestOfWorld ->
+                            List.map .restOfWorld points
+                    
+                        Global -> 
+                            List.map .global points
+                
+                valuesX : List Float
+                valuesX = 
+                    regionFilter gameSalesDataFiltered fullText.xaxis
+
+
+                valuesY : List Float
+                valuesY = 
+                    regionFilter gameSalesDataFiltered fullText.yaxis
             in
             Html.div [] 
                 [Html.p []
-                    [buttonGenreType]
+                    [ buttonGenreType
+                    , buttonRegionTypeX
+                    , buttonRegionTypeY]
                 , Html.p []
                     [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games) 
                     , Html.br [] []
@@ -491,12 +518,10 @@ view model =
                     , Html.br [] []
                     , Html.text ("Number of games in selected genre: " ++ String.fromInt number_filteredGames)
                     ]
-                , scatterplot gameSalesDataCleared
+                , scatterplot gameSalesDataCleared valuesX valuesY (regionTypeToString fullText.xaxis) (regionTypeToString fullText.yaxis)
                 ]
 
 ----------point--------------
----test with North America on x-Axis and Europe on y-Axis, description is name of game---
----to be adjusted with axisChange/region---
 
 point : ContinuousScale Float -> ContinuousScale Float -> Point -> (Float, Float) -> Svg msg
 point scaleX scaleY pointLabel xyPoint =
@@ -529,7 +554,6 @@ point scaleX scaleY pointLabel xyPoint =
 
 ----Scatterplot--------------------
 ------------------------------------
---to be adjusted with axisChange/region--
 scatterplot : XyData -> List Float -> List Float -> String -> String -> Svg msg
 scatterplot model xValues yValues labelX labelY =
     let
