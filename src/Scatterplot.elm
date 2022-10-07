@@ -193,6 +193,7 @@ helpMapBig apply a b c d e =
         |> map2pipe e
 
 -- based on https://ellie-app.com/hhZMpcRnTwFa1 (my code for exercise 1) --
+--maybe need changes here--
 assignment : GameSales -> Maybe Point
 assignment game =
     helpMapBig
@@ -496,45 +497,44 @@ view model =
 ----------point--------------
 ---test with North America on x-Axis and Europe on y-Axis, description is name of game---
 ---to be adjusted with axisChange/region---
-point : ContinuousScale Float -> ContinuousScale Float -> Point -> Svg msg
-point scaleX scaleY xyPoint =
+
+point : ContinuousScale Float -> ContinuousScale Float -> Point -> (Float, Float) -> Svg msg
+point scaleX scaleY pointLabel xyPoint =
     g
         [ class [ "point" ]
         , fontSize <| Px 10.0
-        , fontFamily [ "sans-serif" ]
-
-        --Positionierung der Punkte
-        , transform
-            [ Translate
-                (Scale.convert scaleX xyPoint.pointNorthAmerica)
-                (Scale.convert scaleY xyPoint.pointEurope)
+        , fontFamily [ "sans-serif" ]]
+            [circle
+            --Positionierung der Punkte
+                [cx <| Scale.convert scaleX <| Tuple.first xyPoint
+                , cy <| Scale.convert scaleY <| Tuple.second xyPoint
+                , r radius
+                ]
+                []
+            ,TypedSvg.text_
+                [ x <| Scale.convert scaleX <| Tuple.first xyPoint
+                , y <| (Scale.convert scaleY <| Tuple.second xyPoint) - (radius + 1.5)
+                , textAnchor AnchorMiddle 
+                ]
+            [ Html.text <| 
+                pointLabel.pointGame
+                    ++ "("
+                    ++ (String.fromFloat <| Tuple.first xyPoint)
+                    ++ " , "
+                    ++ (String.fromFloat <| Tuple.second xyPoint)
+                    ++ ")" 
             ]
-        ]
-        {--Vom Testpunkt kopiert, nur Text geändert und Radius der Kreise zur 
-        besseren Sichtbarkeit/Unterscheidung der Punkte--}
-        [ circle [ cx 0, cy 0, r 5 ] []
-        , text_
-            [ x 0, y -15, TypedSvg.Attributes.textAnchor AnchorMiddle ]
-            [ TypedSvg.Core.text xyPoint.pointGame ]
-        ]
-
-
+            ]
+        
 
 ----Scatterplot--------------------
 ------------------------------------
 --to be adjusted with axisChange/region--
-scatterplot : XyData -> Svg msg
-scatterplot model =
+scatterplot : XyData -> List Float -> List Float -> String -> String -> Svg msg
+scatterplot model xValues yValues labelX labelY =
     let
-        --x-Werte/NorthAmerica
-        xValues : List Float
-        xValues =
-            List.map .pointNorthAmerica model.data
-
-        --y-Werte/Europe
-        yValues : List Float
-        yValues =
-            List.map .pointEurope model.data
+        pointsXY = 
+            List.map2 (\x y -> ( x, y )) xValues yValues
 
         --Abbildungen/Umrechnungen auf SVG
         xScaleLocal : ContinuousScale Float
@@ -581,7 +581,7 @@ scatterplot model =
                 , fontSize <| Px 17.0
                 , fontFamily [ "sans-serif" ]
                 ]
-                [ Html.text model.xDescription ]
+                [ Html.text labelX ]
             ]
 
         -- y-Achse
@@ -595,12 +595,12 @@ scatterplot model =
                 , fontSize <| Px 17.0
                 , fontFamily [ "sans-serif" ]
                 ]
-                [ Html.text model.yDescription ]
+                [ Html.text labelY ]
             ]
 
         --SVG der Points
         , g [ transform [ Translate padding padding ] ]
-            (List.map (point xScaleLocal yScaleLocal) model.data)
+            (List.map2 (point xScaleLocal yScaleLocal) model.data pointsXY)
         ]
 
 
