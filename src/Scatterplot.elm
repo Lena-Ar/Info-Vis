@@ -507,17 +507,28 @@ view model =
                     regionFilter gameSalesDataFiltered fullText.yaxis
             in
             Html.div [] 
-                [Html.p []
-                    [ buttonGenreType
-                    , buttonRegionTypeX
-                    , buttonRegionTypeY]
+                [ Html.h1 [] 
+                    [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
+                , Html.h2 [] 
+                    [ Html.text ("This scatterplot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
+                , Html.h3 []
+                    [Html.text ("The x-axis and y-axis can be adjusted to your needs by seleceting the needed regions for each axis with the buttons below.")]
                 , Html.p []
-                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games) 
+                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)
                     , Html.br [] []
-                    , Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_clearedGames) 
-                    , Html.br [] []
-                    , Html.text ("Number of games in selected genre: " ++ String.fromInt number_filteredGames)
+                    , Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_clearedGames)
                     ]
+                , Html.h4 []
+                    [ Html.text ("Please choose the genre you want to display with the button below.") ]
+                , Html.p []
+                    [ buttonGenreType ]
+                , Html.p []
+                    [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_filteredGames) ]
+                , Html.h4 []
+                    [ Html.text ("Please choose the region you want to display on the xaxis first (on the left) and the one you want to display on the yaxis second (on the right).")]
+                , Html.p []
+                    [ buttonRegionTypeX
+                    , buttonRegionTypeY ]
                 , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (regionTypeToString fullText.xaxis) (regionTypeToString fullText.yaxis)
                 ]
 
