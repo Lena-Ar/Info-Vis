@@ -506,27 +506,27 @@ view model =
                 valuesY = 
                     regionFilter gameSalesDataFiltered fullText.yaxis
             in
-            Html.div []
-                [ Html.h1 [] 
+            Html.div [Html.Attributes.style "padding" "10px"]
+                [ Html.h1 [Html.Attributes.style "fontSize" "35px"] 
                     [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
-                , Html.h2 [] 
+                , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
                     [ Html.text ("This scatterplot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
-                , Html.h3 []
+                , Html.h3 [Html.Attributes.style "fontSize" "17px"]
                     [Html.text ("The x-axis and y-axis can be adjusted to your needs by seleceting the needed regions for each axis with the buttons below.")]
                 , Html.p []
                     [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)
                     , Html.br [] []
                     , Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_clearedGames)
                     ]
-                , Html.h4 []
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
                     [ Html.text ("Please choose the genre you want to display with the button below.") ]
-                , Html.p []
+                , Html.p [Html.Attributes.style "padding" "10px"]
                     [ buttonGenreType ]
                 , Html.p []
                     [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_filteredGames) ]
-                , Html.h4 []
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
                     [ Html.text ("Please choose the region you want to display on the xaxis first (on the left) and the one you want to display on the yaxis second (on the right).")]
-                , Html.p []
+                , Html.p [Html.Attributes.style "padding" "10px"]
                     [ buttonRegionTypeX
                     , buttonRegionTypeY ]
                 , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (regionTypeToString fullText.xaxis) (regionTypeToString fullText.yaxis)
