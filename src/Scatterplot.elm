@@ -518,7 +518,7 @@ view model =
                     , Html.br [] []
                     , Html.text ("Number of games in selected genre: " ++ String.fromInt number_filteredGames)
                     ]
-                , scatterplot gameSalesDataCleared valuesX valuesY (regionTypeToString fullText.xaxis) (regionTypeToString fullText.yaxis)
+                , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (regionTypeToString fullText.xaxis) (regionTypeToString fullText.yaxis)
                 ]
 
 ----------point--------------
@@ -554,8 +554,8 @@ point scaleX scaleY pointLabel xyPoint =
 
 ----Scatterplot--------------------
 ------------------------------------
-scatterplot : XyData -> List Float -> List Float -> String -> String -> Svg msg
-scatterplot model xValues yValues labelX labelY =
+scatterplot : String -> XyData -> List Float -> List Float -> String -> String -> Svg msg
+scatterplot css model xValues yValues labelX labelY =
     let
         pointsXY = 
             List.map2 (\x y -> ( x, y )) xValues yValues
@@ -580,13 +580,8 @@ scatterplot model xValues yValues labelX labelY =
             }
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
-        [ style [] [ TypedSvg.Core.text """
-            .point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 255, 255,0.3); }
-            .point text { display: none; }
-            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgb(118, 214, 78); }
-            .point:hover text { display: inline; fill: rgb(18, 132, 90)}
-            """ ]
-
+        [ style [] [ TypedSvg.Core.text css]
+        --Textgröße Punkt + Schriftart anpassen
         , g
             [ transform [ Translate (padding - 1) (padding - 1) ]
             , class [ "point" ]
@@ -594,6 +589,8 @@ scatterplot model xValues yValues labelX labelY =
             , fontFamily [ "sans-serif" ]
             ]
             []
+        --Achsenbeschriftungen größe anpassen
+        --Beschriftungen position anpassen
         --x-Achse
         , g
             [ transform [ Translate padding (h - padding) ] ]
@@ -627,7 +624,17 @@ scatterplot model xValues yValues labelX labelY =
             (List.map2 (point xScaleLocal yScaleLocal) model.data pointsXY)
         ]
 
-
+--textfarbe ändern
+--circlefarbe ändern
+--circleumrandung wenn nicht hover ändern
+cssPoint : String
+cssPoint = 
+    """
+        .point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 255, 255,0.3); }
+        .point text { display: none; }
+        .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgb(118, 214, 78); }
+        .point:hover text { display: inline; fill: rgb(18, 132, 90)}
+    """ 
 
 ---------------------------------------------
 ------------general settings for scatterplot----------
