@@ -506,7 +506,7 @@ view model =
                 valuesY = 
                     regionFilter gameSalesDataFiltered fullText.yaxis
             in
-            Html.div [] 
+            Html.div []
                 [ Html.h1 [] 
                     [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
                 , Html.h2 [] 
@@ -531,7 +531,7 @@ view model =
                     , buttonRegionTypeY ]
                 , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (regionTypeToString fullText.xaxis) (regionTypeToString fullText.yaxis)
                 ]
-
+         
 ----------point--------------
 
 point : ContinuousScale Float -> ContinuousScale Float -> Point -> (Float, Float) -> Svg msg
@@ -653,27 +653,26 @@ cssPoint =
 
 w : Float
 w =
-    900
+    800
 
 
 h : Float
 h =
-    450
+    500
 
 
 padding : Float
 padding =
-    60
-
+    65
 
 radius : Float
 radius =
-    5.0
+    4.0
 
 
 tickCount : Int
 tickCount =
-    5
+    10
 
 
 xAxis : List Float -> Svg msg
