@@ -538,8 +538,9 @@ point : ContinuousScale Float -> ContinuousScale Float -> Point -> (Float, Float
 point scaleX scaleY pointLabel xyPoint =
     g
         [ class [ "point" ]
-        , fontSize <| Px 10.0
-        , fontFamily [ "sans-serif" ]]
+        , fontSize <| Px 9.0
+        , fontFamily [ "sans-serif" ]
+        ]
             [circle
             --Positionierung der Punkte
                 [cx <| Scale.convert scaleX <| Tuple.first xyPoint
@@ -592,25 +593,22 @@ scatterplot css model xValues yValues labelX labelY =
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
         [ style [] [ TypedSvg.Core.text css]
-        --Textgröße Punkt + Schriftart anpassen
         , g
             [ transform [ Translate (padding - 1) (padding - 1) ]
             , class [ "point" ]
-            , fontSize <| Px 10.0
+            , fontSize <| Px 9.0
             , fontFamily [ "sans-serif" ]
             ]
             []
-        --Achsenbeschriftungen größe anpassen
-        --Beschriftungen position anpassen
         --x-Achse
         , g
             [ transform [ Translate padding (h - padding) ] ]
             [ xAxis xValues
             , text_
                 [ x (Scale.convert xScaleLocal labelPositions.x + 25)
-                , y 35
+                , y 40
                 , TypedSvg.Attributes.textAnchor AnchorMiddle
-                , fontSize <| Px 17.0
+                , fontSize <| Px 13
                 , fontFamily [ "sans-serif" ]
                 ]
                 [ Html.text labelX ]
@@ -624,7 +622,7 @@ scatterplot css model xValues yValues labelX labelY =
                 [ x 0
                 , y (Scale.convert yScaleLocal labelPositions.y - 15)
                 , TypedSvg.Attributes.textAnchor AnchorMiddle
-                , fontSize <| Px 17.0
+                , fontSize <| Px 13
                 , fontFamily [ "sans-serif" ]
                 ]
                 [ Html.text labelY ]
@@ -635,16 +633,13 @@ scatterplot css model xValues yValues labelX labelY =
             (List.map2 (point xScaleLocal yScaleLocal) model.data pointsXY)
         ]
 
---textfarbe ändern
---circlefarbe ändern
---circleumrandung wenn nicht hover ändern
 cssPoint : String
 cssPoint = 
     """
-        .point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 255, 255,0.3); }
+        .point circle { stroke: rgba(46, 78, 23, 0.8); fill: rgba(255, 255, 255,0.3); }
         .point text { display: none; }
-        .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgb(118, 214, 78); }
-        .point:hover text { display: inline; fill: rgb(18, 132, 90)}
+        .point:hover circle { stroke: rgba(255, 255, 255, 1); fill: rgb(75, 128, 36,0.8); }
+        .point:hover text { display: inline; stroke: rgba(255, 255, 255, 1); stroke-width: 0.03; fill: rgb(75, 128, 36, 0.8)}
     """ 
 
 ---------------------------------------------
