@@ -221,14 +221,14 @@ view model =
                 [Html.text ("Number of games: " ++ String.fromInt number_games)
                 , Html.br [] []
                 , Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)
-                , scatterplotParallel 600 2 multiDimenData
+                , scatterplotParallel cssParallel 600 2 multiDimenData
                 ]
 
 
 
 -- plot based on exercise 6.1--
-scatterplotParallel : Float -> Float -> MultiDimData -> Svg msg
-scatterplotParallel w ar model =
+scatterplotParallel : String -> Float -> Float -> MultiDimData -> Svg msg
+scatterplotParallel css w ar model =
     let
         h : Float
         h =
@@ -263,8 +263,8 @@ scatterplotParallel w ar model =
         , TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100
         ]
     <|
-        [ TypedSvg.style []
-            []
+        [ style [] 
+            [TypedSvg.Core.text css]
 
         --Umgebungsrechteck
         , TypedSvg.rect
@@ -326,16 +326,18 @@ scatterplotParallel w ar model =
                                     p
                                     |> Shape.line Shape.linearCurve
                         in
-                        g []
+                        g [class ["cssparallel"]]
                             [
                             Path.element graphenlinie
                                 [ stroke <| Paint <| Color.black
-                                , strokeWidth <| Px 0.5
+                                , strokeWidth <| Px 0.9
                                 , fill PaintNone
+                                , class ["cssparallel"]
                                 ]
                                 , text_ 
-                                [ x 300
-                                , y -20
+                                [ x 280
+                                , y -30
+                                , fontSize (Px 12)
                                 , TypedSvg.Attributes.textAnchor AnchorMiddle
                                 ]
                                 [TypedSvg.Core.text 
@@ -352,6 +354,17 @@ scatterplotParallel w ar model =
                                 (List.map (\descr -> punkt descr.value descr.pointName descr.pointPublisher model.dimDescription) datensatz)
                         )
                )
+
+--opacity not 1 in normal to get the same effect as with x-ray but still white rectangle
+cssParallel : String
+cssParallel = 
+    """
+        .cssparallel { stroke: rgba(46, 78, 23, 0.8); opacity: 0.7 }
+        .cssparallel text { display: none; }
+        .cssparallel:hover { stroke: rgb(75, 128, 36,1); stroke-width: 1.7; opacity: 1}
+        .cssparallel:hover text { display: inline; stroke: rgba(255, 255, 255, 1); stroke-width: 0.03; fill: rgb(75, 128, 36, 0.8)}
+    """ 
+
 
 --general settings for plot--
 --from exercise 6.1--
