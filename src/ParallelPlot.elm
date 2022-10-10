@@ -196,6 +196,27 @@ view model =
                 number_games: Int
                 number_games =
                     List.length gameSalesData
+                
+                --from exercise 6.1
+                filteredCars : List GefilterteAutos
+                filteredCars =
+                    filterAndReduceCars cars
+                        |> List.filter
+                            (.carType
+                                >> (==) genutzterAutoTyp.typ1
+                            )
+
+                multiDimensionaleDaten =
+                    MultiDimData [ "cityMPG", "retailPrice", "dealerCost", "carLen" ]
+                        [ List.map
+                            (\data ->
+                                [ data.cityMPG, data.retailPrice, data.dealerCost, data.carLen ]
+                                    |> List.map toFloat
+                                    |> MultiDimPoint data.vehicleName
+                            )
+                            filteredCars
+                        ]
+
             in
             Html.div [] 
                 [Html.text (String.fromInt number_games)]
