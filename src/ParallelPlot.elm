@@ -4,6 +4,8 @@ import Browser
 import Csv exposing (parse)
 import Csv.Decode exposing (..)
 import Html exposing (Html, pre, text)
+import Html.Attributes exposing (href, placeholder, type_, value)
+import Html.Events exposing (..)
 import Http
 import Statistics
 import Axis
@@ -72,7 +74,7 @@ type alias GameSales =
 
 -- from Scatterplot
 type alias MultiPoint =
-    { pointGame : String
+    { pointGenre : String
     , pointNorthAmerica : Float
     , pointEurope : Float
     , pointJapan : Float
@@ -197,29 +199,36 @@ view model =
                 number_games =
                     List.length gameSalesData
                 
+                number_games_genre: Int
+                number_games_genre =  
+                    List.length filteredGamesGenre
+                
                 --from exercise 6.1
-                filteredCars : List GefilterteAutos
-                filteredCars =
-                    filterAndReduceCars cars
+                filteredGamesGenre : List MultiPoint
+                filteredGamesGenre =
+                    assignmentAndReduce fullText.data
                         |> List.filter
-                            (.carType
-                                >> (==) genutzterAutoTyp.typ1
-                            )
+                        (.pointGenre >> (==) "Action")
 
-                multiDimensionaleDaten =
-                    MultiDimData [ "cityMPG", "retailPrice", "dealerCost", "carLen" ]
+                multiDimenData =
+                    MultiDimData [ "North America", "Europe", "Japan", "Rest of World", "Global" ]
                         [ List.map
                             (\data ->
-                                [ data.cityMPG, data.retailPrice, data.dealerCost, data.carLen ]
-                                    |> List.map toFloat
-                                    |> MultiDimPoint data.vehicleName
+                                [ data.pointNorthAmerica, data.pointEurope, data.pointJapan, data.pointRestOfWorld, data.pointGlobal ]
+                                    |> MultiDimPoint data.pointGenre
                             )
-                            filteredCars
+                            filteredGamesGenre
                         ]
 
             in
             Html.div [] 
-                [Html.text (String.fromInt number_games)]
+                [Html.text ("Number of games: " ++ String.fromInt number_games)
+                , Html.br [] []
+                , Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)
+                , scatterplotParallel 600 2 multiDimenData
+                ]
+
+
 
 -- plot based on exercise 6.1--
 scatterplotParallel : Float -> Float -> MultiDimData -> Svg msg
