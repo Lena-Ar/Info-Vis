@@ -57,52 +57,60 @@ type alias GameSales =
     , global : Float
     }
 
+--from early version of scatterplot
 --cases for buttons to be added
 type Model
   = Error
   | Loading
-  | Success (List String)
+  | Success 
+    { data: List GameSales
+    }
 
+--exercise 6.1
+type alias MultiDimPoint =
+    { pointName : String, value : List Float }
+
+
+type alias MultiDimData =
+    { dimDescription : List String
+    , data : List (List MultiDimPoint)
+    }
+
+--from scatterplot
 --Decoder
-decodeGameSales : Csv.Decode.Decoder ((String, Float) -> a) a
+decodeGameSales : Csv.Decode.Decoder (GameSales -> a) a
 decodeGameSales =
-    Csv.Decode.map (\a b -> (a, b))
+    Csv.Decode.map GameSales
         (Csv.Decode.field "Game" Ok
+            |> Csv.Decode.andMap (Csv.Decode.field "Genre" Ok)
+            |> Csv.Decode.andMap (Csv.Decode.field "Publisher" Ok)
+            |> Csv.Decode.andMap (Csv.Decode.field "North America" (String.toFloat >> Result.fromMaybe "error parsing string"))
+            |> Csv.Decode.andMap (Csv.Decode.field "Europe" (String.toFloat >> Result.fromMaybe "error parsing string"))
             |> Csv.Decode.andMap (Csv.Decode.field "Japan" (String.toFloat >> Result.fromMaybe "error parsing string"))
+            |> Csv.Decode.andMap (Csv.Decode.field "Rest of World" (String.toFloat >> Result.fromMaybe "error parsing string"))
+            |> Csv.Decode.andMap (Csv.Decode.field "Global" (String.toFloat >> Result.fromMaybe "error parsing string"))
         )
 
-csvString_to_data : String -> List (String, Float)
+csvString_to_data : String -> List GameSales
 csvString_to_data csvRaw =
     Csv.parse csvRaw
         |> Csv.Decode.decodeCsv decodeGameSales
         |> Result.toMaybe
         |> Maybe.withDefault []
 
-gamesSalesList :List (String, Float) -> Html Msg
+gamesSalesList :List String -> List GameSales
 gamesSalesList listGame =
-    Html.ul []
-        (List.map (\( a, b ) -> Html.li [] [ text <| a ++ ", " ++ (String.fromFloat b) ]) listGame)
+    List.map(\x -> csvString_to_data x) listGame
+        |> List.concat
 
 --cases for buttons to be added
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    let
-        liste =
-            case model of
-                Success list ->
-                    list
-
-                Error ->
-                    []
-
-                Loading ->
-                    []
-    in
     case msg of
         GotText result ->
             case result of
                 Ok fullText ->
-                    ( Success <| liste ++ [ fullText ], Cmd.none )
+                    ( Success <| { data = gamesSalesList [fullText] }, Cmd.none )
 
                 Err _ ->
                     ( model, Cmd.none )
@@ -120,6 +128,15 @@ view model =
         Loading ->
             text "Loading GameSales data..."
         
-        Success list ->
-            Html.div [] <|
-                List.map (\fulltext -> pre [] [ gamesSalesList  <| csvString_to_data fulltext ]) list
+        Success fullText ->
+            let
+                gameSalesData: List GameSales
+                gameSalesData = 
+                    fullText.data
+                    
+                number_games: Int
+                number_games =
+                    List.length gameSalesData
+            in
+            Html.div [] 
+                [Html.text (String.fromInt number_games)]
