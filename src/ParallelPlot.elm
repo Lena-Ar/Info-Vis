@@ -28,9 +28,10 @@ main =
         , subscriptions = subscriptions
         , view = view
         }
-
+--same concept as in Scatterplot
 type Msg
     = GotText (Result Http.Error String)
+    | ChangeGenreType String
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -84,12 +85,13 @@ type alias MultiPoint =
     , pointGlobal : Float
     }
 --from early version of scatterplot
---cases for buttons to be added
+--same concept as in Scatterplot
 type Model
   = Error
   | Loading
   | Success 
     { data: List GameSales
+    , genre: String
     }
 
 --exercise 6.1
@@ -131,16 +133,50 @@ gamesSalesList listGame =
     List.map(\x -> csvString_to_data x) listGame
         |> List.concat
 
+--filter and button from Scatterplot
+filterGenre : List GameSales -> String -> List GameSales
+filterGenre allGames genretype =
+    List.filter (\c -> c.genre == genretype) allGames
+
+buttonGenreType : Html Msg
+buttonGenreType =
+    Html.select
+        [ onInput ChangeGenreType ]
+        [ Html.option [ value "Action" ] [ Html.text "Action" ]
+        , Html.option [ value "Action-Adventure" ] [ Html.text "Action-Adventure" ]
+        , Html.option [ value "Adventure" ] [ Html.text "Adventure" ]
+        , Html.option [ value "Fighting" ] [ Html.text "Fighting" ]
+        , Html.option [ value "Misc" ] [ Html.text "Misc" ]
+        , Html.option [ value "MMO" ] [ Html.text "MMO" ]
+        , Html.option [ value "Music" ] [ Html.text "Music" ]
+        , Html.option [ value "Platform" ] [ Html.text "Platform" ]
+        , Html.option [ value "Puzzle" ] [ Html.text "Puzzle" ]
+        , Html.option [ value "Racing" ] [ Html.text "Racing" ] 
+        , Html.option [ value "Role-Playing" ] [ Html.text "Role-Playing" ] 
+        , Html.option [ value "Shooter" ] [ Html.text "Shooter" ] 
+        , Html.option [ value "Simulation" ] [ Html.text "Simulation" ] 
+        , Html.option [ value "Sports" ] [ Html.text "Sports" ]
+        , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
+        ]
+
 --cases for buttons to be added
+--ChangeGenreType same concept as in Scatterplot
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         GotText result ->
             case result of
                 Ok fullText ->
-                    ( Success <| { data = gamesSalesList [fullText] }, Cmd.none )
+                    ( Success <| { data = gamesSalesList [fullText], genre = "Action" }, Cmd.none )
 
                 Err _ ->
+                    ( model, Cmd.none )
+        
+        ChangeGenreType new_genre -> 
+            case model of
+                Success a ->
+                    (Success <| { data = a.data, genre = new_genre }, Cmd.none ) 
+                _ ->
                     ( model, Cmd.none )
 
 --assignment from Scatterplot--
@@ -204,7 +240,7 @@ view model =
                 filteredGamesGenre =
                     assignmentAndReduce fullText.data
                         |> List.filter
-                        (.pointGenre >> (==) "Action")
+                        (.pointGenre >> (==) fullText.genre)
 
                 multiDimenData =
                     MultiDimData [ "North America", "Europe", "Japan", "Rest of World", "Global" ]
@@ -217,10 +253,22 @@ view model =
                         ]
 
             in
-            Html.div [] 
-                [Html.text ("Number of games: " ++ String.fromInt number_games)
-                , Html.br [] []
-                , Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)
+            Html.div [Html.Attributes.style "padding" "10px"]
+                [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
+                    [ Html.text ("Parallel Coordinates Plot of Video Game Sales for XBox One") ]
+                , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
+                --to be specified and explained more
+                    [ Html.text ("This parallel coordinates plot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
+                , Html.p [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)]
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                    [ Html.text ("Please choose the genre you want to display with the button below.") ]
+                , Html.p [Html.Attributes.style "padding" "10px"]
+                    [ buttonGenreType ]
+                , Html.p [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)]
+                , Html.h2 [Html.Attributes.style "fontSize" "20px"]
+                    [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
                 , scatterplotParallel cssParallel 600 2 multiDimenData
                 ]
 
