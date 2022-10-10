@@ -74,7 +74,8 @@ type alias GameSales =
 
 -- from Scatterplot
 type alias MultiPoint =
-    { pointGenre : String
+    { pointGame : String
+    , pointGenre : String
     , pointNorthAmerica : Float
     , pointEurope : Float
     , pointJapan : Float
@@ -161,15 +162,7 @@ assignmentAndReduce game =
        assignment : GameSales -> Maybe MultiPoint
        assignment assign = 
             helpMapBig
-                (\northAmerica europe japan restOfWorld global ->
-                    MultiPoint
-                        (assign.game ++ " , " ++  assign.publisher ++ " ")
-                        (northAmerica)
-                        (europe)
-                        (japan)
-                        (restOfWorld)
-                        (global)
-                )
+                (MultiPoint assign.game assign.genre)
                 (Just assign.northAmerica)
                 (Just assign.europe)
                 (Just assign.japan)
