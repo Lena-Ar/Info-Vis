@@ -75,6 +75,7 @@ type alias GameSales =
 -- from Scatterplot
 type alias MultiPoint =
     { pointGame : String
+    , pointPublisher : String
     , pointGenre : String
     , pointNorthAmerica : Float
     , pointEurope : Float
@@ -93,7 +94,9 @@ type Model
 
 --exercise 6.1
 type alias MultiDimPoint =
-    { pointName : String, value : List Float }
+    { pointName : String
+    , pointPublisher : String
+    , value : List Float }
 
 
 type alias MultiDimData =
@@ -162,7 +165,7 @@ assignmentAndReduce game =
        assignment : GameSales -> Maybe MultiPoint
        assignment assign = 
             helpMapBig
-                (MultiPoint assign.game assign.genre)
+                (MultiPoint assign.game assign.publisher assign.genre)
                 (Just assign.northAmerica)
                 (Just assign.europe)
                 (Just assign.japan)
@@ -208,7 +211,7 @@ view model =
                         [ List.map
                             (\data ->
                                 [ data.pointNorthAmerica, data.pointEurope, data.pointJapan, data.pointRestOfWorld, data.pointGlobal ]
-                                    |> MultiDimPoint data.pointGenre
+                                    |> MultiDimPoint data.pointGame data.pointPublisher
                             )
                             filteredGamesGenre
                         ]
@@ -307,7 +310,7 @@ scatterplotParallel w ar model =
         ]
             --Zeichnung der Punkte angelehnt an Ü5 mit Shape.linearCurve
             ++ (let
-                    punkt p =
+                    punkt p game publisher descript =
                         let
                             graphenlinie : Path.Path
                             graphenlinie =
@@ -323,17 +326,30 @@ scatterplotParallel w ar model =
                                     p
                                     |> Shape.line Shape.linearCurve
                         in
-                        Path.element graphenlinie
-                            [ stroke <| Paint <| Color.black
-                            , strokeWidth <| Px 0.5
-                            , fill PaintNone
+                        g []
+                            [
+                            Path.element graphenlinie
+                                [ stroke <| Paint <| Color.black
+                                , strokeWidth <| Px 0.5
+                                , fill PaintNone
+                                ]
+                                , text_ 
+                                [ x 300
+                                , y -20
+                                , TypedSvg.Attributes.textAnchor AnchorMiddle
+                                ]
+                                [TypedSvg.Core.text 
+                                    (game ++ ", publisher: " ++ publisher ++ 
+                                        (String.concat <|(List.map2(\a b -> ", " ++ a ++ ": " ++ (String.fromFloat b) ++ " ") descript p))
+                                    )
+                                ]
                             ]
                 in
                 model.data
                     |> List.map
                         (\datensatz ->
                             g [ transform [ Translate (padding - 1) padding ] ]
-                                (List.map (.value >> punkt) datensatz)
+                                (List.map (\descr -> punkt descr.value descr.pointName descr.pointPublisher model.dimDescription) datensatz)
                         )
                )
 
