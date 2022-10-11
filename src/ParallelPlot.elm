@@ -19,7 +19,7 @@ import TypedSvg.Attributes exposing (class, fontFamily, fontSize, stroke, stroke
 import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y, y1, y2)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
-import Scatterplot exposing (RegionType(..))
+import Html exposing (button)
 
 main : Program () Model Msg
 main =
@@ -204,7 +204,7 @@ update msg model =
         GotText result ->
             case result of
                 Ok fullText ->
-                    ( Success <| { data = gamesSalesList [fullText], genre = "Action" }, Cmd.none )
+                    ( Success <| { data = gamesSalesList [fullText], genre = "Action", axis1 = .northAmerica, axis2 = .europe, axis3 = .japan, axis4 = .restOfWorld, axis5 = .global, name1 = "North America", name2 = "Europe", name3 = "Japan", name4 = "Rest of World", name5 = "Global" }, Cmd.none )
 
                 Err _ ->
                     ( model, Cmd.none )
@@ -212,10 +212,44 @@ update msg model =
         ChangeGenreType new_genre -> 
             case model of
                 Success a ->
-                    (Success <| { data = a.data, genre = new_genre }, Cmd.none ) 
+                    (Success <| { data = a.data, genre = new_genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5 }, Cmd.none ) 
                 _ ->
                     ( model, Cmd.none )
 
+        ChangeFirstAxis (new_axis, new_name) -> 
+            case model of
+                Success a ->
+                    (Success <| { data = a.data, genre = a.genre, axis1 = new_axis, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = new_name, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5 }, Cmd.none ) 
+                _ -> 
+                    ( model, Cmd.none )
+        
+        ChangeSecondAxis (new_axis, new_name) -> 
+            case model of
+                Success a ->
+                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = new_axis, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = new_name, name3 = a.name3, name4 = a.name4, name5 = a.name5 }, Cmd.none ) 
+                _ -> 
+                    ( model, Cmd.none )
+        
+        ChangeThirdAxis (new_axis, new_name) -> 
+            case model of
+                Success a ->
+                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = new_axis, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = new_name, name4 = a.name4, name5 = a.name5 }, Cmd.none ) 
+                _ -> 
+                    ( model, Cmd.none )
+        
+        ChangeFourthAxis (new_axis, new_name) -> 
+            case model of
+                Success a ->
+                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = new_axis, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = new_name, name5 = a.name5 }, Cmd.none ) 
+                _ -> 
+                    ( model, Cmd.none )
+        
+        ChangeFifthAxis (new_axis, new_name) -> 
+            case model of
+                Success a ->
+                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = new_axis, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = new_name }, Cmd.none ) 
+                _ -> 
+                    ( model, Cmd.none )
 --assignment from Scatterplot--
 map2pipe : Maybe a -> Maybe ( a -> b) -> Maybe b
 map2pipe = 
@@ -248,19 +282,52 @@ assignmentAndReduce game =
     List.filterMap assignment game
 
 --from Scatterplot buttons & extended by number of axis
---
+--does not work now with dropdown menu -> going for easier version with simple buttons to click on
 {--
 buttonAxis1 : Html Msg
 buttonAxis1 =
     Html.select
-        [ onInput (\rx -> stringToAxisType rx |> ChangeFirstAxis) ]
+        [ onInput (ChangeFirstAxis (.northAmerica, "NorthAmerica"))]
         [ Html.option [ value "North America" ] [ Html.text "North America" ]
         , Html.option [ value "Europe" ] [ Html.text "Europe" ]
         , Html.option [ value "Japan" ] [ Html.text "Japan" ]
         , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
+--}
+button1axis1 : Html Msg
+button1axis1 = Html.button [onClick (ChangeFirstAxis (.northAmerica, "North America"))][Html.text "North America"]
 
+button2axis1 : Html Msg
+button2axis1 = Html.button [onClick (ChangeFirstAxis (.europe, "Europe"))][Html.text "Europe"]
+                        
+button3axis1 : Html Msg                      
+button3axis1 = Html.button [onClick (ChangeFirstAxis (.japan, "Japan"))][Html.text "Japan"]
+  
+button4axis1 : Html Msg
+button4axis1 = Html.button [onClick (ChangeFirstAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
+ 
+button5axis1 : Html Msg
+button5axis1 = Html.button [onClick (ChangeFirstAxis (.global, "Global"))][Html.text "Global"]             
+
+
+button1axis2 : Html Msg
+button1axis2 = Html.button [onClick (ChangeSecondAxis (.northAmerica, "North America"))][Html.text "North America"]
+
+button2axis2 : Html Msg
+button2axis2 = Html.button [onClick (ChangeSecondAxis (.europe, "Europe"))][Html.text "Europe"]
+                        
+button3axis2 : Html Msg                      
+button3axis2 = Html.button [onClick (ChangeSecondAxis (.japan, "Japan"))][Html.text "Japan"]
+  
+button4axis2 : Html Msg
+button4axis2 = Html.button [onClick (ChangeSecondAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
+ 
+button5axis2 : Html Msg
+button5axis2 = Html.button [onClick (ChangeSecondAxis (.global, "Global"))][Html.text "Global"] 
+
+
+{--
 buttonAxis2 : Html Msg
 buttonAxis2 =
     Html.select
@@ -393,6 +460,22 @@ view model =
                     [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)]
                 , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                     [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                    [ Html.text ("Please choose the region you want to display on the first axis with the buttons below.") ]
+                , Html.p [Html.Attributes.style "padding" "10px"]
+                    [ button1axis1
+                    , button2axis1
+                    , button3axis1
+                    , button4axis1
+                    , button5axis1 ]
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                    [ Html.text ("Please choose the region you want to display on the second axis with the buttons below.") ]
+                , Html.p [Html.Attributes.style "padding" "10px"]
+                    [ button1axis2
+                    , button2axis2
+                    , button3axis2
+                    , button4axis2
+                    , button5axis2 ]
                 , scatterplotParallel cssParallel 600 2 multiDimFunction
                 ]
 
