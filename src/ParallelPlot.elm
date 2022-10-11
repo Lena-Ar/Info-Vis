@@ -32,12 +32,18 @@ main =
 type Msg
     = GotText (Result Http.Error String)
     | ChangeGenreType String
+    | TauschA
+    | TauschB
+    | TauschC
+
+
+    {--
     | ChangeFirstAxis AxisType
     | ChangeSecondAxis AxisType
     | ChangeThirdAxis AxisType
     | ChangeFourthAxis AxisType
     | ChangeFifthAxis AxisType
-
+--}
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.none
@@ -91,18 +97,24 @@ type alias MultiPoint =
     }
 --from early version of scatterplot
 --same concept as in Scatterplot
+
+--updated with swap as Swap CustomType
 type Model
   = Error
   | Loading
   | Success 
     { data : List GameSales
     , genre : String
+    , swap : Swap
+    }
+
+    {--
     , axis1 : AxisType
     , axis2 : AxisType
     , axis3 : AxisType
     , axis4 : AxisType
     , axis5 : AxisType
-    }
+    }--}
 
 --exercise 6.1
 type alias MultiDimPoint =
@@ -286,7 +298,24 @@ buttonAxis5 =
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
 --}
---view to be coded
+
+--from exercise 6.3
+type alias Swap =
+    { wertCityMPG : Int
+    , attributWert : Int
+    , accessWerte : List ( String, MultiPoint -> Int )
+    , accessWerte2 : List ( String, MultiPoint -> Int )
+    , wert1 : String
+    , wert2 : String
+    , wert3 : String
+    , wert4 : String
+    , wert5 : String
+    }
+
+my_access_function : Swap -> List ( String, MultiPoint -> Int )
+my_access_function model =
+    List.Extra.swapAt model.attributWert model.wertCityMPG model.accessWerte2
+
 
 view : Model -> Html Msg
 view model =
@@ -318,15 +347,22 @@ view model =
                         |> List.filter
                         (.pointGenre >> (==) fullText.genre)
 
-                multiDimenData : List GameSales -> AxisType -> AxisType -> AxisType -> AxisType -> AxisType -> (GameSales -> String) -> (GameSales -> String) -> MultiDimData
-                multiDimenData game a1 a2 a3 a4 a5 name pub=
-                    MultiDimData [ "North America", "Europe", "Japan", "Rest of World", "Global" ]
+                --from exercise 6.3
+                --didn't want swap, wanted explicit selection like in Scatterplot
+                --but just to try if this works better/at all
+                --problems with the Tuple.second -> might be problems with Model and solution of a CustomType Swap instead of swap beeing the model in original exercise 6.3
+                --sometimes throws error, sometimes not 
+                --still problem if it fo whatever reason doesn't throw an error: can't directly acces record fields of swap in update for changes & initation
+                --might change to swap again later in process of composing visualisations & interactions
+                multiDimensionaleDaten =
+                    MultiDimData (List.map Tuple.first (my_access_function fullText.swap))
                         [ List.map
                             (\data ->
-                                [  a1 , a2, a3, a4, a5 ]
-                                    |> MultiDimPoint name pub
+                                List.map (\access -> Tuple.second access data) (my_access_function fullText.swap)
+                                    |> List.map toFloat
+                                    |> MultiDimPoint data.pointGame data.pointPublisher
                             )
-                            game
+                            filteredGamesGenre
                         ]
             in
             Html.div [Html.Attributes.style "padding" "10px"]
@@ -345,10 +381,21 @@ view model =
                     [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)]
                 , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                     [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
-                , scatterplotParallel cssParallel 600 2 multiDimenData
+                , scatterplotParallel cssParallel 600 2 multiDimensionaleDaten
                 ]
 
-
+{--
+multiDimenData : List GameSales -> AxisType -> AxisType -> AxisType -> AxisType -> AxisType -> (GameSales -> String) -> (GameSales -> String) -> MultiDimData
+                multiDimenData game a1 a2 a3 a4 a5 name pub=
+                    MultiDimData [ "North America", "Europe", "Japan", "Rest of World", "Global" ]
+                        [ List.map
+                            (\data ->
+                                [  a1 , a2, a3, a4, a5 ]
+                                    |> MultiDimPoint name pub
+                            )
+                            game
+                        ]
+--}
 
 -- plot based on exercise 6.1--
 scatterplotParallel : String -> Float -> Float -> MultiDimData -> Svg msg
