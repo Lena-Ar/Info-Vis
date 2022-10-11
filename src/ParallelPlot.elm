@@ -32,6 +32,11 @@ main =
 type Msg
     = GotText (Result Http.Error String)
     | ChangeGenreType String
+    | ChangeFirstAxis AxisType
+    | ChangeSecondAxis AxisType
+    | ChangeThirdAxis AxisType
+    | ChangeFourthAxis AxisType
+    | ChangeFifthAxis AxisType
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -90,8 +95,13 @@ type Model
   = Error
   | Loading
   | Success 
-    { data: List GameSales
-    , genre: String
+    { data : List GameSales
+    , genre : String
+    , axis1 : AxisType
+    , axis2 : AxisType
+    , axis3 : AxisType
+    , axis4 : AxisType
+    , axis5 : AxisType
     }
 
 --exercise 6.1
@@ -105,6 +115,13 @@ type alias MultiDimData =
     { dimDescription : List String
     , data : List (List MultiDimPoint)
     }
+
+type AxisType
+    = NorthAmerica
+    | Europe
+    | Japan
+    | RestOfWorld
+    | Global
 
 --from scatterplot
 --Decoder
@@ -161,6 +178,7 @@ buttonGenreType =
 
 --cases for buttons to be added
 --ChangeGenreType same concept as in Scatterplot
+--AxisChange to be integrated
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -178,7 +196,7 @@ update msg model =
                     (Success <| { data = a.data, genre = new_genre }, Cmd.none ) 
                 _ ->
                     ( model, Cmd.none )
-
+        
 --assignment from Scatterplot--
 map2pipe : Maybe a -> Maybe ( a -> b) -> Maybe b
 map2pipe = 
@@ -210,6 +228,64 @@ assignmentAndReduce game =
     in
     List.filterMap assignment game
 
+--from Scatterplot buttons & extended by number of axis
+--
+{--
+buttonAxis1 : Html Msg
+buttonAxis1 =
+    Html.select
+        [ onInput (\rx -> stringToAxisType rx |> ChangeFirstAxis) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+buttonAxis2 : Html Msg
+buttonAxis2 =
+    Html.select
+        [ onInput (\rx -> stringToAxisType rx |> ChangeSecondAxis) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+buttonAxis3 : Html Msg
+buttonAxis3 =
+    Html.select
+        [ onInput (\rx -> stringToAxisType rx |> ChangeThirdAxis) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+buttonAxis4 : Html Msg
+buttonAxis4 =
+    Html.select
+        [ onInput (\rx -> stringToAxisType rx |> ChangeFourthAxis) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+buttonAxis5 : Html Msg
+buttonAxis5 =
+    Html.select
+        [ onInput (\rx -> stringToAxisType rx |> ChangeFithAxis) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+--}
 --view to be coded
 
 view : Model -> Html Msg
@@ -242,16 +318,16 @@ view model =
                         |> List.filter
                         (.pointGenre >> (==) fullText.genre)
 
-                multiDimenData =
+                multiDimenData : List GameSales -> AxisType -> AxisType -> AxisType -> AxisType -> AxisType -> (GameSales -> String) -> (GameSales -> String) -> MultiDimData
+                multiDimenData game a1 a2 a3 a4 a5 name pub=
                     MultiDimData [ "North America", "Europe", "Japan", "Rest of World", "Global" ]
                         [ List.map
                             (\data ->
-                                [ data.pointNorthAmerica, data.pointEurope, data.pointJapan, data.pointRestOfWorld, data.pointGlobal ]
-                                    |> MultiDimPoint data.pointGame data.pointPublisher
+                                [  a1 , a2, a3, a4, a5 ]
+                                    |> MultiDimPoint name pub
                             )
-                            filteredGamesGenre
+                            game
                         ]
-
             in
             Html.div [Html.Attributes.style "padding" "10px"]
                 [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
