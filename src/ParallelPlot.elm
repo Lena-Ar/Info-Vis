@@ -19,6 +19,7 @@ import TypedSvg.Attributes exposing (class, fontFamily, fontSize, stroke, stroke
 import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y, y1, y2)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
+import Scatterplot exposing (RegionType(..))
 
 main : Program () Model Msg
 main =
@@ -29,20 +30,20 @@ main =
         , view = view
         }
 --same concept as in Scatterplot
+--now based on type annotations for MultiDimPoint as we have Floats and String in there
 type Msg
     = GotText (Result Http.Error String)
     | ChangeGenreType String
+    | ChangeFirstAxis (GameSales -> Float, String)
+    | ChangeSecondAxis (GameSales -> Float, String)
+    | ChangeThirdAxis (GameSales -> Float, String)
+    | ChangeFourthAxis (GameSales -> Float, String)
+    | ChangeFifthAxis (GameSales -> Float, String)
+
+    {--
     | TauschA
     | TauschB
     | TauschC
-
-
-    {--
-    | ChangeFirstAxis AxisType
-    | ChangeSecondAxis AxisType
-    | ChangeThirdAxis AxisType
-    | ChangeFourthAxis AxisType
-    | ChangeFifthAxis AxisType
 --}
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -98,24 +99,30 @@ type alias MultiPoint =
 --from early version of scatterplot
 --same concept as in Scatterplot
 
---updated with swap as Swap CustomType
+
+--we need floats for MultiDimPoint so we need to change gamesales to float
 type Model
   = Error
   | Loading
   | Success 
     { data : List GameSales
     , genre : String
-    , swap : Swap
+    , axis1 : GameSales -> Float
+    , axis2 : GameSales -> Float
+    , axis3 : GameSales -> Float
+    , axis4 : GameSales -> Float
+    , axis5 : GameSales -> Float
+    , name1 : String
+    , name2 : String
+    , name3 : String
+    , name4 : String
+    , name5 : String
     }
 
-    {--
-    , axis1 : AxisType
-    , axis2 : AxisType
-    , axis3 : AxisType
-    , axis4 : AxisType
-    , axis5 : AxisType
-    }--}
-
+{--
+--updated with swap as Swap CustomType
+--, swap : Swap
+--}
 --exercise 6.1
 type alias MultiDimPoint =
     { pointName : String
@@ -127,14 +134,14 @@ type alias MultiDimData =
     { dimDescription : List String
     , data : List (List MultiDimPoint)
     }
-
+{--
 type AxisType
     = NorthAmerica
     | Europe
     | Japan
     | RestOfWorld
     | Global
-
+--}
 --from scatterplot
 --Decoder
 decodeGameSales : Csv.Decode.Decoder (GameSales -> a) a
@@ -208,7 +215,7 @@ update msg model =
                     (Success <| { data = a.data, genre = new_genre }, Cmd.none ) 
                 _ ->
                     ( model, Cmd.none )
-        
+
 --assignment from Scatterplot--
 map2pipe : Maybe a -> Maybe ( a -> b) -> Maybe b
 map2pipe = 
@@ -298,7 +305,7 @@ buttonAxis5 =
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
 --}
-
+{--
 --from exercise 6.3
 type alias Swap =
     { wertCityMPG : Int
@@ -315,7 +322,7 @@ type alias Swap =
 my_access_function : Swap -> List ( String, MultiPoint -> Int )
 my_access_function model =
     List.Extra.swapAt model.attributWert model.wertCityMPG model.accessWerte2
-
+--}
 
 view : Model -> Html Msg
 view model =
@@ -346,24 +353,29 @@ view model =
                     assignmentAndReduce fullText.data
                         |> List.filter
                         (.pointGenre >> (==) fullText.genre)
-
-                --from exercise 6.3
-                --didn't want swap, wanted explicit selection like in Scatterplot
-                --but just to try if this works better/at all
-                --problems with the Tuple.second -> might be problems with Model and solution of a CustomType Swap instead of swap beeing the model in original exercise 6.3
-                --sometimes throws error, sometimes not 
-                --still problem if it fo whatever reason doesn't throw an error: can't directly acces record fields of swap in update for changes & initation
-                --might change to swap again later in process of composing visualisations & interactions
-                multiDimensionaleDaten =
-                    MultiDimData (List.map Tuple.first (my_access_function fullText.swap))
+                
+                --changed again to originally desired concept of selecting not swapping       
+                --adjusted -> no more AxisType, insteas GameSales -> Floats
+                --same reason for parenthesis around (a1 data) etc
+                --still not applied
+                multiDimenData : List GameSales -> (GameSales -> Float) -> (GameSales -> Float) -> (GameSales -> Float) -> (GameSales -> Float) -> (GameSales -> Float) -> (GameSales -> String) -> (GameSales -> String) -> String -> String -> String -> String -> String -> MultiDimData
+                multiDimenData game a1 a2 a3 a4 a5 name pub n1 n2 n3 n4 n5=
+                    MultiDimData [ n1, n2, n3, n4, n5 ]
                         [ List.map
                             (\data ->
-                                List.map (\access -> Tuple.second access data) (my_access_function fullText.swap)
-                                    |> List.map toFloat
-                                    |> MultiDimPoint data.pointGame data.pointPublisher
+                                [  (a1 data) , (a2 data), (a3 data), (a4 data), (a5 data) ]
+                                    |> MultiDimPoint (name data) (pub data)
                             )
-                            filteredGamesGenre
+                            game
                         ]
+
+                --to apply multiDimenData with genrefilter & real data
+                multiDimFunction = 
+                    multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
+                
+                --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
+                gameSalesDataFiltered = 
+                    filterGenre fullText.data fullText.genre
             in
             Html.div [Html.Attributes.style "padding" "10px"]
                 [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
@@ -381,19 +393,26 @@ view model =
                     [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)]
                 , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                     [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
-                , scatterplotParallel cssParallel 600 2 multiDimensionaleDaten
+                , scatterplotParallel cssParallel 600 2 multiDimFunction
                 ]
 
 {--
-multiDimenData : List GameSales -> AxisType -> AxisType -> AxisType -> AxisType -> AxisType -> (GameSales -> String) -> (GameSales -> String) -> MultiDimData
-                multiDimenData game a1 a2 a3 a4 a5 name pub=
-                    MultiDimData [ "North America", "Europe", "Japan", "Rest of World", "Global" ]
+                --from exercise 6.3
+                --didn't want swap, wanted explicit selection like in Scatterplot
+                --but just to try if this works better/at all
+                --problems with the Tuple.second -> might be problems with Model and solution of a CustomType Swap instead of swap beeing the model in original exercise 6.3
+                --sometimes throws error, sometimes not 
+                --still problem if it fo whatever reason doesn't throw an error: can't directly acces record fields of swap in update for changes & initation
+                --might change to swap again later in process of composing visualisations & interactions
+                multiDimensionaleDaten =
+                    MultiDimData (List.map Tuple.first (my_access_function fullText.swap))
                         [ List.map
                             (\data ->
-                                [  a1 , a2, a3, a4, a5 ]
-                                    |> MultiDimPoint name pub
+                                List.map (\access -> Tuple.second access data) (my_access_function fullText.swap)
+                                    |> List.map toFloat
+                                    |> MultiDimPoint data.pointGame data.pointPublisher
                             )
-                            game
+                            filteredGamesGenre
                         ]
 --}
 
