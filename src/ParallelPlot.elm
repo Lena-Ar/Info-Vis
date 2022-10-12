@@ -680,9 +680,9 @@ scatterplotParallel css w ar model =
                                 , class ["cssparallel"]
                                 ]
                                 , text_ 
-                                [ x 280
+                                [ x 300
                                 , y -30
-                                , fontSize (Px 12)
+                                , fontSize (Px 10.5)
                                 , TypedSvg.Attributes.textAnchor AnchorMiddle
                                 ]
                                 [TypedSvg.Core.text 
@@ -704,7 +704,7 @@ scatterplotParallel css w ar model =
 cssParallel : String
 cssParallel = 
     """
-        .cssparallel { stroke: rgba(46, 78, 23, 0.8); opacity: 0.7 }
+        .cssparallel { stroke: rgba(46, 78, 23, 0.8); opacity: 0.5 }
         .cssparallel text { display: none; }
         .cssparallel:hover { stroke: rgb(75, 128, 36,1); stroke-width: 1.7; opacity: 1}
         .cssparallel:hover text { display: inline; stroke: rgba(255, 255, 255, 1); stroke-width: 0.03; fill: rgb(75, 128, 36, 0.8)}
