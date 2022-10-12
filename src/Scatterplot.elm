@@ -15,6 +15,7 @@ import TypedSvg.Attributes exposing (class, fontFamily, fontSize, stroke, stroke
 import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y, y1, y2)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
+import Data
 
 main : Program () Model Msg
 main =
@@ -60,7 +61,7 @@ loadingGameSales gotText =
                     }
             )
         |> Cmd.batch
---}
+--}{--
 type alias GameSales =
     { game : String
     , genre : String
@@ -71,12 +72,12 @@ type alias GameSales =
     , restOfWorld : Float
     , global : Float
     }
-
+--}
 type Model
   = Error
   | Loading
   | Success 
-    { data: List GameSales
+    { data: List Data.GameSales
     , genre: String
     , xaxis: RegionType
     , yaxis: RegionType
@@ -128,9 +129,9 @@ type alias XyData =
     }
 
 --Decoder
-decodeGameSales : Csv.Decode.Decoder (GameSales -> a) a
+decodeGameSales : Csv.Decode.Decoder (Data.GameSales -> a) a
 decodeGameSales =
-    Csv.Decode.map GameSales
+    Csv.Decode.map Data.GameSales
         (Csv.Decode.field "Game" Ok
             |> Csv.Decode.andMap (Csv.Decode.field "Genre" Ok)
             |> Csv.Decode.andMap (Csv.Decode.field "Publisher" Ok)
@@ -141,14 +142,14 @@ decodeGameSales =
             |> Csv.Decode.andMap (Csv.Decode.field "Global" (String.toFloat >> Result.fromMaybe "error parsing string"))
         )
 
-csvString_to_data : String -> List GameSales
+csvString_to_data : String -> List Data.GameSales
 csvString_to_data csvRaw =
     Csv.parse csvRaw
         |> Csv.Decode.decodeCsv decodeGameSales
         |> Result.toMaybe
         |> Maybe.withDefault []
 
-gamesSalesList :List String -> List GameSales
+gamesSalesList :List String -> List Data.GameSales
 gamesSalesList listGame =
     List.map(\x -> csvString_to_data x) listGame
         |> List.concat
@@ -194,7 +195,7 @@ helpMapBig apply a b c d e =
 
 -- based on https://ellie-app.com/hhZMpcRnTwFa1 (my code for exercise 1) --
 --maybe need changes here--
-assignment : GameSales -> Maybe Point
+assignment : Data.GameSales -> Maybe Point
 assignment game =
     helpMapBig
         (\northAmerica europe japan restOfWorld global ->
@@ -214,7 +215,7 @@ assignment game =
 
 -- filtering games --
 -- based on https://ellie-app.com/hhZMpcRnTwFa1 (my code for exercise 1) --
-filterAndReduceGames : List GameSales -> XyData
+filterAndReduceGames : List Data.GameSales -> XyData
 filterAndReduceGames games =
     let
         filter =
@@ -224,7 +225,7 @@ filterAndReduceGames games =
 
 --filter for genre--
 
-filterGenre : List GameSales -> String -> List GameSales
+filterGenre : List Data.GameSales -> String -> List Data.GameSales
 filterGenre allGames genretype =
     List.filter (\c -> c.genre == genretype) allGames
 {--
@@ -453,7 +454,7 @@ view model =
         
         Success fullText ->
             let 
-                gameSalesData: List GameSales
+                gameSalesData: List Data.GameSales
                 gameSalesData = 
                     fullText.data
                 
@@ -479,7 +480,7 @@ view model =
                 gameSalesDataCleared = 
                     filterAndReduceGames (gameSalesDataFiltered)
                 
-                regionFilter : List GameSales -> RegionType -> List Float
+                regionFilter : List Data.GameSales -> RegionType -> List Float
                 regionFilter points regionType =
                     case regionType of
                         NorthAmerica ->
