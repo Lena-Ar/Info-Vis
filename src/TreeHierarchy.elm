@@ -329,7 +329,7 @@ point scaleX scaleY xyPoint =
                 (Scale.convert scaleY xyPoint.childy)
             ]
         ]
-        [ circle [ cx 0, cy 0, r 3 ] []
+        [ circle [ cx 0, cy 0, r (radius - 1.5) ] []
         , text_ [ x 0
                 , y -10
                 , textAnchor AnchorMiddle
@@ -344,7 +344,7 @@ point scaleX scaleY xyPoint =
 --general settings for visualization
 w : Float
 w =
-    2800
+    3000
 
 
 h : Float
@@ -354,7 +354,7 @@ h =
 
 padding : Float
 padding =
-    50
+    30
 
 
 radius : Float
