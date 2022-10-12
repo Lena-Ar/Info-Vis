@@ -463,14 +463,7 @@ view model =
                 
                 number_games_genre: Int
                 number_games_genre =  
-                    List.length filteredGamesGenre
-                
-                --from exercise 6.1
-                filteredGamesGenre : List MultiPoint
-                filteredGamesGenre =
-                    assignmentAndReduce fullText.data
-                        |> List.filter
-                        (.pointGenre >> (==) fullText.genre)
+                    List.length gameSalesDataFiltered
                 
                 --changed again to originally desired concept of selecting not swapping       
                 --adjusted -> no more AxisType, insteas GameSales -> Floats
@@ -567,6 +560,15 @@ view model =
                             )
                             filteredGamesGenre
                         ]
+--}
+
+{--
+--from exercise 6.1
+                filteredGamesGenre : List MultiPoint
+                filteredGamesGenre =
+                    assignmentAndReduce fullText.data
+                        |> List.filter
+                        (.pointGenre >> (==) fullText.genre)
 --}
 
 -- plot based on exercise 6.1--
