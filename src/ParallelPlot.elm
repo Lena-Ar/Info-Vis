@@ -655,10 +655,10 @@ scatterplotParallel css w ar model =
         ]
             --Zeichnung der Punkte angelehnt an Ü5 mit Shape.linearCurve
             ++ (let
-                    punkt p game publisher descript =
+                    point p game publisher descript =
                         let
-                            graphenlinie : Path.Path
-                            graphenlinie =
+                            graphline : Path.Path
+                            graphline =
                                 List.map3
                                     (\description s px ->
                                         Just
@@ -673,7 +673,7 @@ scatterplotParallel css w ar model =
                         in
                         g [class ["cssparallel"]]
                             [
-                            Path.element graphenlinie
+                            Path.element graphline
                                 [ stroke <| Paint <| Color.black
                                 , strokeWidth <| Px 0.9
                                 , fill PaintNone
@@ -694,9 +694,9 @@ scatterplotParallel css w ar model =
                 in
                 model.data
                     |> List.map
-                        (\datensatz ->
+                        (\database ->
                             g [ transform [ Translate (padding - 1) padding ] ]
-                                (List.map (\descr -> punkt descr.value descr.pointName descr.pointPublisher model.dimDescription) datensatz)
+                                (List.map (\descr -> point descr.value descr.pointName descr.pointPublisher model.dimDescription) database)
                         )
                )
 
