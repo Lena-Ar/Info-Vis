@@ -281,20 +281,9 @@ assignmentAndReduce game =
     in
     List.filterMap assignment game
 
---from Scatterplot buttons & extended by number of axis
---does not work now with dropdown menu -> going for easier version with simple buttons to click on
-{--
-buttonAxis1 : Html Msg
-buttonAxis1 =
-    Html.select
-        [ onInput (ChangeFirstAxis (.northAmerica, "NorthAmerica"))]
-        [ Html.option [ value "North America" ] [ Html.text "North America" ]
-        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
-        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
-        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
-        , Html.option [ value "Global" ] [ Html.text "Global" ]
-        ]
---}
+--works, but not so pretty -> maybe find better solution
+
+--buttons for axis 1
 button1axis1 : Html Msg
 button1axis1 = Html.button [onClick (ChangeFirstAxis (.northAmerica, "North America"))][Html.text "North America"]
 
@@ -310,7 +299,7 @@ button4axis1 = Html.button [onClick (ChangeFirstAxis (.restOfWorld, "Rest of Wor
 button5axis1 : Html Msg
 button5axis1 = Html.button [onClick (ChangeFirstAxis (.global, "Global"))][Html.text "Global"]             
 
-
+-- buttons for axis 2
 button1axis2 : Html Msg
 button1axis2 = Html.button [onClick (ChangeSecondAxis (.northAmerica, "North America"))][Html.text "North America"]
 
@@ -326,8 +315,70 @@ button4axis2 = Html.button [onClick (ChangeSecondAxis (.restOfWorld, "Rest of Wo
 button5axis2 : Html Msg
 button5axis2 = Html.button [onClick (ChangeSecondAxis (.global, "Global"))][Html.text "Global"] 
 
+--buttons for axis 3
+button1axis3 : Html Msg
+button1axis3 = Html.button [onClick (ChangeThirdAxis (.northAmerica, "North America"))][Html.text "North America"]
+
+button2axis3 : Html Msg
+button2axis3 = Html.button [onClick (ChangeThirdAxis (.europe, "Europe"))][Html.text "Europe"]
+                        
+button3axis3 : Html Msg                      
+button3axis3 = Html.button [onClick (ChangeThirdAxis (.japan, "Japan"))][Html.text "Japan"]
+  
+button4axis3 : Html Msg
+button4axis3 = Html.button [onClick (ChangeThirdAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
+ 
+button5axis3 : Html Msg
+button5axis3 = Html.button [onClick (ChangeThirdAxis (.global, "Global"))][Html.text "Global"] 
+
+--buttons for axis 4
+button1axis4 : Html Msg
+button1axis4 = Html.button [onClick (ChangeFourthAxis (.northAmerica, "North America"))][Html.text "North America"]
+
+button2axis4 : Html Msg
+button2axis4 = Html.button [onClick (ChangeFourthAxis (.europe, "Europe"))][Html.text "Europe"]
+                        
+button3axis4 : Html Msg                      
+button3axis4 = Html.button [onClick (ChangeFourthAxis (.japan, "Japan"))][Html.text "Japan"]
+  
+button4axis4 : Html Msg
+button4axis4 = Html.button [onClick (ChangeFourthAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
+ 
+button5axis4 : Html Msg
+button5axis4 = Html.button [onClick (ChangeFourthAxis (.global, "Global"))][Html.text "Global"] 
+
+
+--buttons for axis 5
+button1axis5 : Html Msg
+button1axis5 = Html.button [onClick (ChangeFifthAxis (.northAmerica, "North America"))][Html.text "North America"]
+
+button2axis5 : Html Msg
+button2axis5 = Html.button [onClick (ChangeFifthAxis (.europe, "Europe"))][Html.text "Europe"]
+                        
+button3axis5 : Html Msg                      
+button3axis5 = Html.button [onClick (ChangeFifthAxis (.japan, "Japan"))][Html.text "Japan"]
+  
+button4axis5 : Html Msg
+button4axis5 = Html.button [onClick (ChangeFifthAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
+ 
+button5axis5 : Html Msg
+button5axis5 = Html.button [onClick (ChangeFifthAxis (.global, "Global"))][Html.text "Global"] 
 
 {--
+--from Scatterplot buttons & extended by number of axis
+--does not work now with dropdown menu -> going for easier version with simple buttons to click on
+
+buttonAxis1 : Html Msg
+buttonAxis1 =
+    Html.select
+        [ onInput (ChangeFirstAxis (.northAmerica, "NorthAmerica"))]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
 buttonAxis2 : Html Msg
 buttonAxis2 =
     Html.select
@@ -476,6 +527,30 @@ view model =
                     , button3axis2
                     , button4axis2
                     , button5axis2 ]
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                    [ Html.text ("Please choose the region you want to display on the third axis with the buttons below.") ]
+                , Html.p [Html.Attributes.style "padding" "10px"]
+                    [ button1axis3
+                    , button2axis3
+                    , button3axis3
+                    , button4axis3
+                    , button5axis3 ]
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                    [ Html.text ("Please choose the region you want to display on the fourth axis with the buttons below.") ]
+                , Html.p [Html.Attributes.style "padding" "10px"]
+                    [ button1axis4
+                    , button2axis4
+                    , button3axis4
+                    , button4axis4
+                    , button5axis4 ]
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                    [ Html.text ("Please choose the region you want to display on the fifth axis with the buttons below.") ]
+                , Html.p [Html.Attributes.style "padding" "10px"]
+                    [ button1axis5
+                    , button2axis5
+                    , button3axis5
+                    , button4axis5
+                    , button5axis5 ]
                 , scatterplotParallel cssParallel 600 2 multiDimFunction
                 ]
 
