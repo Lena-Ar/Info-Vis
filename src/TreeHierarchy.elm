@@ -100,7 +100,8 @@ view model =
         , Html.div [] [Html.text "this is a placeholder for description of project"]
         , Html.div [] [Html.text "this is a placeholder for header for tree"]
         , Html.div [] [Html.text "this is another placeholder for description for tree"]
-        , treePlot 1 convertedTree
+        , Html.div [] [treePlot2 1 convertedTree]
+        , Html.div [] [treePlot 1 convertedTree]
         , Html.div [] [ Html.text "Hierarchy of publishers, genres and videogames (Child, Maybe Parent)" ]
         , Html.ul [] <|
             List.map
@@ -199,6 +200,85 @@ treePlot minDist tree =
             List.map checkRootNegative nodeValues
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 180, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
+        [ style []
+            [ TypedSvg.Core.text """
+            .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
+            .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
+            .point text { display: none; }
+            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgba(0, 204, 0,1); }
+            .point:hover text { display: inline; }
+          """ ]
+        , g
+            [ transform [ Translate padding padding ] ]
+            (List.map (line xScaleLocal yScaleLocal) nodeValuesPath)
+        , g
+            [ transform [ Translate padding padding ] ]
+            (List.map (point xScaleLocal yScaleLocal) nodeValues)
+        ]
+
+treePlot2 : Float -> List ( String, Maybe String ) -> Svg msg
+treePlot2 minDist tree =
+    let
+        --computing layout
+        layout : Dict.Dict String { x : Float, y : Float }
+        layout = 
+            TreeLayout.treeLayout 2 tree
+
+        xValues : List Float
+        xValues =
+            Dict.toList layout
+                |> List.map (\( a, b ) -> b.x )
+
+        yValues : List Float
+        yValues =
+            Dict.toList layout
+                |> List.map (\( a, b ) -> b.y )
+
+        xScaleLocal : Scale.ContinuousScale Float
+        xScaleLocal =
+            xScale xValues
+
+        yScaleLocal : Scale.ContinuousScale Float
+        yScaleLocal =
+            yScale yValues
+
+        --dependencies for treePlot to draw lines/paths from parent to child node
+        --to get x and y values from parent and child nodes
+        nodeValues : List NodeValues
+        nodeValues =
+            List.map
+                (\( node, parent ) ->
+                    let
+                        childx =
+                            Dict.get node layout |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
+
+                        childy =
+                            Dict.get node layout |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
+
+                        parentx =
+                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
+
+                        parenty =
+                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
+
+                        label =
+                            node
+                    in
+                    NodeValues childx childy parentx parenty label
+                )
+                tree
+        --to avoid root node getting a path as it has no parent node
+        checkRootNegative data = 
+            if (data.parentx < 0) && (data.parenty < 0) then
+                NodeValues 0 1 data.childx data.childy data.label
+            else
+                NodeValues data.childx data.childy data.parentx data.parenty data.label
+
+        nodeValuesPath : List NodeValues
+        nodeValuesPath =
+            List.map checkRootNegative nodeValues
+    in
+    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
         [ style []
             [ TypedSvg.Core.text """
             .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
