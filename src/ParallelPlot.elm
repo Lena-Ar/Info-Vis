@@ -144,6 +144,7 @@ type AxisType
     | RestOfWorld
     | Global
 --}
+{--
 --from scatterplot
 --Decoder
 decodeGameSales : Csv.Decode.Decoder (Data.GameSales -> a) a
@@ -170,7 +171,7 @@ gamesSalesList :List String -> List Data.GameSales
 gamesSalesList listGame =
     List.map(\x -> csvString_to_data x) listGame
         |> List.concat
-
+--}
 --filter and button from Scatterplot
 filterGenre : List Data.GameSales -> String -> List Data.GameSales
 filterGenre allGames genretype =
@@ -206,7 +207,7 @@ update msg model =
         GotText result ->
             case result of
                 Ok fullText ->
-                    ( Success <| { data = gamesSalesList [fullText], genre = "Action", axis1 = .northAmerica, axis2 = .europe, axis3 = .japan, axis4 = .restOfWorld, axis5 = .global, name1 = "North America", name2 = "Europe", name3 = "Japan", name4 = "Rest of World", name5 = "Global" }, Cmd.none )
+                    ( Success <| { data = Data.gamesSalesList [fullText], genre = "Action", axis1 = .northAmerica, axis2 = .europe, axis3 = .japan, axis4 = .restOfWorld, axis5 = .global, name1 = "North America", name2 = "Europe", name3 = "Japan", name4 = "Rest of World", name5 = "Global" }, Cmd.none )
 
                 Err _ ->
                     ( model, Cmd.none )

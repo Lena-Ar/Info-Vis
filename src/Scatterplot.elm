@@ -127,7 +127,7 @@ type alias XyData =
     , yDescription : String
     , data : List Point
     }
-
+{--
 --Decoder
 decodeGameSales : Csv.Decode.Decoder (Data.GameSales -> a) a
 decodeGameSales =
@@ -153,7 +153,7 @@ gamesSalesList :List String -> List Data.GameSales
 gamesSalesList listGame =
     List.map(\x -> csvString_to_data x) listGame
         |> List.concat
-
+--}
 --mapping games to point---
 --helpers for mapping because of lacking Maybe.map6--
 
@@ -415,7 +415,7 @@ update msg model =
             case result of
                 Ok fullText ->
                 --to be included with regions according to model
-                    ( Success <| { data = gamesSalesList [fullText], genre = "Action", xaxis = NorthAmerica , yaxis = NorthAmerica}, Cmd.none )
+                    ( Success <| { data = Data.gamesSalesList [fullText], genre = "Action", xaxis = NorthAmerica , yaxis = NorthAmerica}, Cmd.none )
                 Err _ ->
                     (model, Cmd.none)
 
