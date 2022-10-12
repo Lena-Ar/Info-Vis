@@ -7,6 +7,7 @@ import Dict
 import Scale
 import Statistics
 import Html exposing (Html, div, text)
+import Html.Attributes exposing (style, href)
 import TypedSvg exposing (circle, g, line, path, rect, style, svg, text_)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Attributes exposing (d, class, stroke, strokeWidth, fill, textAnchor, transform, fontFamily, fontSize, viewBox)
@@ -95,15 +96,32 @@ view model =
         layoutTree =
             TreeLayout.treeLayout 2 convertedTree
     in
-    div []
-        [ Html.div [] [Html.text "this is a placeholder for header"]
-        , Html.div [] [Html.text "this is a placeholder for description of project"]
-        , Html.div [] [Html.text "this is a placeholder for header for tree"]
-        , Html.div [] [Html.text "this is another placeholder for description for tree"]
+    div [Html.Attributes.style "padding" "10px" ]
+        [ Html.h1 [Html.Attributes.style "fontSize" "40px"] 
+            [Html.text "Visualization of a market analysis for Video Games Sales on XBox One"]
+        , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
+            [Html.text "Created for course 'Information Retrieval and Visualization' at Uni Halle"]
+        , Html.p [Html.Attributes.style "fontSize" "15px"] 
+            [Html.text "By clicking on the link below, you can go to more detailed visualizations of the Video Games Sales data to retrieve insights in sales data."]
+        , Html.p [Html.Attributes.style "fontSize" "16px"]
+            [Html.a [href "Scatterplot.elm"] [Html.text "Scatterplot"]
+            , Html.br [][]
+            , Html.a [href "ParallelPlot.elm"] [Html.text "Parallel Coordinates Plot"]]
+        , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
+            [Html.text "Tree Diagramm / Tree Hierarchy for Video Games"]
+        , Html.p [Html.Attributes.style "fontSize" "15px"] 
+            [Html.text "In this hierarchy, you can see all video games, genres and publishers of the dataset. You can see all publishers and for each which genres they offer. Furthermore you can see the games of each publisher assigned beneath their corresponding genre."
+            , Html.br [] []
+            , Html.text "You as a publisher or stakeholder can remind which genres you offer and which games are of what genre. Of course you can also see and compare what competitors offer."]
+        , Html.h3 [Html.Attributes.style "fontSize" "16px"] 
+            [Html.text "In the Tree Diagramm / Tree Hierarchy below you can get an overview over the data."]
         , Html.div [] [treePlot2 1 convertedTree]
+        , Html.h3 [Html.Attributes.style "fontSize" "16px"] 
+            [Html.text "The Tree Diagramm / Tree Hierarchy below shows the same data as the one above but a litter closer so you can explore in more detail."]
         , Html.div [] [treePlot 1 convertedTree]
-        , Html.div [] [ Html.text "Hierarchy of publishers, genres and videogames (Child, Maybe Parent)" ]
-        , Html.ul [] <|
+        , Html.div [Html.Attributes.style "fontSize" "15px"] 
+            [ Html.text "Hierarchy of publishers, genres and videogames (Child, Maybe Parent)" ]
+        , Html.ul [Html.Attributes.style "fontSize" "10px"] <|
             List.map
                 (\( child, parent ) ->
                     Html.li []
@@ -116,8 +134,9 @@ view model =
                         ]
                 )
                 convertedTree
-        , Html.div [] [ Html.text "Hierarchy as Tree Layout" ]
-        , Html.ul [] <|
+        , Html.div [Html.Attributes.style "fontSize" "15px"] 
+            [ Html.text "Hierarchy as Tree Layout" ]
+        , Html.ul [Html.Attributes.style "fontSize" "10px"] <|
             List.map
                 (\( node, { x, y } ) ->
                     Html.li []
@@ -200,7 +219,7 @@ treePlot minDist tree =
             List.map checkRootNegative nodeValues
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 180, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
-        [ style []
+        [ TypedSvg.style []
             [ TypedSvg.Core.text """
             .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
             .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
@@ -279,7 +298,7 @@ treePlot2 minDist tree =
             List.map checkRootNegative nodeValues
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
-        [ style []
+        [ TypedSvg.style []
             [ TypedSvg.Core.text """
             .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
             .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
