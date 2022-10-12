@@ -87,6 +87,7 @@ type alias GameSales =
     , global : Float
     }
 --}
+{--
 -- from Scatterplot
 type alias MultiPoint =
     { pointGame : String
@@ -97,7 +98,7 @@ type alias MultiPoint =
     , pointJapan : Float
     , pointRestOfWorld : Float
     , pointGlobal : Float
-    }
+    }--}
 --from early version of scatterplot
 --same concept as in Scatterplot
 
@@ -269,13 +270,13 @@ helpMapBig apply a b c d e =
 
 -- based on https://ellie-app.com/hCYJdyzzB7wa1 (my code for exercise 6) --
 -- basically the same as in Scatterplot, but with rewrite of assignment and reducement because of no XyData here--
-assignmentAndReduce : List Data.GameSales -> List MultiPoint
+assignmentAndReduce : List Data.GameSales -> List Data.GameSales
 assignmentAndReduce game =
     let
-       assignment : Data.GameSales -> Maybe MultiPoint
+       assignment : Data.GameSales -> Maybe Data.GameSales
        assignment assign = 
             helpMapBig
-                (MultiPoint assign.game assign.publisher assign.genre)
+                (Data.GameSales assign.game assign.publisher assign.genre)
                 (Just assign.northAmerica)
                 (Just assign.europe)
                 (Just assign.japan)
@@ -464,6 +465,14 @@ view model =
                 number_games =
                     List.length gameSalesData
                 
+                clearedGameSalesData : List Data.GameSales
+                clearedGameSalesData = 
+                    assignmentAndReduce gameSalesData
+
+                number_games_cleared : Int
+                number_games_cleared = 
+                    List.length clearedGameSalesData
+
                 number_games_genre: Int
                 number_games_genre =  
                     List.length gameSalesDataFiltered
@@ -486,7 +495,7 @@ view model =
                 --to apply multiDimenData with genrefilter & real data
                 multiDimFunction = 
                     multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
-                
+            
                 --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
                 gameSalesDataFiltered = 
                     filterGenre fullText.data fullText.genre
@@ -499,6 +508,8 @@ view model =
                     [ Html.text ("This parallel coordinates plot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
                 , Html.p [Html.Attributes.style "fontSize" "15px"]
                     [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)]
+                , Html.p [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games_cleared)]
                 , Html.h4 [Html.Attributes.style "fontSize" "16px"]
                     [ Html.text ("Please choose the genre you want to display with the button below.") ]
                 , Html.p [Html.Attributes.style "padding" "10px"]
