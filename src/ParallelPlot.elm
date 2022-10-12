@@ -20,6 +20,7 @@ import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
 import Html exposing (button)
+import Data
 
 main : Program () Model Msg
 main =
@@ -34,11 +35,11 @@ main =
 type Msg
     = GotText (Result Http.Error String)
     | ChangeGenreType String
-    | ChangeFirstAxis (GameSales -> Float, String)
-    | ChangeSecondAxis (GameSales -> Float, String)
-    | ChangeThirdAxis (GameSales -> Float, String)
-    | ChangeFourthAxis (GameSales -> Float, String)
-    | ChangeFifthAxis (GameSales -> Float, String)
+    | ChangeFirstAxis (Data.GameSales -> Float, String)
+    | ChangeSecondAxis (Data.GameSales -> Float, String)
+    | ChangeThirdAxis (Data.GameSales -> Float, String)
+    | ChangeFourthAxis (Data.GameSales -> Float, String)
+    | ChangeFifthAxis (Data.GameSales -> Float, String)
 
     {--
     | TauschA
@@ -74,6 +75,7 @@ loadingGameSales game =
             )
         |> Cmd.batch
 --}
+{--
 type alias GameSales =
     { game : String
     , genre : String
@@ -84,7 +86,7 @@ type alias GameSales =
     , restOfWorld : Float
     , global : Float
     }
-
+--}
 -- from Scatterplot
 type alias MultiPoint =
     { pointGame : String
@@ -105,13 +107,13 @@ type Model
   = Error
   | Loading
   | Success 
-    { data : List GameSales
+    { data : List Data.GameSales
     , genre : String
-    , axis1 : GameSales -> Float
-    , axis2 : GameSales -> Float
-    , axis3 : GameSales -> Float
-    , axis4 : GameSales -> Float
-    , axis5 : GameSales -> Float
+    , axis1 : Data.GameSales -> Float
+    , axis2 : Data.GameSales -> Float
+    , axis3 : Data.GameSales -> Float
+    , axis4 : Data.GameSales -> Float
+    , axis5 : Data.GameSales -> Float
     , name1 : String
     , name2 : String
     , name3 : String
@@ -144,9 +146,9 @@ type AxisType
 --}
 --from scatterplot
 --Decoder
-decodeGameSales : Csv.Decode.Decoder (GameSales -> a) a
+decodeGameSales : Csv.Decode.Decoder (Data.GameSales -> a) a
 decodeGameSales =
-    Csv.Decode.map GameSales
+    Csv.Decode.map Data.GameSales
         (Csv.Decode.field "Game" Ok
             |> Csv.Decode.andMap (Csv.Decode.field "Genre" Ok)
             |> Csv.Decode.andMap (Csv.Decode.field "Publisher" Ok)
@@ -157,20 +159,20 @@ decodeGameSales =
             |> Csv.Decode.andMap (Csv.Decode.field "Global" (String.toFloat >> Result.fromMaybe "error parsing string"))
         )
 
-csvString_to_data : String -> List GameSales
+csvString_to_data : String -> List Data.GameSales
 csvString_to_data csvRaw =
     Csv.parse csvRaw
         |> Csv.Decode.decodeCsv decodeGameSales
         |> Result.toMaybe
         |> Maybe.withDefault []
 
-gamesSalesList :List String -> List GameSales
+gamesSalesList :List String -> List Data.GameSales
 gamesSalesList listGame =
     List.map(\x -> csvString_to_data x) listGame
         |> List.concat
 
 --filter and button from Scatterplot
-filterGenre : List GameSales -> String -> List GameSales
+filterGenre : List Data.GameSales -> String -> List Data.GameSales
 filterGenre allGames genretype =
     List.filter (\c -> c.genre == genretype) allGames
 
@@ -266,10 +268,10 @@ helpMapBig apply a b c d e =
 
 -- based on https://ellie-app.com/hCYJdyzzB7wa1 (my code for exercise 6) --
 -- basically the same as in Scatterplot, but with rewrite of assignment and reducement because of no XyData here--
-assignmentAndReduce : List GameSales -> List MultiPoint
+assignmentAndReduce : List Data.GameSales -> List MultiPoint
 assignmentAndReduce game =
     let
-       assignment : GameSales -> Maybe MultiPoint
+       assignment : Data.GameSales -> Maybe MultiPoint
        assignment assign = 
             helpMapBig
                 (MultiPoint assign.game assign.publisher assign.genre)
@@ -453,7 +455,7 @@ view model =
         
         Success fullText ->
             let
-                gameSalesData: List GameSales
+                gameSalesData: List Data.GameSales
                 gameSalesData = 
                     fullText.data
                     
@@ -469,7 +471,7 @@ view model =
                 --adjusted -> no more AxisType, insteas GameSales -> Floats
                 --same reason for parenthesis around (a1 data) etc
                 --still not applied
-                multiDimenData : List GameSales -> (GameSales -> Float) -> (GameSales -> Float) -> (GameSales -> Float) -> (GameSales -> Float) -> (GameSales -> Float) -> (GameSales -> String) -> (GameSales -> String) -> String -> String -> String -> String -> String -> MultiDimData
+                multiDimenData : List Data.GameSales -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> String) -> (Data.GameSales -> String) -> String -> String -> String -> String -> String -> MultiDimData
                 multiDimenData game a1 a2 a3 a4 a5 name pub n1 n2 n3 n4 n5=
                     MultiDimData [ n1, n2, n3, n4, n5 ]
                         [ List.map
