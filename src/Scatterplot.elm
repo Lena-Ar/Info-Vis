@@ -482,6 +482,7 @@ view model =
                     [Html.text ("Scatterplot for " ++ fullText.genre ++ " with " ++ (regionTypeToString fullText.xaxis) ++ " as x-axis and " ++ (regionTypeToString fullText.yaxis) ++ " as y-axis.")]
                 , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (regionTypeToString fullText.xaxis) (regionTypeToString fullText.yaxis)
                 ]--}
+                {--
 gameSalesData: List Data.GameSales
 gameSalesData = 
     fullText.data
@@ -507,7 +508,7 @@ number_filteredGames =
                 
 gameSalesDataCleared = 
     filterAndReduceGames (gameSalesDataFiltered)
-                
+          --}      
 regionFilter : List Data.GameSales -> RegionType -> List Float
 regionFilter points regionType =
     case regionType of
@@ -525,7 +526,7 @@ regionFilter points regionType =
                     
         Global -> 
             List.map .global points
-                
+{--         
 valuesX : List Float
 valuesX = 
     regionFilter gameSalesDataFiltered fullText.xaxis
@@ -533,7 +534,7 @@ valuesX =
 
 valuesY : List Float
 valuesY = 
-    regionFilter gameSalesDataFiltered fullText.yaxis
+    regionFilter gameSalesDataFiltered fullText.yaxis--}
 ----------point--------------
 
 point : ContinuousScale Float -> ContinuousScale Float -> Point -> (Float, Float) -> Svg msg
