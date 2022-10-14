@@ -119,3 +119,58 @@ view model =
             text "Loading GameSales data..."
         
         Success fullText ->
+            Html.div [Html.Attributes.style "padding" "10px"]
+                [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
+                    [ Html.text ("Parallel Coordinates Plot of Video Game Sales for XBox One") ]
+                , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
+                --to be specified and explained more
+                    [ Html.text ("This parallel coordinates plot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
+                , Html.p [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)]
+                , Html.p [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games_cleared)]
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                    [ Html.text ("Please choose the genre you want to display with the button below.") ]
+                , Html.p [Html.Attributes.style "padding" "10px"]
+                    [ buttonGenreType ]
+                , Html.p [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)]
+                , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Please choose the region you want to display on the first axis with the adjacent buttons: ")
+                        , button1axis1
+                        , button2axis1
+                        , button3axis1
+                        , button4axis1
+                        , button5axis1]
+                , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Please choose the region you want to display on the second axis with the adjacent buttons: ") 
+                        , button1axis2
+                        , button2axis2
+                        , button3axis2
+                        , button4axis2
+                        , button5axis2]
+                , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Please choose the region you want to display on the third axis with the adjacent buttons: ")
+                        , button1axis3
+                        , button2axis3
+                        , button3axis3
+                        , button4axis3
+                        , button5axis3 ]
+                , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Please choose the region you want to display on the fourth axis with the adjacent buttons: ")
+                        , button1axis4
+                        , button2axis4
+                        , button3axis4
+                        , button4axis4
+                        , button5axis4 ]
+                , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Please choose the region you want to display on the fifth axis with the adjacent buttons: ")
+                        , button1axis5
+                        , button2axis5
+                        , button3axis5
+                        , button4axis5
+                        , button5axis5 ]
+                , Html.h2 [Html.Attributes.style "fontSize" "20px"]
+                    [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
+                , scatterplotParallel cssParallel 600 2 multiDimFunction
+            
