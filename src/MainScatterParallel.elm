@@ -129,6 +129,26 @@ view model =
         
         Success fullText ->
             let
+                gameSalesData: List Data.GameSales
+                gameSalesData = 
+                    fullText.data
+                
+                number_games: Int
+                number_games =
+                    List.length gameSalesData
+                
+                clearedGameSalesData : List Data.GameSales
+                clearedGameSalesData = 
+                    assignmentAndReduce gameSalesData
+                
+                number_games_cleared : Int
+                number_games_cleared = 
+                    List.length clearedGameSalesData
+
+                number_games_genre: Int
+                number_games_genre =  
+                    List.length gameSalesDataFiltered
+
                 multiDimFunction = 
                     multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
             
