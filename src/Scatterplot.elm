@@ -16,7 +16,7 @@ import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
 import Data
-
+{--
 main : Program () Model Msg
 main =
     Browser.element
@@ -35,12 +35,12 @@ type Msg
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    Sub.none--}
 {--
 daten : List String
 daten =
     [ "XBoxOne_GameSales_test.csv" ]
---}
+--}{--
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( Loading
@@ -48,7 +48,7 @@ init _ =
         { url = "https://raw.githubusercontent.com/Lena-Ar/Info-Vis/main/Daten/CSV/XboxOne_GameSales_test.csv"
         , expect = Http.expectString GotText
         }
-    )
+    )--}
 {--
 loadingGameSales : (Result Http.Error String -> Msg) -> Cmd Msg
 loadingGameSales gotText = 
@@ -72,7 +72,7 @@ type alias GameSales =
     , restOfWorld : Float
     , global : Float
     }
---}
+--}{--
 type Model
   = Error
   | Loading
@@ -82,7 +82,7 @@ type Model
     , xaxis: RegionType
     , yaxis: RegionType
     --, genre: GenreType
-    }
+    }--}
 {--
 type GenreType
     = Action
@@ -103,14 +103,14 @@ type GenreType
 --}
 
 --maybe error bc of field from decoding -> maybe change csv?
-
+{--
 type RegionType
     = NorthAmerica
     | Europe
     | Japan
     | RestOfWorld
     | Global
-
+--}
 
 type alias Point =
     { pointGame : String
@@ -325,7 +325,7 @@ stringToGenreType stringGenreType =
     else
         Strategy
 --}
-
+{--
 --attributType/region
 regionTypeToString : RegionType -> String
 regionTypeToString regionType =
@@ -362,7 +362,7 @@ stringToRegionType stringRegionType =
 
     else
         Global
-
+--}
 buttonGenreType : Html Msg
 buttonGenreType =
     Html.select
@@ -384,7 +384,7 @@ buttonGenreType =
         , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
         ]
 
-
+{--
 buttonRegionTypeX : Html Msg
 buttonRegionTypeX =
     Html.select
@@ -440,7 +440,7 @@ update msg model =
                     (Success <| { data = a.data, genre = a.genre, xaxis = a.xaxis, yaxis = new_regiony}, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
-
+--}
 
 --to be adjusted for axisChange/region--
 view : Model -> Html Msg
