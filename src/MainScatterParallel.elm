@@ -139,7 +139,7 @@ view model =
                 
                 clearedGameSalesData : List Data.GameSales
                 clearedGameSalesData = 
-                    assignmentAndReduce gameSalesData
+                    ParallelPlot.assignmentAndReduce gameSalesData
                 
                 number_games_cleared : Int
                 number_games_cleared = 
@@ -150,7 +150,7 @@ view model =
                     List.length gameSalesDataFiltered
 
                 multiDimFunction = 
-                    multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
+                    ParallelPlot.multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
             
                 --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
                 gameSalesDataFiltered = 
@@ -209,7 +209,7 @@ view model =
                         , button5axis5 ]
                 , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                     [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
-                , scatterplotParallel cssParallel 600 2 multiDimFunction
+                , ParallelPlot.scatterplotParallel ParallelPlot.cssParallel 600 2 multiDimFunction
                 ]
 
 buttonGenreType : Html Msg
