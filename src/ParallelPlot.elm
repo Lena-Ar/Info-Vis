@@ -552,7 +552,7 @@ multiDimenData game a1 a2 a3 a4 a5 name pub n1 n2 n3 n4 n5=
             )
             game
         ]
-
+{--
                 --to apply multiDimenData with genrefilter & real data
 multiDimFunction = 
 multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
@@ -560,7 +560,7 @@ multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis
                 --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
 gameSalesDataFiltered = 
     filterGenre fullText.data fullText.genre
-
+--}
 
 
 {--
