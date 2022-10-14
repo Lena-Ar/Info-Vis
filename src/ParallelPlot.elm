@@ -445,7 +445,7 @@ my_access_function : Swap -> List ( String, MultiPoint -> Int )
 my_access_function model =
     List.Extra.swapAt model.attributWert model.wertCityMPG model.accessWerte2
 --}
-
+{--
 view : Model -> Html Msg
 view model =
     case model of
@@ -457,48 +457,7 @@ view model =
         
         Success fullText ->
             let
-                gameSalesData: List Data.GameSales
-                gameSalesData = 
-                    fullText.data
-                    
-                number_games: Int
-                number_games =
-                    List.length gameSalesData
                 
-                clearedGameSalesData : List Data.GameSales
-                clearedGameSalesData = 
-                    assignmentAndReduce gameSalesData
-
-                number_games_cleared : Int
-                number_games_cleared = 
-                    List.length clearedGameSalesData
-
-                number_games_genre: Int
-                number_games_genre =  
-                    List.length gameSalesDataFiltered
-                
-                --changed again to originally desired concept of selecting not swapping       
-                --adjusted -> no more AxisType, insteas GameSales -> Floats
-                --same reason for parenthesis around (a1 data) etc
-                --still not applied
-                multiDimenData : List Data.GameSales -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> String) -> (Data.GameSales -> String) -> String -> String -> String -> String -> String -> MultiDimData
-                multiDimenData game a1 a2 a3 a4 a5 name pub n1 n2 n3 n4 n5=
-                    MultiDimData [ n1, n2, n3, n4, n5 ]
-                        [ List.map
-                            (\data ->
-                                [  (a1 data) , (a2 data), (a3 data), (a4 data), (a5 data) ]
-                                    |> MultiDimPoint (name data) (pub data)
-                            )
-                            game
-                        ]
-
-                --to apply multiDimenData with genrefilter & real data
-                multiDimFunction = 
-                    multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
-            
-                --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
-                gameSalesDataFiltered = 
-                    filterGenre fullText.data fullText.genre
             in
             Html.div [Html.Attributes.style "padding" "10px"]
                 [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
@@ -555,6 +514,52 @@ view model =
                     [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
                 , scatterplotParallel cssParallel 600 2 multiDimFunction
                 ]
+--}
+
+gameSalesData: List Data.GameSales
+gameSalesData = 
+    fullText.data
+                    
+number_games: Int
+number_games =
+    List.length gameSalesData
+                
+clearedGameSalesData : List Data.GameSales
+clearedGameSalesData = 
+    assignmentAndReduce gameSalesData
+
+number_games_cleared : Int
+number_games_cleared = 
+    List.length clearedGameSalesData
+
+number_games_genre: Int
+number_games_genre =  
+    List.length gameSalesDataFiltered
+                
+                --changed again to originally desired concept of selecting not swapping       
+                --adjusted -> no more AxisType, insteas GameSales -> Floats
+                --same reason for parenthesis around (a1 data) etc
+                --still not applied
+multiDimenData : List Data.GameSales -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> String) -> (Data.GameSales -> String) -> String -> String -> String -> String -> String -> MultiDimData
+multiDimenData game a1 a2 a3 a4 a5 name pub n1 n2 n3 n4 n5=
+    MultiDimData [ n1, n2, n3, n4, n5 ]
+        [ List.map
+            (\data ->
+                [  (a1 data) , (a2 data), (a3 data), (a4 data), (a5 data) ]
+                    |> MultiDimPoint (name data) (pub data)
+            )
+            game
+        ]
+
+                --to apply multiDimenData with genrefilter & real data
+multiDimFunction = 
+multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
+            
+                --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
+gameSalesDataFiltered = 
+    filterGenre fullText.data fullText.genre
+
+
 
 {--
                 --from exercise 6.3
