@@ -5,6 +5,9 @@ import Http
 import Csv exposing (parse)
 import Csv.Decode exposing (..)
 import Data
+import Html exposing (Html, pre, text)
+import Html.Attributes exposing (href, placeholder, type_, value)
+import Html.Events exposing (..)
 
 
 main : Program () Model Msg
@@ -124,6 +127,14 @@ view model =
             text "Loading GameSales data..."
         
         Success fullText ->
+            let
+                multiDimFunction = 
+                multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
+            
+                --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
+                gameSalesDataFiltered = 
+                filterGenre fullText.data fullText.genre
+            in
             Html.div [Html.Attributes.style "padding" "10px"]
                 [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
                     [ Html.text ("Parallel Coordinates Plot of Video Game Sales for XBox One") ]
