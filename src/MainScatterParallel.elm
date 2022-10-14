@@ -189,8 +189,13 @@ view model =
                             ParallelPlot.multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
                     in
                     Html.div [Html.Attributes.style "padding" "10px"]
-                        [Html.p []
-                            [buttonPlot]
+                        [ Html.h1 [Html.Attributes.style "fontSize" "40px"]
+                            [Html.text ("Detailed information on Video Games Sales for XBox One")]
+                        , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                            [ buttonPlot
+                            , Html.text ("  Please choose which plot you would like to see.")
+                            , Html.br [][]
+                            , Html.text ("Don't worry, your settings for genre will stay selected.")]
                         , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
                             [ Html.text ("Parallel Coordinates Plot of Video Game Sales for XBox One") ]
                         , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
@@ -244,6 +249,9 @@ view model =
                         , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                             [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
                         , ParallelPlot.scatterplotParallel ParallelPlot.cssParallel 600 2 multiDimFunction
+                        , Html.p [Html.Attributes.style "fontSize" "15px"] 
+                            [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
+                            , Html.a [href "TreeHierarchy.elm"] [Html.text "take you back!"]]
                         ]
                 Data.Scatterplot ->
                     let
@@ -268,8 +276,13 @@ view model =
                             regionFilter gameSalesDataFiltered fullText.yaxis
                     in
                     Html.div [Html.Attributes.style "padding" "10px"]
-                        [Html.p []
-                            [buttonPlot]
+                        [Html.h1 [Html.Attributes.style "fontSize" "40px"]
+                            [Html.text ("Detailed information on Video Games Sales for XBox One")]
+                        , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                            [ buttonPlot
+                            , Html.text ("  Please choose which plot you would like to see.")
+                            , Html.br [][]
+                            , Html.text ("Don't worry, your settings for genre will stay selected.")]
                 --scatterplot
                         , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
                             [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
@@ -296,6 +309,9 @@ view model =
                         , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                             [Html.text ("Scatterplot for " ++ fullText.genre ++ " with " ++ (Data.regionTypeToString fullText.xaxis) ++ " as x-axis and " ++ (Data.regionTypeToString fullText.yaxis) ++ " as y-axis.")]
                         , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (Data.regionTypeToString fullText.xaxis) (Data.regionTypeToString fullText.yaxis)
+                        , Html.p [Html.Attributes.style "fontSize" "15px"] 
+                            [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
+                            , Html.a [href "TreeHierarchy.elm"] [Html.text "take you back!"]]
                         ]
 
 buttonGenreType : Html Msg
