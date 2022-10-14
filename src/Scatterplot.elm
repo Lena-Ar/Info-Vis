@@ -224,10 +224,11 @@ filterAndReduceGames games =
     XyData "North America" "Europe" filter
 
 --filter for genre--
-
+{--
 filterGenre : List Data.GameSales -> String -> List Data.GameSales
 filterGenre allGames genretype =
     List.filter (\c -> c.genre == genretype) allGames
+    --}
 {--
 --genre ändern
 genreTypeToString : GenreType -> String
@@ -363,6 +364,7 @@ stringToRegionType stringRegionType =
     else
         Global
 --}
+{--
 buttonGenreType : Html Msg
 buttonGenreType =
     Html.select
@@ -383,7 +385,7 @@ buttonGenreType =
         , Html.option [ value "Sports" ] [ Html.text "Sports" ]
         , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
         ]
-
+--}
 {--
 buttonRegionTypeX : Html Msg
 buttonRegionTypeX =
