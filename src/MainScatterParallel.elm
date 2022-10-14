@@ -109,6 +109,11 @@ update msg model =
                 _ -> 
                     ( model, Cmd.none )
 
+filterGenre : List Data.GameSales -> String -> List Data.GameSales
+filterGenre allGames genretype =
+    List.filter (\c -> c.genre == genretype) allGames
+
+
 view : Model -> Html Msg
 view model =
     case model of
@@ -174,3 +179,24 @@ view model =
                     [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
                 , scatterplotParallel cssParallel 600 2 multiDimFunction
             
+
+buttonGenreType : Html Msg
+buttonGenreType =
+    Html.select
+        [ onInput ChangeGenreType ]
+        [ Html.option [ value "Action" ] [ Html.text "Action" ]
+        , Html.option [ value "Action-Adventure" ] [ Html.text "Action-Adventure" ]
+        , Html.option [ value "Adventure" ] [ Html.text "Adventure" ]
+        , Html.option [ value "Fighting" ] [ Html.text "Fighting" ]
+        , Html.option [ value "Misc" ] [ Html.text "Misc" ]
+        , Html.option [ value "MMO" ] [ Html.text "MMO" ]
+        , Html.option [ value "Music" ] [ Html.text "Music" ]
+        , Html.option [ value "Platform" ] [ Html.text "Platform" ]
+        , Html.option [ value "Puzzle" ] [ Html.text "Puzzle" ]
+        , Html.option [ value "Racing" ] [ Html.text "Racing" ] 
+        , Html.option [ value "Role-Playing" ] [ Html.text "Role-Playing" ] 
+        , Html.option [ value "Shooter" ] [ Html.text "Shooter" ] 
+        , Html.option [ value "Simulation" ] [ Html.text "Simulation" ] 
+        , Html.option [ value "Sports" ] [ Html.text "Sports" ]
+        , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
+        ]
