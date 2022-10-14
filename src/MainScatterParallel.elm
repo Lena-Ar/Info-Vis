@@ -52,6 +52,7 @@ type Model
     , name5 : String
     , xaxis: Data.RegionType
     , yaxis: Data.RegionType
+    , plot : Data.PlotType
     }
 
 type Msg
@@ -64,6 +65,7 @@ type Msg
     | ChangeFifthAxis (Data.GameSales -> Float, String)
     | ChangeRegionX Data.RegionType
     | ChangeRegionY Data.RegionType
+    | ChangePlot Data.PlotType
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -397,4 +399,12 @@ buttonRegionTypeY =
         , Html.option [ value "Japan" ] [ Html.text "Japan" ]
         , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
         , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+buttonPlot : Html Msg
+buttonPlot =
+    Html.select
+        [ onInput (\ry -> Data.stringToPlotType ry |> ChangePlot) ]
+        [ Html.option [ value "ParallelPlot" ] [ Html.text "Parallel Coordinate Plot" ]
+        , Html.option [ value "Scatterplot" ] [ Html.text "Scatterplot" ]
         ]
