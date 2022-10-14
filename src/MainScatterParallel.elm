@@ -188,7 +188,61 @@ view model =
                         multiDimFunction = 
                             ParallelPlot.multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
                     in
-                
+                    Html.div [Html.Attributes.style "padding" "10px"]
+                        [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
+                            [ Html.text ("Parallel Coordinates Plot of Video Game Sales for XBox One") ]
+                        , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
+                        --to be specified and explained more
+                            [ Html.text ("This parallel coordinates plot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
+                        , Html.p [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)]
+                        , Html.p [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games_cleared)]
+                        , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                            [ Html.text ("Please choose the genre you want to display with the button below.") ]
+                        , Html.p [Html.Attributes.style "padding" "10px"]
+                            [ buttonGenreType ]
+                        , Html.p [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)]
+                        , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.text ("Please choose the region you want to display on the first axis with the adjacent buttons: ")
+                                , button1axis1
+                                , button2axis1
+                                , button3axis1
+                                , button4axis1
+                                , button5axis1]
+                        , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.text ("Please choose the region you want to display on the second axis with the adjacent buttons: ") 
+                                , button1axis2
+                                , button2axis2
+                                , button3axis2
+                                , button4axis2
+                                , button5axis2]
+                        , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.text ("Please choose the region you want to display on the third axis with the adjacent buttons: ")
+                                , button1axis3
+                                , button2axis3
+                                , button3axis3
+                                , button4axis3
+                                , button5axis3 ]
+                        , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.text ("Please choose the region you want to display on the fourth axis with the adjacent buttons: ")
+                                , button1axis4
+                                , button2axis4
+                                , button3axis4
+                                , button4axis4
+                                , button5axis4 ]
+                        , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.text ("Please choose the region you want to display on the fifth axis with the adjacent buttons: ")
+                                , button1axis5
+                                , button2axis5
+                                , button3axis5
+                                , button4axis5
+                                , button5axis5 ]
+                        , Html.h2 [Html.Attributes.style "fontSize" "20px"]
+                            [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
+                        , ParallelPlot.scatterplotParallel ParallelPlot.cssParallel 600 2 multiDimFunction
+                        ]
                 Data.Scatterplot ->
                     let
                         --scatterplot
@@ -211,90 +265,34 @@ view model =
                         valuesY = 
                             regionFilter gameSalesDataFiltered fullText.yaxis
                     in
-                                
-                
-            in
-            Html.div [Html.Attributes.style "padding" "10px"]
-                [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
-                    [ Html.text ("Parallel Coordinates Plot of Video Game Sales for XBox One") ]
-                , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
-                --to be specified and explained more
-                    [ Html.text ("This parallel coordinates plot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
-                , Html.p [Html.Attributes.style "fontSize" "15px"]
-                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)]
-                , Html.p [Html.Attributes.style "fontSize" "15px"]
-                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games_cleared)]
-                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
-                    [ Html.text ("Please choose the genre you want to display with the button below.") ]
-                , Html.p [Html.Attributes.style "padding" "10px"]
-                    [ buttonGenreType ]
-                , Html.p [Html.Attributes.style "fontSize" "15px"]
-                    [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)]
-                , Html.h4 [Html.Attributes.style "fontSize" "15px"]
-                    [ Html.text ("Please choose the region you want to display on the first axis with the adjacent buttons: ")
-                        , button1axis1
-                        , button2axis1
-                        , button3axis1
-                        , button4axis1
-                        , button5axis1]
-                , Html.h4 [Html.Attributes.style "fontSize" "15px"]
-                    [ Html.text ("Please choose the region you want to display on the second axis with the adjacent buttons: ") 
-                        , button1axis2
-                        , button2axis2
-                        , button3axis2
-                        , button4axis2
-                        , button5axis2]
-                , Html.h4 [Html.Attributes.style "fontSize" "15px"]
-                    [ Html.text ("Please choose the region you want to display on the third axis with the adjacent buttons: ")
-                        , button1axis3
-                        , button2axis3
-                        , button3axis3
-                        , button4axis3
-                        , button5axis3 ]
-                , Html.h4 [Html.Attributes.style "fontSize" "15px"]
-                    [ Html.text ("Please choose the region you want to display on the fourth axis with the adjacent buttons: ")
-                        , button1axis4
-                        , button2axis4
-                        , button3axis4
-                        , button4axis4
-                        , button5axis4 ]
-                , Html.h4 [Html.Attributes.style "fontSize" "15px"]
-                    [ Html.text ("Please choose the region you want to display on the fifth axis with the adjacent buttons: ")
-                        , button1axis5
-                        , button2axis5
-                        , button3axis5
-                        , button4axis5
-                        , button5axis5 ]
-                , Html.h2 [Html.Attributes.style "fontSize" "20px"]
-                    [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
-                , ParallelPlot.scatterplotParallel ParallelPlot.cssParallel 600 2 multiDimFunction
+                    Html.div [Html.Attributes.style "padding" "10px"]
                 --scatterplot
-                , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
-                    [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
-                , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
-                    [ Html.text ("This scatterplot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
-                , Html.p [Html.Attributes.style "fontSize" "17px"]
-                    [Html.text ("Hint: The x-axis and y-axis can be adjusted to your needs by seleceting the needed regions for each axis with the buttons below.")]
-                , Html.p [Html.Attributes.style "fontSize" "15px"]
-                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)
-                    , Html.br [] []
-                    , Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_clearedGames)
-                    ]
-                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
-                    [ Html.text ("Please choose the genre you want to display with the button below.") ]
-                , Html.p [Html.Attributes.style "padding" "10px"]
-                    [ buttonGenreType ]
-                , Html.p [Html.Attributes.style "fontSize" "15px"]
-                    [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre) ]
-                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
-                    [ Html.text ("Please choose the region you want to display on the xaxis first (on the left) and the one you want to display on the yaxis second (on the right).")]
-                , Html.p [Html.Attributes.style "padding" "10px"]
-                    [ buttonRegionTypeX
-                    , buttonRegionTypeY ]
-                , Html.h2 [Html.Attributes.style "fontSize" "20px"]
-                    [Html.text ("Scatterplot for " ++ fullText.genre ++ " with " ++ (Data.regionTypeToString fullText.xaxis) ++ " as x-axis and " ++ (Data.regionTypeToString fullText.yaxis) ++ " as y-axis.")]
-                , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (Data.regionTypeToString fullText.xaxis) (Data.regionTypeToString fullText.yaxis)
-                ]
+                        [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
+                            [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
+                        , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
+                            [ Html.text ("This scatterplot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
+                        , Html.p [Html.Attributes.style "fontSize" "17px"]
+                            [Html.text ("Hint: The x-axis and y-axis can be adjusted to your needs by seleceting the needed regions for each axis with the buttons below.")]
+                        , Html.p [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)
+                            , Html.br [] []
+                            , Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_clearedGames)
+                            ]
+                        , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                            [ Html.text ("Please choose the genre you want to display with the button below.") ]
+                        , Html.p [Html.Attributes.style "padding" "10px"]
+                            [ buttonGenreType ]
+                        , Html.p [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre) ]
+                        , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                            [ Html.text ("Please choose the region you want to display on the xaxis first (on the left) and the one you want to display on the yaxis second (on the right).")]
+                        , Html.p [Html.Attributes.style "padding" "10px"]
+                            [ buttonRegionTypeX
+                            , buttonRegionTypeY ]
+                        , Html.h2 [Html.Attributes.style "fontSize" "20px"]
+                            [Html.text ("Scatterplot for " ++ fullText.genre ++ " with " ++ (Data.regionTypeToString fullText.xaxis) ++ " as x-axis and " ++ (Data.regionTypeToString fullText.yaxis) ++ " as y-axis.")]
+                        , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (Data.regionTypeToString fullText.xaxis) (Data.regionTypeToString fullText.yaxis)
+                        ]
 
 buttonGenreType : Html Msg
 buttonGenreType =
