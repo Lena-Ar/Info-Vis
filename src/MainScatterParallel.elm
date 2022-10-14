@@ -189,7 +189,9 @@ view model =
                             ParallelPlot.multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
                     in
                     Html.div [Html.Attributes.style "padding" "10px"]
-                        [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
+                        [Html.p []
+                            [buttonPlot]
+                        , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
                             [ Html.text ("Parallel Coordinates Plot of Video Game Sales for XBox One") ]
                         , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
                         --to be specified and explained more
@@ -266,8 +268,10 @@ view model =
                             regionFilter gameSalesDataFiltered fullText.yaxis
                     in
                     Html.div [Html.Attributes.style "padding" "10px"]
+                        [Html.p []
+                            [buttonPlot]
                 --scatterplot
-                        [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
+                        , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
                             [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
                         , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
                             [ Html.text ("This scatterplot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
