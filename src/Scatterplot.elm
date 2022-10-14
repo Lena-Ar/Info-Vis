@@ -509,22 +509,22 @@ number_filteredGames =
 gameSalesDataCleared = 
     filterAndReduceGames (gameSalesDataFiltered)
           --}      
-regionFilter : List Data.GameSales -> RegionType -> List Float
+regionFilter : List Data.GameSales -> Data.RegionType -> List Float
 regionFilter points regionType =
     case regionType of
-        NorthAmerica ->
+        Data.NorthAmerica ->
             List.map .northAmerica points
 
-        Europe ->
+        Data.Europe ->
             List.map .europe points
 
-        Japan ->
+        Data.Japan ->
             List.map .japan points
 
-        RestOfWorld ->
+        Data.RestOfWorld ->
             List.map .restOfWorld points
                     
-        Global -> 
+        Data.Global -> 
             List.map .global points
 {--         
 valuesX : List Float
