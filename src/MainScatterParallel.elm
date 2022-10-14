@@ -113,7 +113,21 @@ update msg model =
         ChangeFifthAxis (new_axis, new_name) -> 
             case model of
                 Success a ->
-                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = new_axis, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = new_name }, Cmd.none ) 
+                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = new_axis, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = new_name,  }, Cmd.none ) 
+                _ -> 
+                    ( model, Cmd.none )
+        
+        ChangeRegionX new_regionx -> 
+            case model of
+                Success a -> 
+                    (Success <| { data = a.data, genre = a.genre, xaxis = new_regionx, yaxis = a.yaxis}, Cmd.none ) 
+                _ -> 
+                    ( model, Cmd.none )
+        
+        ChangeRegionY new_regiony ->
+            case model of
+                Success a -> 
+                    (Success <| { data = a.data, genre = a.genre, xaxis = a.xaxis, yaxis = new_regiony}, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
 
