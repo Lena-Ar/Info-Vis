@@ -21,7 +21,6 @@ import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
 import Html exposing (button)
 import Data
-import MainScatterParallel
 {--
 main : Program () Model Msg
 main =
@@ -289,88 +288,88 @@ assignmentAndReduce game =
     List.filterMap assignment game
 
 --works, but not so pretty -> maybe find better solution
-
+{--
 --buttons for axis 1
-button1axis1 : Html MainScatterParallel.Msg
-button1axis1 = Html.button [onClick (MainScatterParallel.ChangeFirstAxis (.northAmerica, "North America"))][Html.text "North America"]
+button1axis1 : Html Msg
+button1axis1 = Html.button [onClick (ChangeFirstAxis (.northAmerica, "North America"))][Html.text "North America"]
 
-button2axis1 : Html MainScatterParallel.Msg
-button2axis1 = Html.button [onClick (MainScatterParallel.ChangeFirstAxis (.europe, "Europe"))][Html.text "Europe"]
+button2axis1 : Html Msg
+button2axis1 = Html.button [onClick (ChangeFirstAxis (.europe, "Europe"))][Html.text "Europe"]
                         
-button3axis1 : Html MainScatterParallel.Msg                      
-button3axis1 = Html.button [onClick (MainScatterParallel.ChangeFirstAxis (.japan, "Japan"))][Html.text "Japan"]
+button3axis1 : Html Msg                      
+button3axis1 = Html.button [onClick (ChangeFirstAxis (.japan, "Japan"))][Html.text "Japan"]
   
-button4axis1 : Html MainScatterParallel.Msg
-button4axis1 = Html.button [onClick (MainScatterParallel.ChangeFirstAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
+button4axis1 : Html Msg
+button4axis1 = Html.button [onClick (ChangeFirstAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
  
-button5axis1 : Html MainScatterParallel.Msg
-button5axis1 = Html.button [onClick (MainScatterParallel.ChangeFirstAxis (.global, "Global"))][Html.text "Global"]             
+button5axis1 : Html Msg
+button5axis1 = Html.button [onClick (ChangeFirstAxis (.global, "Global"))][Html.text "Global"]             
 
 -- buttons for axis 2
-button1axis2 : Html MainScatterParallel.Msg
-button1axis2 = Html.button [onClick (MainScatterParallel.ChangeSecondAxis (.northAmerica, "North America"))][Html.text "North America"]
+button1axis2 : Html Msg
+button1axis2 = Html.button [onClick (ChangeSecondAxis (.northAmerica, "North America"))][Html.text "North America"]
 
-button2axis2 : Html MainScatterParallel.Msg
-button2axis2 = Html.button [onClick (MainScatterParallel.ChangeSecondAxis (.europe, "Europe"))][Html.text "Europe"]
+button2axis2 : Html Msg
+button2axis2 = Html.button [onClick (ChangeSecondAxis (.europe, "Europe"))][Html.text "Europe"]
                         
-button3axis2 : Html MainScatterParallel.Msg                      
-button3axis2 = Html.button [onClick (MainScatterParallel.ChangeSecondAxis (.japan, "Japan"))][Html.text "Japan"]
+button3axis2 : Html Msg                      
+button3axis2 = Html.button [onClick (ChangeSecondAxis (.japan, "Japan"))][Html.text "Japan"]
   
-button4axis2 : Html MainScatterParallel.Msg
-button4axis2 = Html.button [onClick (MainScatterParallel.ChangeSecondAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
+button4axis2 : Html Msg
+button4axis2 = Html.button [onClick (ChangeSecondAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
  
-button5axis2 : Html MainScatterParallel.Msg
-button5axis2 = Html.button [onClick (MainScatterParallel.ChangeSecondAxis (.global, "Global"))][Html.text "Global"] 
+button5axis2 : Html Msg
+button5axis2 = Html.button [onClick (ChangeSecondAxis (.global, "Global"))][Html.text "Global"] 
 
 --buttons for axis 3
-button1axis3 : Html MainScatterParallel.Msg
-button1axis3 = Html.button [onClick (MainScatterParallel.ChangeThirdAxis (.northAmerica, "North America"))][Html.text "North America"]
+button1axis3 : Html Msg
+button1axis3 = Html.button [onClick (ChangeThirdAxis (.northAmerica, "North America"))][Html.text "North America"]
 
-button2axis3 : Html MainScatterParallel.Msg
-button2axis3 = Html.button [onClick (MainScatterParallel.ChangeThirdAxis (.europe, "Europe"))][Html.text "Europe"]
+button2axis3 : Html Msg
+button2axis3 = Html.button [onClick (ChangeThirdAxis (.europe, "Europe"))][Html.text "Europe"]
                         
-button3axis3 : Html MainScatterParallel.Msg                      
-button3axis3 = Html.button [onClick (MainScatterParallel.ChangeThirdAxis (.japan, "Japan"))][Html.text "Japan"]
+button3axis3 : Html Msg                      
+button3axis3 = Html.button [onClick (ChangeThirdAxis (.japan, "Japan"))][Html.text "Japan"]
   
-button4axis3 : Html MainScatterParallel.Msg
-button4axis3 = Html.button [onClick (MainScatterParallel.ChangeThirdAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
+button4axis3 : Html Msg
+button4axis3 = Html.button [onClick (ChangeThirdAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
  
-button5axis3 : Html MainScatterParallel.Msg
-button5axis3 = Html.button [onClick (MainScatterParallel.ChangeThirdAxis (.global, "Global"))][Html.text "Global"] 
+button5axis3 : Html Msg
+button5axis3 = Html.button [onClick (ChangeThirdAxis (.global, "Global"))][Html.text "Global"] 
 
 --buttons for axis 4
-button1axis4 : Html MainScatterParallel.Msg
-button1axis4 = Html.button [onClick (MainScatterParallel.ChangeFourthAxis (.northAmerica, "North America"))][Html.text "North America"]
+button1axis4 : Html Msg
+button1axis4 = Html.button [onClick (ChangeFourthAxis (.northAmerica, "North America"))][Html.text "North America"]
 
-button2axis4 : Html MainScatterParallel.Msg
-button2axis4 = Html.button [onClick (MainScatterParallel.ChangeFourthAxis (.europe, "Europe"))][Html.text "Europe"]
+button2axis4 : Html Msg
+button2axis4 = Html.button [onClick (ChangeFourthAxis (.europe, "Europe"))][Html.text "Europe"]
                         
-button3axis4 : Html MainScatterParallel.Msg                      
-button3axis4 = Html.button [onClick (MainScatterParallel.ChangeFourthAxis (.japan, "Japan"))][Html.text "Japan"]
+button3axis4 : Html Msg                      
+button3axis4 = Html.button [onClick (ChangeFourthAxis (.japan, "Japan"))][Html.text "Japan"]
   
-button4axis4 : Html MainScatterParallel.Msg
-button4axis4 = Html.button [onClick (MainScatterParallel.ChangeFourthAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
+button4axis4 : Html Msg
+button4axis4 = Html.button [onClick (ChangeFourthAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
  
-button5axis4 : Html MainScatterParallel.Msg
-button5axis4 = Html.button [onClick (MainScatterParallel.ChangeFourthAxis (.global, "Global"))][Html.text "Global"] 
+button5axis4 : Html Msg
+button5axis4 = Html.button [onClick (ChangeFourthAxis (.global, "Global"))][Html.text "Global"] 
 
 
 --buttons for axis 5
-button1axis5 : Html MainScatterParallel.Msg
-button1axis5 = Html.button [onClick (MainScatterParallel.ChangeFifthAxis (.northAmerica, "North America"))][Html.text "North America"]
+button1axis5 : Html Msg
+button1axis5 = Html.button [onClick (ChangeFifthAxis (.northAmerica, "North America"))][Html.text "North America"]
 
-button2axis5 : Html MainScatterParallel.Msg
-button2axis5 = Html.button [onClick (MainScatterParallel.ChangeFifthAxis (.europe, "Europe"))][Html.text "Europe"]
+button2axis5 : Html Msg
+button2axis5 = Html.button [onClick (ChangeFifthAxis (.europe, "Europe"))][Html.text "Europe"]
                         
-button3axis5 : Html MainScatterParallel.Msg                      
-button3axis5 = Html.button [onClick (MainScatterParallel.ChangeFifthAxis (.japan, "Japan"))][Html.text "Japan"]
+button3axis5 : Html Msg                      
+button3axis5 = Html.button [onClick (ChangeFifthAxis (.japan, "Japan"))][Html.text "Japan"]
   
-button4axis5 : Html MainScatterParallel.Msg
-button4axis5 = Html.button [onClick (MainScatterParallel.ChangeFifthAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
+button4axis5 : Html Msg
+button4axis5 = Html.button [onClick (ChangeFifthAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
  
-button5axis5 : Html MainScatterParallel.Msg
-button5axis5 = Html.button [onClick (MainScatterParallel.ChangeFifthAxis (.global, "Global"))][Html.text "Global"] 
-
+button5axis5 : Html Msg
+button5axis5 = Html.button [onClick (ChangeFifthAxis (.global, "Global"))][Html.text "Global"] 
+--}
 {--
 --from Scatterplot buttons & extended by number of axis
 --does not work now with dropdown menu -> going for easier version with simple buttons to click on
