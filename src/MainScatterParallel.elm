@@ -165,6 +165,9 @@ view model =
                 number_games =
                     List.length gameSalesData
                 
+                --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
+                gameSalesDataFiltered = 
+                    filterGenre fullText.data fullText.genre
                 number_games_genre: Int
                 number_games_genre =  
                     List.length gameSalesDataFiltered
@@ -173,47 +176,43 @@ view model =
             case fullText.plot of 
                 Data.ParallelPlot -> 
                     let
+                        --parallelPlot
+                        clearedGameSalesData : List Data.GameSales
+                        clearedGameSalesData = 
+                            ParallelPlot.assignmentAndReduce gameSalesData
+                
+                        number_games_cleared : Int
+                        number_games_cleared = 
+                            List.length clearedGameSalesData
 
+                        multiDimFunction = 
+                            ParallelPlot.multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
                     in
                 
                 Data.Scatterplot ->
                     let
+                        --scatterplot
+                        gameSalesDataNull =
+                            filterAndReduceGames (fullText.data)
+            
+                        number_clearedGames: Int
+                        number_clearedGames = 
+                            List.length gameSalesDataNull.data
+                
+                        gameSalesDataCleared = 
+                            filterAndReduceGames (gameSalesDataFiltered)
+                
+                        valuesX : List Float
+                        valuesX = 
+                            regionFilter gameSalesDataFiltered fullText.xaxis
+
+
+                        valuesY : List Float
+                        valuesY = 
+                            regionFilter gameSalesDataFiltered fullText.yaxis
                     in
-                    --parallelPlot
-                clearedGameSalesData : List Data.GameSales
-                clearedGameSalesData = 
-                    ParallelPlot.assignmentAndReduce gameSalesData
-                
-                number_games_cleared : Int
-                number_games_cleared = 
-                    List.length clearedGameSalesData
-
-                multiDimFunction = 
-                    ParallelPlot.multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
-            
-                --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
-                gameSalesDataFiltered = 
-                    filterGenre fullText.data fullText.genre
                                 
-                --scatterplot
-                gameSalesDataNull =
-                    filterAndReduceGames (fullText.data)
-            
-                number_clearedGames: Int
-                number_clearedGames = 
-                    List.length gameSalesDataNull.data
                 
-                gameSalesDataCleared = 
-                    filterAndReduceGames (gameSalesDataFiltered)
-                
-                valuesX : List Float
-                valuesX = 
-                    regionFilter gameSalesDataFiltered fullText.xaxis
-
-
-                valuesY : List Float
-                valuesY = 
-                    regionFilter gameSalesDataFiltered fullText.yaxis
             in
             Html.div [Html.Attributes.style "padding" "10px"]
                 [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
