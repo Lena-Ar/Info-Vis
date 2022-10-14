@@ -165,6 +165,21 @@ view model =
                 number_games =
                     List.length gameSalesData
                 
+                number_games_genre: Int
+                number_games_genre =  
+                    List.length gameSalesDataFiltered
+
+            in
+            case fullText.plot of 
+                Data.ParallelPlot -> 
+                    let
+
+                    in
+                
+                Data.Scatterplot ->
+                    let
+                    in
+                    --parallelPlot
                 clearedGameSalesData : List Data.GameSales
                 clearedGameSalesData = 
                     ParallelPlot.assignmentAndReduce gameSalesData
@@ -173,10 +188,6 @@ view model =
                 number_games_cleared = 
                     List.length clearedGameSalesData
 
-                number_games_genre: Int
-                number_games_genre =  
-                    List.length gameSalesDataFiltered
-
                 multiDimFunction = 
                     ParallelPlot.multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
             
@@ -184,7 +195,7 @@ view model =
                 gameSalesDataFiltered = 
                     filterGenre fullText.data fullText.genre
                                 
-                
+                --scatterplot
                 gameSalesDataNull =
                     filterAndReduceGames (fullText.data)
             
@@ -258,6 +269,7 @@ view model =
                 , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                     [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
                 , ParallelPlot.scatterplotParallel ParallelPlot.cssParallel 600 2 multiDimFunction
+                --scatterplot
                 , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
                     [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
                 , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
