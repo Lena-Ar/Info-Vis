@@ -54,11 +54,11 @@ type PlotType
 stringToPlotType : String -> PlotType
 stringToPlotType plotType = 
     case plotType of
-        "Parallel Plot" -> 
-            ParallelPlot
+        "Scatterplot" -> 
+            Scatterplot
 
         _ -> 
-            Scatterplot
+            ParallelPlot
 
 regionTypeToString : RegionType -> String
 regionTypeToString regionType =
