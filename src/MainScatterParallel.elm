@@ -8,6 +8,7 @@ import Data
 import Html exposing (Html, pre, text)
 import Html.Attributes exposing (href, placeholder, type_, value)
 import Html.Events exposing (..)
+import ParallelPlot
 
 
 main : Program () Model Msg
@@ -129,11 +130,11 @@ view model =
         Success fullText ->
             let
                 multiDimFunction = 
-                multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
+                    multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
             
                 --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
                 gameSalesDataFiltered = 
-                filterGenre fullText.data fullText.genre
+                    filterGenre fullText.data fullText.genre
             in
             Html.div [Html.Attributes.style "padding" "10px"]
                 [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
@@ -189,7 +190,7 @@ view model =
                 , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                     [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
                 , scatterplotParallel cssParallel 600 2 multiDimFunction
-            
+                ]
 
 buttonGenreType : Html Msg
 buttonGenreType =
