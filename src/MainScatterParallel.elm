@@ -9,7 +9,7 @@ import Html exposing (Html, pre, text)
 import Html.Attributes exposing (href, placeholder, type_, value)
 import Html.Events exposing (..)
 import ParallelPlot
-import Scatterplot exposing (RegionType(..))
+import Scatterplot exposing (..)
 
 
 main : Program () Model Msg
@@ -50,8 +50,8 @@ type Model
     , name3 : String
     , name4 : String
     , name5 : String
-    , xaxis: RegionType
-    , yaxis: RegionType
+    , xaxis: Data.RegionType
+    , yaxis: Data.RegionType
     }
 
 type Msg
@@ -62,8 +62,8 @@ type Msg
     | ChangeThirdAxis (Data.GameSales -> Float, String)
     | ChangeFourthAxis (Data.GameSales -> Float, String)
     | ChangeFifthAxis (Data.GameSales -> Float, String)
-    | ChangeRegionX RegionType
-    | ChangeRegionY RegionType
+    | ChangeRegionX Data.RegionType
+    | ChangeRegionY Data.RegionType
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -71,7 +71,7 @@ update msg model =
         GotText result ->
             case result of
                 Ok fullText ->
-                    ( Success <| { data = Data.gamesSalesList [fullText], genre = "Action", axis1 = .northAmerica, axis2 = .europe, axis3 = .japan, axis4 = .restOfWorld, axis5 = .global, name1 = "North America", name2 = "Europe", name3 = "Japan", name4 = "Rest of World", name5 = "Global", xaxis = NorthAmerica, yaxis = NorthAmerica }, Cmd.none )
+                    ( Success <| { data = Data.gamesSalesList [fullText], genre = "Action", axis1 = .northAmerica, axis2 = .europe, axis3 = .japan, axis4 = .restOfWorld, axis5 = .global, name1 = "North America", name2 = "Europe", name3 = "Japan", name4 = "Rest of World", name5 = "Global", xaxis = Data.NorthAmerica, yaxis = Data.NorthAmerica }, Cmd.none )
 
                 Err _ ->
                     ( model, Cmd.none )
@@ -335,7 +335,7 @@ button5axis5 = Html.button [onClick (ChangeFifthAxis (.global, "Global"))][Html.
 buttonRegionTypeX : Html Msg
 buttonRegionTypeX =
     Html.select
-        [ onInput (\rx -> stringToRegionType rx |> ChangeRegionX) ]
+        [ onInput (\rx -> Data.stringToRegionType rx |> ChangeRegionX) ]
         [ Html.option [ value "North America" ] [ Html.text "North America" ]
         , Html.option [ value "Europe" ] [ Html.text "Europe" ]
         , Html.option [ value "Japan" ] [ Html.text "Japan" ]
@@ -346,7 +346,7 @@ buttonRegionTypeX =
 buttonRegionTypeY : Html Msg
 buttonRegionTypeY =
     Html.select
-        [ onInput (\ry -> stringToRegionType ry |> ChangeRegionY) ]
+        [ onInput (\ry -> Data.stringToRegionType ry |> ChangeRegionY) ]
         [ Html.option [ value "North America" ] [ Html.text "North America" ]
         , Html.option [ value "Europe" ] [ Html.text "Europe" ]
         , Html.option [ value "Japan" ] [ Html.text "Japan" ]
