@@ -4,6 +4,7 @@ import Browser
 import Http
 import Csv exposing (parse)
 import Csv.Decode exposing (..)
+import Data
 
 
 main : Program () Model Msg
@@ -27,6 +28,33 @@ init _ =
         , expect = Http.expectString GotText
         }
     )
+
+type Model
+  = Error
+  | Loading
+  | Success 
+    { data : List Data.GameSales
+    , genre : String
+    , axis1 : Data.GameSales -> Float
+    , axis2 : Data.GameSales -> Float
+    , axis3 : Data.GameSales -> Float
+    , axis4 : Data.GameSales -> Float
+    , axis5 : Data.GameSales -> Float
+    , name1 : String
+    , name2 : String
+    , name3 : String
+    , name4 : String
+    , name5 : String
+    }
+
+type Msg
+    = GotText (Result Http.Error String)
+    | ChangeGenreType String
+    | ChangeFirstAxis (Data.GameSales -> Float, String)
+    | ChangeSecondAxis (Data.GameSales -> Float, String)
+    | ChangeThirdAxis (Data.GameSales -> Float, String)
+    | ChangeFourthAxis (Data.GameSales -> Float, String)
+    | ChangeFifthAxis (Data.GameSales -> Float, String)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -80,3 +108,14 @@ update msg model =
                     (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = new_axis, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = new_name }, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
+
+view : Model -> Html Msg
+view model =
+    case model of
+        Error ->
+            text "Opening the data for sales of games on XBoxOne failed"
+
+        Loading ->
+            text "Loading GameSales data..."
+        
+        Success fullText ->
