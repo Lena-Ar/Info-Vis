@@ -249,6 +249,31 @@ view model =
                 , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                     [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
                 , ParallelPlot.scatterplotParallel ParallelPlot.cssParallel 600 2 multiDimFunction
+                , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
+                    [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
+                , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
+                    [ Html.text ("This scatterplot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
+                , Html.p [Html.Attributes.style "fontSize" "17px"]
+                    [Html.text ("Hint: The x-axis and y-axis can be adjusted to your needs by seleceting the needed regions for each axis with the buttons below.")]
+                , Html.p [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)
+                    , Html.br [] []
+                    , Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_clearedGames)
+                    ]
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                    [ Html.text ("Please choose the genre you want to display with the button below.") ]
+                , Html.p [Html.Attributes.style "padding" "10px"]
+                    [ buttonGenreType ]
+                , Html.p [Html.Attributes.style "fontSize" "15px"]
+                    [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre) ]
+                , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                    [ Html.text ("Please choose the region you want to display on the xaxis first (on the left) and the one you want to display on the yaxis second (on the right).")]
+                , Html.p [Html.Attributes.style "padding" "10px"]
+                    [ buttonRegionTypeX
+                    , buttonRegionTypeY ]
+                , Html.h2 [Html.Attributes.style "fontSize" "20px"]
+                    [Html.text ("Scatterplot for " ++ fullText.genre ++ " with " ++ (Data.regionTypeToString fullText.xaxis) ++ " as x-axis and " ++ (Data.regionTypeToString fullText.yaxis) ++ " as y-axis.")]
+                , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (Data.regionTypeToString fullText.xaxis) (Data.regionTypeToString fullText.yaxis)
                 ]
 
 buttonGenreType : Html Msg
