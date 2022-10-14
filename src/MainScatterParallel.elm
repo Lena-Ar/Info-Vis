@@ -316,3 +316,25 @@ button4axis5 = Html.button [onClick (ChangeFifthAxis (.restOfWorld, "Rest of Wor
  
 button5axis5 : Html Msg
 button5axis5 = Html.button [onClick (ChangeFifthAxis (.global, "Global"))][Html.text "Global"] 
+
+buttonRegionTypeX : Html Msg
+buttonRegionTypeX =
+    Html.select
+        [ onInput (\rx -> stringToRegionType rx |> ChangeRegionX) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+buttonRegionTypeY : Html Msg
+buttonRegionTypeY =
+    Html.select
+        [ onInput (\ry -> stringToRegionType ry |> ChangeRegionY) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
