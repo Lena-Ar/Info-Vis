@@ -174,6 +174,26 @@ view model =
                 --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
                 gameSalesDataFiltered = 
                     filterGenre fullText.data fullText.genre
+                                
+                
+                gameSalesDataNull =
+                    filterAndReduceGames (fullText.data)
+            
+                number_clearedGames: Int
+                number_clearedGames = 
+                    List.length gameSalesDataNull.data
+                
+                gameSalesDataCleared = 
+                    filterAndReduceGames (gameSalesDataFiltered)
+                
+                valuesX : List Float
+                valuesX = 
+                    regionFilter gameSalesDataFiltered fullText.xaxis
+
+
+                valuesY : List Float
+                valuesY = 
+                    regionFilter gameSalesDataFiltered fullText.yaxis
             in
             Html.div [Html.Attributes.style "padding" "10px"]
                 [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
