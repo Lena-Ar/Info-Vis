@@ -49,6 +49,8 @@ type Model
     , name3 : String
     , name4 : String
     , name5 : String
+    , xaxis: RegionType
+    , yaxis: RegionType
     }
 
 type Msg
@@ -59,6 +61,8 @@ type Msg
     | ChangeThirdAxis (Data.GameSales -> Float, String)
     | ChangeFourthAxis (Data.GameSales -> Float, String)
     | ChangeFifthAxis (Data.GameSales -> Float, String)
+    | ChangeRegionX RegionType
+    | ChangeRegionY RegionType
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
