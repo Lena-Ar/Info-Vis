@@ -443,7 +443,7 @@ update msg model =
                 _ -> 
                     ( model, Cmd.none )
 --}
-
+{--
 --to be adjusted for axisChange/region--
 view : Model -> Html Msg
 view model =
@@ -455,60 +455,6 @@ view model =
             text "Loading GameSales data..."
         
         Success fullText ->
-            let 
-                gameSalesData: List Data.GameSales
-                gameSalesData = 
-                    fullText.data
-                
-                gameSalesDataFiltered = 
-                    filterGenre fullText.data fullText.genre
-                
-                
-                gameSalesDataNull =
-                    filterAndReduceGames (fullText.data)
-            
-                number_clearedGames: Int
-                number_clearedGames = 
-                    List.length gameSalesDataNull.data
-
-                number_games: Int
-                number_games =
-                    List.length gameSalesData
-
-                number_filteredGames : Int
-                number_filteredGames =
-                    List.length gameSalesDataFiltered
-                
-                gameSalesDataCleared = 
-                    filterAndReduceGames (gameSalesDataFiltered)
-                
-                regionFilter : List Data.GameSales -> RegionType -> List Float
-                regionFilter points regionType =
-                    case regionType of
-                        NorthAmerica ->
-                            List.map .northAmerica points
-
-                        Europe ->
-                            List.map .europe points
-
-                        Japan ->
-                            List.map .japan points
-
-                        RestOfWorld ->
-                            List.map .restOfWorld points
-                    
-                        Global -> 
-                            List.map .global points
-                
-                valuesX : List Float
-                valuesX = 
-                    regionFilter gameSalesDataFiltered fullText.xaxis
-
-
-                valuesY : List Float
-                valuesY = 
-                    regionFilter gameSalesDataFiltered fullText.yaxis
-            in
             Html.div [Html.Attributes.style "padding" "10px"]
                 [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
                     [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
@@ -535,8 +481,59 @@ view model =
                 , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                     [Html.text ("Scatterplot for " ++ fullText.genre ++ " with " ++ (regionTypeToString fullText.xaxis) ++ " as x-axis and " ++ (regionTypeToString fullText.yaxis) ++ " as y-axis.")]
                 , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (regionTypeToString fullText.xaxis) (regionTypeToString fullText.yaxis)
-                ]
-         
+                ]--}
+gameSalesData: List Data.GameSales
+gameSalesData = 
+    fullText.data
+                
+gameSalesDataFiltered = 
+    filterGenre fullText.data fullText.genre
+                
+                
+gameSalesDataNull =
+    filterAndReduceGames (fullText.data)
+            
+number_clearedGames: Int
+number_clearedGames = 
+    List.length gameSalesDataNull.data
+
+number_games: Int
+number_games =
+    List.length gameSalesData
+
+number_filteredGames : Int
+number_filteredGames =
+    List.length gameSalesDataFiltered
+                
+gameSalesDataCleared = 
+    filterAndReduceGames (gameSalesDataFiltered)
+                
+regionFilter : List Data.GameSales -> RegionType -> List Float
+regionFilter points regionType =
+    case regionType of
+        NorthAmerica ->
+            List.map .northAmerica points
+
+        Europe ->
+            List.map .europe points
+
+        Japan ->
+            List.map .japan points
+
+        RestOfWorld ->
+            List.map .restOfWorld points
+                    
+        Global -> 
+            List.map .global points
+                
+valuesX : List Float
+valuesX = 
+    regionFilter gameSalesDataFiltered fullText.xaxis
+
+
+valuesY : List Float
+valuesY = 
+    regionFilter gameSalesDataFiltered fullText.yaxis
 ----------point--------------
 
 point : ContinuousScale Float -> ContinuousScale Float -> Point -> (Float, Float) -> Svg msg
