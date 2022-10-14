@@ -73,7 +73,7 @@ update msg model =
         GotText result ->
             case result of
                 Ok fullText ->
-                    ( Success <| { data = Data.gamesSalesList [fullText], genre = "Action", axis1 = .northAmerica, axis2 = .europe, axis3 = .japan, axis4 = .restOfWorld, axis5 = .global, name1 = "North America", name2 = "Europe", name3 = "Japan", name4 = "Rest of World", name5 = "Global", xaxis = Data.NorthAmerica, yaxis = Data.NorthAmerica }, Cmd.none )
+                    ( Success <| { data = Data.gamesSalesList [fullText], genre = "Action", plot = Data.ParallelPlot, axis1 = .northAmerica, axis2 = .europe, axis3 = .japan, axis4 = .restOfWorld, axis5 = .global, name1 = "North America", name2 = "Europe", name3 = "Japan", name4 = "Rest of World", name5 = "Global", xaxis = Data.NorthAmerica, yaxis = Data.NorthAmerica }, Cmd.none )
 
                 Err _ ->
                     ( model, Cmd.none )
@@ -81,56 +81,63 @@ update msg model =
         ChangeGenreType new_genre -> 
             case model of
                 Success a ->
-                    (Success <| { data = a.data, genre = new_genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
+                    (Success <| { data = a.data, genre = new_genre, plot = a.plot, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
                 _ ->
+                    ( model, Cmd.none )
+        
+        ChangePlot new_plot ->
+            case model of
+                Success a -> 
+                    (Success <| { data = a.data, genre = a.genre, plot = new_plot, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis}, Cmd.none ) 
+                _ -> 
                     ( model, Cmd.none )
 
         ChangeFirstAxis (new_axis, new_name) -> 
             case model of
                 Success a ->
-                    (Success <| { data = a.data, genre = a.genre, axis1 = new_axis, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = new_name, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
+                    (Success <| { data = a.data, genre = a.genre, plot = a.plot, axis1 = new_axis, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = new_name, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
         
         ChangeSecondAxis (new_axis, new_name) -> 
             case model of
                 Success a ->
-                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = new_axis, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = new_name, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
+                    (Success <| { data = a.data, genre = a.genre, plot = a.plot, axis1 = a.axis1, axis2 = new_axis, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = new_name, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
         
         ChangeThirdAxis (new_axis, new_name) -> 
             case model of
                 Success a ->
-                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = new_axis, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = new_name, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
+                    (Success <| { data = a.data, genre = a.genre, plot = a.plot, axis1 = a.axis1, axis2 = a.axis2, axis3 = new_axis, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = new_name, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
         
         ChangeFourthAxis (new_axis, new_name) -> 
             case model of
                 Success a ->
-                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = new_axis, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = new_name, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
+                    (Success <| { data = a.data, genre = a.genre, plot = a.plot, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = new_axis, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = new_name, name5 = a.name5, xaxis = a.xaxis, yaxis = a.yaxis }, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
         
         ChangeFifthAxis (new_axis, new_name) -> 
             case model of
                 Success a ->
-                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = new_axis, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = new_name, xaxis = a.xaxis, yaxis = a.yaxis  }, Cmd.none ) 
+                    (Success <| { data = a.data, genre = a.genre, plot = a.plot, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = new_axis, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = new_name, xaxis = a.xaxis, yaxis = a.yaxis  }, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
         
         ChangeRegionX new_regionx -> 
             case model of
                 Success a -> 
-                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = new_regionx, yaxis = a.yaxis}, Cmd.none ) 
+                    (Success <| { data = a.data, genre = a.genre, plot = a.plot, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = new_regionx, yaxis = a.yaxis}, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
         
         ChangeRegionY new_regiony ->
             case model of
                 Success a -> 
-                    (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = new_regiony}, Cmd.none ) 
+                    (Success <| { data = a.data, genre = a.genre, plot = a.plot, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = a.axis5, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = a.name5, xaxis = a.xaxis, yaxis = new_regiony}, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
 
