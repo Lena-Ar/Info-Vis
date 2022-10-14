@@ -47,6 +47,19 @@ type RegionType
     | RestOfWorld
     | Global
 
+type PlotType
+    = ParallelPlot
+    | Scatterplot
+
+stringToPlotType : String -> PlotType
+stringToPlotType plotType = 
+    case plotType of
+        "Parallel Plot" -> 
+            ParallelPlot
+
+        _ -> 
+            Scatterplot
+
 regionTypeToString : RegionType -> String
 regionTypeToString regionType =
     case regionType of
