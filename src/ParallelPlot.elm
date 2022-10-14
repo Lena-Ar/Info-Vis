@@ -517,11 +517,11 @@ view model =
                 , scatterplotParallel cssParallel 600 2 multiDimFunction
                 ]
 --}
-
+{--
 gameSalesData: List Data.GameSales
 gameSalesData = 
     fullText.data
-                    
+                  
 number_games: Int
 number_games =
     List.length gameSalesData
@@ -537,7 +537,7 @@ number_games_cleared =
 number_games_genre: Int
 number_games_genre =  
     List.length gameSalesDataFiltered
-                
+                --}
                 --changed again to originally desired concept of selecting not swapping       
                 --adjusted -> no more AxisType, insteas GameSales -> Floats
                 --same reason for parenthesis around (a1 data) etc
