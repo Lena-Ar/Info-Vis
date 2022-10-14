@@ -39,3 +39,46 @@ type alias GameSales =
     , restOfWorld : Float
     , global : Float
     }
+
+type RegionType
+    = NorthAmerica
+    | Europe
+    | Japan
+    | RestOfWorld
+    | Global
+
+regionTypeToString : RegionType -> String
+regionTypeToString regionType =
+    case regionType of
+        NorthAmerica -> 
+            "North America"
+
+        Europe ->
+            "Europe"
+
+        Japan ->
+            "Japan"
+
+        RestOfWorld ->
+            "Rest of world"
+
+        Global ->
+            "Global"
+
+        
+stringToRegionType : String -> RegionType
+stringToRegionType stringRegionType =
+    if stringRegionType == "North America" then
+        NorthAmerica
+
+    else if stringRegionType == "Europe" then
+        Europe
+
+    else if stringRegionType == "Japan" then
+        Japan
+
+    else if stringRegionType == "Rest of world" then
+        RestOfWorld
+
+    else
+        Global
