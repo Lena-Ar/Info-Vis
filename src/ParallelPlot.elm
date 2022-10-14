@@ -21,7 +21,7 @@ import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
 import Html exposing (button)
 import Data
-
+{--
 main : Program () Model Msg
 main =
     Browser.element
@@ -121,7 +121,7 @@ type Model
     , name4 : String
     , name5 : String
     }
-
+--}
 {--
 --updated with swap as Swap CustomType
 --, swap : Swap
@@ -173,6 +173,7 @@ gamesSalesList listGame =
     List.map(\x -> csvString_to_data x) listGame
         |> List.concat
 --}
+{--
 --filter and button from Scatterplot
 filterGenre : List Data.GameSales -> String -> List Data.GameSales
 filterGenre allGames genretype =
@@ -254,6 +255,7 @@ update msg model =
                     (Success <| { data = a.data, genre = a.genre, axis1 = a.axis1, axis2 = a.axis2, axis3 = a.axis3, axis4 = a.axis4, axis5 = new_axis, name1 = a.name1, name2 = a.name2, name3 = a.name3, name4 = a.name4, name5 = new_name }, Cmd.none ) 
                 _ -> 
                     ( model, Cmd.none )
+                    --}
 --assignment from Scatterplot--
 map2pipe : Maybe a -> Maybe ( a -> b) -> Maybe b
 map2pipe = 
