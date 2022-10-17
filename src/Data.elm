@@ -113,3 +113,21 @@ stringToAxisType stringAxisType =
 
     else
         (.global, "Global")
+
+regionTypeToAxisAnnotation : RegionType -> (GameSales -> Float)
+regionTypeToAxisAnnotation regionType =
+    case regionType of
+        NorthAmerica -> 
+            (.northAmerica)
+
+        Europe ->
+            (.europe)
+
+        Japan ->
+            (.japan)
+
+        RestOfWorld ->
+            (.restOfWorld)
+
+        Global ->
+            (.global)
