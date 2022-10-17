@@ -214,39 +214,53 @@ view model =
                         , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                             [ Html.text ("Please choose the region you want to display on the first axis with the adjacent buttons: ")
                                 , buttonAxis1
+                                {--
                                 , button1axis1
                                 , button2axis1
                                 , button3axis1
                                 , button4axis1
-                                , button5axis1]
+                                , button5axis1--}
+                                ]
                         , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                             [ Html.text ("Please choose the region you want to display on the second axis with the adjacent buttons: ") 
+                                , buttonAxis2
+                                {--
                                 , button1axis2
                                 , button2axis2
                                 , button3axis2
                                 , button4axis2
-                                , button5axis2]
+                                , button5axis2--}
+                                ]
                         , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                             [ Html.text ("Please choose the region you want to display on the third axis with the adjacent buttons: ")
+                                , buttonAxis3
+                                {--
                                 , button1axis3
                                 , button2axis3
                                 , button3axis3
                                 , button4axis3
-                                , button5axis3 ]
+                                , button5axis3 --}
+                                ]
                         , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                             [ Html.text ("Please choose the region you want to display on the fourth axis with the adjacent buttons: ")
+                                , buttonAxis4
+                                {--
                                 , button1axis4
                                 , button2axis4
                                 , button3axis4
                                 , button4axis4
-                                , button5axis4 ]
+                                , button5axis4 --}
+                                ]
                         , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                             [ Html.text ("Please choose the region you want to display on the fifth axis with the adjacent buttons: ")
+                                , buttonAxis5
+                                {--
                                 , button1axis5
                                 , button2axis5
                                 , button3axis5
                                 , button4axis5
-                                , button5axis5 ]
+                                , button5axis5 --}
+                                ]
                         , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                             [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
                         , ParallelPlot.scatterplotParallel ParallelPlot.cssParallel 600 2 multiDimFunction
@@ -347,6 +361,50 @@ buttonAxis1 =
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
 
+buttonAxis2 : Html Msg
+buttonAxis2 = 
+    Html.select
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeSecondAxis)]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+buttonAxis3 : Html Msg
+buttonAxis3 = 
+    Html.select
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeThirdAxis)]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+buttonAxis4 : Html Msg
+buttonAxis4 = 
+    Html.select
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFourthAxis)]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+buttonAxis5 : Html Msg
+buttonAxis5 = 
+    Html.select
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFifthAxis)]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+{--
 button1axis1 : Html Msg
 button1axis1 = Html.button [onClick (ChangeFirstAxis (.northAmerica, "North America"))][Html.text "North America"]
 
@@ -426,7 +484,7 @@ button4axis5 = Html.button [onClick (ChangeFifthAxis (.restOfWorld, "Rest of Wor
  
 button5axis5 : Html Msg
 button5axis5 = Html.button [onClick (ChangeFifthAxis (.global, "Global"))][Html.text "Global"] 
-
+--}
 buttonRegionTypeX : Html Msg
 buttonRegionTypeX =
     Html.select
