@@ -97,22 +97,23 @@ stringToRegionType stringRegionType =
         Global
 
 --Umwandlung zu der Typannotation, die auch im Msg definiert ist, damit dann der dropdown-button klappen kann
-stringToAxisType : String -> (GameSales -> Float, String)
+--Anpassung als output RegionType, String wie im angepassten Msg
+stringToAxisType : String -> (RegionType, String)
 stringToAxisType stringAxisType =
     if stringAxisType == "North America" then
-        (.northAmerica, "North America")
+        (NorthAmerica, "North America")
 
     else if stringAxisType == "Europe" then
-        (.europe,"Europe" )
+        (Europe,"Europe" )
 
     else if stringAxisType == "Japan" then
-        (.japan, "Japan")
+        (Japan, "Japan")
 
     else if stringAxisType == "Rest of world" then
-        (.restOfWorld, "Rest of World")
+        (RestOfWorld, "Rest of World")
 
     else
-        (.global, "Global")
+        (Global, "Global")
 
 regionTypeToAxisAnnotation : RegionType -> (GameSales -> Float)
 regionTypeToAxisAnnotation regionType =
