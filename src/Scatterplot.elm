@@ -195,6 +195,7 @@ helpMapBig apply a b c d e =
 
 -- based on https://ellie-app.com/hhZMpcRnTwFa1 (my code for exercise 1) --
 --maybe need changes here--
+{--
 assignment : Data.GameSales -> Maybe Point
 assignment game =
     helpMapBig
@@ -211,13 +212,30 @@ assignment game =
         (Just game.europe)
         (Just game.japan)
         (Just game.restOfWorld)
-        (Just game.global)
+        (Just game.global)--}
 
--- filtering games --
+-- filtering &assigning games --
 -- based on https://ellie-app.com/hhZMpcRnTwFa1 (my code for exercise 1) --
 filterAndReduceGames : List Data.GameSales -> XyData
 filterAndReduceGames games =
     let
+        assignment : Data.GameSales -> Maybe Point
+        assignment game =
+            helpMapBig
+                (\northAmerica europe japan restOfWorld global ->
+                    Point
+                        (game.game ++ " , " ++  game.publisher ++ " ")
+                        (northAmerica)
+                        (europe)
+                        (japan)
+                        (restOfWorld)
+                        (global)
+                )
+                (Just game.northAmerica)
+                (Just game.europe)
+                (Just game.japan)
+                (Just game.restOfWorld)
+                (Just game.global)
         filter =
             List.filterMap assignment games
     in
