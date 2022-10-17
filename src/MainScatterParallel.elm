@@ -213,6 +213,7 @@ view model =
                             [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)]
                         , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                             [ Html.text ("Please choose the region you want to display on the first axis with the adjacent buttons: ")
+                                , buttonAxis1
                                 , button1axis1
                                 , button2axis1
                                 , button3axis1
@@ -335,6 +336,17 @@ buttonGenreType =
         , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
         ]
     
+buttonAxis1 : Html Msg
+buttonAxis1 = 
+    Html.select
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFirstAxis)]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
 button1axis1 : Html Msg
 button1axis1 = Html.button [onClick (ChangeFirstAxis (.northAmerica, "North America"))][Html.text "North America"]
 
