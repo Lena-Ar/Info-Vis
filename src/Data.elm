@@ -50,12 +50,16 @@ type RegionType
 type PlotType
     = ParallelPlot
     | Scatterplot
+    | TreeHierarchy
 
 stringToPlotType : String -> PlotType
 stringToPlotType plotType = 
     case plotType of
         "Scatterplot" -> 
             Scatterplot
+        
+        "Tree Hierarchy" -> 
+            TreeHierarchy
 
         _ -> 
             ParallelPlot
