@@ -542,12 +542,13 @@ number_games_genre =
                 --adjusted -> no more AxisType, insteas GameSales -> Floats
                 --same reason for parenthesis around (a1 data) etc
                 --still not applied
-multiDimenData : List Data.GameSales -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> Float) -> (Data.GameSales -> String) -> (Data.GameSales -> String) -> String -> String -> String -> String -> String -> MultiDimData
-multiDimenData game a1 a2 a3 a4 a5 name pub n1 n2 n3 n4 n5=
-    MultiDimData [ n1, n2, n3, n4, n5 ]
+-- now can use RegionType when having a conversion from RegionType to needed (GameSales -> Float) to get Floats for MultiDimData
+multiDimenData : List Data.GameSales -> Data.RegionType -> Data.RegionType -> Data.RegionType -> Data.RegionType -> Data.RegionType -> (Data.GameSales -> String) -> (Data.GameSales -> String) -> MultiDimData
+multiDimenData game a1 a2 a3 a4 a5 name pub =
+    MultiDimData [ ]
         [ List.map
             (\data ->
-                [  (a1 data) , (a2 data), (a3 data), (a4 data), (a5 data) ]
+                [  (Data.regionTypeToAxisAnnotation a1 data) , (Data.regionTypeToAxisAnnotation a2 data), (Data.regionTypeToAxisAnnotation a3 data), (Data.regionTypeToAxisAnnotation a4 data), (Data.regionTypeToAxisAnnotation a5 data) ]
                     |> MultiDimPoint (name data) (pub data)
             )
             game
