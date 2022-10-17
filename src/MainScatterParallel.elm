@@ -184,7 +184,7 @@ view model =
                         number_games_null : Int
                         number_games_null = 
                             List.length gameSalesDataNull
-                            
+
                         clearedGameSalesData : List Data.GameSales
                         clearedGameSalesData = 
                             ParallelPlot.assignmentAndReduce gameSalesDataFiltered
@@ -335,6 +335,21 @@ view model =
                         , Html.p [Html.Attributes.style "fontSize" "15px"] 
                             [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
                             , Html.a [href "TreeHierarchy.elm"] [Html.text "take you back!"]]
+                        ]
+                Data.TreeHierarchy -> 
+                    Html.div [Html.Attributes.style "padding" "10px"]
+                        [ Html.h1 [Html.Attributes.style "fontSize" "40px"]
+                            [Html.text ("General overview of Video Games, Genres and Publishers for XBox One")]
+                        , Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                            [ buttonPlot
+                            , Html.text ("  Please choose which plot you would like to see.")
+                            , Html.br [][]
+                            , Html.text ("Don't worry, your settings for genre will stay selected.")]
+                        , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
+                            [ Html.text ("Tree Diagram/Tree Hierarchy of Video Games for XBox One") ]
+                        , Html.h4 [Html.Attributes.style "fontSize" "16px"] 
+                            [ Html.text ("If you want to display the Tree Diagram/Tree Hierarchy you saw in the beginning, you can ")
+                            , Html.a [href "TreeHierarchy.elm"] [Html.text "click here!"]]
                         ]
 
 buttonGenreType : Html Msg
@@ -521,4 +536,5 @@ buttonPlot =
         [ onInput (\ry -> Data.stringToPlotType ry |> ChangePlot) ]
         [ Html.option [ value "ParallelPlot" ] [ Html.text "Parallel Coordinate Plot" ]
         , Html.option [ value "Scatterplot" ] [ Html.text "Scatterplot" ]
+        , Html.option [value "Tree Hierarchy"] [Html.text "Tree Hierarchy"]
         ]
