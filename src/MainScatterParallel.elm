@@ -177,6 +177,14 @@ view model =
                 Data.ParallelPlot -> 
                     let
                         --parallelPlot
+                        gameSalesDataNull : List Data.GameSales
+                        gameSalesDataNull = 
+                            ParallelPlot.assignmentAndReduce gameSalesData
+                
+                        number_games_null : Int
+                        number_games_null = 
+                            List.length gameSalesDataNull
+                            
                         clearedGameSalesData : List Data.GameSales
                         clearedGameSalesData = 
                             ParallelPlot.assignmentAndReduce gameSalesDataFiltered
@@ -204,13 +212,13 @@ view model =
                         , Html.p [Html.Attributes.style "fontSize" "15px"]
                             [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)]
                         , Html.p [Html.Attributes.style "fontSize" "15px"]
-                            [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games_cleared)]
+                            [ Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_games_null)]
                         , Html.h4 [Html.Attributes.style "fontSize" "16px"]
                             [ Html.text ("Please choose the genre you want to display with the button below.") ]
                         , Html.p [Html.Attributes.style "padding" "10px"]
                             [ buttonGenreType ]
                         , Html.p [Html.Attributes.style "fontSize" "15px"]
-                            [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre)]
+                            [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_cleared)]
                         , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                             [ Html.text ("Please choose the region you want to display on the first axis with the adjacent buttons: ")
                                 , buttonAxis1
@@ -262,7 +270,7 @@ view model =
                                 , button5axis5 --}
                                 ]
                         , Html.h2 [Html.Attributes.style "fontSize" "20px"]
-                            [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre )]
+                            [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre++ " with " ++ (Data.regionTypeToString fullText.axis1) ++ " as first axis, " ++ (Data.regionTypeToString fullText.axis2) ++ " as second axis, " ++ (Data.regionTypeToString fullText.axis3) ++ " as third axis, " ++ (Data.regionTypeToString fullText.axis4) ++ " as fourth axis and " ++ (Data.regionTypeToString fullText.axis5) ++ " as fifth axis.")]
                         , ParallelPlot.scatterplotParallel ParallelPlot.cssParallel 600 2 multiDimFunction
                         , Html.p [Html.Attributes.style "fontSize" "15px"] 
                             [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
