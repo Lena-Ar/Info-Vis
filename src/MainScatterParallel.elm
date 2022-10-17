@@ -179,14 +179,14 @@ view model =
                         --parallelPlot
                         clearedGameSalesData : List Data.GameSales
                         clearedGameSalesData = 
-                            ParallelPlot.assignmentAndReduce gameSalesData
+                            ParallelPlot.assignmentAndReduce gameSalesDataFiltered
                 
                         number_games_cleared : Int
                         number_games_cleared = 
                             List.length clearedGameSalesData
 
                         multiDimFunction = 
-                            ParallelPlot.multiDimenData gameSalesDataFiltered fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
+                            ParallelPlot.multiDimenData clearedGameSalesData fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
                     in
                     Html.div [Html.Attributes.style "padding" "10px"]
                         [ Html.h1 [Html.Attributes.style "fontSize" "40px"]
