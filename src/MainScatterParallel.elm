@@ -353,7 +353,7 @@ buttonGenreType =
 buttonAxis1 : Html Msg
 buttonAxis1 = 
     Html.select
-        [ onInput (\rx -> Data.stringToRegionType rx |> ChangeFirstAxis)]
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFirstAxis)]
         [ Html.option [ value "North America" ] [ Html.text "North America" ]
         , Html.option [ value "Europe" ] [ Html.text "Europe" ]
         , Html.option [ value "Japan" ] [ Html.text "Japan" ]
@@ -364,7 +364,7 @@ buttonAxis1 =
 buttonAxis2 : Html Msg
 buttonAxis2 = 
     Html.select
-        [ onInput (\rx -> Data.stringToRegionType rx |> ChangeSecondAxis)]
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeSecondAxis)]
         [ Html.option [ value "North America" ] [ Html.text "North America" ]
         , Html.option [ value "Europe" ] [ Html.text "Europe" ]
         , Html.option [ value "Japan" ] [ Html.text "Japan" ]
@@ -375,7 +375,7 @@ buttonAxis2 =
 buttonAxis3 : Html Msg
 buttonAxis3 = 
     Html.select
-        [ onInput (\rx -> Data.stringToRegionType rx |> ChangeThirdAxis)]
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeThirdAxis)]
         [ Html.option [ value "North America" ] [ Html.text "North America" ]
         , Html.option [ value "Europe" ] [ Html.text "Europe" ]
         , Html.option [ value "Japan" ] [ Html.text "Japan" ]
@@ -386,7 +386,7 @@ buttonAxis3 =
 buttonAxis4 : Html Msg
 buttonAxis4 = 
     Html.select
-        [ onInput (\rx -> Data.stringToRegionType rx |> ChangeFourthAxis)]
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFourthAxis)]
         [ Html.option [ value "North America" ] [ Html.text "North America" ]
         , Html.option [ value "Europe" ] [ Html.text "Europe" ]
         , Html.option [ value "Japan" ] [ Html.text "Japan" ]
@@ -397,7 +397,7 @@ buttonAxis4 =
 buttonAxis5 : Html Msg
 buttonAxis5 = 
     Html.select
-        [ onInput (\rx -> Data.stringToRegionType rx |> ChangeFifthAxis)]
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFifthAxis)]
         [ Html.option [ value "North America" ] [ Html.text "North America" ]
         , Html.option [ value "Europe" ] [ Html.text "Europe" ]
         , Html.option [ value "Japan" ] [ Html.text "Japan" ]
