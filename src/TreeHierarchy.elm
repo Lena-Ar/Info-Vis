@@ -10,9 +10,9 @@ import Html exposing (Html, div, text)
 import Html.Attributes exposing (style, href)
 import TypedSvg exposing (circle, g, line, path, rect, style, svg, text_)
 import TypedSvg.Core exposing (Svg)
-import TypedSvg.Attributes exposing (d, class, stroke, strokeWidth, fill, textAnchor, transform, fontFamily, fontSize, viewBox)
+import TypedSvg.Attributes exposing (d, class, stroke, strokeWidth, fill, textAnchor, transform, fontFamily, fontSize, viewBox, fontWeight)
 import TypedSvg.Attributes.InPx exposing (cx, cy, r, x1, x2, y1, y2, x, y)
-import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
+import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..), FontWeight (..))
 import Color
 import TreeLayout
 import Tree exposing (Tree)
@@ -236,7 +236,7 @@ cssTree =
     .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
     .point text { display: none; }
     .point:hover circle { stroke: rgba(100, 100, 100,1); fill: rgba(75, 128, 36,1); }
-    .point:hover text { display: inline; fill: rgb(75, 128, 36, 0.8) }
+    .point:hover text { display: inline; fill: rgb(75, 128, 36, 0.8);  stroke: rgba(255, 255, 255, 1); stroke-width: 0.15 }
     """
 
 treePlot2 : String -> Float -> List ( String, Maybe String ) -> Svg msg
@@ -341,19 +341,20 @@ point scaleX scaleY xyPoint =
         [ class [ "point" ]
         , fontSize <| Px 20.0
         , fontFamily [ "serif" ]
+        , fontWeight FontWeightBolder
         , transform
             [ Translate
                 (Scale.convert scaleX xyPoint.childx)
                 (Scale.convert scaleY xyPoint.childy)
             ]
         ]
-        [ circle [ cx 0, cy 0, r (radius - 1) ] []
+        [ circle [ cx 0, cy 0, r (radius - 0.8) ] []
         , text_ [ x 0
                 , y -10
                 , textAnchor AnchorMiddle
                 , transform 
                     [ Translate -5.5 -20.5
-                    , Rotate 80.0 0.0 0.0
+                    , Rotate 75.0 0.0 0.0
                     ] 
                 ] 
                 [ Html.text xyPoint.label ]
@@ -372,7 +373,7 @@ h =
 
 padding : Float
 padding =
-    65
+    95
 
 
 radius : Float
