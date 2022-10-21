@@ -15,7 +15,7 @@ import TypedSvg.Attributes exposing (class, fontFamily, fontSize, stroke, stroke
 import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y, y1, y2)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
-import Data
+import Data exposing (Point, XyData, RegionType, GameSales)
 {--
 main : Program () Model Msg
 main =
@@ -111,7 +111,7 @@ type RegionType
     | RestOfWorld
     | Global
 --}
-
+{--
 type alias Point =
     { pointGame : String
     , pointNorthAmerica : Float
@@ -127,6 +127,7 @@ type alias XyData =
     , yDescription : String
     , data : List Point
     }
+    --}
 {--
 --Decoder
 decodeGameSales : Csv.Decode.Decoder (Data.GameSales -> a) a
@@ -216,10 +217,10 @@ assignment game =
 
 -- filtering &assigning games --
 -- based on https://ellie-app.com/hhZMpcRnTwFa1 (my code for exercise 1) --
-filterAndReduceGames : List Data.GameSales -> XyData
+filterAndReduceGames : List GameSales -> XyData
 filterAndReduceGames games =
     let
-        assignment : Data.GameSales -> Maybe Point
+        assignment : GameSales -> Maybe Point
         assignment game =
             helpMapBig
                 (\northAmerica europe japan restOfWorld global ->
@@ -527,7 +528,7 @@ number_filteredGames =
 gameSalesDataCleared = 
     filterAndReduceGames (gameSalesDataFiltered)
           --}      
-regionFilter : List Data.GameSales -> Data.RegionType -> List Float
+regionFilter : List GameSales -> RegionType -> List Float
 regionFilter points regionType =
     case regionType of
         Data.NorthAmerica ->
