@@ -2,6 +2,7 @@ module Data exposing (..)
 
 import Csv exposing (parse)
 import Csv.Decode exposing (..)
+import Tree exposing (Tree)
 
 --Decoder
 decodeGameSales : Csv.Decode.Decoder (GameSales -> a) a
@@ -82,6 +83,19 @@ type alias MultiDimData =
     { dimDescription : List String
     , data : List (List MultiDimPoint)
     }
+
+--for TreeHierarchy
+--list of floats for values of child and parent x and y and label as string
+type alias NodeValues =
+    { childx : Float
+    , childy : Float
+    , parentx : Float
+    , parenty : Float
+    , label : String
+    }
+
+type alias Model =
+    { tree : Tree String, errorMsg : String }
     
 stringToPlotType : String -> PlotType
 stringToPlotType plotType = 
