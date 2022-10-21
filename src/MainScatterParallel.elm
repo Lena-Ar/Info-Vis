@@ -9,7 +9,7 @@ import Html exposing (Html, pre, text)
 import Html.Attributes exposing (href, placeholder, type_, value)
 import Html.Events exposing (..)
 import ParallelPlot
-import Scatterplot exposing (..)
+import Scatterplot
 
 
 main : Program () Model Msg
@@ -280,23 +280,23 @@ view model =
                     let
                         --scatterplot
                         gameSalesDataNull =
-                            filterAndReduceGames (fullText.data)
+                            Scatterplot.filterAndReduceGames (fullText.data)
             
                         number_clearedGames: Int
                         number_clearedGames = 
                             List.length gameSalesDataNull.data
                 
                         gameSalesDataCleared = 
-                            filterAndReduceGames (gameSalesDataFiltered)
+                            Scatterplot.filterAndReduceGames (gameSalesDataFiltered)
                 
                         valuesX : List Float
                         valuesX = 
-                            regionFilter gameSalesDataFiltered fullText.xaxis
+                            Scatterplot.regionFilter gameSalesDataFiltered fullText.xaxis
 
 
                         valuesY : List Float
                         valuesY = 
-                            regionFilter gameSalesDataFiltered fullText.yaxis
+                            Scatterplot.regionFilter gameSalesDataFiltered fullText.yaxis
                     in
                     Html.div [Html.Attributes.style "padding" "10px"]
                         [Html.h1 [Html.Attributes.style "fontSize" "40px"]
@@ -331,7 +331,7 @@ view model =
                             , buttonRegionTypeY ]
                         , Html.h2 [Html.Attributes.style "fontSize" "20px"]
                             [Html.text ("Scatterplot for " ++ fullText.genre ++ " with " ++ (Data.regionTypeToString fullText.xaxis) ++ " as x-axis and " ++ (Data.regionTypeToString fullText.yaxis) ++ " as y-axis.")]
-                        , scatterplot cssPoint gameSalesDataCleared valuesX valuesY (Data.regionTypeToString fullText.xaxis) (Data.regionTypeToString fullText.yaxis)
+                        , Scatterplot.scatterplot Scatterplot.cssPoint gameSalesDataCleared valuesX valuesY (Data.regionTypeToString fullText.xaxis) (Data.regionTypeToString fullText.yaxis)
                         , Html.p [Html.Attributes.style "fontSize" "15px"] 
                             [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
                             , Html.a [href "TreeHierarchy.elm"] [Html.text "take you back!"]]
