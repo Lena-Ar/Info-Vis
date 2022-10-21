@@ -15,7 +15,7 @@ import TypedSvg.Attributes exposing (class, fontFamily, fontSize, stroke, stroke
 import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y, y1, y2)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
-import Data exposing (Point, XyData, RegionType, GameSales)
+import Data exposing (Point, XyData, RegionType(..), GameSales)
 {--
 main : Program () Model Msg
 main =
@@ -531,19 +531,19 @@ gameSalesDataCleared =
 regionFilter : List GameSales -> RegionType -> List Float
 regionFilter points regionType =
     case regionType of
-        Data.NorthAmerica ->
+        NorthAmerica ->
             List.map .northAmerica points
 
-        Data.Europe ->
+        Europe ->
             List.map .europe points
 
-        Data.Japan ->
+        Japan ->
             List.map .japan points
 
-        Data.RestOfWorld ->
+        RestOfWorld ->
             List.map .restOfWorld points
                     
-        Data.Global -> 
+        Global -> 
             List.map .global points
 {--         
 valuesX : List Float
