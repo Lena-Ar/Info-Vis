@@ -6,7 +6,7 @@ import Csv exposing (parse)
 import Csv.Decode exposing (..)
 import Data
 import Html exposing (Html, pre, text)
-import Html.Attributes exposing (href, placeholder, type_, value)
+import Html.Attributes exposing (href, placeholder, type_, value, target)
 import Html.Events exposing (..)
 import ParallelPlot
 import Scatterplot
@@ -274,7 +274,7 @@ view model =
                         , ParallelPlot.scatterplotParallel ParallelPlot.cssParallel 600 2 multiDimFunction
                         , Html.p [Html.Attributes.style "fontSize" "15px"] 
                             [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
-                            , Html.a [href "TreeHierarchy.elm"] [Html.text "take you back!"]]
+                            , Html.a [href "TreeHierarchy.elm", target "_blank"] [Html.text "take you back and open another tab!"]]
                         ]
                 Data.Scatterplot ->
                     let
@@ -334,7 +334,7 @@ view model =
                         , Scatterplot.scatterplot Scatterplot.cssPoint gameSalesDataCleared valuesX valuesY (Data.regionTypeToString fullText.xaxis) (Data.regionTypeToString fullText.yaxis)
                         , Html.p [Html.Attributes.style "fontSize" "15px"] 
                             [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
-                            , Html.a [href "TreeHierarchy.elm"] [Html.text "take you back!"]]
+                            , Html.a [href "TreeHierarchy.elm", target "_blank"] [Html.text "take you back and open another tab!"]]
                         ]
                 Data.TreeHierarchy -> 
                     Html.div [Html.Attributes.style "padding" "10px"]
