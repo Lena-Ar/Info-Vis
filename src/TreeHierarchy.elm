@@ -216,7 +216,7 @@ treePlot css minDist tree =
         nodeValuesPath =
             List.map checkRootNegative nodeValues
     in
-    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 180, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
+    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 200, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 150 ]
         [ TypedSvg.style []
             [ TypedSvg.Core.text css ]
         , g
@@ -230,11 +230,11 @@ treePlot css minDist tree =
 cssTree : String
 cssTree = 
     """
-    .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
+    .point circle { stroke: rgba(46, 78, 23,0.8); fill: rgba(100, 100, 100,1); }
     .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
     .point text { display: none; }
-    .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgba(0, 204, 0,1); }
-    .point:hover text { display: inline; }
+    .point:hover circle { stroke: rgba(100, 100, 100,1); fill: rgba(75, 128, 36,1); }
+    .point:hover text { display: inline; fill: rgb(75, 128, 36, 0.8) }
     """
 
 treePlot2 : String -> Float -> List ( String, Maybe String ) -> Svg msg
@@ -299,7 +299,7 @@ treePlot2 css minDist tree =
         nodeValuesPath =
             List.map checkRootNegative nodeValues
     in
-    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
+    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 110 ]
         [ TypedSvg.style []
             [ TypedSvg.Core.text css ]
         , g
@@ -336,7 +336,7 @@ line scaleX scaleY xyPoint =
 point scaleX scaleY xyPoint =
     g
         [ class [ "point" ]
-        , fontSize <| Px 18.0
+        , fontSize <| Px 20.0
         , fontFamily [ "serif" ]
         , transform
             [ Translate
@@ -344,13 +344,13 @@ point scaleX scaleY xyPoint =
                 (Scale.convert scaleY xyPoint.childy)
             ]
         ]
-        [ circle [ cx 0, cy 0, r (radius - 1.5) ] []
+        [ circle [ cx 0, cy 0, r (radius - 1) ] []
         , text_ [ x 0
                 , y -10
                 , textAnchor AnchorMiddle
                 , transform 
                     [ Translate -5.5 -20.5
-                    , Rotate 90.0 0.0 0.0
+                    , Rotate 80.0 0.0 0.0
                     ] 
                 ] 
                 [ Html.text xyPoint.label ]
@@ -364,12 +364,12 @@ w =
 
 h : Float
 h =
-    400
+    430
 
 
 padding : Float
 padding =
-    30
+    65
 
 
 radius : Float
