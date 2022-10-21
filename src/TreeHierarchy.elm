@@ -118,7 +118,7 @@ view model =
         , Html.div [] [treePlot2 cssTree 1 convertedTree]
         , Html.h3 [Html.Attributes.style "fontSize" "16px"] 
             [Html.text "The Tree Diagramm / Tree Hierarchy below shows the same data as the one above but a litter closer so you can explore in more detail."]
-        , Html.div [] [treePlot cssTree 1 convertedTree]
+        , Html.div [Html.Attributes.style "overflow" "scroll"] [treePlot cssTree 1 convertedTree]
         , Html.div [Html.Attributes.style "fontSize" "15px"] 
             [ Html.text "Hierarchy of publishers, genres and videogames (Child, Maybe Parent)" ]
         , Html.ul [Html.Attributes.style "fontSize" "10px"] <|
