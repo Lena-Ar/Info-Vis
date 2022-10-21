@@ -29,6 +29,8 @@ gamesSalesList listGame =
     List.map(\x -> csvString_to_data x) listGame
         |> List.concat
 
+
+--for all plots
 type alias GameSales =
     { game : String
     , genre : String
@@ -51,6 +53,23 @@ type PlotType
     = ParallelPlot
     | Scatterplot
     | TreeHierarchy
+
+--for Scatterplot
+type alias Point =
+    { pointGame : String
+    , pointNorthAmerica : Float
+    , pointEurope : Float
+    , pointJapan : Float
+    , pointRestOfWorld : Float
+    , pointGlobal : Float
+    }
+
+
+type alias XyData =
+    { xDescription : String
+    , yDescription : String
+    , data : List Point
+    }
 
 stringToPlotType : String -> PlotType
 stringToPlotType plotType = 
