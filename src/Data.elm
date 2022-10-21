@@ -71,6 +71,18 @@ type alias XyData =
     , data : List Point
     }
 
+--for ParallelPlot
+type alias MultiDimPoint =
+    { pointName : String
+    , pointPublisher : String
+    , value : List Float }
+
+
+type alias MultiDimData =
+    { dimDescription : List String
+    , data : List (List MultiDimPoint)
+    }
+    
 stringToPlotType : String -> PlotType
 stringToPlotType plotType = 
     case plotType of
