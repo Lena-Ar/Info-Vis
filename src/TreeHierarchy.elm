@@ -16,6 +16,7 @@ import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Tran
 import Color
 import TreeLayout
 import Tree exposing (Tree)
+import Data exposing (Model, NodeValues)
 
 main : Program () Model Msg
 main =
@@ -26,9 +27,10 @@ main =
         , subscriptions = \m -> Sub.none
         }
 
+{--
 type alias Model =
     { tree : Tree String, errorMsg : String }
-
+--}
 
 init : () -> ( Model, Cmd Msg )
 init () =
@@ -310,6 +312,7 @@ treePlot2 css minDist tree =
             (List.map (point xScaleLocal yScaleLocal) nodeValues)
         ]
 
+{--
 --list of floats for values of child and parent x and y and label as string
 type alias NodeValues =
     { childx : Float
@@ -318,7 +321,7 @@ type alias NodeValues =
     , parenty : Float
     , label : String
     }
-
+--}
 --for drawing line
 line scaleX scaleY xyPoint =
     g
