@@ -20,7 +20,7 @@ import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
 import Html exposing (button)
-import Data
+import Data exposing (MultiDimData, MultiDimPoint, GameSales, RegionType, regionTypeToAxisAnnotation)
 {--
 main : Program () Model Msg
 main =
@@ -126,6 +126,7 @@ type Model
 --updated with swap as Swap CustomType
 --, swap : Swap
 --}
+{--
 --exercise 6.1
 type alias MultiDimPoint =
     { pointName : String
@@ -137,6 +138,7 @@ type alias MultiDimData =
     { dimDescription : List String
     , data : List (List MultiDimPoint)
     }
+    --}
 {--
 type AxisType
     = NorthAmerica
@@ -272,13 +274,13 @@ helpMapBig apply a b c d e =
 
 -- based on https://ellie-app.com/hCYJdyzzB7wa1 (my code for exercise 6) --
 -- basically the same as in Scatterplot, but with rewrite of assignment and reducement because of no XyData here--
-assignmentAndReduce : List Data.GameSales -> List Data.GameSales
+assignmentAndReduce : List GameSales -> List GameSales
 assignmentAndReduce game =
     let
-       assignment : Data.GameSales -> Maybe Data.GameSales
+       assignment : GameSales -> Maybe GameSales
        assignment assign = 
             helpMapBig
-                (Data.GameSales assign.game assign.publisher assign.genre)
+                (GameSales assign.game assign.publisher assign.genre)
                 (Just assign.northAmerica)
                 (Just assign.europe)
                 (Just assign.japan)
@@ -543,13 +545,13 @@ number_games_genre =
                 --same reason for parenthesis around (a1 data) etc
                 --still not applied
 -- now can use RegionType when having a conversion from RegionType to needed (GameSales -> Float) to get Floats for MultiDimData
-multiDimenData : List Data.GameSales -> Data.RegionType -> Data.RegionType -> Data.RegionType -> Data.RegionType -> Data.RegionType -> (Data.GameSales -> String) -> (Data.GameSales -> String) -> String -> String -> String -> String -> String -> MultiDimData
+multiDimenData : List GameSales -> RegionType -> RegionType -> RegionType -> RegionType -> RegionType -> (GameSales -> String) -> (GameSales -> String) -> String -> String -> String -> String -> String -> MultiDimData
 multiDimenData game a1 a2 a3 a4 a5 name pub na1 na2 na3 na4 na5=
     MultiDimData [na1, na2, na3, na4, na5]
     --[Data.regionTypeToString Data.NorthAmerica, Data.regionTypeToString Data.Europe, Data.regionTypeToString Data.Japan, Data.regionTypeToString Data.RestOfWorld, Data.regionTypeToString Data.Global]
         [ List.map
             (\data ->
-                [  (Data.regionTypeToAxisAnnotation a1 data) , (Data.regionTypeToAxisAnnotation a2 data), (Data.regionTypeToAxisAnnotation a3 data), (Data.regionTypeToAxisAnnotation a4 data), (Data.regionTypeToAxisAnnotation a5 data) ]
+                [  (regionTypeToAxisAnnotation a1 data) , (regionTypeToAxisAnnotation a2 data), (regionTypeToAxisAnnotation a3 data), (regionTypeToAxisAnnotation a4 data), (regionTypeToAxisAnnotation a5 data) ]
                     |> MultiDimPoint (name data) (pub data)
             )
             game
