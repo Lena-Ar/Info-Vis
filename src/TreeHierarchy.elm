@@ -113,10 +113,10 @@ view model =
             , Html.text "You as a publisher or stakeholder can remind which genres you offer and which games are of what genre. Of course you can also see and compare what competitors offer."]
         , Html.h3 [Html.Attributes.style "fontSize" "16px"] 
             [Html.text "In the Tree Diagramm / Tree Hierarchy below you can get an overview over the data."]
-        , Html.div [] [treePlot2 1 convertedTree]
+        , Html.div [] [treePlot2 cssTree 1 convertedTree]
         , Html.h3 [Html.Attributes.style "fontSize" "16px"] 
             [Html.text "The Tree Diagramm / Tree Hierarchy below shows the same data as the one above but a litter closer so you can explore in more detail."]
-        , Html.div [] [treePlot 1 convertedTree]
+        , Html.div [] [treePlot cssTree 1 convertedTree]
         , Html.div [Html.Attributes.style "fontSize" "15px"] 
             [ Html.text "Hierarchy of publishers, genres and videogames (Child, Maybe Parent)" ]
         , Html.ul [Html.Attributes.style "fontSize" "10px"] <|
@@ -154,8 +154,8 @@ view model =
 
 
 --plotting tree
-treePlot : Float -> List ( String, Maybe String ) -> Svg msg
-treePlot minDist tree =
+treePlot : String -> Float -> List ( String, Maybe String ) -> Svg msg
+treePlot css minDist tree =
     let
         --computing layout
         layout : Dict.Dict String { x : Float, y : Float }
@@ -218,13 +218,7 @@ treePlot minDist tree =
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 180, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
         [ TypedSvg.style []
-            [ TypedSvg.Core.text """
-            .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
-            .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
-            .point text { display: none; }
-            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgba(0, 204, 0,1); }
-            .point:hover text { display: inline; }
-          """ ]
+            [ TypedSvg.Core.text css ]
         , g
             [ transform [ Translate padding padding ] ]
             (List.map (line xScaleLocal yScaleLocal) nodeValuesPath)
@@ -233,8 +227,18 @@ treePlot minDist tree =
             (List.map (point xScaleLocal yScaleLocal) nodeValues)
         ]
 
-treePlot2 : Float -> List ( String, Maybe String ) -> Svg msg
-treePlot2 minDist tree =
+cssTree : String
+cssTree = 
+    """
+    .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
+    .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
+    .point text { display: none; }
+    .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgba(0, 204, 0,1); }
+    .point:hover text { display: inline; }
+    """
+
+treePlot2 : String -> Float -> List ( String, Maybe String ) -> Svg msg
+treePlot2 css minDist tree =
     let
         --computing layout
         layout : Dict.Dict String { x : Float, y : Float }
@@ -297,13 +301,7 @@ treePlot2 minDist tree =
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
         [ TypedSvg.style []
-            [ TypedSvg.Core.text """
-            .point circle { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
-            .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
-            .point text { display: none; }
-            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgba(0, 204, 0,1); }
-            .point:hover text { display: inline; }
-          """ ]
+            [ TypedSvg.Core.text css ]
         , g
             [ transform [ Translate padding padding ] ]
             (List.map (line xScaleLocal yScaleLocal) nodeValuesPath)
