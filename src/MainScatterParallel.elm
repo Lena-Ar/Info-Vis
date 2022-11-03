@@ -417,19 +417,43 @@ view model =
                             ]
                         ]
                 Data.TreeHierarchy -> 
-                    Html.div [Html.Attributes.style "padding" "10px"]
-                        [ Html.h1 [Html.Attributes.style "fontSize" "40px"]
-                            [Html.text ("General overview of Video Games, Genres and Publishers for XBox One")]
-                        , Html.h4 [Html.Attributes.style "fontSize" "15px"]
-                            [ buttonPlot
-                            , Html.text ("  Please choose which plot you would like to see.")
-                            , Html.br [][]
-                            , Html.text ("Don't worry, your settings for genre will stay selected.")]
-                        , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
-                            [ Html.text ("Tree Diagram/Tree Hierarchy of Video Games for XBox One") ]
-                        , Html.h4 [Html.Attributes.style "fontSize" "16px"] 
-                            [ Html.text ("If you want to display the Tree Diagram/Tree Hierarchy you saw in the beginning, you can ")
-                            , Html.a [href "TreeHierarchy.elm"] [Html.text "click here!"]]
+                    Html.div [Html.Attributes.style "padding" "10px", Html.Attributes.style "background" "rgba(0, 0, 0, 0.009)"]
+                        [ Html.div [Html.Attributes.style "text-align" "center", Html.Attributes.style "margin" "auto", Html.Attributes.style "color" "rgba(46, 78, 23,1)"]
+                            [ Html.h1 [Html.Attributes.style "fontSize" "40px"]
+                                [Html.text ("General overview of Video Games, Genres and Publishers for XBox One")]
+                            ]
+                            , Html.div [Html.Attributes.style "margin" "2% 1% 2% 1%"
+                                    , Html.Attributes.style "padding" "5px 10px 5px 10px"
+                                    , Html.Attributes.style "border-style" "double"
+                                    , Html.Attributes.style "border-radius" "25px"
+                                    , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.7)"
+                                    , Html.Attributes.style "background" "rgba(75, 128, 36,0.08)"
+                                    , Html.Attributes.style "fontSize" "16px"]
+                                [ Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                                    [ Html.text ("Please choose which plot you would like to see.")
+                                    , Html.p []
+                                        [buttonPlot]
+                                    , Html.text ("Don't worry, your settings for genre will stay selected.")]
+                                ]
+                                , Html.div [Html.Attributes.style "margin" "auto"
+                                    , Html.Attributes.style "background" "rgba(0, 0, 0, 0.02)"
+                                    , Html.Attributes.style "border-style" "solid"
+                                    , Html.Attributes.style "border-width" "0.2px"
+                                    , Html.Attributes.style "border-radius" "10px"
+                                    , Html.Attributes.style "border-color" "rgba(0, 0, 0, 0.05)"
+                                    ] 
+                                    [ Html.div [Html.Attributes.style "padding" "5px 10px 5px 10px"]
+                                        [ Html.h1 [Html.Attributes.style "fontSize" "30px"] 
+                                            [ Html.text ("Tree Diagram/Tree Hierarchy of Video Games for XBox One") ]
+                                        ]
+                                    , Html.div [Html.Attributes.style "padding" "5px 10px 5px 10px"]
+                                        [ Html.h4 [Html.Attributes.style "fontSize" "16px"] 
+                                        [ Html.text ("If you want to display the Tree Diagram/Tree Hierarchy you saw in the beginning, you can ")
+                                        , Html.a [href "TreeHierarchy.elm", Html.Attributes.style "color" "rgba(153, 17, 17, 1)"] 
+                                            [Html.text "click here!"]
+                                        ]
+                                        ]
+                                ]
                         ]
 
 buttonGenreType : Html Msg
