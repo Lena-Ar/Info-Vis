@@ -208,7 +208,7 @@ view model =
                                     , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.7)"
                                     , Html.Attributes.style "background" "rgba(75, 128, 36,0.08)"
                                     , Html.Attributes.style "fontSize" "16px"]
-                            [ Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                            [ Html.h4 []
                                 [ Html.text ("Please choose which plot you would like to see.")
                                 , Html.p []
                                     [buttonPlot]
@@ -238,7 +238,7 @@ view model =
                                             , Html.Attributes.style "border-radius" "10px"
                                             , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.2)"
                                             , Html.Attributes.style "border-width" "1px"
-                                            , Html.Attributes.style "background" "rgba(75, 128, 36,0.05)"
+                                            , Html.Attributes.style "background" "rgba(75, 128, 36,0.035)"
                                             ]
                                     [Html.h4 [Html.Attributes.style "fontSize" "16px"]
                                         [ Html.text ("Please choose the genre you want to display with the button below.") ]
@@ -352,7 +352,7 @@ view model =
                                     , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.7)"
                                     , Html.Attributes.style "background" "rgba(75, 128, 36,0.08)"
                                     , Html.Attributes.style "fontSize" "16px"]
-                            [Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                            [Html.h4 []
                                 [ Html.text ("Please choose which plot you would like to see.")
                                 , Html.p []
                                     [buttonPlot]
@@ -381,7 +381,7 @@ view model =
                                             , Html.Attributes.style "border-radius" "10px"
                                             , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.2)"
                                             , Html.Attributes.style "border-width" "1px"
-                                            , Html.Attributes.style "background" "rgba(75, 128, 36,0.05)"
+                                            , Html.Attributes.style "background" "rgba(75, 128, 36,0.035)"
                                             ]
                                     [ Html.h4 [Html.Attributes.style "fontSize" "16px"]
                                         [ Html.text ("Please choose the genre you want to display with the button below.") ]
@@ -429,7 +429,7 @@ view model =
                                     , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.7)"
                                     , Html.Attributes.style "background" "rgba(75, 128, 36,0.08)"
                                     , Html.Attributes.style "fontSize" "16px"]
-                                [ Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                                [ Html.h4 []
                                     [ Html.text ("Please choose which plot you would like to see.")
                                     , Html.p []
                                         [buttonPlot]
