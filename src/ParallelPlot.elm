@@ -643,7 +643,7 @@ scatterplotParallel css w ar model =
             , TypedSvg.Attributes.width <| TypedSvg.Types.Px (w + 2 * padding - 1)
             , TypedSvg.Attributes.height <| TypedSvg.Types.Px (h + 2 * padding - 1)
             , TypedSvg.Attributes.fill <| Paint <| Color.white
-            , stroke <| Paint <| Color.grey
+            , stroke <| Paint <| Color.white
             , strokeWidth <| Px 0.5
             ]
             []
