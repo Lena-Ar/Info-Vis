@@ -236,9 +236,9 @@ view model =
                                 , Html.div [ Html.Attributes.style "padding" "5px 10px 5px 10px"
                                             , Html.Attributes.style "border-style" "dotted"
                                             , Html.Attributes.style "border-radius" "10px"
-                                            , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.1)"
+                                            , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.2)"
                                             , Html.Attributes.style "border-width" "1px"
-                                            , Html.Attributes.style "background" "rgba(75, 128, 36,0.02)"
+                                            , Html.Attributes.style "background" "rgba(75, 128, 36,0.05)"
                                             ]
                                     [Html.h4 [Html.Attributes.style "fontSize" "16px"]
                                         [ Html.text ("Please choose the genre you want to display with the button below.") ]
@@ -253,7 +253,9 @@ view model =
                                             , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.1)"
                                             , Html.Attributes.style "border-width" "1px"
                                             , Html.Attributes.style "background" "rgba(75, 128, 36,0.02)"]
-                                    [ Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                                    [ Html.p [Html.Attributes.style "fontSize" "13px"]
+                                        [Html.text ("Hint: All axes can be adjusted to your needs by seleceting the needed regions for each axis with the buttons below.")]
+                                    , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                                         [ Html.text ("Please choose the region you want to display on the first axis with the adjacent buttons: ")
                                             , buttonAxis1
                                 {--
@@ -312,7 +314,9 @@ view model =
                             ]
                         , Html.p [Html.Attributes.style "fontSize" "15px", Html.Attributes.style "color" "rgba(0, 0, 0, 0.57)"] 
                             [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
-                            , Html.a [href "TreeHierarchy.elm", target "_blank", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"] [Html.text "take you back and open another tab!"]]
+                            , Html.a [href "TreeHierarchy.elm", target "_blank", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"] 
+                                [Html.text "take you back and open another tab!"]
+                            ]
                         ]
                 Data.Scatterplot ->
                     let
@@ -336,43 +340,81 @@ view model =
                         valuesY = 
                             Scatterplot.regionFilter gameSalesDataFiltered fullText.yaxis
                     in
-                    Html.div [Html.Attributes.style "padding" "10px"]
-                        [Html.h1 [Html.Attributes.style "fontSize" "40px"]
-                            [Html.text ("Detailed information on Video Games Sales for XBox One")]
-                        , Html.h4 [Html.Attributes.style "fontSize" "15px"]
-                            [ buttonPlot
-                            , Html.text ("  Please choose which plot you would like to see.")
-                            , Html.br [][]
-                            , Html.text ("Don't worry, your settings for genre will stay selected.")]
-                --scatterplot
-                        , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
-                            [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
-                        , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
-                            [ Html.text ("This scatterplot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
-                        , Html.p [Html.Attributes.style "fontSize" "17px"]
-                            [Html.text ("Hint: The x-axis and y-axis can be adjusted to your needs by seleceting the needed regions for each axis with the buttons below.")]
-                        , Html.p [Html.Attributes.style "fontSize" "15px"]
-                            [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)
-                            , Html.br [] []
-                            , Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_clearedGames)
+                    Html.div [Html.Attributes.style "padding" "10px", Html.Attributes.style "background" "rgba(0, 0, 0, 0.009)"]
+                        [ Html.div [Html.Attributes.style "text-align" "center", Html.Attributes.style "margin" "auto", Html.Attributes.style "color" "rgba(46, 78, 23,1)"]
+                            [Html.h1 [Html.Attributes.style "fontSize" "40px"]
+                                [Html.text ("Detailed information on Video Games Sales for XBox One")]
                             ]
-                        , Html.h4 [Html.Attributes.style "fontSize" "16px"]
-                            [ Html.text ("Please choose the genre you want to display with the button below.") ]
-                        , Html.p [Html.Attributes.style "padding" "10px"]
-                            [ buttonGenreType ]
-                        , Html.p [Html.Attributes.style "fontSize" "15px"]
-                            [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre) ]
-                        , Html.h4 [Html.Attributes.style "fontSize" "16px"]
-                            [ Html.text ("Please choose the region you want to display on the xaxis first (on the left) and the one you want to display on the yaxis second (on the right).")]
-                        , Html.p [Html.Attributes.style "padding" "10px"]
-                            [ buttonRegionTypeX
-                            , buttonRegionTypeY ]
-                        , Html.h2 [Html.Attributes.style "fontSize" "20px"]
-                            [Html.text ("Scatterplot for " ++ fullText.genre ++ " with " ++ (Data.regionTypeToString fullText.xaxis) ++ " as x-axis and " ++ (Data.regionTypeToString fullText.yaxis) ++ " as y-axis.")]
-                        , Scatterplot.scatterplot Scatterplot.cssPoint gameSalesDataCleared valuesX valuesY (Data.regionTypeToString fullText.xaxis) (Data.regionTypeToString fullText.yaxis)
-                        , Html.p [Html.Attributes.style "fontSize" "15px"] 
+                        , Html.div [Html.Attributes.style "margin" "2% 1% 2% 1%"
+                                    , Html.Attributes.style "padding" "5px 10px 5px 10px"
+                                    , Html.Attributes.style "border-style" "double"
+                                    , Html.Attributes.style "border-radius" "25px"
+                                    , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.7)"
+                                    , Html.Attributes.style "background" "rgba(75, 128, 36,0.08)"
+                                    , Html.Attributes.style "fontSize" "16px"]
+                            [Html.h4 [Html.Attributes.style "fontSize" "15px"]
+                                [ Html.text ("Please choose which plot you would like to see.")
+                                , Html.p []
+                                    [buttonPlot]
+                                , Html.text ("Don't worry, your settings for genre will stay selected.")]
+                            ]
+                --scatterplot
+                        , Html.div [Html.Attributes.style "margin" "auto"
+                                    , Html.Attributes.style "background" "rgba(0, 0, 0, 0.02)"
+                                    , Html.Attributes.style "border-style" "solid"
+                                    , Html.Attributes.style "border-width" "0.2px"
+                                    , Html.Attributes.style "border-radius" "10px"
+                                    , Html.Attributes.style "border-color" "rgba(0, 0, 0, 0.05)"
+                                    ]
+                            [ Html.div [Html.Attributes.style "padding" "5px 10px 5px 10px"]
+                                [ Html.h1 [Html.Attributes.style "fontSize" "30px", Html.Attributes.style "color" "rgba(75, 128, 36, 1)", Html.Attributes.style "text-align" "center"] 
+                                    [ Html.text ("Scatterplot of Video Game Sales for XBox One") ]
+                                , Html.p [Html.Attributes.style "fontSize" "18px", Html.Attributes.style "text-align" "center"] 
+                                    [ Html.text ("This scatterplot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
+                                , Html.p [Html.Attributes.style "fontSize" "15px"]
+                                    [ Html.text ("Number of all games across all genres: " ++ String.fromInt number_games)
+                                    , Html.br [] []
+                                    , Html.text ("Number of all games across all genres cleared by potential Null-values: " ++ String.fromInt number_clearedGames)
+                                    ]
+                                , Html.div [ Html.Attributes.style "padding" "5px 10px 5px 10px"
+                                            , Html.Attributes.style "border-style" "dotted"
+                                            , Html.Attributes.style "border-radius" "10px"
+                                            , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.2)"
+                                            , Html.Attributes.style "border-width" "1px"
+                                            , Html.Attributes.style "background" "rgba(75, 128, 36,0.05)"
+                                            ]
+                                    [ Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                                        [ Html.text ("Please choose the genre you want to display with the button below.") ]
+                                    , Html.p [Html.Attributes.style "padding" "10px"]
+                                        [ buttonGenreType ]
+                                    , Html.p [Html.Attributes.style "fontSize" "15px"]
+                                        [ Html.text ("Number of games in selected genre: " ++ String.fromInt number_games_genre) ]
+                                    ]
+                                , Html.div [Html.Attributes.style "padding" "5px 10px 5px 10px"
+                                            , Html.Attributes.style "border-style" "dotted"
+                                            , Html.Attributes.style "border-radius" "10px"
+                                            , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.1)"
+                                            , Html.Attributes.style "border-width" "1px"
+                                            , Html.Attributes.style "background" "rgba(75, 128, 36,0.02)"]
+                                    [ Html.p [Html.Attributes.style "fontSize" "13px"]
+                                        [Html.text ("Hint: The x-axis and y-axis can be adjusted to your needs by seleceting the needed regions for each axis with the buttons below.")]
+                                    , Html.h4 [Html.Attributes.style "fontSize" "16px"]
+                                        [ Html.text ("Please choose the region you want to display on the xaxis first (on the left) and the one you want to display on the yaxis second (on the right).")]
+                                    , Html.p [Html.Attributes.style "padding" "10px"]
+                                        [ buttonRegionTypeX
+                                        , buttonRegionTypeY ]
+                                    , Html.h2 [Html.Attributes.style "fontSize" "20px", Html.Attributes.style "padding" "5px 5px 10px 10px", Html.Attributes.style "text-align" "center", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"]
+                                        [Html.text ("Scatterplot for " ++ fullText.genre ++ " with " ++ (Data.regionTypeToString fullText.xaxis) ++ " as x-axis and " ++ (Data.regionTypeToString fullText.yaxis) ++ " as y-axis.")]
+                                    , Html.div [Html.Attributes.style "padding" "5px"]
+                                        [Scatterplot.scatterplot Scatterplot.cssPoint gameSalesDataCleared valuesX valuesY (Data.regionTypeToString fullText.xaxis) (Data.regionTypeToString fullText.yaxis)]
+                                    ]
+                                ]
+                            ]
+                        , Html.p [Html.Attributes.style "fontSize" "15px", Html.Attributes.style "color" "rgba(0, 0, 0, 0.57)"] 
                             [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
-                            , Html.a [href "TreeHierarchy.elm", target "_blank"] [Html.text "take you back and open another tab!"]]
+                            , Html.a [href "TreeHierarchy.elm", target "_blank", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"] 
+                                [Html.text "take you back and open another tab!"]
+                            ]
                         ]
                 Data.TreeHierarchy -> 
                     Html.div [Html.Attributes.style "padding" "10px"]
