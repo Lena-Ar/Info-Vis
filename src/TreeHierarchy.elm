@@ -98,27 +98,49 @@ view model =
         layoutTree =
             TreeLayout.treeLayout 2 convertedTree
     in
-    div [Html.Attributes.style "padding" "10px" ]
-        [ Html.h1 [Html.Attributes.style "fontSize" "40px"] 
-            [Html.text "Visualization of a market analysis for Video Games Sales on XBox One"]
-        , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
-            [Html.text "Created for course 'Information Retrieval and Visualization' at Uni Halle"]
-        , Html.p [Html.Attributes.style "fontSize" "15px"] 
-            [Html.text "By clicking on the link below, you can go to more detailed visualizations of the Video Games Sales data to retrieve insights in sales data."]
-        , Html.p [Html.Attributes.style "fontSize" "16px"]
-            [Html.a [href "MainScatterParallel.elm"] [Html.text "Detailed Plots"]]
-        , Html.h1 [Html.Attributes.style "fontSize" "30px"] 
-            [Html.text "Tree Diagramm / Tree Hierarchy for Video Games"]
-        , Html.p [Html.Attributes.style "fontSize" "15px"] 
-            [Html.text "In this hierarchy, you can see all video games, genres and publishers of the dataset. You can see all publishers and for each which genres they offer. Furthermore you can see the games of each publisher assigned beneath their corresponding genre."
-            , Html.br [] []
-            , Html.text "You as a publisher or stakeholder can remind which genres you offer and which games are of what genre. Of course you can also see and compare what competitors offer."]
-        , Html.h3 [Html.Attributes.style "fontSize" "16px"] 
-            [Html.text "In the Tree Diagramm / Tree Hierarchy below you can get an overview over the data."]
-        , Html.div [] [treePlot2 cssTree 1 convertedTree]
-        , Html.h3 [Html.Attributes.style "fontSize" "16px"] 
-            [Html.text "The Tree Diagramm / Tree Hierarchy below shows the same data as the one above but a litter closer so you can explore in more detail."]
-        , Html.div [Html.Attributes.style "overflow" "scroll"] [treePlot cssTree 1 convertedTree]
+    div [ Html.Attributes.style "padding" "10px", Html.Attributes.style "background" "rgba(0, 0, 0, 0.009)"]
+        [ Html.div [Html.Attributes.style "text-align" "center", Html.Attributes.style "margin" "auto", Html.Attributes.style "color" "rgba(46, 78, 23,1)"] 
+            [ Html.h1 [Html.Attributes.style "fontSize" "40px"] 
+                [Html.text "Visualization of a market analysis for Video Games Sales on XBox One"]
+            , Html.h2 [Html.Attributes.style "fontSize" "20px"] 
+                [Html.text "Created for course 'Information Retrieval and Visualization' at Uni Halle"]
+            ]
+        , Html.div [ Html.Attributes.style "margin" "2% 1% 2% 1%"
+                    , Html.Attributes.style "padding" "5px 10px 5px 10px"
+                    , Html.Attributes.style "border-style" "double"
+                    , Html.Attributes.style "border-radius" "25px"
+                    , Html.Attributes.style "border-color" "rgba(46, 78, 23,0.7)"
+                    , Html.Attributes.style "background" "rgba(75, 128, 36,0.08)"
+                    , Html.Attributes.style "fontSize" "16px"
+                    ]
+            [ Html.p [] 
+                [Html.text "By clicking on the link below, you can go to more detailed visualizations of the Video Games Sales data to retrieve insights in sales data."]
+            , Html.p []
+                [Html.a [href "MainScatterParallel.elm", Html.Attributes.style "color" "rgba(153, 17, 17, 1)"] 
+                    [Html.text "Detailed Plots"]
+                ]
+            ]
+        , Html.div [ Html.Attributes.style "margin" "auto"
+                    , Html.Attributes.style "background" "rgba(0, 0, 0, 0.02)"
+                    , Html.Attributes.style "border-style" "solid"
+                    , Html.Attributes.style "border-width" "0.2px"
+                    , Html.Attributes.style "border-radius" "25px"
+                    , Html.Attributes.style "border-color" "rgba(0, 0, 0, 0.05)"]
+            [ Html.div [Html.Attributes.style "padding" "5px 10px 5px 10px"]
+                [ Html.h1 [Html.Attributes.style "fontSize" "30px", Html.Attributes.style "color" "rgba(75, 128, 36, 1)", Html.Attributes.style "text-align" "center"] 
+                    [Html.text "Tree Diagramm / Tree Hierarchy for Video Games"]
+                , Html.p [Html.Attributes.style "fontSize" "15px"] 
+                    [Html.text "In this hierarchy, you can see all video games, genres and publishers of the dataset. You can see all publishers and for each which genres they offer. Furthermore you can see the games of each publisher assigned beneath their corresponding genre."
+                    , Html.br [] []
+                    , Html.text "You as a publisher or stakeholder can remind which genres you offer and which games are of what genre. Of course you can also see and compare what competitors offer."]
+                ]
+            , Html.h3 [Html.Attributes.style "fontSize" "16px", Html.Attributes.style "padding" "5px 5px 10px 10px", Html.Attributes.style "text-align" "center", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"] 
+                [Html.text "In the Tree Diagramm / Tree Hierarchy below you can get an overview over the data."]
+            , Html.div [] [treePlot2 cssTree 1 convertedTree]
+            , Html.h3 [Html.Attributes.style "fontSize" "16px", Html.Attributes.style "padding" "5px 5px 10px 10px", Html.Attributes.style "text-align" "center", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"] 
+                [Html.text "The Tree Diagramm / Tree Hierarchy below shows the same data as the one above but a litter closer so you can explore in more detail."]
+            , Html.div [Html.Attributes.style "overflow" "scroll"] [treePlot cssTree 1 convertedTree]
+            ]
         , Html.div [Html.Attributes.style "fontSize" "15px"] 
             [ Html.text "Hierarchy of publishers, genres and videogames (Child, Maybe Parent)" ]
         , Html.ul [Html.Attributes.style "fontSize" "10px"] <|
