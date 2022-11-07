@@ -431,9 +431,18 @@ Interaktion Verknüpfung 2 & 3: Auswahl der Plots mit Dropdown -> wenn Plot gewe
 Im foglenden Kapitel wird die Implementierung der zuvor beschriebenen Visualisierungen und Interaktionen beschrieben. Der Code wird durch Kommentare ergänzt, um eine Übersichtlichkeit und Erklärung zu einzelnen Funktionen zu ermöglichen.
 Der Code wird in fünf verschiedene Elm-Module unterteilt, um die vollen Möglichkeiten der Sprache zu nutzen, das Programm performanter zu machen und den Code für Außenstehende übersichtlicher zu gestalten.
 Es existiert je ein Modul für die drei einzelnen Visualisierungen (TreeHierarchy, ParallelPlot, Scatterplot), eines für Datenstrukturen (Data) und eines zur Zusammensetzung und Ausführung des Programms (MainScatterParallel). 
-Innerhalb der Module, insbesondere der Visualisierungsmodule, wird versucht, den Code einheitlich zu strukturieren. Hier werden zuerst kleinere Funktionen definiert, die im späteren Verlauf genutzt werden bis zuletzt allgemeine Einstellungen der Plots vorgenommen werden. 
-Über alle Module hinweg werden diverse Bibliotheken genutzt. 
+Innerhalb der Module, insbesondere der Visualisierungsmodule, wird versucht, den Code einheitlich zu strukturieren. 
+Hier werden zuerst kleinere Funktionen definiert, die im späteren Verlauf genutzt werden bis zuletzt allgemeine Einstellungen der Plots vorgenommen werden. 
 
+Über alle Module hinweg werden diverse Bibliotheken genutzt. Die Bilbliotheken \textit{elm/core} und \textit{elm/browser} werden nur für MainScatterParallel importiert. 
+\textit{elm/http} wird von MainScatterParallel, Data und TreeHierarchy verwendet, \textit{elm/html} von MainScatterParallel, TreeHierarchy und Scatterplot.
+Zur Decodierung von JSON-Dateien für TreeHierarchy wird die Bibliothek \textit{elm/json} in Data genutzt, für die Decodierung von CSV-Dateien für Scatterplot und ParallelPlot in Data \textit{lovasoa/elm-csv} und \textit{ericgj/elm-csv-decode}.
+Die Bibliothek \textit{elm-community/typed-svg} wird für das Zeichnen der Plots in Scatterplot, ParallelPlot und TreeHierarchy gebraucht ebenso wie die Bibliothek \textit{gampleman/elm-visualization}. 
+\textit{avh4/elm-color} wird nur in ParallelPlot und TreeHierarchy genutzt. 
+\textit{elm-community/list-extra} und \textit{folkertdev/one-true-path-experiment} sind nur für das Zeichnen des ParallelPlots wichtig.
+Zur Berechnung des Layouts von Bäumen wird \textit{wasdacraic/elm-tree-layout} in TreeHierarchy genutzt und \textit{zwilias/elm-rosetree} zum Speichern der Bäume in einer Datenstruktur in TreeHierarchy und Data importiert.
+           
+          
 \subsection{Data.elm}
 In diesem Modul sind nahezu alle verwendeten Datentypendeklarationen enthalten. Einzig der \textit{type Model} und \textit{type Msg} aus MainScatterParallel sind dort nicht vertreten. 
 Dies ist begründet in der sinkenden Überischtlichkeit und Verständlichkeit des Codes in MainScatterParallel, sollten eben genannte, recht umfangreiche Typen in Data deklariert sein und in MainScatterParallel referenziert werden müssen.
