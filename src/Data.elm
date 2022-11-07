@@ -3,6 +3,7 @@ module Data exposing (..)
 import Csv exposing (parse)
 import Csv.Decode exposing (..)
 import Tree exposing (Tree)
+import Http
 
 --Decoder
 decodeGameSales : Csv.Decode.Decoder (GameSales -> a) a
@@ -96,6 +97,9 @@ type alias NodeValues =
 
 type alias Model =
     { tree : Tree String, errorMsg : String }
+
+type Msg
+    = GotFlare (Result Http.Error (Tree String))
     
 stringToPlotType : String -> PlotType
 stringToPlotType plotType = 
