@@ -16,7 +16,7 @@ import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Tran
 import Color
 import TreeLayout
 import Tree exposing (Tree)
-import Data exposing (Model, NodeValues)
+import Data exposing (Model, NodeValues, Msg(..))
 
 main : Program () Model Msg
 main =
@@ -38,10 +38,10 @@ init () =
     , Http.get { url = "../Daten/JSON/XBoxOne_GamesSales_Projekt.json", expect = Http.expectJson GotFlare treeDecoder }
     )
 
-
+{--
 type Msg
     = GotFlare (Result Http.Error (Tree String))
-
+--}
 
 treeDecoder : Json.Decode.Decoder (Tree String)
 treeDecoder =
