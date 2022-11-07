@@ -2,10 +2,11 @@ module Data exposing (..)
 
 import Csv exposing (parse)
 import Csv.Decode exposing (..)
+import Json.Decode
 import Tree exposing (Tree)
 import Http
 
---Decoder
+--Decoder for CSV
 decodeGameSales : Csv.Decode.Decoder (GameSales -> a) a
 decodeGameSales =
     Csv.Decode.map GameSales
@@ -31,6 +32,25 @@ gamesSalesList listGame =
     List.map(\x -> csvString_to_data x) listGame
         |> List.concat
 
+--Decoder for JSON
+treeDecoder : Json.Decode.Decoder (Tree String)
+treeDecoder =
+    Json.Decode.map2
+        (\name children ->
+            case children of
+                Nothing ->
+                    Tree.tree name []
+
+                Just c ->
+                    Tree.tree name c
+        )
+        (Json.Decode.field "data" (Json.Decode.field "id" Json.Decode.string))
+        (Json.Decode.maybe <|
+            Json.Decode.field "children" <|
+                Json.Decode.list <|
+                    Json.Decode.lazy
+                        (\_ -> treeDecoder)
+        )
 
 --for all plots
 type alias GameSales =
