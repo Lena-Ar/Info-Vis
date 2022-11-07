@@ -280,6 +280,7 @@ Trotzdem kann der Baum durch seine Nutzung der Hierarchie, also Abbbildung der n
 Entsprechende visuelle Variablen werden als sehr effektive Abbildungsmethodik für nominale Daten eingestuft. Expressiv und damit ohne viele Erklärungen und Missverständnisse ist diese Technik zudem. %evtl Bibliografie
 Jedoch leidet die Expressivität etwas unter der Menge an Knoten und damit der Größe des Baumes.
 Auch angemessen ist eine Visualsierung als explizites Baumdiagramm, da es wenig Ressourcen fordert. 
+%Farben + Text
 
 Es gibt verschiedene Alternativen zu dieser Darstellung bestehend aus impliziten Baumdiagrammen, radialen Baumdarstellungen und hyperbolischen Bäumen. 
 Implizite Baumdarstellungen können ebenso wie explizite die Hierarchien zwischen Eltern- und Kind-Knoten darstellen. 
@@ -313,6 +314,7 @@ Zusätzlich können leicht Cluster erkannt werden, wenn bestimmte Videospiele, b
 Die konkreten Zahlen sind anhand der Achsenbeschriftung zumindest ungefähr ablesbar, jedoch überwiegt wie gewünscht das visuelle Erkennen und Vergleichen. Aus der Anforderung nach einer Vergleichbarkeit mit zumindest groben Datenwerten leitet sich zudem ab, dass keine Techniken der Datentinte verwendet werden.
 Dies wird vor allem durch dieselben Einheiten jeder parallelen Achse, der Vergleichbarkeit dieser dadurch und damit der intuitiven Einordnung von \textit{hoch} und \textit{niedrig} entlang der Achsen möglich.
 
+%Farben + Opacity
 Auch zu den parallelen Koordinaten gibt es Alternativen. 
 Eine dieser Alternativen sind die Stickfigure Plots. Sie werden jedoch als weniger gut im Vergleich zu den parallelen Koordinaten eingeschätzt.
 %Grund
@@ -340,6 +342,7 @@ Die eher klassische Darstellung als Punkte erleichtert das Erkennen von Punktwol
 Weiterhin ist diese Darstellungsweise allgemein bekannt, sodass eine schnelle Analyse einzelner Wertpaare, aber auch Korrelationen und Ausreißer möglich ist. Dadurch und durch die oben genannten Aspekte ist die Effektivität gegeben. 
 Auch expressiv ist diese Visualisierung, da die Darstellung der Datenpunkte als Kreise auch ohne Legende schnell erkannt wird. Durch die Einblendung der exakten Werte beim Hovern wird eine mögliche Verwirrung durch Überlagerung verschiedener Symbole, Farben oder Größen der Punkte verhindert. 
 Dank der Filterung in Genre und der recht unkomplizierten Darstellung ist auch die Angemessenheit gegeben. Wie in allen drei Visualisierungen gilt hier auch die Angemessenheit durch Effektivität. 
+%Farben + Opacity
 
 Alternativ bestehen in diesem Kontext vor allem drei weitere Visualisierungsmöglichkeiten. Diese sind Q- & QQ-Plots, Histogramme und Korrelationstabellen. 
 QQ-Plots eignen sich zwar auch zur Darstellung von paarweisen Vergleichen und Entdeckung von Korrelationen und Ausreißern, jedoch sind sie weniger intuitiv, benötigen ein gewissen Vorwissen und sind nicht schnell erkennbar.
@@ -350,11 +353,93 @@ Eine weitere Alternative sind Korrelationstabellen.
 %Grund
 
 \subsection{Interaktion}
-Die präsentierten Visualisierungstechniken müssen interaktiv zu einer Anwendung verknüpft werden.
-Die Interaktion mit einer Visualisierung soll in den anderen Visualisierungen zu einer Änderung führen. 
-Erklären sie die möglichen Interaktionen mit den einzelnen Visualisierungen und die möglichen Verknüpfungen zwischen ihnen. Begründen Sie warum die konkreten Interaktionen umgesetzt wurden und welche Zwecke für die Anwenderinnen mit ihnen unterstützt werden. Begründen sie ebenfalls warum sie andere Interaktionsmöglichkeiten nicht umgesetzt haben. Wenn sie keine der geforderten Interaktionen umsetzen, erhalten Sie im gesamten Projekt deutlichen Punktabzug. 
+Interaktion in Visualisierung 1 Tree: Highlight Knoten + Anzeigen Beschriftung Hovern -> Übersicht, Details ohne zu Überfordern; Klick auf Link zu detaillierten Plots
+                                        Link zu detaillierten Plots (Grund: Übersicht zuerst & dann etwas getrennter den Rest)
+Interaktion in Visualisierung 2 Parallele Koordinaten: Auswahl der Regionen pro Achse -> kein Switchen, da durch so viele Möglichkeiten durch so viele Achsen unübersichtlich, aber trzd sowas sinnvol weil %Grund
+                                                        deshalb freie Auswahl sodass Anwender schneller und einfacher das auswählen kann was er sehen will ohne alles einmal durchzuswitchen
+                                                        highlight der Datenpunkte durch Farbe beim Hovern + ANzeigen Titel, Publisher, konkrete Werte beim Hovern
+Interaktion in Visualisierung 3 Scatterplot: Auswahl der x und y Achse mit Regionen, die verglichen werden sollen
+                                            highlight Datenpunkte durch Farbe + titel, publisher, konkrete werte beim hovern (einheitlich mit visualisierung 2)
+Interaktion Verknüpfung 2 & 3: Auswahl der Plots mit Dropdown -> wenn Plot gewechselt wird und dann wieder zurück, bleiben die Achseneinstellungen erhalten (Bei tree Text + Link)
+                                in jedem Plot Möglichkeit unten direkt zurücl zum Tree zu kommmen da dies ausgangsseite und Übersicht
+                                Auswahl Genre für jede Visualisierung möglich -> bei Klick auf anderen Plot wird diese auswahl auch dort gleich übernommen bzw führt dort zu einer Änderung durch filterung nach genre -> weniger einstellen, schnelleres Vergleichen
 
 \section{Implementierung}
+Im foglenden Kapitel wird die Implementierung der zuvor beschriebenen Visualisierungen und Interaktionen beschrieben. Der Code wird durch Kommentare ergänzt, um eine Übersichtlichkeit und Erklärung zu einzelnen Funktionen zu ermöglichen.
+Der Code wird in fünf verschiedene Elm-Module unterteilt, um die vollen Möglichkeiten der Sprache zu nutzen, das Programm performanter zu machen und den Code für Außenstehende übersichtlicher zu gestalten.
+Es existiert je ein Modul für die drei einzelnen Visualisierungen (TreeHierarchy, ParallelPlot, Scatterplot), eines für Datenstrukturen (Data) und eines zur Zusammensetzung und Ausführung des Programms (MainScatterParallel). 
+Innerhalb der Module, insbesondere der Visualisierungsmodule, wird versucht, den Code einheitlich zu strukturieren. Hier werden zuerst kleinere Funktionen definiert, die im späteren Verlauf genutzt werden bis zuletzt allgemeine Einstellungen der Plots vorgenommen werden. 
+Über alle Module hinweg werden diverse Bibliotheken genutzt. 
+
+\subsection{Data.elm}
+In diesem Modul sind nahezu alle verwendeten Datentypendeklarationen enthalten. Einzig der "type Model" und "type Msg" aus MainScatterParallel sind dort nicht vertreten. 
+Dies ist begründet in der sinkenden Überischtlichkeit und Verständlichkeit des Codes in MainScatterParallel, sollten eben genannte, recht umfangreiche Typen in Data deklariert sein und in MainScatterParallel referenziert werden müssen.
+In Data sind zunächst alle für dieses Modul benötigten Importe zu erkennen, bevor die Decodierung der CSV-Dateien mit den Funktionen "decodeGameSales", "csvString_to_data" und "gamesSalesList" geschieht. Hier werden die einzelnen Felder der CSV-Datei als String decodiert und dann in eine Liste vom Typ GameSales geschrieben.
+Darauf folgt die Decodierung der JSON-Datei mittels der Funktion "treeDecoder".
+Beide Decoder basieren auf denen für die Übungen sieben und neun verwendeten und wurden an die in diesem Projekt verwendeten Daten angepasst.
+Es folgt die Definition der Datentypendeklarationen, die für alle Visualisierungen außer die TreeHierarchy wichtig sind. In "type alias GameSales" sind die Daten aus der CSV-Datei gespeichert, welche dann im Model in MainScatterParallel weiterverwendet werden. 
+Die Deklarationen "type RegionType" und "type PlotType" als CustomType werden für die Auswahl der Achsen in Visualisierung zwei und drei sowie die Auswahl der anzuzeigenden Visualisierung benötigt. 
+Sie werden im "type Model" und im "type Msg" in MainScatterParallel, im "regionFilter" in Scatterplot und im "multiDimenData" in ParallelPlot verwendet. 
+Als nächstes werden die Datentypendeklarationen für den Scatterplot, den ParallelPlot und die TreeHierarchy definiert. Somit sind alle drei Visualisierungen modular zusammengesetzt.
+Zuletzt werden für die Anwendung mit Buttons wichtige Funktionen zur Datentypkonversion von einem String zu PlotType, String zu RegionType, RegionType zu String und String zu ein einem Tupel aus RegionType und String beschrieben. 
+Dies ist nicht nur zur Darstellung von Buttons, also der Implementierung von Interaktionen nötig, sondern auch zur beispielsweise korrekten Anzeige von aktuell ausgewählten Regionen.
+Weiterhin ist noch eine Konversion von einem RegionType zu einem Tupel aus GameSales und Float für die Funktion "multiDimenData" in ParallelPlot notwendig.
+
+\subsection{TreeHierarchy.elm}
+Im Modul TreeHierarchy werden wie immer in Elm die Importe definiert. Aus Data werden nur die für die Baumdarstellung benötigten Funktionen importiert. Danach folgt die Funktion "main", die die Bestandteile der Anwendung definiert. 
+
+Entsprechend dieser werden nun die Funktionen "init" und "update" beschrieben. Ersteres initialisiert die Anwendung und lädt die Daten unter Anwendung des Decoders für JSON-Dateien. 
+Im "update" wird deklariert, dass im Falle eines korrekten Ladens von Daten der neue Baum angezeigt wird, im Falle eines inkorrekten Ladens eine Error-Nachricht. 
+Es folgt eine Helferfunktionen "convert" zur Konvertierung des Baumes basierend auf den Vorgaben zu Übung neun.
+
+Die Funktionen "line" und "point" werden zum Zeichnen der Verbindungen von Eltern zu Kindknoten beziehungsweise zur Darstellung der Knoten an sich benötigt und in "treePlot" und "treePlot2" angewandt. 
+Sie definieren die Linie beziehungsweise den Knoten als Kreis mit Beschriftung mit einer Rotation von 75° und einer fett gedruckten Serifenschriftart.
+
+Als nächstes sind zwei Funktionen zum Zeichen des Baumes beschrieben. Zur Ansicht des Baumes ohne Scrollen als Übersicht wird "treePlot2" verwendet, zur näheren Ansicht des Baumes wird der "treePlot" verwendet. 
+Der einzige Unterschied zwischen den Plots ist die prozentuale Vergrößerung der global definierten Höhe und Breite um 200 bzw. 150 Prozent im SVG des "treePlot".
+Die Plots an sich sind stark basierend auf dem Code der Autorin zu Übung neun. Mittels lokaler Funktionen wird zunächst das Layout des Baumes berechnet, bevor lokal die Abhängigkeiten des Baumes berechnet werden, um die Pfade zwischen Eltern- und Kindknoten zeichnen zu können. 
+Dazu werden die X- und Y-Werte der Eltern- und Kindknoten mittels Dict.get herausgezogen. Weiterhin wird eine Verbindung des Wurzelknotens mit einem nicht existierenden Elternknoten durch die Funktionen "checkRootNegative" und "nodeValuesPath" verhindert.
+Zum Zeichnen der Verbindungen wird die zuvor beschriebene Funktion "line" genutzt, auf die die lokale Funktion "nodeValuesPath" angewandt wird. Für die Punkte wird "point" verwendet, auf das die lokale Funktion "nodeValues" angewandt wird. 
+Die Definition von Kreis-, Linien- und Textfarben, Umrandungen derselben und entsprechenden Änderungen beim Hovern mit der Maus wird im global definierten CSS "cssTree" vorgenommen. 
+
+In der "view"-Funktion wird zunächst lokal der konvertierte Baum sowie das Layout berechnet. In einem Html.div werden geschachtelt durch weitere divs Überschriften, Erklärungen, Links und Buttons zur Ausgabe implementiert. 
+Die Anordnung sowie der Designstil ist an MainScatterParallel angepasst. An den entsprechenden Stellen in der Abfolge der gewünschten Texte werden die beiden Baumhierarchien gezeichnet, wobei "treePlot" einen Balken zum horizontalen Scrollen erhält.
+
+Zuletzt werden global allgemeine konstante Einstellungen zum Plot definiert. Hierzu zählen Breite, Höhe, Innenabstand, Radius, Skalierungen, Default-Einstellungen sowie Einstellungen zum Bereich der Datenwerte.
+Diese Einstellungen basieren auf den Vorgaben in der Vorlage zum Arbeiten mit Bäumen aus Übung neun und sind auch in den Abgaben zu Übung neun der Autorin zu finden. 
+
+Die Implementierung der expliziten Baumhierarchie bereitete wenig Schwierigkeit, da sehr viel auf den abgegebenen Codes der Autorin zu Übung neun basiert. 
+Ledgilich der Decoder in Data musste an die Datenfelder angepasst, der Link zum Laden der Daten geändert sowie die besten Design- und Darstellungsweisen, inklusive der zweifachen Darstellung des Baumes, gefunden werden. 
+Weiterhin wurde das CSS global definiert, das allgemeine Design der darzustellenden Seite im "view" an jenes aus MainScatterParallel angepasst und Erklärungstexte für die Anwender hinzugefügt. 
+
+\subsection{ParallelPlot.elm}
+Im Modul ParallelPlot werden wieder zuerst die Importe definiert, wobei aus Data nur die für die Parallelen Koordinaten benötigten Funktionen importiert werden. 
+
+mapping & reduce
+multiDimenData
+scatterPlotParallel + css parallel
+
+Auch hier schließt die Implementierung mit den generellen Einstellungen für den Plot. Diese basieren auf den Abgaben der Autorin zu Übung sechs. 
+
+\subsection{Scatterplot.elm}
+Das Modul Scatterplot beginnt mit der Definition der Importe. Aus Data werden nur die für den Scatterplot benötigten Funktionen importiert. 
+
+mapping & reduce
+regionFilte
+point
+scatterplot + css scatter
+
+Als letztes werden allgemeine Einstellungen, die konstant für den Plot gelten sollen, global definiert. Diese basieren auf den Abgaben der Autorin zu Übung eins bis vier.
+
+\subsection{MainScatterParallel.elm}
+imports
+allgemeine Anwendung (main, init, subcritpions)
+type Model + Msg
+update
+filterGenre
+Buttons
+view
+
 Beschreiben Sie die Implementierung ihrer Visualisierungsanwendung in Elm. Stellen die Gliederung ihres Quellcodes vor. Haben Sie verschiedene Elm-Module erstellt. Was war aufwändig umzusetzen, was ließ sich mit dem vorhanden Code aus den Übungen relativ einfach umsetzen? 
 
 Wie sieht die Elm-Datenstruktur für das Model aus, in dem die verschiedenen Zustände der Interaktion gespeichert werden können.
