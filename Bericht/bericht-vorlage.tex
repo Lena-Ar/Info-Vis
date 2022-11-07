@@ -486,7 +486,16 @@ Weiterhin wurde das CSS global definiert, das allgemeine Design der darzustellen
 \subsection{ParallelPlot.elm}
 Im Modul ParallelPlot werden wieder zuerst die Importe definiert, wobei aus Data nur die für die Parallelen Koordinaten benötigten Funktionen importiert werden. 
 
-mapping & reduce
+Die folgenden drei Funktionen dienen dem Mapping und der Reduzierung der Datensätze um solche, die Null-Values enthalten. 
+Dies ist nach der manuellen Vorverarbeitung der Daten zwar nicht zwingend notwendig, jedoch werden somit mögliche Fehler in dieser berücksichtigt und entfernt. 
+Weiterhin ist der Code damit universeller einsetzbar, sollten andere Datengrundlagen genutzt werden wollen. 
+Die erste Funktion ist eine Hilfsfunktion, die mittels Maybe.map2 beim Pipen hilft. Sie basiert auf \textit{https://package.elm-lang.org/packages/elm/core/latest/Maybe#map2}
+Die zweite Hilfsfunktion basiert auf einer normalen Maybe.map5 Funktion, die um einen Parameter erweitert wird \textit{https://package.elm-lang.org/packages/elm/core/latest/Maybe#map5}. 
+Da es kein Maybe.map6 gibt, wird hier die vorherige Hilfsfunktion angewandt, um dieses Problem zu umgehen. 
+So kann transformiert werden wie es eine Maybe.map6 Funktion machen würde, wenn es sie gäbe.
+\textit{AssignmentAndReduce} wiederum mapped schließlich lokal mithilfe der \textit{helpMapBig} die Daten vom Typ GameSales zu Maybe GameSales und reduziert diese dann um die Datensätze mit fehlenden Werten mittels \textit{List.filterMap}.
+Diese Funktion basiert auf den Abgaben der Autorin zu Übung sechs.
+
 multiDimenData
 scatterPlotParallel + css parallel
 
@@ -495,8 +504,16 @@ Auch hier schließt die Implementierung mit den generellen Einstellungen für de
 \subsection{Scatterplot.elm}
 Das Modul Scatterplot beginnt mit der Definition der Importe. Aus Data werden nur die für den Scatterplot benötigten Funktionen importiert. 
 
-mapping & reduce
-regionFilte
+Folgende drei Funktionen verfolgen denselben Zweck wie im ParallelPlot.
+Die ersten beiden Funktionen sind dieselben wie im ParallelPlot.
+\textit{FilterAndReduceGames} ähnelt \textit{AssignmentAndReduce} stark, basiert aber auf den Abgaben der Autorin zu Übung 1.
+Hier werden die Daten zunächst auch mithilfe von \textit{helpMapBig} gemapped, jedoch vom Typ GameSales zum Typ Maybe Point. 
+Dieser wird später für die Funktion \textit{point} und diese für den Plot an sich benötigt.
+Weiterhin wird wieder mithilfe vom List.filterMap nach Null-Values gefiltert. 
+Die gemappten und gefilterten Daten in \textit{filter} werden dann unter anderem in XyData geschrieben, dass als Output der Funktion \textit{FilterAndReduceGames} definiert ist.
+XyData werden benötigt für das Zeichnen des Scatterplots, da sie unter anderem eine Liste Daten des Typs \textit{Point} enthalten.
+
+regionFilter
 point
 scatterplot + css scatter
 
