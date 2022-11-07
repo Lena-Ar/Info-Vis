@@ -16,7 +16,7 @@ import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Tran
 import Color
 import TreeLayout
 import Tree exposing (Tree)
-import Data exposing (Model, NodeValues, Msg(..))
+import Data exposing (Model, NodeValues, Msg(..), treeDecoder)
 
 main : Program () Model Msg
 main =
@@ -42,7 +42,7 @@ init () =
 type Msg
     = GotFlare (Result Http.Error (Tree String))
 --}
-
+{--
 treeDecoder : Json.Decode.Decoder (Tree String)
 treeDecoder =
     Json.Decode.map2
@@ -61,7 +61,7 @@ treeDecoder =
                     Json.Decode.lazy
                         (\_ -> treeDecoder)
         )
-
+--}
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
