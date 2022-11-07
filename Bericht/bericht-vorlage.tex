@@ -374,15 +374,18 @@ Innerhalb der Module, insbesondere der Visualisierungsmodule, wird versucht, den
 \subsection{Data.elm}
 In diesem Modul sind nahezu alle verwendeten Datentypendeklarationen enthalten. Einzig der "type Model" und "type Msg" aus MainScatterParallel sind dort nicht vertreten. 
 Dies ist begründet in der sinkenden Überischtlichkeit und Verständlichkeit des Codes in MainScatterParallel, sollten eben genannte, recht umfangreiche Typen in Data deklariert sein und in MainScatterParallel referenziert werden müssen.
+
 In Data sind zunächst alle für dieses Modul benötigten Importe zu erkennen, bevor die Decodierung der CSV-Dateien mit den Funktionen "decodeGameSales", "csvString_to_data" und "gamesSalesList" geschieht. Hier werden die einzelnen Felder der CSV-Datei als String decodiert und dann in eine Liste vom Typ GameSales geschrieben.
 Darauf folgt die Decodierung der JSON-Datei mittels der Funktion "treeDecoder".
 Beide Decoder basieren auf denen für die Übungen sieben und neun verwendeten und wurden an die in diesem Projekt verwendeten Daten angepasst.
+
 Es folgt die Definition der Datentypendeklarationen, die für alle Visualisierungen außer die TreeHierarchy wichtig sind. In "type alias GameSales" sind die Daten aus der CSV-Datei gespeichert, welche dann im Model in MainScatterParallel weiterverwendet werden. 
-Die Deklarationen "type RegionType" und "type PlotType" als CustomType werden für die Auswahl der Achsen in Visualisierung zwei und drei sowie die Auswahl der anzuzeigenden Visualisierung benötigt. 
+Die Deklarationen "type RegionType" und "type PlotType" als CustomType werden für die Auswahl der Achsen in Visualisierung zwei und drei sowie die Auswahl der anzuzeigenden Visualisierung benötigt.
 Sie werden im "type Model" und im "type Msg" in MainScatterParallel, im "regionFilter" in Scatterplot und im "multiDimenData" in ParallelPlot verwendet. 
 Als nächstes werden die Datentypendeklarationen für den Scatterplot, den ParallelPlot und die TreeHierarchy definiert. Somit sind alle drei Visualisierungen modular zusammengesetzt.
+
 Zuletzt werden für die Anwendung mit Buttons wichtige Funktionen zur Datentypkonversion von einem String zu PlotType, String zu RegionType, RegionType zu String und String zu ein einem Tupel aus RegionType und String beschrieben. 
-Dies ist nicht nur zur Darstellung von Buttons, also der Implementierung von Interaktionen nötig, sondern auch zur beispielsweise korrekten Anzeige von aktuell ausgewählten Regionen.
+Dies ist nicht nur zur Darstellung von Buttons, die nur Strings erlauben, also der Implementierung von Interaktionen nötig, sondern auch zur beispielsweise korrekten Anzeige von aktuell ausgewählten Regionen.
 Weiterhin ist noch eine Konversion von einem RegionType zu einem Tupel aus GameSales und Float für die Funktion "multiDimenData" in ParallelPlot notwendig.
 
 \subsection{TreeHierarchy.elm}
@@ -432,17 +435,34 @@ scatterplot + css scatter
 Als letztes werden allgemeine Einstellungen, die konstant für den Plot gelten sollen, global definiert. Diese basieren auf den Abgaben der Autorin zu Übung eins bis vier.
 
 \subsection{MainScatterParallel.elm}
-imports
-allgemeine Anwendung (main, init, subcritpions)
-type Model + Msg
-update
-filterGenre
-Buttons
-view
+Auch das Modul MainScatterParallel definiert zunächst die Importe. Aufgrund der besseren Erkenntlichkeit aus welchen Modulen welche Funktionen stammen, werden keine Funktionen dezidiert importiert, sondern nur das allgemeine Modul. 
 
-Beschreiben Sie die Implementierung ihrer Visualisierungsanwendung in Elm. Stellen die Gliederung ihres Quellcodes vor. Haben Sie verschiedene Elm-Module erstellt. Was war aufwändig umzusetzen, was ließ sich mit dem vorhanden Code aus den Übungen relativ einfach umsetzen? 
+Für dieses Modul wird wie in TreeHierarchy die gesamte Elm-Architektur verwendet, da es den Scatterplot und die Parallelen Koordinaten ausführen und alle drei Visualisierungen verbinden soll.
+Hierzu wird das Programm zunächst wieder in der "main"-Funktion definiert, sowie die "subcritpions-" und die "init"-Funktion implementiert.
 
-Wie sieht die Elm-Datenstruktur für das Model aus, in dem die verschiedenen Zustände der Interaktion gespeichert werden können.
+Danach folgt die Definition der Datentypendeklarationen "type Model" und "type Msg". Diese könnten zwar auch in Data definiert werden, verweilen aber zugunsten der Übersichtlichkeit und schnelleren Verständnisses des Codes in diesem Modul.
+In "type Model" werden die drei Varianten Error, Loading und Success beschrieben, die in den entsprechenden Fällen angezeigt werden. Die Variante Success ist gleichzeitig ein Record aus den dort beschriebenen Feldern. 
+Wichtig zu beachten ist, dass die initialen Werte erst in der "update"-Funktion hier hinein geschrieben werden.
+Im Feld data können die geladenen Daten als Liste vom Typ GameSales gespeichert. Zur Ermöglichung der Interaktionen gibt es weiterhin Felder für das Genre als String, die Achsen eins bis fünf als RegionType, die Namen der Achsen eins bis fünf als String, die X- und Y-Achse als RegionType und den gewünschten Plot als PlotType.
+Der "type Msg" definiert die Varianten für die Nutzung in "update" zur Überschreibung des Models. Es gibt eine Variante zum erfolgreichen Laden der Daten und damit der Initialisierung des Plots sowie für jeden möglichen Wechsel von Achsen in den Plots sowie den Wechsel des Plots an sich.
+
+In der "update"-Funktion werden zunächst die initial anzuzeigenden Attributwerte definiert und in Success gespeichert. Hierbei muss auf die entsprechenden Datentypen geachtet werden, die in "type Model" unter Success gespeichert werden. 
+Außerdem wird hier die Decodierung der geladenen Daten vorgenommen. 
+Weiterhin werden für alle möglichen Interaktionen mit dem Model die Varianten von "Msg" eingefügt und beschrieben, wie bei einer Änderung dieser Variante durch Klick auf deinen Button das Model überschrieben wird.
+
+Als nächstes werden alle benötigten Buttons als Funktionen implementiert, sodass das Model bei Klick auf eine Variante überschrieben werden kann. 
+Da die Buttons nur Strings akzeptieren, die Varianten von "Msg" jedoch die CustomTypes bzw. die Tupel aus CustomType und String, muss hier bei allen Buttons außer dem "buttonGenreType" die entsprechende in Data definierte Umwandlungsfunktion genutzt werden. 
+Bei dem "buttonGenreType" ist dies nicht nötig, da die Variante von "Msg" auch einen String benötigt.
+Die Änderungen werden dann in der Variante des "Msg"-Typen gespeichert und durch die "update"-Funktion das Model überschrieben.
+Die Buttons basieren auf den Abgaben der Autorin aus Übung vier.
+
+Die Funktion "filterGenre" beruht auf den Abgaben der Autorin zu Übung vier. Mit dieser Funktion kann der Anwender nach dem Attribut Genre filtern und ein für ihn sehenswertes Genre auswählen.
+Im Prinzip sorgt diese Funktion, wenn später im "view" angewendet, dafür, dass ausgewähltes Genre und angezeigtes Genre übereinstimmen, also Gleichheit besteht.
+
+view (insbesondere gameSalesDatafiltered, plot & schachtelung let in, )
+
+%Beschreiben Sie die Implementierung ihrer Visualisierungsanwendung in Elm. Stellen die Gliederung ihres Quellcodes vor. Haben Sie verschiedene Elm-Module erstellt. Was war aufwändig umzusetzen, was ließ sich mit dem vorhanden Code aus den Übungen relativ einfach umsetzen? 
+%Wie sieht die Elm-Datenstruktur für das Model aus, in dem die verschiedenen Zustände der Interaktion gespeichert werden können.
 
 \section{Anwendungsfälle}
 Präsentieren sie für jede der drei Visualisierungen einen sinnvollen Anwendungsfall in dem ein bestimmter Fakt, ein Muster oder die Abwesenheit eines Musters visuell festgestellt wird. Begründen sie warum dieser Anwendungsfall wichtig für die Zielgruppe der Anwenderinnen ist. Diskutieren sie weiterhin, ob die oben beschriebene Information auch mit anderen Visualisierungstechniken hätte gefunden werden können. Falls dies möglich wäre, vergleichen sie die den Aufwand und die Schwierigkeiten ihres Ansatzes und der Alternativen. 
