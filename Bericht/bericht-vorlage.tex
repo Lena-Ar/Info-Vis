@@ -442,6 +442,9 @@ Die Bibliothek \textit{elm-community/typed-svg} wird für das Zeichnen der Plots
 \textit{elm-community/list-extra} und \textit{folkertdev/one-true-path-experiment} sind nur für das Zeichnen des ParallelPlots wichtig.
 Zur Berechnung des Layouts von Bäumen wird \textit{wasdacraic/elm-tree-layout} in TreeHierarchy genutzt und \textit{zwilias/elm-rosetree} zum Speichern der Bäume in einer Datenstruktur in TreeHierarchy und Data importiert.
            
+Insgesamt war die Implementierung der Anwendung sehr zeitaufwändig, da vor allem die Routine im Programmieren mit Elm trotz der umfangreichen Übungsaufgaben fehlte.
+Die Übungsaufgaben waren eine große Stütze. Jedoch musste auch hier noch einmal nachvollzogen werden, was dort gemacht wurde. Teils kamen so noch neue Erkenntnisse und neues Verständnis für den Code, sodass sich durch die Implementierung der Projektanwendung ein zusätzlicher großer Lerneffekt einstellte.
+Es gab trotz der guten Vorlagen der Abgaben der Autorin zu den Übungsaufgaben einige Schwierigkeiten, die in den folgenden Unterkapiteln Erwähnung finden.
           
 \subsection{Data.elm}
 In diesem Modul sind nahezu alle verwendeten Datentypendeklarationen enthalten. Einzig der \textit{type Model} und \textit{type Msg} aus MainScatterParallel sind dort nicht vertreten. 
@@ -505,10 +508,33 @@ So kann transformiert werden wie es eine Maybe.map6 Funktion machen würde, wenn
 \textit{AssignmentAndReduce} wiederum mapped schließlich lokal mithilfe der \textit{helpMapBig} die Daten vom Typ GameSales zu Maybe GameSales und reduziert diese dann um die Datensätze mit fehlenden Werten mittels \textit{List.filterMap}.
 Diese Funktion basiert auf den Abgaben der Autorin zu Übung sechs.
 
-multiDimenData
-scatterPlotParallel + css parallel
+Die Funktion \textit{multiDimenData} dient zusammen mit der lokalen Funktion \textit{multiDimFunction} aus MainScatterParallel der freien Auswahl und Belegung der Achsen sowie der Anwendung der Filterung nach Genre. 
+Das Grundgerüst beider Funktionen basiert auf den Abgaben der Autorin zu Übung sechs. 
+Hier wurden die Achsen jedoch getauscht, was aufgrund flexiblerer und schnellerer Auswahl der Achsen in diesem Projekt geändert wurde. 
+\textit{MultiDimenData} benötigt als Eingabe eine Liste von GameSales sowie fünf RegionTypes. Diese sind die auszuwählenden Regionen für die Achsen. 
+Weiterhin braucht es den Namen des Spieles und den Publisher des Spieles zur Anzeige dieser im späteren Plot. Der Typ begründet sich aus dem \textit{type alias GameSales}.
+Zusätzlich sind fünf Namen, also Beschriftungen als String nötig. 
+All dies begründet sich in der Definition der Recordfelder in \textit{type Model} sowie dem für das \textit{update} benötigten Datentypen \textit{(RegionType, String)}.
+Als Output muss die Funktion den Typ \textit{MultiDimData} ausgeben, der benötigt wird, um die Daten dem \textit{scatterplotParallel} zu übergeben und den Plot zeichnen zu können.
+Eine besondere Schwierigkeit bei der Konstruktion der Funktion lag im Umfang dieser und im Verständis welcher Datentyp benötigt wird. 
+So muss der RegionType innerhalb der Funktion mittels \textit{regionTypeToAxisAnnotation} nochmals umgeschrieben werden. 
+Die Funktion wird in MainScatterParallel in der lokalen Funktion \textit{multiDimFunction} angewandt und bekommt dort die von ihr benötigten Daten übergeben.
+
+Es folgt der \textit{scatterplotParallel}, der nahezu unverändert aus den Abgaben der Autorin zu Übung sechs übernommen werden kann. 
+Hier werden unter anderem mittels lokaler Funktionen die Achsen in X-Richtung positioniert. 
+Weiterhin wird das umgebende Rechteck festgelegt, sowie die Achsen und ihre Beschreibung gezeichnet. Die Zeichnung der Datenpunkte wird mittels Shape.line und Shape.linaerCurve realisiert.
+Zudem wird der beim Hovern über einen Datenpunkt anzuzeigende Text lokal beschrieben bevor die Funktion dann zuletzt mit den entsprechenden Daten angewandt wird.
+
+Wie auch in der TreeHierarchy schon geschehen, wird auch hier das CSS global in \textit{cssParallel} definiert. Ein besonderes Augenmerk liegt dabei auf der Definition der Opacity mit 0.5. 
+So entsteht trotz weiß gefärbtem Umgebungsrechteck eine Art Röntgeneffekt. Mögliche Cluster und Aufälligkeiten in den Datenpunkten sind durch Überlagerungen so besser erkennbar.
+Durch das Einfärben in einem stärkeren Grünton beim Hovern und dem Einblenden der Details zum Datenpunkt lassen sich die einzelnen Videospiele besser nachvollziehen.
 
 Auch hier schließt die Implementierung mit den generellen Einstellungen für den Plot. Diese basieren auf den Abgaben der Autorin zu Übung sechs. 
+
+Die Erstellung des ParallelPlot basierte in weiten Bereichen auf den Abgaben zu Übung sechs. So bereitete das Zeichnen des Plots wenig Schwierigkeiten. 
+Etwas komplizierter war zunächst die Implementierung des Mappings und der Filterung nach Null-Werten durch das fehlende List.map6. 
+Schwieriger gestaltete sich jedoch die Umsetzung der freien Auswahl der Achsen wie oben schon beschrieben. 
+Dies war mit viel Ausprobieren und Verständnis, welcher Datentyp für welche weitere Funktion benötigt wird und welche durch die vorherige Definition der Datentypen vorhanden waren, verbunden.
 
 \subsection{Scatterplot.elm}
 Das Modul Scatterplot beginnt mit der Definition der Importe. Aus Data werden nur die für den Scatterplot benötigten Funktionen importiert. 
@@ -529,6 +555,8 @@ scatterplot + css scatter
 Als letztes werden allgemeine Einstellungen, die konstant für den Plot gelten sollen, global definiert. 
 Diese basieren auf den Abgaben der Autorin zu Übung eins bis vier.
 
+Schwierigkeiten bei freier Auswahl Achsen
+Filterung
 \subsection{MainScatterParallel.elm}
 Auch das Modul MainScatterParallel definiert zunächst die Importe. 
 Aufgrund der besseren Erkenntlichkeit aus welchen Modulen welche Funktionen stammen, werden keine Funktionen dezidiert importiert, sondern nur das allgemeine Modul. 
@@ -561,6 +589,10 @@ Die Funktion \textit{filterGenre} beruht auf den Abgaben der Autorin zu Übung v
 Im Prinzip sorgt diese Funktion, wenn später im \textit{view} angewendet, dafür, dass ausgewähltes Genre und angezeigtes Genre übereinstimmen, also Gleichheit besteht.
 
 view (insbesondere gameSalesDatafiltered, plot & schachtelung let in, )
+
+Schwierigkeitn bei Buttons für ParallelPlot
+Denksport bei Verschachtelung view
+nicht durcheinanderkommen bei update bzw viel zeitaufwändige Arbeit
 
 %Beschreiben Sie die Implementierung ihrer Visualisierungsanwendung in Elm. Stellen die Gliederung ihres Quellcodes vor. Haben Sie verschiedene Elm-Module erstellt. Was war aufwändig umzusetzen, was ließ sich mit dem vorhanden Code aus den Übungen relativ einfach umsetzen? 
 %Wie sieht die Elm-Datenstruktur für das Model aus, in dem die verschiedenen Zustände der Interaktion gespeichert werden können.
