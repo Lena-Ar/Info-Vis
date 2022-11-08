@@ -603,11 +603,64 @@ Die Buttons basieren auf den Abgaben der Autorin aus Übung vier.
 Die Funktion \textit{filterGenre} beruht auf den Abgaben der Autorin zu Übung vier. Mit dieser Funktion kann der Anwender nach dem Attribut Genre filtern und ein für ihn sehenswertes Genre auswählen.
 Im Prinzip sorgt diese Funktion, wenn später im \textit{view} angewendet, dafür, dass ausgewähltes Genre und angezeigtes Genre übereinstimmen, also Gleichheit besteht.
 
-view (insbesondere gameSalesDatafiltered, plot & schachtelung let in, )
+In der \textit{view}-Funktion werden nun die verschiedenen Fälle des Models behandelt. 
+Für diese Erklärung wird nur auf den Fall des Erfolges beim Laden eingegangen.
+Zunächst wird eine \textit{let-in}-Konstruktion auf erster Ebene erstellt. 
+In lokalen Funktionen wird hier \textit{gameSalesData} sowie die Anzahl der Spiele insgesamt beschrieben.
+Zusätzlich wird auf dieser oberen Ebene der globale \textit{filterGenre} angewandt, mit dem die Daten so gefiltert werden, dass dem Anwender nur sein gewünschtes Genre angezeigt wird.
+Weiterhin wird die Länge dieser neuen Liste, also die Anzahl der Spiele im ausgewählten Genre berechnet. 
+Damit nun zwischen den Plots gewechselt werden kann, werden die verschiedenen Varianten bzw. Fälle des Datentyps \textit{PlotType} im \textit{in}-Teil angelegt. 
+Deshalb befindet sich auch das Feld \textit{plot} im Record der Variante \textit{Success} des Models.
+Je nachdem, welcher Plot mittels Button nun ausgewählt wurde und wie das Model durch das \textit{update} überschrieben wurde, wird nun einer der drei Fälle angezeigt. 
+Der Filter bzw. diese Interaktionsmöglichkeit nach Genre soll nun in allen Plots übernommen und angewandt werden, ohne dass bei jedem Plotwechsel das Genre neu ausgewählt werden muss. 
+Der Zustand des Models mit dem gefilterten Genre soll also bestehen bleiben.
+Dazu dient zum einen die zuvor beschrieben Variantendefinition im \textit{in}-Teil der äußeren \textit{let-in}-Kosntruktion sowie jeweils eine weitere \textit{let-in}-Konstruktion in den jeweiligen Falldefinitionen.
+Diese befindet sind nun auf zweiter bzw. innerer Ebene, sodass die in der äußeren Konstruktion berechneten Zustände, also Genreauswahlen, auch hier gelten und auch bei einem Wechsel des Plots übernommen werden. 
+Um dieses Ziel zu erreichen müssen in den lokalen Funktionen der inneren Konstruktion der Plots die lokalen Funktionen der äußeren Ebene auch angewandt werden. 
+Würde in jeder der inneren Ebenen für jeden Plot die Filter nach Genre definiert werden und lokal angewandt statt in der übergeordneten Ebene, würden die Einstellungen repsektive der Zustand des Models nicht übernommen werden.
 
-Schwierigkeitn bei Buttons für ParallelPlot
-Denksport bei Verschachtelung view
-nicht durcheinanderkommen bei update bzw viel zeitaufwändige Arbeit
+Im ersten Case wird der ParallelPlot behandelt. Lokal werden die gesamten Daten nun mittels der \textit{assignmentAndreduce}-Funktion gemapped und reduziert, sowie die entstehende Listenlänge berechnet. 
+Auch die in der äußeren Ebene nach Genre gefilterten Daten werden auf dieselbe Art behandelt. 
+In \textit{multiDimFunction} wird nun \textit{multiDimenData} letztlich angewandt und die entsprechenden Daten dafür übergeben. 
+Als erste Liste vom Type GameSales wird die von Null-Werten bereinigte und nach Genre gefilterte \textit{clearedGameSalesData} genutzt.
+Im \textit{in}-Teil der inneren Ebene wird per Html und vielen verschachtelten divs und Attributeeinstellungen das Aussehen der Seite festgelegt.
+Hierbei wird darauf geachtet, dass zur angenehmeren und weniger ablenkenden Ansicht die Farben den Grüntönen in den Plots angepasst werden. 
+Zur Direktion des Auges über die Seite und verbesserten Erkennung von wichtigen Abschnitten wie der Auswahl der Plots, des Genres und der Achsen werden Ränder und verschiedene Grüntonabstufungen genutzt.
+Wichtiges wird mit deutlichen Änderungen gekennzeichnet, alles andere zur impliziten Lenkung mit sogenannten \textit{Just noticable differences} in der Farbe und im Rand.
+Neben den Informationstexten und Überschriften werden hier auch die Buttons als Dropdown zum Wechsel des Plots, zur Änderung des Genrefilters sowie der Anpassung der Achsen eingefügt.
+Zudem wird transparent angezeigt, nach welchem Schritt wieviele Videospiele in der Auswahl verbleiben und welche Einstellungen gerade aktuell getroffen sind.
+Nach Anzeige der ausgewählten Einstellungen wird der Parallele Koordinaten Plot implementiert. Hierzu wird dem \textit{scatterplotParallel} das \textit{cssParallel} übergeben sowie zwei Konstanten für die Höhe und die Aspect Ratio.
+Schließlich wird die zuvor lokal berechnete \textit{multiDimFunction} vom Typ MultiDimData übergeben. 
+Zuletzt wird noch ein Text mit Link direkt zurück zur TreeHierarchy anbgeboten.
+
+Im zweiten Case wird der Scatterplot behandelt. Das Vorgehen mit den lokalen Funktionen zur Anwendung der Filter und des Mappings ist ähnlich zum ParallelPlot.
+Durch die lokalen Funktionen \textit{valuesX} und \textit{valuesY} werden dem \textit{regionFilter} die nach Genre gefilterten Daten als Liste von GameSales sowie die RegionTypes der X und Y-Achse übergeben.
+Somit wird der Filter nach Regionen hier angewandt und die Interaktion mit freier Auswahl der Achsen kann funktionieren.
+Der \textit{in}-Teil der Plotvariante Scatterplot ähnelt dem des ParallelPlots stark und unterscheidet sich nur in einigen Informationstexten sowie der Auswahl der Achsen.
+Weiterhin wird hier dem \textit{scatterplot} der \textit{cssPoint} als String, die zuvor berechneten \textit{gameSalesDataCleared} als XYData sowie die \textit{valuesX} und \textit{valuesY} als Liste von Floats übergeben.
+Um die Beschriftung der Achsen zu ermöglichen, werden diese noch mittels der Umrechnung von RegionType zu String als String hinzugefügt.
+
+Da die TreeHierarchy in \textit{TreeHierarchy.elm} implementiert ist, muss für diese Plotvariante nur das Html definiert werden.
+Auch dies geschieht wieder mit denselben Designs wie zuvor. 
+Weiterhin besteht hier die Möglichkeit durch einen Link zum eigentlichen Plot des Baumdiagramms zu gelangen.
+Da für das Baumdiagramm der Genrefilter irrelevant ist, muss er weder hier noch in TreeHierarchy angewandt werden. 
+
+
+Die Implementierung dieses Moduls war einerseits leicht, andererseits kompliziert. 
+Die zuvor jeweils in eigenen Anwendungen getrennten Visualisierungen mussten zusammengefügt werden.
+Dabei wurden alle Teile, die nur für den jeweiligen Plot genutzt werden, in den entsprechenden Modulen belassen. 
+Alles konnte stückweise kopiert und in einheitlichen Funktionen zusammengesetzt werden. 
+Besonders die Erstellung einer einheitlichen \textit{update}-Funktion war zeitlich durch die Menge an Interaktionsmöglichkeiten aufwändig.
+Zudem war es anstrengend, alles gleichzeitig im Blick zu behalten.
+Weiterhin schwieriger war die Implementierung der Buttons für den ParallelPlot. 
+Zunächst waren diese Buttons je einzeln und nicht als Dropdown-Menü wie gewünscht möglich. 
+Durch einige Denkarbeit, Ausprobieren vor allem auch mit der Funktion \textit{multiDimenData} und verschiedenen Konvertierungsfunktionen konnten sie doch wie gewünscht realisiert werden.
+Auch hier musste zudem zur Überprüfung immer wieder zeitaufwendig das \textit{update} angepasst werden.
+Die Implementierung der Interaktion über die Plots hinweg durch die Verschachtelung des \textit{view} mit Definition und erster Anwendung des Genrefilters auf äußerer Ebene, der Einführung des Datentypen \textit{PlotType} und der Anwendung im \textit{update} und \textit{view} war ein Zufallsfund.
+Zunächst wurden beide Plots so implementiert, dass sie untereinander gezeichnet wurden und es noch keinen Selektor für den Plot gab, entsprechend nur eine \textit{let-in}-Kontruktion nötig war.
+Hier wurde die Filterung des Genres logischerweise für beide Plots übernommen, jedoch entsprach diese Darstellung nicht den Wünschen der Autorin. 
+Nach schrittweisem Hinzufügen der Auswahl des Plots und allen zugehörigen Codeteilen, wurde durch Ausprobieren entdeckt, dass eine Übernahme des Modelzustands durch die Schachtelung der \textit{let-in}-Konstruktionen und der Anwendung des Variantenwechsels für den Plot möglich war. 
+Hier war es im Verlauf kompliziert, den Überblick über die Schachtelungen sowie außen und innen definierten lokalen Funktionen zu behalten.
 
 %Beschreiben Sie die Implementierung ihrer Visualisierungsanwendung in Elm. Stellen die Gliederung ihres Quellcodes vor. Haben Sie verschiedene Elm-Module erstellt. Was war aufwändig umzusetzen, was ließ sich mit dem vorhanden Code aus den Übungen relativ einfach umsetzen? 
 %Wie sieht die Elm-Datenstruktur für das Model aus, in dem die verschiedenen Zustände der Interaktion gespeichert werden können.
