@@ -548,15 +548,30 @@ Weiterhin wird wieder mithilfe vom List.filterMap nach Null-Values gefiltert.
 Die gemappten und gefilterten Daten in \textit{filter} werden dann unter anderem in XyData geschrieben, dass als Output der Funktion \textit{FilterAndReduceGames} definiert ist.
 XyData werden benötigt für das Zeichnen des Scatterplots, da sie unter anderem eine Liste Daten des Typs \textit{Point} enthalten.
 
-regionFilter
-point
-scatterplot + css scatter
+Die Funktion \textit{regionFilter} filtert mit Eingabe einer Liste GameSales und des RegionTypes die Datenpunkte nach den je gewünschten Regionsauswahlen für die Achsen. 
+Ausgegeben wird eine Liste Floats. Diese Funktion ist nötig zur Interaktion innerhalb des Plots, um die Achsen frei wählen zu können und damit auch die richtigen Datenpunkte anzuzeigen.
+In MainScatterParallel wird \textit{regionFilter} lokal für \textit{valuesX} und \textit{valuesY} aufgerufen und auf die nach Genre gefilterten Daten sowie die X- bzw. Y-Achse angewandt. 
+Die Funktion basiert auf den Abgaben der Autorin zu Übung vier.
+
+In der Funktion \textit{point} wird die Positionierung der Punkte sowie deren Beschriftung festgelegt und als SVG Nachricht ausgegeben.
+So kann \textit{point} im \textit{scatterplot} aufgerufen werden.
+
+Der \textit{scatterplot} ist für das Zeichnen des Plots mit den Datenpunkten zuständig. 
+Mit der lokalen Funktion \textit{pointsXY} wird die Variabilität der Achsen und damit X- und Y-Werte der Punkte ermöglicht, die für die Interaktivität der Achsenauswahl nötig ist.
+Dies ist in vielen Übungsabgaben der Autorin nicht umgesetzt, jedoch in Übung vier, sodass diese als Grundlage für die lokale Funktion dient. 
+In weiteren lokalen Funktionen wird die Abbildung bzw- Umrechnung der Daten auf SVG berechnet.
+Im SVG des \textit{scatterplot} wird die Positionierung der X- und Y-Achse, ihrer Beschriftungen und der Punkte festglegt. 
+Letzteres wird durch die lokalen Funktionen \textit{xScaleLocal}, \textit{yScaleLocal} und \textit{pointsXY} sowie der zuvor beschriebenen globalen Funktion \textit{point}.
+Der \textit{scatterplot} basiert auf den Abgaben der Autorin zu Übung 1.4 sowie Übung vier. 
 
 Als letztes werden allgemeine Einstellungen, die konstant für den Plot gelten sollen, global definiert. 
 Diese basieren auf den Abgaben der Autorin zu Übung eins bis vier.
 
-Schwierigkeiten bei freier Auswahl Achsen
-Filterung
+Die Implementierung des Scatterplots verlief in weiten Teilen problemlos, wenn auch nicht schnell durch ständiges Überprüfen der richtigen Datentypen.
+Schwieriger war wie beim ParallelPlot auch die Umsetzung des Mappings und Filterns nach Null-Werten durch das fehlende List.map6.
+Weiterhin musste beachtet werden, dass die Achsen des Plots frei wählbar, also variabel definiert sind und nicht strikt festgelegt wie in den meisten Übungsserien.
+Mit entsprechender Zeit- und Denkinvestition war auch dies überwindbar.
+
 \subsection{MainScatterParallel.elm}
 Auch das Modul MainScatterParallel definiert zunächst die Importe. 
 Aufgrund der besseren Erkenntlichkeit aus welchen Modulen welche Funktionen stammen, werden keine Funktionen dezidiert importiert, sondern nur das allgemeine Modul. 
