@@ -1,2 +1,11 @@
 # Ignorieren des elm-stuff Ordners, da dieser Build-Dateien enthält
 elm-stuff/
+
+#Ignorieren aller Build- und Log-Dateien etc im Bericht-Ordner, da diese nicht relevant
+#Ausnahme für den Projektbericht als .tex, den Bericht als .pdf und die Literaturliste .bib
+#Der Bericht als .pdf wird zukünftig immer aktuell auf dem Stand der .tex gehalten und geupdatet
+Bericht/*
+
+!Bericht/Projektbericht_InfoVis_LenaArloth.tex
+!Bericht/Projektbericht_InfoVis_LenaArloth.pdf
+!Bericht/literatur.bib
