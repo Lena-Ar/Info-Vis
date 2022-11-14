@@ -280,7 +280,7 @@ assignmentAndReduce game =
        assignment : GameSales -> Maybe GameSales
        assignment assign = 
             helpMapBig
-                (GameSales assign.game assign.publisher assign.genre)
+                (GameSales assign.game assign.genre assign.publisher )
                 (Just assign.northAmerica)
                 (Just assign.europe)
                 (Just assign.japan)
