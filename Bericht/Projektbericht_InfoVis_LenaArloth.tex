@@ -298,6 +298,7 @@ Entsprechend ist es für das Design wichtig, dass Werte eines Videospiels mitein
 Für ein einheitliches Verständnis soll dies auf dieselbe Weise mit den konkurrierenden Videospielen passieren. 
 Es braucht deshalb aber eine deutliche Unterscheidung der Spiele untereinander, bspw. mittels Farbe, sowie eine Beschriftung mit den Titeln der Videospiele.
 Die Ausprägung der Verkaufszahlen muss zumindest grob ablesbar sein, wobei der visuelle Vergleich zur Unterstützung des mentalen Modells des übersichtsartigen Vergleichens vor expliziten, genauen Zahlen Vorrang hat.
+%xray dings noch rein
 
 Die übergeordnete Anforderung an die dritte Visualisierung ist wieder die visuelle Analyse der Datenmenge. 
 Hierbei soll es der Zielgruppe möglich sein, Korrelationen zwischen den Regionen der Videospielverkäufe und den globalen Verkäufen zu erkennen. 
@@ -313,7 +314,7 @@ Durch die gewünschte detaillierte Analyse ist eine intuitiv verständliche Visu
 Allen spezifischen Anforderungen voran steht die Anforderung der leichten, möglichst intuitiven Erkennbarkeit der Zusammenhänge und der schnellen, überischtsartigen Vergleichbarkeit,
 die für die eingangs beschriebende Zielgruppe notwendig ist.
 %Farben: JUST, SChwächen -> wenn geht nur 1 Farbe -> in versch abstufungen & mit weiß(lich) als hintergrund auch für schwächen gut erkennbar
-
+%Überlappungen für bestätigung cluster rein
 %Leiten sie Anforderungen an das Design der Visualisierungen ab, die sich durch ihre Analyse des Zielproblems ergeben.
 \subsection{Präsentation der Visualisierungen}
 Zur Erfüllung der Anaylsen und Anforderungen werden die Visualisierungstechniken \textit{explizites Baumdiagramm}, \textit{parallele Koordinate} und \textit{Scatterplot} gewählt.
@@ -434,6 +435,8 @@ Alternativ bestehen in diesem Kontext vor allem drei weitere Visualisierungsmög
 Diese sind Q- und QQ-Plots, Histogramme und Korrelationstabellen. 
 QQ-Plots eignen sich zwar auch zur Darstellung von paarweisen Vergleichen und Entdeckung von Korrelationen und Ausreißern, jedoch sind sie weniger intuitiv, benötigen ein gewissen Vorwissen und sind nicht schnell erkennbar.
 %QQ + Grund
+%Q nur eindimensional gegen f wert
+%QQ eigentlich auch, wenn auch gegeneinander, aber verschiebungen zueinander bzw zu normal
 Histogramme wiederum 
 %Histogramme + Grund
 Eine weitere Alternative sind Korrelationstabellen. 
@@ -768,12 +771,37 @@ Der Grund liegt in der Darstellung aller Dimensionen eines Videospiels auf einem
 Auch Außreißer sind mit dieser Technik nicht so gut erkennbar.
 
 \subsection{Anwendung Visualisierung Drei}
-%korrelationen zwischen 2 regionen im detail (SPort: Nordamerika, Europa -> Cluster + keine Korrelation + positive (leicht)), (action: alle in allen Kombis kurz, positive korrelation, ausßreiser, cluster, japan)
-%bezug bei sport auf Ursürugnsland von 505 Games, weil natürlicherweise da eher fokus drauf 
-%vergleich wo mein spiel schon liegt -> entscheidung evtl fortsetzung?
-%Fazit: 
-%weitere Untersuchungen dadruch ermöglicht: intensive Marktforschung durhc indikation gegeben oder nicht
+Um zur dritten Visualisierung, dem Scatterplot, zu gelangen, wählt der mittlere Manager in seiner Präsentation den Plot im Drop-Down-Menü aus.
+Die zuvor getroffene Auswahl des Genres, zuletzt \textit{Sports} bleibt bestehen und er wählt in einem weiteren Drop-Down-Menü die Belegung der Achsen auf \textit{North America} und \textit{Europe}.
 
+Im Scatterplot werden die zuvor erkannten Cluster in den Verkaufszahlen im Vergleich von Nordamerika zu Europa noch deutlicher. 
+Während bei einigen Spielen zwischen beiden Regionen ein deutlich positiv korreliertes Cluster sichtbar ist, scheinen die anderen Spiele ein Cluster ohne Korrelation zwischen den Regionen zu bilden.
+Dies bestätigt und verdeutlicht die Erkenntnisse aus der zweiten Visualisierung, dass sehr gute Verkaufszahlen von einigen Sportvideospielen in Nordamerika keinen Einfluss auf die Verkäufe in Europa haben. 
+Dort verkaufen sie sich vergleichsweise schlecht. Jedoch ist durch die Ansammlung der Datenpunkte in einer waagerechte, bzw. in umgekehrter Anordnung der Achsenbelegung senkrechten, Linie auch keine negative Korrelation ersichtlich.
+Die Titel im Cluster der positiv korrelierten Spiele scheinen sich jedoch gegenseitig positiv zu beeinflussen. Es kann durch etwas geringeren Verkaufszahlen in Nordamerika vermutet werden, dass die europäischen Verkaufszahlen die nordamerikanischen positiv beeinflussen. 
+Verweist der Präsentator mittels Hovern über die Datenpunkte auf die Titel der Videospiele, wird deutlich, dass diese Cluster mutmaßlich durch die unterschiedliche Popularität der Sportarten in beiden Regionen entsteht. 
+So ist Football in Europa nicht so bekannt oder beliebt, Fußball aber in Nordamerika schon, wenn auch leicht weniger als in Europa.
+
+Zuletzt interessieren sich die Teilnehmer der Präsentation für die Überprüfung der Erkenntnisse zum Genre \textit{Action}, sodass die Filterung entsprechend angepasst wird. 
+In allen möglichen Kombinationen der Achsenbelegung außer in denen mit Japan bestätigt sich die leicht bis vollständig positive Korrelation zwischen den jeweiligen Verkaufszahlen der Regionen.
+Weiterhin bildet sich in Nähe des Ursprungs im unteren Drittel der Skalen eine Andeutung eines Clusters, wie es auch im Parallelen Koordinaten Plot zu erkennen war. 
+Im Scatterplot sind jedoch die einzelnen Datenpunkte etwas besser erkenn- und zur näheren Betrachtung auswählbar. 
+Auch der zuvor erkannte Ausreißer sticht deutlich heraus. 
+Zusätzlich bestätigt sich die nicht vorhandene Korrelation zwischen den jeweiligen Regionen und Japan.
+Die Titel des eigenen Publishers befinden sich immer im unteren Bereich des Clusters und scheinen vergleichsweise bisher nicht so gut verkauft worden zu sein. 
+
+Sollte während der Präsentation der Wunsch nach einer gleichzeitigen Betrachtung des Baumdiagramms zur Übersicht der Publisher aufkommen, so kann mittels des Links am jeweiligen Seitenende in einem neuen Fenster dieser geöffnet werden und per Multitasking betrachtet werden.
+
+Eine Alternative zu Scatterplots ist sinnvoll nicht gegeben, da sie die beste und am leichtesten zu verstehende Darstellung von Beziehungen zweier Attribute eines Datenpunktes zueinander sind. 
+Aufgrund der Zweidimensionalität der Verteilungen würden auch Q- und QQ-Plots mit nur einer visualisierten Dimension gegen f-Werte bzw. gegeneinander zum Erkennen von Verschiebungen nicht die gewünschten Ergebnisse liefern.
+
+Aufgrund der Erkenntnisse aller drei Visualisierungen können sich die oberen Manager und wichtigsten Stakeholder von \textit{505 Games} nun dazu entscheiden, sich bei weiteren, \(kosten-\) intensiven Marktstudien mit detaillierteren Visualisierungen und weiteren Attributen auf das Genre \textit{Sport} zu konzentrieren. 
+Dort sind sie selbst noch nicht so stark präsent, es gibt weniger und in der Masse weniger starke Konkurrenz als bei \textit{Action}. 
+Weiterhin müssen nicht die Abhängigkeiten zwischen allen Regionen betrachtet werden. 
+Eine Fokussierung auf den eurpäischen oder nordamerikanischen Markt ist möglich und für ein kleineren Publisher wie \textit{505 Games} sinnvoller. 
+Durch die Ausrichtung auf den europäischen Markt kann \textit{505 Games} jedoch die positive Korrelation zum nordamerikanischen Markt für seine Verkaufszahlen nutzen.
+Untersucht werden sollten künftig auch die Einflüsse für die vergleichsweise guten Verkaufszahlen für das eigene Spiel \textit{Rocket League}, um über eine mögliche Fortsetzung zu entscheiden.
+ 
 \section{Verwandte Arbeiten}
 Führen sie eine kurze Literatursuche in der wissenschaftlichen Literatur zu Informationsvisualisierung und Visual Analytics nach ähnlichen Anwendungen durch. Diskutieren sie mindestens zwei Artikel. Stellen sie Gemeinsamkeiten und Unterschiede dar.
 
