@@ -95,7 +95,7 @@ kurze Vorstellung des Vorgehens im Projektbericht: 1. Daten, 2. Visualisierungsb
 %In diesem Abschnitt geben sie einen kurzen Überblick über die Daten und verwendeten Visualisierungen. Dann benennen sie die Beiträge ihres Projekts. Diese Beiträge müssen sie in den hinteren Teilen des Berichts genauer ausführen und belegen.
 
 \section{Daten}
-Der für das vorliegende Visualisierungsprojekt verwendete Datensatz stammt von der Plattform \textit{Kaggle} von dem Nutzer \textit{SID\_TWR} mit dem Titel \textit{"Video Games Sales Dataset"}.\cite{SID_TWR.} 
+Der für das vorliegende Visualisierungsprojekt verwendete Datensatz stammt von der Plattform \textit{Kaggle} von dem Nutzer \textit{SID\_TWR} mit dem Titel \textit{"Video Games Sales Dataset"}. 
 Die Daten entstanden laut Nutzer durch Erweiterung der Daten eines Web Scrapes von \textit{VGChartz Video Games Sales} motiviert durch Gregpry Smith um weitere Attribute aus einem Web Scrape von \textit{Metacrtitic}.  
 %hier einfügen Link/Bibliografie zu Kaggle & zu VG Chartz 
 
@@ -803,6 +803,131 @@ Durch die Ausrichtung auf den europäischen Markt kann \textit{505 Games} jedoch
 Untersucht werden sollten künftig auch die Einflüsse für die vergleichsweise guten Verkaufszahlen für das eigene Spiel \textit{Rocket League}, um über eine mögliche Fortsetzung zu entscheiden.
  
 \section{Verwandte Arbeiten}
+In diesem Kapitel wird eine knappe Literatursuche nach ähnlichen Anwendungen zu Videospielverkäufen oder Verkaufsdaten im Allgemeinen im Bereich der Informationsvisualisierung und Visual Analytics durchgeführt. 
+
+Der erste zu diskutierende Artikel ist \textit{VizInteract: Rapid Data Exploration Through Multi-touch Interaction with Multi-dimensional Visualizations} von Chakraborty und Stuerzlinger. \cite{Chakraborty.2021}
+Thema: 
+multi-touch interaction für schnellere und einfachere Konstruktion von und interaktion mit multidomensionaler Datenvisualisierung
+
+Inhalt/Was wollen sie machen?:
+novize bis experte : need für Tools die Datenexploration vereinfachen, kritische komponente des sinn ergebens
+aus einzelnen Plots ein neues machen durch schieben:
+können hier zwei orthogonale Histogramme zusammen bringen und daraus scatterplot kreieren
+
+research goals:  VA Verhalten von nutzern beobachten bei simplen touchbasierten Interaktionen auf Tablet 
+Datenexplorationsverhalten auf großem touchdisplay 
+VizInteract: schnelle multitouch Komposition und editierung von Visualisierung ermöglichen
+einfach nutzbare und lernbare Interaktionen
+flexiblität und power im interfacec 
+
+kapitel 4
+
+RQ1.1: Welche Nutzungsmuster werden sichtbar wenn Nutzer komplette Visual Data analysen mit VizInteract machen? 
+RQ1.2: FInden Nutzern die Interaktionen einfach und gut lernbar?
+dazu:  Auto dataset from the ISLR package und Unterset der Video Game Sales 2019 dataset (600 games with 13 dimensions) 
+nicht meine Game Sales Data aber ähnlich
+
+Q1: Hinzufügen eines Spiels im community pop culture store -> emfehlungen für gut verkaufte und hochbewertete adventure oder puzzle games 
+Q2: in community viele europäer -> Gibt es Faktoren die die EU game sales beeinflussen
+Q3: Informationen zum North American (NA) game market im Verlgeich zu globalem bei den adventure games
+Q4: Hat der NA Markt höhrere Verkaufszahlen für ältere Platformen im Vergleich zu Japan und EU?
+
+S 621
+
+Was aus Visual ANalytics nutzen sie?:
+histograms (corresponding to a single data dimension), scatter plots (SCPs), parallel
+coordinate plots (PCPs), radar charts, and scatter plot matrices (SPLOMs)
+
+Gemeinsamkeiten:
+Interaktion
+eichtigkeit visual analystics
+game sales data als beispiel
+scatterplots
+parallel koordinaten 
+
+Unterschiede:
+touch bedienbarkeit und advanced visualisierung durch zusammenschieben und kreieren von neuem 
+nicht aus anwendugnsfall heraus, sionder toll mit versch möglichkeiten gebnaut und anwendungsfall als proff of conecpt
+aber da wiederum ja die nützlichsten auch selbst zusammenbbauen durch tool wie hier 
+weniger geht es um die aussgane hinter den plots
+
+zu den nächsten allgemeinen: kein ding denn ist prinzipiell dassselbe. auch für andere Sales daten regionen filtern, oder artikelart oder hersteller
+Der zweite Artikel \textit{Implementation of Business Intelligence for Sales Data Management Using Interactive Dashboard Visualization in XYZ Stores} stammt von Akbar et al. und beschäftigt sich mit Thema. \cite{.}
+
+Inhalt/Was wollen sie machen?:
+Datenmanagement wichitg und muss von Unternehmen ausgeführt werden
+dabei: mehr Wert durch valide Infos zur Entscheidungsunterstützung zur Verbesserung von Effektivitöt und Effizienz
+XYZ Store: tägliche Gebrauchssachen
+nutzt Smile Invent applikationen zur Datenverarbeitung für Produkte, Mitarbeiter, Transaktionen jeden Tag -> hilft nicht 
+hilft nicht bei Entscheidungsunterstützung weil die Reports nicht deren needs entsprechen
+Implementierung von Business Intelligence BI application
+hilft bei Identifikation von Businessgelegenheiten durch zeigen von Trends in Marktkonditionen
+hilft beim Verständnis von Kundenverhalten
+hilft bei erstellung realistischer Ziele
+hilft bei Erkennung von Gegelgenheiten für crossselling und up-selling
+
+ hier noch eineige schritte vor visulaisierung vorgestellt -> hier irrelevant
+Implementation mittels Public Tableau Tool zur visualisierung der Daten im Dashboard und plots 
+basiert auf Design vom Data Warehouse und ETL process
+1 Dashboard mit 11 Graphen die zugeschnitten werden auf gewünschte funktionen
+
+Was aus Visual ANalytics nutzen sie?:
+Products Sales Dashboard ist Sammlung an Visualierungen versch Plots 
+Verkaufsdaten an einem Fleck sammeln  
+Balkendiagramm
+LineChart mit nur 2-3 Jahren und unterteilt in kategorisierten
+LineChart
+Kreisbubble Größenunterschied
+
+Gemeinsamkeiten 
+infos über sales die wir weiterverwenden können
+mittels visual Analytics
+wichtig für sehr viele verschiedene dinge -> viele charts für viele anwendugnen
+
+Unterschiede
+keine genauen analysen im detail, mehr die vorstellung des gesamtprodukt -> analysen sind dann businessaufhabe
+keine möglichkeiten für korrelationen 
+keine hierarchischen beziehungsdarstellungen
+hier ganzheitlicheres Konzept und nicht nur visualisierung
+
+
+Zuletzt sei noch \textit{Intelligent Visual Analytics Queries} von Hao et al. genannt. \cite{Hao.2007}
+
+Inhalt/was wollen sie:
+Muster erkennen in großen multidimensionalen Datensätzen durch Visual
+direkte Einsicht in komplexe Phänomene, Muster, Ausreißer
+hier: Intelligent Visual Analytics Query \textit{IVQuery}
+unterstützt Analysten im Aufdecken von Eigenschaften und Beziehungen von augewählten mustern
+will analytische und visuelle Methoden integrieren 
+Analyst kann Bereich von Itneresse wählen in erzeugter Visualisierung , die Attribute und Datenaufzeichnungen die dazugehören identifizieren 
+und automatische ANalysemethoden zur Identifikation von Charakteristiken, Bezigungen zu anderen Attributen und Datenitems anwenden
+
+Sales Analysten wollen Kundenkaufverhalten mit Produktverkäufen und Promotion korrelieren -> wollen Grpnde hinter hohen Verkaufszahlen wissen
+
+VIsual ANalytics:
+Korrelation und Ähnlichkeiten in mehrere Attributen: visual map -> spreadsheet-artig mit zeilen und Spalten
+Zeilen: Gruppen an Dimensionen -> Region, Land etc
+Spalten: Datenintervalle -> Zeit
+Farbe: Attributwert für datenitem -> Dauer, ANzahl, CpU Nutzung 
+
+parallele Koordinaten: Auswahl interessanter UNtergruppen von Daten zb durch Intervalle
+dann wird eine paarweise Korrelation zwischen ausgwählten Attributen und allen anderen basierend auf Subset gemacht
+Achsen werden dann angeordnet soadass hochkorrelierte Attribute nah beieinander sind
+
+SCatterplot: multidimensional hier
+
+gemeinsamkeiten:
+nützlichkeit visual für sales
+parallel plot
+scatterplot
+correlations und muster und Ausreißer
+interkation mit filtern
+
+unterschiede: 
+hier auch eher weniger detailliert was die auswertung und einen konkreten Hintergrund angeht 
+eher geht es um IVQuery direkt und was das kann
+dass scatterplots hier uach für mehrdimensionale daten genutzt werden
+
 Führen sie eine kurze Literatursuche in der wissenschaftlichen Literatur zu Informationsvisualisierung und Visual Analytics nach ähnlichen Anwendungen durch. Diskutieren sie mindestens zwei Artikel. Stellen sie Gemeinsamkeiten und Unterschiede dar.
 
 \section{Zusammenfassung und Ausblick}
