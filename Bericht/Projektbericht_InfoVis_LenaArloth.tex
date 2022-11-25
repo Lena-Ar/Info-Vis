@@ -27,75 +27,104 @@ Inhaltsverzeichnis:
 % Gliederung und Text:
 
 \section{Einleitung}
-\subsection{Motivation} 
-Der Spielemarkt ist groß, es steckt viel Geld dahinter und für die Entwicklung von neuen Spielen sind viele finanzielle Mittel nötig. 
-Es braucht also eine gewisse Sicherheit, dass sich die Investitionen lohnen. 
-Dazu braucht es eine Anaylse der verganenen Daten. XBox als Platform sehr beliebt, wenn auch hinter Playstation. 
-Vergleichbarkeit der Spiele pro Platform, da zB XBox Spieler nicht mit Playstation-Spielern spielen können und Konsole nicht mit PC.
-\subsection{Zielproblem} 
-Marktanalyse der Spieleindustrie der Platform XBox One aus Sicht der Publisher zur Ermittlung der Konkurrenz, der Erlangung von Kenntnissen über den Markt und über die eigenen Erfolge/den eigenen Standpunkt im Markt zur besseren Ausrichtung und Kontrolle des Unternehmens/Publishers anhand eines Marktüberblicks und genaueren Verkaufsfakten.
-\subsection{Relevanz} 
-Jedes Unternehmen braucht eine Marktanalyse, so auch Spieleunternehmen/Publisher. 
-Ein Publisher muss wissen, was er zukünftig mit guten Verkaufschancen entwickeln kann und in welchem Genre. Wo liegt der Schwerpunkt des Unternehmens.
-\subsection{Fragestellungen} 
-\subsubsection{Überblick} 
-Welche Genres bedient ein Publisher aus seiner Sichtweise und wieviele Spiele bietet er in diesem Genre an? 
-Wo liegt der Fokus/Schwerpunkt des Publishers? Wer ist die Konkurrenz in den verschiedenen Genres, der zB mehr Spiele in dem Genre anbietet?
-\subsubsection{tiefere Marktanalyse} 
-Wie gut verkauften sich Spiele im Einzelnen eines Publishers eines Genres im Vergleich zu anderen Spielen des Genres? 
-Wo gibt es Verbesserungspotenzial, wo gibt es Marktlücken, wo gibt es viel Konkurrenz? Gibt es Spiele in einem Genre eines Publishers, die sich nicht mehr lohnen?
-\subsubsection{konkreter Blick auf jedes Spiel einzeln} 
-Wie verkauften sich Spiele des Publishers im einzelnen im direkten Vergleich auf den verschiedenen Märkten/Regionen der Welt?
-\subsubsection{allgemein} 
-Welche Spiele waren gut, welche schlecht? Welche Spiele soll der Publisher anbieten in welchem Genre? Wo liegt Verbesserungspotenzial?
+Der weltweite Videospielmarkt über alle Plattformen hinweg ist mit einem Volumen von 156,17 Milliarde Euro im Jahre 2021 sehr groß und wird 2022 voraussichtlich auf 176,13 Milliarden Euro steigen.\cite{Statista.2022b}
+Entsprechend viel Geld und Potenzial durch Wachstum verbirgt sich in ihm.
+Gleichzeitig benötigt es für die Entwicklung neuer Videospiele hohe Investitionen von Seiten der Entwicklerstudios und Verleger, folgend Publisher genannt, die erst nach einer gewissen Sicherheit durch Analyse des Marktes getroffen werden sollten.
+Um Prognosen und Tendenzen für die Zukunft finden zu können, braucht es die Erkenntnisse aus Daten der Vergangenheit.
+Eine Möglichkeit hierzu ist die Analyse der totalen Verkaufszahlen der Videospieltitel aufgeschlüsselt nach Genre weltweit.
+
+Der Videospielmarkt ist in verschiedene Segmente geteilt, die wiederum unterteilt sind. Für diese Arbeit wird das Segement der Spieleplattform und Konsole \textit{XBoxOne} von Microsoft gewählt.
+Dies liegt zum einen in der Verfügbarkeit der Daten begründet und zum anderen in der Beliebtheit der Konsole und der Konkurrenz zu anderen Plattformen wie \textit{Playstation 4} und \textit{Computer}.
+Gleichzeitig ergeben Analysen innerhalb einer Plattform für die Entscheidungsunterstützung künftiger Investitionen in Titel dieser Plattform mehr Sinn, da die Plattformen untereinander nicht kompatibel sind.
+
+Als Problemstellung ergibt sich nun das fehlende Wissen der Entscheider innerhalb der Publisher, in welche Videospieltitel in welchem Genre und mit welcher Regionsausrichtung sie künftig investieren sollten, um das Potenzial des großen und wachsenden Videospielmarktes möglichst gut zu nutzen.
+Investition bezieht sich hierbei nicht zwingend auf eine konkrete Entscheidung für die Auftragsvergabe eines neuen Titels, sondern vor allem auf die Veranlassung detaillierter, umfassender Marktstudien.
+Denn erst nach ihnen kann eine fundierte endgültige Entscheidung getroffen werden.
+Es ergibt sich also eine durchzuführende, grobe Marktanalyse der Verkaufszahlen der Videospielindustrie der Plattform \textit{XBoxOne} aus Sicht der Publisher.
+Sie fungiert als Grundlage und Unterstützung weiterer Entscheidungen und Investitionen.
+
+Die Relevanz ergibt sich aus zuvor beschriebenem und der Notwendigkeit von Marktanalysen als Voraussetzung für unternehmerische Entscheidungen, Chancen und Risiken sowie Potenialen.\cite{Fleig.2020}
+Es ist für Unternehmen wie Publisher es sind sehr wichtig zu erfahren, was und in welchem Genre künftig mit guten Verkaufschancen entwickelt werden soll.
+Weiterhin ist es relevant, mittels einer Marktanalyse zu erfahren, wie das Unternehmen selbst im Markt aufgestellt ist und was die Konkurrenz bietet. 
+Um dies zu erreichen, ist es wichtig, Muster, Cluster und Korrelationen zwischen den Verkaufszahlen verschiedener Regionen in einem Genre zu erkennen. 
+Für ein erleichtertes Verständnis sowie das Hervorheben von Auffälligkeiten sind Techniken aus dem Bereich der Visual Analytics von kritischer Relevanz.
+
+Aus zuvor beschriebenem leiten sich folgende Fragestellungen ab, die es mittels einer groben Marktanalyse aufbereitet, verdeutlicht und sichtbar gemacht durch Visualisierungstechniken zu beantworten gilt:
+\begin{itemize}
+    \item In welches Genre und mit welchem Fokus auf die Regionen der Welt sollte ein Publisher künftig mit der Beauftragung detaillierter, teuerer Marktstudien zur Entscheidung über die Auftragsvergabe neuer Videospieltitel investieren?
+    \begin{itemize}
+        \item Welche Publisher bieten welche und wieviele Videospiele in welchem Genre an?
+        \item Gibt es Muster, Cluster, Ausreißer oder Korrelationen in den Verkaufszahlen zwischen den einzelnen Regionen der Welt oder gar über alle Regionen hinweg, die mittels Informationsvisualisierung dargestellt werden können?
+    \end{itemize}
+    \item 
+\end{itemize}
 
 %Tipps zu Latex und Koma-Script für Hausarbeiten sind im \href{http://mirrors.ctan.org/info/latex-refsheet/LaTeX_RefSheet.pdf}{LaTeX Reference Sheet for a thesis with KOMA-Script} von Marion Lammarsch und Elke Schubert zusammengefasst. 
 %Der Bericht fällt in die Kategorie von InfoVis-Paper, die Tamara Munzner Design Study nennt \cite{Munzner2008}: In der Einleitung sollen sie zuerst das Zielproblem beschrieben. Daraus sollen sie Fragestellungen motivieren, die mittels Techniken der Informationsvisualisierung beantwortet werden können. 
 %In dem Abschnitt direkt unter der Überschrift Einleitung sollen Sie nach einer kurzen Einleitung Fragestellungen und das Zielproblem motivieren und besschreiben. 
 
 \subsection{Anwendungshintergrund}
-Sinn der Marktanalyse in Unternehmen
-Sinn der Vergleiche von Genres
-Fakten zu Größe und Volumen des Spielemarkts ingesamt und in verschiedenen Regionen
-Fakten XBoxOne und Platformen 
-Fakten zu Anzahl Publisher und wieviele Spiele ein Publisher ungefähr bietet
-Was die Anwendung/Visualisierung bringen soll
+
+Marktanalysen sind für Unternehmen wie Publisher von zentralem Wert, da sie mit ihnen strategische Zukunftsfragen zur Ausrichtung beantworten können. 
+Sie müssen unter anderem Fragen zu Produktverbesserungen, -erweiterungen oder -neuerungen, Investitionen in diese und Potenziale und Risiken durch Korrelationen, Muster und Ausreißer beantworten können.\cite{Fleig.2020}
+Dabei kann sie detaillierter oder oberflächlicher sein. In dieser Anwendung ist eine oberflächliche Analyse geplant, mittels derer Entscheidungen für detailliertere getroffen werden können.
+Der Vorteil in diesem Vorgehen liegt in der Ersparnis von Zeit und Geld. 
+Durch eine schnell erstellte, intuitiv erklär-, präsentier- und verstehbare Visualisierung der grobgranularen Daten der Marktanalyse können im Publishingunternehmen erste vorab gültige Strategieentscheidungen bzgl. Investitionen in Titel eines Gernes getroffen und Maßnahmen vorbereitet werden.
+Weiterhin kann dann eine detaillierte und deutlich aufwenigere und damit teurere Marktstudie in den zuvor identifizierten Genres und mitunter Regionen in Auftrag gegeben werden. 
+Diese kann zu einer deutlich fundierteren Bestätigung oder Ablehnung der vorherigen Vorabentscheidung beitragen. 
+Durch die Erstellung einer groben Marktanalyse und der Visualisierung derer Daten kann die Anzahl bzw. der Umfang detaillierterer, teuerer und zeitintensiverer Marktanalysen minimiert werden.
+Entsprechend sollte auch der Fokus einer Visualisierung auf Zeit- und Kosteneffizienz bei gutem Nutzen für zuvor beschriebenes liegen.
+
+Die Konsole \textit{XBoxOne} von Microsoft verkaufte sich besonders in den Jahren 2013 bis Anfang 2019 gut mit einer Spitze im Dezember 2015 mit rund 715.000 verkauften Einheiten im Monat.
+Mittlerweile ist die Beliebtheit der Konsole zwar stark zurückgegangen, doch lassen sich aus den Verkaufszahlen von Videospielen ihrer Plattform weiterhin Erkenntnisse für die Zukunft und potenzielle Investitionen der Publisher ableiten.\cite{Statista.2022}
+Hierbei geht es auch um Investitionen in neue Titel für die XBoxOne, aber vor allem um solche in die Nachfolgekonsolen \textit{XBox Series X} und \textit{XBox Series S}. 
+Durch die Abwärtskompatibilität scheint es wahrscheinlich, dass Nutzer der \textit{XBoxOne} auch die Nachfolgekonsolen nutzen.\cite{GamesWirtschaft.2021} 
+Somit behalten die Verkaufszahlen der \textit{XBoxOne} ihre, wenn auch leicht verminderte, Aussagekraft.
+
+Unzählige Publisher produzieren Spiele für die \textit{XBoxOne} bzw. auch ihre Nachfolger und zählen viele Spiele unterschiedlicher Genres zu ihrem Repertoire.
+Dadurch ergibt sich der Sinn einer Übersicht.
+Zur besseren Vergleichbarkeit und Aussagekraft der Verkaufszahlen und ihrer Auffälligkeiten der Videospiele ist eine Filterung nach Genre sinnvoll.
 
 %Sie müssen genug Hintergrund bereitstellen, so dass die Lesenden sich ein Urteil bilden können, ob ihre Lösung funktioniert. 
 %Sie sollen die Lesenden jedoch nicht mit Anwendungsdetails so überschütten, dass der Fokus auf die Fragen zur Informationsvisualisierung untergehen. 
 
 \subsection{Zielgruppen}
-Publisher und dort oberes und mittleres Management/die Entscheider
-Vorwissen: Kein detailliertes Vorwissen zu speziellen Visualisierungstechniken. Aber Vorwissen zu BWL-Analysen, da sie im Grunde Analysten sind. 
-Kennen also aus ihrer täglichen Arbeit Diagramme, Scatterplots, Koordinatensysteme, Baumdiagramme, Zeitreihendiagramme und parallele Koordinaten. 
-Eventuell auch Forces und Recursive Pattern. Kennen also nicht die ganz spezifischen Visualisierungstechniken/haben kein ganz spezifisches Vorwissen, sodass hier viel erklärt werden müsste, was nicht zielführend wäre. 
-Das was sie kennen, vor allem Diagramme, Scatterplots, Bäume und Zeitreihendiagramme verstehen sie schnell, da sie es gut kennen und intuitiv damit arbeiten können. 
+Die in dieser Arbeit betrachtete Zielgruppe setzt sich aus Entscheidern der Publisher von Videospielen zusammen. Diese Entscheider sind vorranging Personen des oberen Management, aber auch des mittleren Managements.
+Letzteres ist begrenzt auf Abteilungsleiter und fokussiert vor allem den oder die Leiter der Abteilung für Marketing sowie Forschung und Entwicklung. 
+Das mittlere Management übernimmt dabei neben der Aufgabe des Mitentscheidens auch die des Präsentierens der Analysen und Ergebnisse, entsprechend der Visualisierungen, für das obere Management.
+Weiterhin zählen in begrenztem Rahmen auch Stakeholder der Publisher zur Zielgruppe, da sie über Entscheidungen des Unternehmens zu künftigen Strategien informiert werden sollten. 
+Dazu zählt auch die Entscheidung, in welches Genre mit welchem Regionsfokus investiert bzw. weitere Studien durchgeführt werden sollen. 
 
-Zusätzlich müssen sie die Visualisierungen u.U. auch Business Partnern zeigen oder im eigenen Unternehmen dem weiteren Management. D.h. sie müssen immer wieder auch schnell auf den ersten Blick sehen können, was gezeigt ist und die Visualisierung sagen soll und es entsprechend schnell und intuitiv anderen erklären können. 
-Informationsbedürnis: Harte Fakten. Was bietet der Publisher an? 
-Denn großer Publisher = viele Entwickeler = viele Projekte/Spiele = eventuell braucht das Management erstmal eine Übersicht, was sie überhaupt alles anbieten und in welchen Genres die Spiele eingeordnet sind zur Erinnerung. 
-Zusätzlich zum Überblick über die Konkurrenz in gleicher Weise. Wie sind die Zahlen der Spiele im Detail in den verschiedenen Märkten? 
-Wie sind die Zahlen der Spiele des Genres im Vergleich zur Konkurrenz in dem Genre? Wo liegt das Verbesserungspotenzial des Publishers in seiner Ausrichtung der Spiele? 
-Wo gibt es Marktlücken und wo liegen die Stärken? 
+Daraus ergibt sich, dass es in der Zielgruppe kein detailliertes bzw. stark spezifiziertes Vorwissen zu speziellen Visualisierungstechniken gibt. 
+Jedoch ist anzunehmen, dass sich vor allem das mittlere und obere Management mit Visualisierungen, die in der Betrieswirtschaftslehre häufiger zu finden sind, auskennt und diese ohne viele Erklärungen auswerten kann
+Dazu zählen vor allem Balken- und Kreisdiagramme, Box Plots, Zeitreihendiagramme, Scatterplots, explizite Baumdiagramme und Parallele Koordinaten Plots. 
+Bei spezielleren Visualisierungstechniken müssten mehr Erklärungen eingefügt werden sowie mehr Zeit zur Analyse und Entscheidung vorhanden sein. 
+Dies wäre gerade für eine Entscheidung zu detaillierteren Marktstudien, wobei noch keine konkrete Entscheidung für einen Titel getroffen wird, nicht zielführend.
+
+Durch die Visualisierungen werden mehrere Informationsbefürfnisse adressiert. 
+Zum einen wird das Bedürfnis nach übersichtsartigen Informationen zur Videospielindustrie im Sinne der eigenen Position und der der Konkurrenz für die \textit{XBoxOne} bezüglich der Verbindungen von Publisher, Genre und Videospiel adressiert.
+Zum zweiten werden Informationsbefürfnisse nach Zusammenhängen und Mustern zwischen Regionen in den jeweiligen Genres befriedigt, um daraus strategische Entscheidungen ableiten zu können.
+Zum dritten wird das Bedürfnis nach harten Fakten, sprich konkreten Verkaufszahlen der einzelnen Spieletitel angesprochen.
+Wichtig dabei ist das Bedürfnis nach Intuitivität der Visualisierungen, Schnelligkeit im Verständnis und der Erstellung sowie des vergleichweise geringen Preises für sie zu berücksichtigen. 
+Die Visualisierungen müssen immer wieder schnell verständlich und erklärbar für andere sein, auch auf den ersten Blick.
 
 %Beschreiben sie die Personengruppe oder Personengruppen, die das von ihnen benannte Anwendungsproblem lösen möchte. Auf welches Vorwissen können sie in dieser Gruppen von Anwenderinnen aufbauen? 
 %Welche Informations"-bedürf"-nisse werden durch die Visualisierungen adressiert?
 
 \subsection{Überblick und Beiträge}
-Überblick Daten: XBoxOne Datensätze aus 2016 mit den Attributen Position in der Tabelle, Publisher, Jahr der Veröffentlichung, Genre, Verkaufszahlen global, VK NA, VK EU, VK Asien, VK andere von der Platform Kaggel. 
-Info Datenherkunft auf Kaggle hinzufügen. relevant: alle außer Jahr der Veröffentlichung
-Überblick Visualsierungen:  
-Visualisierung 1: explizites Baumdiagramm zur Übersicht über Publisher und den von ihnen jeweils bedienten Genres und den Spielen in den Genres jeweils zur Beantwortung Fragengruppe 1
-Visualierung 2: Scatterplot zur Beantwortung von Fragegruppe 2, der tieferen Marktanalyse, also wie sich die Spiele in einem Genre im Vergleich verkauften mit Zusammenhängen zwischen globalen Verkäufen und Verkäufen in den auswählbaren Regionen. So kann ein Publisher vergleichen, wie seine Spiele eines Genres im Vergelich zur Konkurrenz verkauft wurden bzw wie erfolgreich seine Spiele waren.
-Visualisierung 3: parallele Koordinaten zur Beantwortung von Fragegruppe 3, damit Publisher auf einen Blick vergleichen können, wie ein konkretes Spiel von ihnen in den verschienden Regionen/Märkten verkauft werden konnte. Auf welchen Märkten war es am erfolgreichsten, welche Märkte sollten stärker beworben werden, auf welche sollte der Fokus gelegt werden? Spiele auswählbar je nach Genre.
-Beitrag allgemein der Visualisierungen: Lösung Problemstellung und Fragegruppe 4, also der allgemeinen. schnellerer Überlick über Erfolg der Spiele des Publishers in den Märkten und in Konkurrenz zu den anderen Spielen eines Genres zur zukünftigen Ausrichtung des Publishers.
-kurze Vorstellung des Vorgehens im Projektbericht: 1. Daten, 2. Visualisierungsbeschreibung + Interaktion, 3. Konkrete Umsetzung/Implementierung, 4. Konkreter Anwendungsfall, also ein Publisher aussuchen und durch die Visualisierungen gehen und dabei die oben beschriebenen Fragen beantworten und Problem lösen, 5. Verwandte Arbeiten vorstellen am besten in Kombi BWL und Visual Analytics und Spielemarkt, 6. Zusammenfassung und ausblick. Für Ausblick kann integriert werden, dass die analyse erweritert werden kann mit adäquaten intern erhobnen Daten der Publisher zu Umsätzen und Gewinnen insgesamt und pro Spiel + zu Kosten pro Spiel für die Entwicklung/Marktreife + Kosten Spiel auf dem Mart zur tieferen Analyse der Verkaufszahlen
-
+Die in dieser Arbeit verwendeten Daten stammen aus einem Datensatz für die \textit{XBoxOne} mit den Attributen Tabellenposition, Publisher, Jahr der Veröffentlichung, Genre, Verkaufszahlen global sowie in den Regionen Nordamerika, Europa, Japan und Rest der Welt von der Plattform Kaggle.\cite{SID_TWR.} 
+Relevant zur Beantwortung der Fragestellungen sind dabei alle Attribute außer des Jahres der Veröffentlichung sowie der Tabellenposition. 
+Die Visualisierungen entwickeln sich vom Groben zum Detaillierten.
+In einer ersten Visualisierung wird zur Unterstützung einer Übersicht über die Publisher, Genre und Videospieltitel ein hierarchisches, explizites Baumdiagramm verwendet. 
+Dies leistet einen Beitrag zur Beantwortung der übergeordneten Fragestellung und beantwortet die erste Unterfrage.
+Zur Beantwortung der zweiten Unterfrage nach Mustern und Ausreißern in den Verkaufszahlen eines Genres auch über alle Regionen hinweg bzw. in einer Ansicht aller Dimensionen gleichzeitig dient der folgende Parallele Koordinaten Plot.
+Zuletzt können in der dritten Visualisierung, dem Scatterplot, Korrelationen zwischen zwei Regionen sowie Ausreißer genauer betrachtet werden und damit auch zur Beantwortung der zweiten Unterfrage beitragen.
+Mittels aller Visualisierungen kann die übergeordnete Fragestellung beantwortet werden, welches Genre durch positive Korrelationen, Tendenzen zu wenig Konkurrenz oder hohen Spielerzahlen durch viele Titel in dem Genre und der Analyse von Mustern und Ausreißern Potenzial bietet und damit detaillierterer Marktanalysen bedarf.
 
 %In diesem Abschnitt geben sie einen kurzen Überblick über die Daten und verwendeten Visualisierungen. Dann benennen sie die Beiträge ihres Projekts. Diese Beiträge müssen sie in den hinteren Teilen des Berichts genauer ausführen und belegen.
 
 \section{Daten}
-Der für das vorliegende Visualisierungsprojekt verwendete Datensatz stammt von der Plattform \textit{Kaggle} von dem Nutzer \textit{SID\_TWR} mit dem Titel \textit{"Video Games Sales Dataset"}. 
+Der für das vorliegende Visualisierungsprojekt verwendete Datensatz stammt von der Plattform \textit{Kaggle} von dem Nutzer \textit{SID\_TWR} mit dem Titel \textit{"Video Games Sales Dataset"}.\cite{SID_TWR.} 
 Die Daten entstanden laut Nutzer durch Erweiterung der Daten eines Web Scrapes von \textit{VGChartz Video Games Sales} motiviert durch Gregpry Smith um weitere Attribute aus einem Web Scrape von \textit{Metacrtitic}.  
 %hier einfügen Link/Bibliografie zu Kaggle & zu VG Chartz 
 
@@ -124,7 +153,7 @@ Diese Daten sind jedoch größtenteils nicht öffentlich zugänglich, unvollstä
 Die Visualisierung dieser Daten würde das hier gesetze Zielproblem ergänzen, jedoch die anvisierte überblicksartige Marktanalyse überschreiten. 
 In einer unabhängigen, weiteren Martkanalyse und den zugehörigen Visualisierungen wäre dies jedoch denkbar.    
 
-Der Datensatz enthält jeodch auch fehlende Werte bei den Verlegern, fortan Publisher genannt, und den Verkaufszahlen jeder Region. 
+Der Datensatz enthält jedoch auch fehlende Werte bei den Verlegern, fortan Publisher genannt, und den Verkaufszahlen jeder Region. 
 Die Daten werden also um jene Videospiele bereinigt, denen kein Publisher zugeordnet ist oder deren Publisher unbekannt ist. 
 Weiterhin werden jene Videospieldaten gelöscht, deren Verkäufe in allen Regionen bzw. global einen Wert von Null aufweisen. 
 Zuletzt wird die Zahl der Videospiele um jene reduziert, deren Publisher nur ein Spiel herausgibt.  
