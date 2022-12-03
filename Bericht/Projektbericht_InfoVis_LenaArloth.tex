@@ -483,105 +483,114 @@ Wird dies in einer der beiden Visualisierungen ausgewählt, wird es in der ander
 Eine Änderung des Genres in einer der beiden detaillierten Visualisierungen führt zu einer Änderung in der anderen.
 
 \section{Implementierung}
-Im foglenden Kapitel wird die Implementierung der zuvor beschriebenen Visualisierungen und Interaktionen beschrieben. Der Code wird durch Kommentare ergänzt, um eine Übersichtlichkeit und Erklärung zu einzelnen Funktionen zu ermöglichen.
-Der Code wird in fünf verschiedene Elm-Module unterteilt, um die vollen Möglichkeiten der Sprache zu nutzen, das Programm performanter zu machen und den Code für Außenstehende übersichtlicher zu gestalten.
+Im folgenden Kapitel wird die Implementierung der zuvor beschriebenen Visualisierungen und Interaktionen beschrieben. 
+%Der Code wird durch Kommentare ergänzt, um eine Übersichtlichkeit und Erklärung zu einzelnen Funktionen zu ermöglichen.
+Der Code wird in fünf Elm-Module unterteilt.
+%, um die vollen Möglichkeiten der Sprache zu nutzen, das Programm performanter zu machen und den Code für Außenstehende übersichtlicher zu gestalten.
 Es existiert je ein Modul für die drei einzelnen Visualisierungen (TreeHierarchy, ParallelPlot, Scatterplot), eines für Datenstrukturen (Data) und eines zur Zusammensetzung und Ausführung des Programms (MainScatterParallel). 
 Innerhalb der Module, insbesondere der Visualisierungsmodule, wird versucht, den Code einheitlich zu strukturieren. 
-Hier werden zuerst kleinere Funktionen definiert, die im späteren Verlauf genutzt werden bis zuletzt allgemeine Einstellungen der Plots vorgenommen werden. 
+Es werden zuerst kleinere Funktionen definiert, die im späteren Verlauf genutzt werden bis zuletzt allgemeine Einstellungen der Plots vorgenommen werden. 
 
-Über alle Module hinweg werden diverse Bibliotheken genutzt. Die Bilbliotheken \textit{elm/core} und \textit{elm/browser} werden nur für MainScatterParallel importiert. 
-\textit{elm/http} wird von MainScatterParallel, Data und TreeHierarchy verwendet, \textit{elm/html} von MainScatterParallel, TreeHierarchy und Scatterplot.
-Zur Decodierung von JSON-Dateien für TreeHierarchy wird die Bibliothek \textit{elm/json} in Data genutzt, für die Decodierung von CSV-Dateien für Scatterplot und ParallelPlot in Data \textit{lovasoa/elm-csv} und \textit{ericgj/elm-csv-decode}.
-Die Bibliothek \textit{elm-community/typed-svg} wird für das Zeichnen der Plots in Scatterplot, ParallelPlot und TreeHierarchy gebraucht ebenso wie die Bibliothek \textit{gampleman/elm-visualization}. 
-\textit{avh4/elm-color} wird nur in ParallelPlot und TreeHierarchy genutzt. 
-\textit{elm-community/list-extra} und \textit{folkertdev/one-true-path-experiment} sind nur für das Zeichnen des ParallelPlots wichtig.
-Zur Berechnung des Layouts von Bäumen wird \textit{wasdacraic/elm-tree-layout} in TreeHierarchy genutzt und \textit{zwilias/elm-rosetree} zum Speichern der Bäume in einer Datenstruktur in TreeHierarchy und Data importiert.
+Über alle Module hinweg werden diverse Bibliotheken genutzt, die zu Beginn jedes Moduls importiert werden.  
+%Die Bibliotheken \textit{elm/core} und \textit{elm/browser} werden nur für MainScatterParallel importiert. 
+%\textit{elm/http} wird von MainScatterParallel, Data und TreeHierarchy verwendet, \textit{elm/html} von MainScatterParallel, TreeHierarchy und Scatterplot.
+%Zur Decodierung von JSON-Dateien für TreeHierarchy wird die Bibliothek \textit{elm/json} in Data genutzt, für die Decodierung von CSV-Dateien für Scatterplot und ParallelPlot in Data \textit{lovasoa/elm-csv} und \textit{ericgj/elm-csv-decode}.
+%Die Bibliothek \textit{elm-community/typed-svg} wird für das Zeichnen der Plots in Scatterplot, ParallelPlot und TreeHierarchy gebraucht ebenso wie die Bibliothek \textit{gampleman/elm-visualization}. 
+%\textit{avh4/elm-color} wird nur in ParallelPlot und TreeHierarchy genutzt. 
+%\textit{elm-community/list-extra} und \textit{folkertdev/one-true-path-experiment} sind nur für das Zeichnen des ParallelPlots wichtig.
+%Zur Berechnung des Layouts von Bäumen wird \textit{wasdacraic/elm-tree-layout} in TreeHierarchy genutzt und \textit{zwilias/elm-rosetree} zum Speichern der Bäume in einer Datenstruktur in TreeHierarchy und Data importiert.
            
 Insgesamt war die Implementierung der Anwendung sehr zeitaufwändig, da vor allem die Routine im Programmieren mit Elm trotz der umfangreichen Übungsaufgaben fehlte.
-Die Übungsaufgaben waren eine große Stütze. Jedoch musste auch hier noch einmal nachvollzogen werden, was dort gemacht wurde. Teils kamen so noch neue Erkenntnisse und neues Verständnis für den Code, sodass sich durch die Implementierung der Projektanwendung ein zusätzlicher großer Lerneffekt einstellte.
+Die Übungsaufgaben waren eine große Stütze. Jedoch musste auch hier noch einmal nachvollzogen werden, was dort gemacht wurde. 
+Teils kamen so noch neue Erkenntnisse und neues Verständnis für den Code, sodass sich durch die Implementierung der Projektanwendung ein zusätzlicher großer Lerneffekt einstellte.
 Es gab trotz der guten Vorlagen der Abgaben der Autorin zu den Übungsaufgaben einige Schwierigkeiten, die in den folgenden Unterkapiteln Erwähnung finden.
           
 \subsection{Data.elm}
-In diesem Modul sind nahezu alle verwendeten Datentypendeklarationen enthalten. Einzig der \textit{type Model} und \textit{type Msg} aus MainScatterParallel sind dort nicht vertreten. 
-Dies ist begründet in der sinkenden Überischtlichkeit und Verständlichkeit des Codes in MainScatterParallel, sollten eben genannte, recht umfangreiche Typen in Data deklariert sein und in MainScatterParallel referenziert werden müssen.
+In diesem Modul sind nahezu alle verwendeten Datentypendeklarationen enthalten. 
+Einzig der \textit{type Model} und \textit{type Msg} aus Gründen der Übersichtlichkeit und Verständlichkeit des Codes in \textit{MainScatterParallel} sind dort nicht vertreten. 
 
-In Data sind zunächst alle für dieses Modul benötigten Importe zu erkennen, bevor die Decodierung der CSV-Dateien mit den Funktionen \textit{decodeGameSales}, \textit{csvString\_to\_data} und \textit{gamesSalesList} geschieht. 
-Hier werden die einzelnen Felder der CSV-Datei als String decodiert und dann in eine Liste vom Typ GameSales geschrieben.
-Darauf folgt die Decodierung der JSON-Datei mittels der Funktion \textit{treeDecoder}.
-Beide Decoder basieren auf denen für die Übungen sieben und neun verwendeten und wurden an die in diesem Projekt verwendeten Daten angepasst.
+In \textit{Data} sind zunächst die Funktionen \textit{decodeGameSales}, \textit{csvString\_to\_data} und \textit{gamesSalesList} zur Decodierung der CSV-Dateien implementiert. 
+Die einzelnen Felder der CSV-Datei als String decodiert und dann in eine Liste vom Typ GameSales geschrieben.
+Darauf folgt die Decodierung der JSON-Datei mittels \textit{treeDecoder}.
+Beide Decoder basieren auf jenen für die Übungen sieben und neun verwendeten und wurden an die in diesem Projekt verwendeten Daten angepasst.
 
-Es folgt die Definition der Datentypendeklarationen, die für alle Visualisierungen außer die TreeHierarchy wichtig sind. 
-In \textit{type alias GameSales} sind die Daten aus der CSV-Datei gespeichert, welche dann im Model in MainScatterParallel weiterverwendet werden. 
-Die Deklarationen \textit{type RegionType} und \textit{type PlotType} als CustomType werden für die Auswahl der Achsen in Visualisierung zwei und drei sowie die Auswahl der anzuzeigenden Visualisierung benötigt.
-Sie werden im \textit{type Model} und im \textit{type Msg} in MainScatterParallel, im \textit{regionFilter} in Scatterplot und im \textit{multiDimenData} in ParallelPlot verwendet. 
-Als nächstes werden die Datentypendeklarationen für den Scatterplot, den ParallelPlot und die TreeHierarchy definiert. 
-Somit sind alle drei Visualisierungen modular zusammengesetzt.
+Es folgt die Definition der Datentypendeklarationen, die für alle Visualisierungen außer die \textit{TreeHierarchy} wichtig sind. 
+In \textit{type alias GameSales} sind die Daten aus der CSV-Datei definiert, welche dann im Model in \textit{MainScatterParallel} weiterverwendet werden. 
+Die Deklarationen \textit{type RegionType} und \textit{type PlotType} als CustomType werden für die Auswahl der Achsen in den Visualisierung zwei und drei sowie die Auswahl der anzuzeigenden Visualisierung benötigt.
+Sie werden im \textit{type Model} und im \textit{type Msg} in \textit{MainScatterParallel}, im \textit{regionFilter} in \textit{Scatterplot} und im \textit{multiDimenData} in \textit{ParallelPlot} verwendet. 
+Als nächstes werden die spezifischen Datentypen für die Visualisierungen definiert. 
+%Somit sind alle drei Visualisierungen modular zusammengesetzt.
 
-Zuletzt werden für die Anwendung mit Buttons wichtige Funktionen zur Datentypkonversion von einem String zu PlotType, String zu RegionType, RegionType zu String und String zu ein einem Tupel aus RegionType und String beschrieben. 
-Dies ist nicht nur zur Darstellung von Buttons, die nur Strings erlauben, also der Implementierung von Interaktionen nötig, sondern auch zur beispielsweise korrekten Anzeige von aktuell ausgewählten Regionen.
-Weiterhin ist noch eine Konversion von einem RegionType zu einem Tupel aus GameSales und Float für die Funktion \textit{multiDimenData} in ParallelPlot notwendig.
+Zuletzt werden die für die Buttons wichtigen Funktionen zur Datentypkonversion von einem String zu PlotType, String zu RegionType, RegionType zu String und String zu ein einem Tupel aus RegionType und String beschrieben. 
+Dies ist nicht nur zur Darstellung von Buttons, die nur Strings erlauben, also der Implementierung von Interaktionen nötig, sondern auch zur bspw. korrekten Anzeige von aktuell ausgewählten Regionen.
+Weiterhin ist eine Konversion von einem RegionType zu einem Tupel aus GameSales und Float für die Funktion \textit{multiDimenData} in ParallelPlot notwendig.
 
 \subsection{TreeHierarchy.elm}
-Im Modul TreeHierarchy werden wie immer in Elm die Importe definiert. Aus Data werden nur die für die Baumdarstellung benötigten Funktionen importiert. 
-Danach folgt die Funktion \textit{main}, die die Bestandteile der Anwendung definiert. 
-
-Entsprechend dieser werden nun die Funktionen \textit{init} und \textit{update} beschrieben. 
-Ersteres initialisiert die Anwendung und lädt die Daten unter Anwendung des Decoders für JSON-Dateien. 
-Im \textit{update} wird deklariert, dass im Falle eines korrekten Ladens von Daten der neue Baum angezeigt wird, im Falle eines inkorrekten Ladens eine Error-Nachricht. 
+Nach dem Import der Bibliotheken beginnt dieses Modul mit den grundlegenden Funktionen \textit{main}, \textit{init} und \textit{update}. 
+Die Anwendung wird initialisiert, die Daten unter Anwendung des Decoders für JSON-Dateien geladen und die jeweils auszuführenden Aktionen bei korrektem oder inkorrektem Laden der Daten bestimmt. 
 Es folgt eine Helferfunktionen \textit{convert} zur Konvertierung des Baumes basierend auf den Vorgaben zu Übung neun.
 
-Die Funktionen \textit{line} und \textit{point} werden zum Zeichnen der Verbindungen von Eltern zu Kindknoten beziehungsweise zur Darstellung der Knoten an sich benötigt und in \textit{treePlot} und \textit{treePlot2} angewandt. 
-Sie definieren die Linie beziehungsweise den Knoten als Kreis mit Beschriftung mit einer Rotation von 75° und einer fett gedruckten Serifenschriftart.
+Die Funktionen \textit{line} und \textit{point} werden zum Zeichnen der Verbindungen von Eltern zu Kindknoten bzw. zur Darstellung der Knoten an sich benötigt und in \textit{treePlot} und \textit{treePlot2} angewandt. 
+Sie definieren die Linie bzw. den Knoten als Kreis mit Beschriftung mit einer Rotation von 75° und einer fett gedruckten Serifenschriftart.
 
-Als nächstes sind zwei Funktionen zum Zeichen des Baumes beschrieben. Zur Ansicht des Baumes ohne Scrollen als Übersicht wird \textit{treePlot2} verwendet, zur näheren Ansicht des Baumes wird der \textit{treePlot} verwendet. 
-Der einzige Unterschied zwischen den Plots ist die prozentuale Vergrößerung der global definierten Höhe und Breite um 200 bzw. 150 Prozent im SVG des \textit{treePlot}.
-Die Plots an sich sind stark basierend auf dem Code der Autorin zu Übung neun. Mittels lokaler Funktionen wird zunächst das Layout des Baumes berechnet, bevor lokal die Abhängigkeiten des Baumes berechnet werden, um die Pfade zwischen Eltern- und Kindknoten zeichnen zu können. 
-Dazu werden die X- und Y-Werte der Eltern- und Kindknoten mittels Dict.get herausgezogen. Weiterhin wird eine Verbindung des Wurzelknotens mit einem nicht existierenden Elternknoten durch die Funktionen \textit{checkRootNegative} und \textit{nodeValuesPath} verhindert.
-Zum Zeichnen der Verbindungen wird die zuvor beschriebene Funktion \textit{line} genutzt, auf die die lokale Funktion \textit{nodeValuesPath} angewandt wird. Für die Punkte wird \textit{point} verwendet, auf das die lokale Funktion \textit{nodeValues} angewandt wird. 
+Als nächstes sind zwei Funktionen zum Zeichen des Baumes beschrieben. 
+Zur Ansicht des Baumes ohne Scrollen als Übersicht wird \textit{treePlot2} verwendet, zur näheren Ansicht des Baumes \textit{treePlot}. 
+Die Plots unterscheidet einzig die prozentuale Vergrößerung der global definierten Höhen und Breiten um 200 bzw. 150 Prozent im SVG des \textit{treePlot}.
+Die Plots an sich basierend stark auf dem Code der Autorin zu Übung neun. 
+Mittels lokaler Funktionen wird zunächst das Layout des Baumes bestimmt, bevor lokal die Abhängigkeiten des Baumes berechnet werden, um die Pfade zwischen Eltern- und Kindknoten zu zeichnen. 
+Dazu werden die X- und Y-Werte der Eltern- und Kindknoten mittels \textit{Dict.get} herausgezogen. 
+Weiterhin wird eine Verbindung des Wurzelknotens mit einem nicht existierenden Elternknoten durch die Funktionen \textit{checkRootNegative} und \textit{nodeValuesPath} verhindert.
+Zum Zeichnen der Verbindungen wird die zuvor beschriebene Funktion \textit{line} genutzt, auf die die lokale Funktion \textit{nodeValuesPath} angewandt wird. 
+Für die Punkte wird \textit{point} verwendet, auf das die lokale Funktion \textit{nodeValues} angewandt wird. 
 Die Definition von Kreis-, Linien- und Textfarben, Umrandungen derselben und entsprechenden Änderungen beim Hovern mit der Maus wird im global definierten CSS \textit{cssTree} vorgenommen. 
 
-In der \textit{view}-Funktion wird zunächst lokal der konvertierte Baum sowie das Layout berechnet. In einem Html.div werden geschachtelt durch weitere divs Überschriften, Erklärungen, Links und Buttons zur Ausgabe implementiert. 
-Die Anordnung sowie der Designstil ist an MainScatterParallel angepasst. An den entsprechenden Stellen in der Abfolge der gewünschten Texte werden die beiden Baumhierarchien gezeichnet, wobei \textit{treePlot} einen Balken zum horizontalen Scrollen erhält.
+In der \textit{view}-Funktion wird lokal der konvertierte Baum sowie das Layout berechnet. 
+In einem Div-Container werden geschachtelt durch weitere Container Überschriften, Erklärungen, Links und Buttons zur Ausgabe implementiert. 
+Die Anordnung sowie der Designstil ist an \textit{MainScatterParallel} angepasst. 
+%An den entsprechenden Stellen in der Abfolge der gewünschten Texte werden die beiden Baumhierarchien gezeichnet, wobei \textit{treePlot} einen Balken zum horizontalen Scrollen erhält.
 
-Zuletzt werden global allgemeine konstante Einstellungen zum Plot definiert. Hierzu zählen Breite, Höhe, Innenabstand, Radius, Skalierungen, Default-Einstellungen sowie Einstellungen zum Bereich der Datenwerte.
+Zuletzt werden global allgemeine konstante Einstellungen zum Plot definiert. 
+Hierzu zählen Breite, Höhe, Innenabstand, Radius, Skalierungen, Default-Einstellungen sowie Einstellungen zum Bereich der Datenwerte.
 Diese Einstellungen basieren auf den Vorgaben in der Vorlage zum Arbeiten mit Bäumen aus Übung neun und sind auch in den Abgaben zu Übung neun der Autorin zu finden. 
 
 Die Implementierung der expliziten Baumhierarchie bereitete wenig Schwierigkeit, da sehr viel auf den abgegebenen Codes der Autorin zu Übung neun basiert. 
-Ledgilich der Decoder in Data musste an die Datenfelder angepasst, der Link zum Laden der Daten geändert sowie die besten Design- und Darstellungsweisen, inklusive der zweifachen Darstellung des Baumes, gefunden werden. 
-Weiterhin wurde das CSS global definiert, das allgemeine Design der darzustellenden Seite im \textit{view} an jenes aus MainScatterParallel angepasst und Erklärungstexte für die Anwender hinzugefügt. 
+Lediglich der Decoder in Data musste an die Datenfelder angepasst, der Link zum Laden der Daten geändert sowie die besten Design- und Darstellungsweisen, inklusive der zweifachen Darstellung des Baumes, gefunden werden. 
+Weiterhin wurde das CSS global definiert, das allgemeine Design der darzustellenden Seite im \textit{view} an jenes aus \textit{MainScatterParallel} angepasst und Erklärungstexte für die Anwender hinzugefügt. 
 
 \subsection{ParallelPlot.elm}
-Im Modul ParallelPlot werden wieder zuerst die Importe definiert, wobei aus Data nur die für die Parallelen Koordinaten benötigten Funktionen importiert werden. 
-
-Die folgenden drei Funktionen dienen dem Mapping und der Reduzierung der Datensätze um solche, die Null-Values enthalten. 
+Dieses Modul beginnt nach dem Import mit drei Funktionen zum Mapping und der Reduzierung der Datensätze um solche, die Null-Values enthalten. 
 Dies ist nach der manuellen Vorverarbeitung der Daten zwar nicht zwingend notwendig, jedoch werden somit mögliche Fehler in dieser berücksichtigt und entfernt. 
 Weiterhin ist der Code damit universeller einsetzbar, sollten andere Datengrundlagen genutzt werden wollen. 
-Die erste Funktion ist eine Hilfsfunktion, die mittels Maybe.map2 beim Pipen hilft. Sie basiert auf \textit{https://package.elm-lang.org/packages/elm/core/latest/Maybe}
-Die zweite Hilfsfunktion basiert auf einer normalen Maybe.map5 Funktion, die um einen Parameter erweitert wird \textit{https://package.elm-lang.org/packages/elm/core/latest/Maybe}. 
-Da es kein Maybe.map6 gibt, wird hier die vorherige Hilfsfunktion angewandt, um dieses Problem zu umgehen. 
-So kann transformiert werden wie es eine Maybe.map6 Funktion machen würde, wenn es sie gäbe.
-\textit{AssignmentAndReduce} wiederum mapped schließlich lokal mithilfe der \textit{helpMapBig} die Daten vom Typ GameSales zu Maybe GameSales und reduziert diese dann um die Datensätze mit fehlenden Werten mittels \textit{List.filterMap}.
+
+Die erste Funktion ist eine Hilfsfunktion, die mittels \textit{Maybe.map2} beim Pipen hilft.
+Die zweite Hilfsfunktion basiert auf einer normalen \textit{Maybe.map5} Funktion, die um einen Parameter erweitert wird. 
+Beide basieren auf den Dokumentationen der Elm-Core-Bibliothek zu Maybe.%\cite{EvanCzaplicki.o.J.} 
+Da es kein \textit{Maybe.map6} gibt, wird hier die vorherige Hilfsfunktion angewandt, um dieses Problem zu umgehen. 
+%So kann transformiert werden wie es eine Maybe.map6 Funktion machen würde, wenn es sie gäbe.
+\textit{AssignmentAndReduce} wiederum wandelt schließlich lokal mithilfe der \textit{helpMapBig} die Daten vom Typ GameSales zu Maybe GameSales um und reduziert diese um die Datensätze mit fehlenden Werten mittels \textit{List.filterMap}.
 Diese Funktion basiert auf den Abgaben der Autorin zu Übung sechs.
 
-Die Funktion \textit{multiDimenData} dient zusammen mit der lokalen Funktion \textit{multiDimFunction} aus MainScatterParallel der freien Auswahl und Belegung der Achsen sowie der Anwendung der Filterung nach Genre. 
+Die Funktion \textit{multiDimenData} dient zusammen mit der lokalen Funktion \textit{multiDimFunction} aus \textit{MainScatterParallel} der freien Auswahl und Belegung der Achsen sowie der Anwendung der Filterung nach Genre. 
 Das Grundgerüst beider Funktionen basiert auf den Abgaben der Autorin zu Übung sechs. 
-Hier wurden die Achsen jedoch getauscht, was aufgrund flexiblerer und schnellerer Auswahl der Achsen in diesem Projekt geändert wurde. 
-\textit{MultiDimenData} benötigt als Eingabe eine Liste von GameSales sowie fünf RegionTypes. Diese sind die auszuwählenden Regionen für die Achsen. 
-Weiterhin braucht es den Namen des Spieles und den Publisher des Spieles zur Anzeige dieser im späteren Plot. Der Typ begründet sich aus dem \textit{type alias GameSales}.
+Der dort implementierte Achsentausch wurde aufgrund der Anforderungen in diesem Projekt geändert.
+\textit{MultiDimenData} benötigt als Eingabe eine Liste von GameSales sowie fünf RegionTypes als die auszuwählenden Regionen für die Achsen. 
+Weiterhin braucht es den Namen des Spieles und den Publisher des Spieles zur Anzeige dieser im späteren Plot. 
+Der Typ begründet sich aus dem \textit{type alias GameSales}.
 Zusätzlich sind fünf Namen, also Beschriftungen als String nötig. 
-All dies begründet sich in der Definition der Recordfelder in \textit{type Model} sowie dem für das \textit{update} benötigten Datentypen \textit{(RegionType, String)}.
-Als Output muss die Funktion den Typ \textit{MultiDimData} ausgeben, der benötigt wird, um die Daten dem \textit{scatterplotParallel} zu übergeben und den Plot zeichnen zu können.
-Eine besondere Schwierigkeit bei der Konstruktion der Funktion lag im Umfang dieser und im Verständis welcher Datentyp benötigt wird. 
+Begründet ist dies in der Definition der Recordfelder in \textit{type Model} sowie dem für das \textit{update} benötigten Datentypen \textit{(RegionType, String)}.
+Die Funktion muss den Typ \textit{MultiDimData} zur Übergabe an \textit{scatterplotParallel} und Zeichnung des Plots ausgeben. 
+Eine besondere Schwierigkeit bei der Konstruktion der Funktion lag im Umfang dieser und im Verständis des benötigten Datentyps. 
 So muss der RegionType innerhalb der Funktion mittels \textit{regionTypeToAxisAnnotation} nochmals umgeschrieben werden. 
-Die Funktion wird in MainScatterParallel in der lokalen Funktion \textit{multiDimFunction} angewandt und bekommt dort die von ihr benötigten Daten übergeben.
+Die Funktion wird in \textit{MainScatterParallel} in der lokalen Funktion \textit{multiDimFunction} angewandt und bekommt dort die von ihr benötigten Daten übergeben.
 
 Es folgt der \textit{scatterplotParallel}, der nahezu unverändert aus den Abgaben der Autorin zu Übung sechs übernommen werden kann. 
-Hier werden unter anderem mittels lokaler Funktionen die Achsen in X-Richtung positioniert. 
-Weiterhin wird das umgebende Rechteck festgelegt, sowie die Achsen und ihre Beschreibung gezeichnet. Die Zeichnung der Datenpunkte wird mittels Shape.line und Shape.linaerCurve realisiert.
-Zudem wird der beim Hovern über einen Datenpunkt anzuzeigende Text lokal beschrieben bevor die Funktion dann zuletzt mit den entsprechenden Daten angewandt wird.
+Hier werden unter anderem mittels lokaler Funktionen die Achsen in X-Richtung positioniert sowie die Achsen und ihre Beschriftungen in einem umgebenden Rechteckt gezeichnet.
+Die Zeichnung der Datenpunkte wird mittels Shape.line und Shape.linaerCurve realisiert.
+Zudem wird der beim Hovern über einen Datenpunkt anzuzeigende Text lokal beschrieben bevor diese Funktion dann zuletzt mit den entsprechenden Daten angewandt wird.
 
-Wie auch in der TreeHierarchy schon geschehen, wird auch hier das CSS global in \textit{cssParallel} definiert. Ein besonderes Augenmerk liegt dabei auf der Definition der Opacity mit 0.5. 
-So entsteht trotz weiß gefärbtem Umgebungsrechteck eine Art Röntgeneffekt. Mögliche Cluster und Aufälligkeiten in den Datenpunkten sind durch Überlagerungen so besser erkennbar.
+Auch hier wird das CSS global in \textit{cssParallel} definiert. Ein besonderes Augenmerk liegt dabei auf der Definition der Opacity mit 0.5. 
+So entsteht trotz weiß gefärbtem Umgebungsrechteck der gewünschte Röntgeneffekt.
+Mögliche Cluster und Aufälligkeiten in den Datenpunkten sind durch Überlagerungen so besser erkennbar.
 Durch das Einfärben in einem stärkeren Grünton beim Hovern und dem Einblenden der Details zum Datenpunkt lassen sich die einzelnen Videospiele besser nachvollziehen.
 
 Auch hier schließt die Implementierung mit den generellen Einstellungen für den Plot. Diese basieren auf den Abgaben der Autorin zu Übung sechs. 
@@ -592,55 +601,49 @@ Schwieriger gestaltete sich jedoch die Umsetzung der freien Auswahl der Achsen w
 Dies war mit viel Ausprobieren und Verständnis, welcher Datentyp für welche weitere Funktion benötigt wird und welche durch die vorherige Definition der Datentypen vorhanden waren, verbunden.
 
 \subsection{Scatterplot.elm}
-Das Modul Scatterplot beginnt mit der Definition der Importe. Aus Data werden nur die für den Scatterplot benötigten Funktionen importiert. 
-
-Folgende drei Funktionen verfolgen denselben Zweck wie im ParallelPlot.
-Die ersten beiden Funktionen sind dieselben wie im ParallelPlot.
-\textit{FilterAndReduceGames} ähnelt \textit{AssignmentAndReduce} stark, basiert aber auf den Abgaben der Autorin zu Übung 1.
-Hier werden die Daten zunächst auch mithilfe von \textit{helpMapBig} gemapped, jedoch vom Typ GameSales zum Typ Maybe Point. 
-Dieser wird später für die Funktion \textit{point} und diese für den Plot an sich benötigt.
-Weiterhin wird wieder mithilfe vom List.filterMap nach Null-Values gefiltert. 
-Die gemappten und gefilterten Daten in \textit{filter} werden dann unter anderem in XyData geschrieben, dass als Output der Funktion \textit{FilterAndReduceGames} definiert ist.
+Nach dem Import der Bibliotheken folgen in diesem Modul ähnliche drei Funktionen mit demselben Zweck wie im \textit{ParallelPlot}.
+Die ersten beiden Funktionen sind dieselben.
+\textit{FilterAndReduceGames} ähnelt \textit{AssignmentAndReduce} stark, basiert aber auf den Abgaben der Autorin zu Übung eins.
+Hier werden die Daten zunächst mithilfe von \textit{helpMapBig} vom Typ GameSales dem Typ Maybe Point zugeordnet, welcher für die Funktion \textit{point} und diese für den Plot an sich benötigt wird. 
+Die zugeordneten und mit \textit{List.filteMap} gefilterten Daten in \textit{filter} werden dann unter anderem in XyData geschrieben, dass als Output der Funktion \textit{FilterAndReduceGames} definiert ist.
 XyData werden benötigt für das Zeichnen des Scatterplots, da sie unter anderem eine Liste Daten des Typs \textit{Point} enthalten.
 
 Die Funktion \textit{regionFilter} filtert mit Eingabe einer Liste GameSales und des RegionTypes die Datenpunkte nach den je gewünschten Regionsauswahlen für die Achsen. 
-Ausgegeben wird eine Liste Floats. Diese Funktion ist nötig zur Interaktion innerhalb des Plots, um die Achsen frei wählen zu können und damit auch die richtigen Datenpunkte anzuzeigen.
-In MainScatterParallel wird \textit{regionFilter} lokal für \textit{valuesX} und \textit{valuesY} aufgerufen und auf die nach Genre gefilterten Daten sowie die X- bzw. Y-Achse angewandt. 
+Diese Funktion ist nötig zur Interaktion innerhalb des Plots, um die Achsen frei wählen und die richtigen Datenpunkte anzeigen zu können.
+In \textit{MainScatterParallel} wird \textit{regionFilter} lokal für \textit{valuesX} und \textit{valuesY} aufgerufen und auf die nach Genre gefilterten Daten sowie die X- bzw. Y-Achse angewandt. 
 Die Funktion basiert auf den Abgaben der Autorin zu Übung vier.
 
-In der Funktion \textit{point} wird die Positionierung der Punkte sowie deren Beschriftung festgelegt und als SVG Nachricht ausgegeben.
-So kann \textit{point} im \textit{scatterplot} aufgerufen werden.
-
+In der Funktion \textit{point} wird die Positionierung der Punkte sowie deren Beschriftung für die Weiterverwendung in \textit{Scatterplot} festgelegt.
 Der \textit{scatterplot} ist für das Zeichnen des Plots mit den Datenpunkten zuständig. 
 Mit der lokalen Funktion \textit{pointsXY} wird die Variabilität der Achsen und damit X- und Y-Werte der Punkte ermöglicht, die für die Interaktivität der Achsenauswahl nötig ist.
 Dies ist in vielen Übungsabgaben der Autorin nicht umgesetzt, jedoch in Übung vier, sodass diese als Grundlage für die lokale Funktion dient. 
-In weiteren lokalen Funktionen wird die Abbildung bzw- Umrechnung der Daten auf SVG berechnet.
+%In weiteren lokalen Funktionen wird die Abbildung bzw. Umrechnung der Daten auf SVG berechnet.
 Im SVG des \textit{scatterplot} wird die Positionierung der X- und Y-Achse, ihrer Beschriftungen und der Punkte festglegt. 
-Letzteres wird durch die lokalen Funktionen \textit{xScaleLocal}, \textit{yScaleLocal} und \textit{pointsXY} sowie der zuvor beschriebenen globalen Funktion \textit{point}.
+Letzteres wird durch die lokalen Funktionen \textit{xScaleLocal}, \textit{yScaleLocal} und \textit{pointsXY} sowie der zuvor beschriebenen globalen Funktion \textit{point} erreicht.
 Der \textit{scatterplot} basiert auf den Abgaben der Autorin zu Übung 1.4 sowie Übung vier. 
 
-Als letztes werden allgemeine Einstellungen, die konstant für den Plot gelten sollen, global definiert. 
-Diese basieren auf den Abgaben der Autorin zu Übung eins bis vier.
+Zuletzt werden allgemeine, konstant für den Plot geltende Einstellungen global definiert. Diese basieren auf den Abgaben der Autorin zu Übung eins bis vier.
 
 Die Implementierung des Scatterplots verlief in weiten Teilen problemlos, wenn auch nicht schnell durch ständiges Überprüfen der richtigen Datentypen.
-Schwieriger war wie beim ParallelPlot auch die Umsetzung des Mappings und Filterns nach Null-Werten durch das fehlende List.map6.
+Schwieriger war wie beim \textit{ParallelPlot} auch die Umsetzung des Mappings und Filterns nach Null-Werten durch das fehlende List.map6.
 Weiterhin musste beachtet werden, dass die Achsen des Plots frei wählbar, also variabel definiert sind und nicht strikt festgelegt wie in den meisten Übungsserien.
 Mit entsprechender Zeit- und Denkinvestition war auch dies überwindbar.
 
 \subsection{MainScatterParallel.elm}
-Auch das Modul MainScatterParallel definiert zunächst die Importe. 
+Auch das Modul \textit{MainScatterParallel} definiert zunächst die Importe. 
 Aufgrund der besseren Erkenntlichkeit aus welchen Modulen welche Funktionen stammen, werden keine Funktionen dezidiert importiert, sondern nur das allgemeine Modul. 
 
-Für dieses Modul wird wie in TreeHierarchy die gesamte Elm-Architektur verwendet, da es den Scatterplot und die Parallelen Koordinaten ausführen und alle drei Visualisierungen verbinden soll.
+Für dieses Modul wird die gesamte Elm-Architektur verwendet, da es den \textit{Scatterplot} und die \textit{ParallelPlot} ausführen und alle drei Visualisierungen verbinden soll.
 Hierzu wird das Programm zunächst wieder in der \textit{main}-Funktion definiert, sowie die \textit{subcritpions-} und die \textit{init}-Funktion implementiert.
 
 Danach folgt die Definition der Datentypendeklarationen \textit{type Model} und \textit{type Msg}. 
-Diese könnten zwar auch in Data definiert werden, verweilen aber zugunsten der Übersichtlichkeit und schnelleren Verständnisses des Codes in diesem Modul.
+%Diese könnten zwar auch in Data definiert werden, verweilen aber zugunsten der Übersichtlichkeit und schnelleren Verständnisses des Codes in diesem Modul.
 In \textit{type Model} werden die drei Varianten Error, Loading und Success beschrieben, die in den entsprechenden Fällen angezeigt werden. 
 Die Variante Success ist gleichzeitig ein Record aus den dort beschriebenen Feldern. 
 Wichtig zu beachten ist, dass die initialen Werte erst in der \textit{update}-Funktion hier hinein geschrieben werden.
-Im Feld data können die geladenen Daten als Liste vom Typ GameSales gespeichert. 
-Zur Ermöglichung der Interaktionen gibt es weiterhin Felder für das Genre als String, die Achsen eins bis fünf als RegionType, die Namen der Achsen eins bis fünf als String, die X- und Y-Achse als RegionType und den gewünschten Plot als PlotType.
+Im Feld data können die geladenen und decodierten Daten als Liste vom Typ GameSales gespeichert werden. 
+Zur Ermöglichung der Interaktionen gibt es weiterhin Felder für das Genre, die Achsen eins bis fünf, die Namen der Achsen eins bis fünf, die X- und Y-Achse und den gewünschten Plot. 
+Für die Achsen des Scatterplots und Parallelen Koordinaten Plots sowie den Plot an sich sind die entsprechenden CustomTypes definiert.
 Der \textit{type Msg} definiert die Varianten für die Nutzung in \textit{update} zur Überschreibung des Models. 
 Es gibt eine Variante zum erfolgreichen Laden der Daten und damit der Initialisierung des Plots sowie für jeden möglichen Wechsel von Achsen in den Plots sowie den Wechsel des Plots an sich.
 
@@ -650,154 +653,137 @@ Außerdem wird hier die Decodierung der geladenen Daten vorgenommen.
 Weiterhin werden für alle möglichen Interaktionen mit dem Model die Varianten von \textit{Msg} eingefügt und beschrieben, wie bei einer Änderung dieser Variante durch Klick auf deinen Button das Model überschrieben wird.
 
 Als nächstes werden alle benötigten Buttons als Funktionen implementiert, sodass das Model bei Klick auf eine Variante überschrieben werden kann. 
-Da die Buttons nur Strings akzeptieren, die Varianten von \textit{Msg} jedoch die CustomTypes bzw. die Tupel aus CustomType und String, muss hier bei allen Buttons außer dem \textit{buttonGenreType} die entsprechende in Data definierte Umwandlungsfunktion genutzt werden. 
-Bei dem \textit{buttonGenreType} ist dies nicht nötig, da die Variante von \textit{Msg} auch einen String benötigt.
+Da die Buttons nur Strings akzeptieren, die Varianten von \textit{Msg} jedoch die CustomTypes bzw. die Tupel aus CustomType und String, muss hier bei allen Buttons außer dem \textit{buttonGenreType} die entsprechende in \textit{Data} definierte Umwandlungsfunktion genutzt werden. 
 Die Änderungen werden dann in der Variante des \textit{Msg}-Typen gespeichert und durch die \textit{update}-Funktion das Model überschrieben.
 Die Buttons basieren auf den Abgaben der Autorin aus Übung vier.
 
-Die Funktion \textit{filterGenre} beruht auf den Abgaben der Autorin zu Übung vier. Mit dieser Funktion kann der Anwender nach dem Attribut Genre filtern und ein für ihn sehenswertes Genre auswählen.
-Im Prinzip sorgt diese Funktion, wenn später im \textit{view} angewendet, dafür, dass ausgewähltes Genre und angezeigtes Genre übereinstimmen, also Gleichheit besteht.
+Die Funktion \textit{filterGenre} beruht auf den Abgaben der Autorin zu Übung vier und wird folgend im \textit{view} angewandt. 
+Mit dieser Funktion kann der Anwender nach dem Attribut Genre filtern und ein für ihn sehenswertes Genre auswählen.
+%Im Prinzip sorgt diese Funktion, wenn später im \textit{view} angewendet, dafür, dass ausgewähltes Genre und angezeigtes Genre übereinstimmen, also Gleichheit besteht.
 
-In der \textit{view}-Funktion werden nun die verschiedenen Fälle des Models behandelt. 
+In der \textit{view}-Funktion werden die verschiedenen Fälle des Models behandelt. 
 Für diese Erklärung wird nur auf den Fall des Erfolges beim Laden eingegangen.
 Zunächst wird eine \textit{let-in}-Konstruktion auf erster Ebene erstellt. 
-In lokalen Funktionen wird hier \textit{gameSalesData} sowie die Anzahl der Spiele insgesamt beschrieben.
-Zusätzlich wird auf dieser oberen Ebene der globale \textit{filterGenre} angewandt, mit dem die Daten so gefiltert werden, dass dem Anwender nur sein gewünschtes Genre angezeigt wird.
+In lokalen Funktionen wird \textit{gameSalesData} sowie die Anzahl der Spiele insgesamt beschrieben.
+Zusätzlich wird auf dieser oberen Ebene der globale \textit{filterGenre} zur Filterung der Daten nach gewünschtem Genre angewandt.
 Weiterhin wird die Länge dieser neuen Liste, also die Anzahl der Spiele im ausgewählten Genre berechnet. 
 Damit nun zwischen den Plots gewechselt werden kann, werden die verschiedenen Varianten bzw. Fälle des Datentyps \textit{PlotType} im \textit{in}-Teil angelegt. 
 Deshalb befindet sich auch das Feld \textit{plot} im Record der Variante \textit{Success} des Models.
-Je nachdem, welcher Plot mittels Button nun ausgewählt wurde und wie das Model durch das \textit{update} überschrieben wurde, wird nun einer der drei Fälle angezeigt. 
-Der Filter bzw. diese Interaktionsmöglichkeit nach Genre soll nun in allen Plots übernommen und angewandt werden, ohne dass bei jedem Plotwechsel das Genre neu ausgewählt werden muss. 
-Der Zustand des Models mit dem gefilterten Genre soll also bestehen bleiben.
+Je nachdem, welcher Plot mittels Button ausgewählt wird und wie das Model durch das \textit{update} überschrieben wurde, wird einer der drei Fälle angezeigt. 
+Der Zustand des Models mit dem gefilterten Genre soll bestehen bleiben, sodass eine Interaktion mit dem Genrebutton in einer Visualisierung auch in der anderen angewandt und übernommen wird.
 Dazu dient zum einen die zuvor beschrieben Variantendefinition im \textit{in}-Teil der äußeren \textit{let-in}-Kosntruktion sowie jeweils eine weitere \textit{let-in}-Konstruktion in den jeweiligen Falldefinitionen.
-Diese befindet sind nun auf zweiter bzw. innerer Ebene, sodass die in der äußeren Konstruktion berechneten Zustände, also Genreauswahlen, auch hier gelten und auch bei einem Wechsel des Plots übernommen werden. 
-Um dieses Ziel zu erreichen müssen in den lokalen Funktionen der inneren Konstruktion der Plots die lokalen Funktionen der äußeren Ebene auch angewandt werden. 
+Diese befindet sind auf zweiter bzw. innerer Ebene, sodass die in der äußeren Konstruktion berechneten Zustände, also Genreauswahlen, auch hier gelten und bei einem Wechsel des Plots übernommen werden. 
+Um dieses Ziel zu erreichen müssen in den lokalen Funktionen der inneren Konstruktion der Plots die lokalen Funktionen der äußeren Ebene angewandt werden. 
 Würde in jeder der inneren Ebenen für jeden Plot die Filter nach Genre definiert werden und lokal angewandt statt in der übergeordneten Ebene, würden die Einstellungen repsektive der Zustand des Models nicht übernommen werden.
 
-Im ersten Case wird der ParallelPlot behandelt. Lokal werden die gesamten Daten nun mittels der \textit{assignmentAndreduce}-Funktion gemapped und reduziert, sowie die entstehende Listenlänge berechnet. 
-Auch die in der äußeren Ebene nach Genre gefilterten Daten werden auf dieselbe Art behandelt. 
-In \textit{multiDimFunction} wird nun \textit{multiDimenData} letztlich angewandt und die entsprechenden Daten dafür übergeben. 
+Im ersten Case wird der ParallelPlot behandelt. 
+Lokal wird nun die \textit{assignmentAndReduce}-Funktion auf die gesamten Daten sowie zu in der äußeren Ebene nach Genre gefilterten Daten angewandt.
+In \textit{multiDimFunction} wird \textit{multiDimenData} letztlich genutzt und die entsprechenden Daten dafür übergeben. 
 Als erste Liste vom Type GameSales wird die von Null-Werten bereinigte und nach Genre gefilterte \textit{clearedGameSalesData} genutzt.
-Im \textit{in}-Teil der inneren Ebene wird per Html und vielen verschachtelten divs und Attributeeinstellungen das Aussehen der Seite festgelegt.
+Im \textit{in}-Teil der inneren Ebene wird das Aussehen der Seite festgelegt.
 Hierbei wird darauf geachtet, dass zur angenehmeren und weniger ablenkenden Ansicht die Farben den Grüntönen in den Plots angepasst werden. 
 Zur Direktion des Auges über die Seite und verbesserten Erkennung von wichtigen Abschnitten wie der Auswahl der Plots, des Genres und der Achsen werden Ränder und verschiedene Grüntonabstufungen genutzt.
-Wichtiges wird mit deutlichen Änderungen gekennzeichnet, alles andere zur impliziten Lenkung mit sogenannten \textit{Just noticable differences} in der Farbe und im Rand.
-Neben den Informationstexten und Überschriften werden hier auch die Buttons als Dropdown zum Wechsel des Plots, zur Änderung des Genrefilters sowie der Anpassung der Achsen eingefügt.
+Neben Informationstexten und Überschriften werden hier auch die Buttons als Dropdown-Menü zum Wechsel des Plots, zur Änderung des Genrefilters sowie der Anpassung der Achsen eingefügt.
 Zudem wird transparent angezeigt, nach welchem Schritt wieviele Videospiele in der Auswahl verbleiben und welche Einstellungen gerade aktuell getroffen sind.
-Nach Anzeige der ausgewählten Einstellungen wird der Parallele Koordinaten Plot implementiert. Hierzu wird dem \textit{scatterplotParallel} das \textit{cssParallel} übergeben sowie zwei Konstanten für die Höhe und die Aspect Ratio.
-Schließlich wird die zuvor lokal berechnete \textit{multiDimFunction} vom Typ MultiDimData übergeben. 
-Zuletzt wird noch ein Text mit Link direkt zurück zur TreeHierarchy anbgeboten.
+Nach Anzeige der ausgewählten Einstellungen wird der Parallele Koordinaten Plot implementiert. 
+Hierzu wird dem \textit{scatterplotParallel} das \textit{cssParallel} übergeben sowie zwei Konstanten für die Höhe und die Aspect Ratio.
+Schließlich wird die zuvor lokal berechnete \textit{multiDimFunction} übergeben. 
+Zuletzt wird noch ein Text mit Link direkt zurück zur TreeHierarchy angeboten.
 
-Im zweiten Case wird der Scatterplot behandelt. Das Vorgehen mit den lokalen Funktionen zur Anwendung der Filter und des Mappings ist ähnlich zum ParallelPlot.
+Im zweiten Case wird der Scatterplot behandelt. 
+Das Vorgehen mit den lokalen Funktionen zur Anwendung der Filter und des Mappings ist ähnlich wie zuvor.
 Durch die lokalen Funktionen \textit{valuesX} und \textit{valuesY} werden dem \textit{regionFilter} die nach Genre gefilterten Daten als Liste von GameSales sowie die RegionTypes der X und Y-Achse übergeben.
-Somit wird der Filter nach Regionen hier angewandt und die Interaktion mit freier Auswahl der Achsen kann funktionieren.
+Somit wird der Filter nach Regionen angewandt und die Interaktion mit freier Auswahl der Achsen kann funktionieren.
 Der \textit{in}-Teil der Plotvariante Scatterplot ähnelt dem des ParallelPlots stark und unterscheidet sich nur in einigen Informationstexten sowie der Auswahl der Achsen.
-Weiterhin wird hier dem \textit{scatterplot} der \textit{cssPoint} als String, die zuvor berechneten \textit{gameSalesDataCleared} als XYData sowie die \textit{valuesX} und \textit{valuesY} als Liste von Floats übergeben.
-Um die Beschriftung der Achsen zu ermöglichen, werden diese noch mittels der Umrechnung von RegionType zu String als String hinzugefügt.
+Weiterhin wird hier dem \textit{scatterplot} der \textit{cssPoint}, die zuvor berechneten \textit{gameSalesDataCleared} sowie die \textit{valuesX} und \textit{valuesY} übergeben.
+Um die Beschriftung der Achsen zu ermöglichen, werden diese mittels der Umrechnung von RegionType zu String als String hinzugefügt.
 
-Da die TreeHierarchy in \textit{TreeHierarchy.elm} implementiert ist, muss für diese Plotvariante nur das Html definiert werden.
-Auch dies geschieht wieder mit denselben Designs wie zuvor. 
-Weiterhin besteht hier die Möglichkeit durch einen Link zum eigentlichen Plot des Baumdiagramms zu gelangen.
-Da für das Baumdiagramm der Genrefilter irrelevant ist, muss er weder hier noch in TreeHierarchy angewandt werden. 
+Da die TreeHierarchy in \textit{TreeHierarchy.elm} implementiert ist, muss für diese Plotvariante nur das Html inklusive Link zum eigentlichen Plot des Baumdiagramms im selben Design wie zuvor definiert werden.
+%Da für das Baumdiagramm der Genrefilter irrelevant ist, muss er weder hier noch in TreeHierarchy angewandt werden. 
 
-
-Die Implementierung dieses Moduls war einerseits leicht, andererseits kompliziert. 
-Die zuvor jeweils in eigenen Anwendungen getrennten Visualisierungen mussten zusammengefügt werden.
-Dabei wurden alle Teile, die nur für den jeweiligen Plot genutzt werden, in den entsprechenden Modulen belassen. 
-Alles konnte stückweise kopiert und in einheitlichen Funktionen zusammengesetzt werden. 
-Besonders die Erstellung einer einheitlichen \textit{update}-Funktion war zeitlich durch die Menge an Interaktionsmöglichkeiten aufwändig.
-Zudem war es anstrengend, alles gleichzeitig im Blick zu behalten.
-Weiterhin schwieriger war die Implementierung der Buttons für den ParallelPlot. 
-Zunächst waren diese Buttons je einzeln und nicht als Dropdown-Menü wie gewünscht möglich. 
-Durch einige Denkarbeit, Ausprobieren vor allem auch mit der Funktion \textit{multiDimenData} und verschiedenen Konvertierungsfunktionen konnten sie doch wie gewünscht realisiert werden.
+Durch die zuvor in getrennten Anwendungen implementierten Visualisierungen war ein grundlegendes Zusammenfügen dieser durch stückweises Kopieren eher einfach umsetzbar.
+Besonders die Erstellung einer einheitlichen \textit{update}-Funktion war zeitlich jedoch durch die Menge an Interaktionsmöglichkeiten aufwändig.
+Weiterhin schwieriger war die Implementierung der Buttons für den ParallelPlot, die zunächst je einzeln und nicht als Dropdown-Menü wie gewünscht vorlagen. 
+Durch einige Denkarbeit, Ausprobieren vor allem mit der Funktion \textit{multiDimenData} und verschiedenen Konvertierungsfunktionen konnten sie doch wie gewünscht realisiert werden.
 Auch hier musste zudem zur Überprüfung immer wieder zeitaufwendig das \textit{update} angepasst werden.
-Die Implementierung der Interaktion über die Plots hinweg durch die Verschachtelung des \textit{view} mit Definition und erster Anwendung des Genrefilters auf äußerer Ebene, der Einführung des Datentypen \textit{PlotType} und der Anwendung im \textit{update} und \textit{view} war ein Zufallsfund.
-Zunächst wurden beide Plots so implementiert, dass sie untereinander gezeichnet wurden und es noch keinen Selektor für den Plot gab, entsprechend nur eine \textit{let-in}-Kontruktion nötig war.
-Hier wurde die Filterung des Genres logischerweise für beide Plots übernommen, jedoch entsprach diese Darstellung nicht den Wünschen der Autorin. 
-Nach schrittweisem Hinzufügen der Auswahl des Plots und allen zugehörigen Codeteilen, wurde durch Ausprobieren entdeckt, dass eine Übernahme des Modelzustands durch die Schachtelung der \textit{let-in}-Konstruktionen und der Anwendung des Variantenwechsels für den Plot möglich war. 
+Zunächst wurden beide Plots so implementiert, dass sie untereinander gezeichnet wurden und es noch keinen Selektor für den Plot gab. 
+Entsprechend war nur eine \textit{let-in}-Kontruktion nötig und die Filterung wurde für beide Plots übernommen, was jedoch nicht dem Gewünschten entsprach.
+Nach schrittweisem Hinzufügen der Auswahl des Plots und allen zugehörigen Codeteilen, wurde durch Ausprobieren entdeckt, dass eine Übernahme des Modelzustands durch die Schachtelung der \textit{let-in}-Konstruktionen im \textit{view} und der Anwendung des Variantenwechsels für den Plot mittels \textit{PlotType} möglich war. 
 Hier war es im Verlauf kompliziert, den Überblick über die Schachtelungen sowie außen und innen definierten lokalen Funktionen zu behalten.
 
 %Beschreiben Sie die Implementierung ihrer Visualisierungsanwendung in Elm. Stellen die Gliederung ihres Quellcodes vor. Haben Sie verschiedene Elm-Module erstellt. Was war aufwändig umzusetzen, was ließ sich mit dem vorhanden Code aus den Übungen relativ einfach umsetzen? 
 %Wie sieht die Elm-Datenstruktur für das Model aus, in dem die verschiedenen Zustände der Interaktion gespeichert werden können.
-
 \section{Anwendungsfälle}
-Im folgenden Kapitel wird ein möglicher Anwendungsfall der implementierten Visualisierungen von Videospielverkäufen dargestellt.
-Dabei werden die Visualisierungen aus der Sicht eines mittleren Managers des Publishers \textit{505 Games} betrachtet, der diese und die Erkenntnisse aus ihnen dem oberen Management des Publishers sowie Stakeholdern des Unternehmens präsentiert. 
-Mittels dieser Präsentation sowie der Erkenntnisse aus den Visualisierungen sollen Indikatoren für potentiell sinvolle und lukrative Investitionen in neue Videospiele bzw. Fortsetzungen vorhandener Titel eines Genres gefunden werden. 
+Im folgenden Kapitel wird ein möglicher Anwendungsfall der implementierten Visualisierungen dargestellt.
+Dabei werden diese aus der Sicht eines mittleren Managers des Publishers \textit{505 Games} betrachtet, der sie und die Erkenntnisse aus ihnen dem oberen Management des Publishers sowie Stakeholdern des Unternehmens präsentiert. 
+Daraus sollen Indikatoren für potentielle Investitionen in neue Videospiele bzw. Fortsetzungen vorhandener Titel eines Genres gefunden werden. 
+Kann ein solcher Indikator für Potenzial gefunden werden, so kann entschieden werden, ob weitere detailliertere Marktstudien in Auftrag gegeben werden sollen. 
 Zudem können Vorentscheidungen zur Aufstellung eines neuen Videospiels im Markt getroffen werden, wobei zwischen einer breiten, globalen Aufstellung oder der Konzentration auf bestimmte Märkte resp. Regionen entschieden werden kann.
-Kann ein solcher Indikator für Potenzial gefunden werden, so kann nach der Präsentation entschieden werden, ob weitere detailliertere Marktstudien in Auftrag gegeben werden sollen. 
-Sollte das Potenzial dadurch bestätigt werden können, kann ein neues Videospiel im analysierten Genre in Auftrag gegeben werden.
 
 %Präsentieren sie für jede der drei Visualisierungen einen sinnvollen Anwendungsfall in dem ein bestimmter Fakt, ein Muster oder die Abwesenheit eines Musters visuell festgestellt wird. Begründen sie warum dieser Anwendungsfall wichtig für die Zielgruppe der Anwenderinnen ist. Diskutieren sie weiterhin, ob die oben beschriebene Information auch mit anderen Visualisierungstechniken hätte gefunden werden können. Falls dies möglich wäre, vergleichen sie die den Aufwand und die Schwierigkeiten ihres Ansatzes und der Alternativen. 
 \subsection{Anwendung Visualisierung Eins}
-Öffnet der Manager in der Präsentation die Website mit dem Programm, zeigt sich zuerst die erste Visualisierung, also das explizite Baumdiagramm. 
-Dank der großen Überschrift der gesamten Visualisierungsanwendungen, sowie der Unterüberschrift für das Baumdiagramm wissen er und die Präsentationsteilnehmer sofort, worum es geht und wo sie sich befinden.
-Der Informationstext hilft beim Verständnis des Diagramms.
-Mittels der farblichen Unterschiede der einzelnen Websitebereiche sowie der Abgrenzung der Container durch Umrandungen wird das Auge der Betrachter schnell und unbemerkt auf die wichtigen Steuerungselemente sowie die eigentliche Visualisierung gelenkt.
-Zu diesem Zweck wird mit Ausnahme des Navigationscontainers mit \textit{JND}, also \textit{Just Noticable Differences} gearbeitet.
-Sollte eine Person mit Farbsehschwäche oder genereller Farbenblindheit unter den Präsentationsteilnehmern sitzen, so ist dies durch die Abstufung der Grüntöne kein Problem. 
-Ob die Farbe mit einer anderen verwechselt wird, spielt für das Verständnis keine Rolle und durch die Abstufung auch im Kontrast ist die Website und Visualisierung auch ohne Farberkennung möglich.
+Zuerst lädt das explizite Baumdiagramm. 
+%Dank Überschriften und Unterüberschriften ist eine inhaltliche Orientierung auf der Website gegeben.
+%Der Informationstext hilft beim Verständnis des Diagramms.
+Mittels farblicher Unterschiede der einzelnen Websitebereiche sowie der Abgrenzung der Container durch Umrandungen wird das Auge der Betrachter schnell und unbemerkt auf die wichtigen Steuerungselemente sowie die eigentliche Visualisierung gelenkt.
+Zu diesem Zweck wird mit Ausnahme des Navigationscontainers mit \textit{Just Noticable Differences} gearbeitet.
+Sollte eine Person mit Farbsehschwäche unter den Präsentationsteilnehmern sitzen, so ist dies durch Abstufungen der Grüntöne auch im Kontrast auf der Website und in den Visualisierungen kein Problem. 
+Falsche Farberkennungen spielen für das Verständnis keine Rolle.
 
-Im ersten Ausschnitt des Baumdiagramms kann der präsentierende Manager nun den Teilnehmern einen Überblick über die Publisher gewähren sowie die eigene Position im Baum aufzeigen.
+Im ersten Ausschnitt des Baumdiagramms kann der Präsentator den Teilnehmern einen Überblick über die Publisher gewähren sowie die eigene Position im Baum aufzeigen.
 Im zweiten, detaillierteren Ausschnitt wird den Managern und Stakeholdern dargestellt, welche Genres sie mit \textit{505 Games} bedienen sowie die darunter kategorisierten Spiele.
-Insgesamt bieten sie fünfzehn Videospiele in acht Genres an, wobei \textit{Adventure}, \textit{Racing} und \textit{Shooter} die meisten Spiele haben, \textit{Platform}, \textit{Role-Playing}, \textit{Simulation} und \textit{Sports} die wenigsten.
+Insgesamt bieten sie fünfzehn Videospiele in acht Genres an, wobei \textit{Adventure}, \textit{Racing} und \textit{Shooter} die meisten Spiele haben.
 Dank der Einblendungen der Titel und Genres beim Hovern über die sich grün färbenden Knoten in beiden Diagrammen sowie das Scrollen im zweiten Diagramm sind konkrete Ein- und Überblicke effektiv möglich. 
 Es wird entschieden, die Genres \textit{Action}, \textit{Platform} und \textit{Sports} aufgrund der bisher eher geringen Ausprägung im eigenen Unternehmen näher zu betrachten. 
 
 Aus dem Baumdiagramm ergibt sich durch die hohe Anzahl an anbietenden Publishern vor allem eine Konkurrenz im Genre \textit{Action}. 
-Durch die Struktur und Positionierung der Knoten ist schnell erkennbar, dass hier vor allem \textit{Activision}, \textit{Capcom}, \textit{Ubisoft} und \textit{Warner Bros.} viele Spiele anbieten und entsprechend die stärkste Konkurrenz zu sein scheinen. 
+Durch die Struktur und Positionierung der Knoten ist schnell erkennbar, dass hier vor allem \textit{Activision}, \textit{Capcom}, \textit{Ubisoft} und \textit{Warner Bros.} durch ein hohes Spieleangebot die stärkste Konkurrenz zu sein scheinen. 
 In diesem Genre kann Potenzial durch viele Käufer liegen, da viele Publisher hier Spiele anbieten. 
 Gleichzeitig gibt es viel Konkurrenz, wodurch eine Sicht auf mögliche Korrelationen in den Regionen der Welt und die entsprechend beste Positionierung im Markt wichtig ist.
 \textit{Sports} und vor allem \textit{Platform} haben weniger Konkurrenz, wobei gerade ersteres durch Publisher wie \textit{EA Sports} und \textit{2K Sports} dominiert wird.
 
-Aufgrund dieser ersten Übersicht entscheidet der präsentierende mittlere Manager, dass nachfolgend der Fokus auf das Gerne \textit{Action}, sowie grob vergleichend \textit{Sports} gelegt wird.
+Aufgrund dieser ersten Übersicht entscheidet der Präsentator, dass nachfolgend der Fokus auf die Gernes \textit{Action} und \textit{Sports} gelegt wird.
 Mit Klick auf den Link in der Navigation gelangt der Betrachter zu den detaillierteren Visualisierungen.
 
 Die Informationen hätten auch durch ein implizites Baumdiagramm ermittelt werden können. Aufwand und Schwierigkeit der Implementierung wären im Vergleich leicht erhöht, das Verständnis bei den potenziell ungeschulten Betrachtern, vor allem Stakeholdern, gerade in kurzen Momenten einer Präsentation aber leicht gemindert. 
 Baumdarstellungen anderer Anordnung, z.B. radialer, wären auch möglich, würden gut verstanden werden, zögen aber deutlich erhöhten Aufwand und Schwierigkeiten der Implementierung mit sich. 
-Somit sind sie für eine Voranalyse der Verkaufszahlen im Videospielmarkt wie hier angenommen, zu aufwändig.
+%Somit sind sie für eine Voranalyse der Verkaufszahlen im Videospielmarkt wie hier angenommen, zu aufwändig.
 
 \subsection{Anwendung Visualisierung Zwei}
 In dieser Visualisierung eines Parallelen Koordinaten Plots, kann der mittlere Manager in seiner Präsentation den oberen Managern und Stakeholder einen detaillierteren Blick auf die Verkaufszahlen der Videospiele eines Genres in den verschiedenen Regionen der Welt bieten.
-Der Blick der Betrachter wird wie zuvor beschrieben gelenkt, wobei der Navigationsbereich mit Auswahl des gewünschten Plots und Auswahl des Genres mittels Drop-Down-Menü kräftiger gekennzeichnet ist. 
+Der Blick der Betrachter wird wie zuvor beschrieben gelenkt.
 Zusätzlich finden sich wieder Erklärungen zu Einheiten und Darstellungsweisen auf der Webseite.
 
 Der Präsentator wählt nun das zuvor festgelegte Genre \textit{Action} aus und kann den Parallelen Koordinaten Plot mit den voreingestellten Achsenbelegungen und den gefilterten Videospielen als Datenpunkte betrachten. 
-Schnell fällt der beinahezu allen Spielen sichtbare Abstieg der Verkaufszahlen in Japan auf. Durch die Achsenskalierung lässt sich dies nicht nur durch weniger Einwohner in Japan begründen.
+Schnell fällt der beinahezu allen Spielen sichtbare Abstieg der Verkaufszahlen in Japan auf. 
 Um folgend Zusammenhänge zwischen den anderen Regionen besser erkennen zu können, wird die Achsenbelegung wie im folgenden Bild gezeigt ausgewählt.
 %Bild
-Durch die Röntgenstrahlen nachempfunde Darstellungsweise lässt sich nun gut ein Muster erkennen. 
+Durch die Röntgenstrahlen nachempfunde Darstellungsweise lässt sich nun ein Muster erkennen. 
 Zum einen befinden sich der Großteil der Videospiele im unteren drittel der Verkaufszahlen in allen Regionen, was durch die Überlappungen der Datenpunkte und damit kräftigeren Grüntöne besser erkennbar ist.
-Einzig \textit{Assassin's Creed: Unity} und vor allem \textit{Grand Theft Auto V} stechen heraus. 
-Weiterhin lässt sich erkennen, dass die Verkaufszahlen im Genre \textit{Action} über alle Regionen hinweg stabil scheinen. 
-Verkaufen sich die Spiele in Nordamerika, so verkaufen sie sich in Europa in ähnlicher Weise, genauso wie im Rest der Welt und global.
-Dies wird auch durch unterschiedliche Achsenbeledungen bestätigt. Die genaue Reihenfolge der Abhängigkeiten lässt sich jedoch nicht erkennen. 
-
+Einzig \textit{Assassin's Creed: Unity} und vor allem \textit{Grand Theft Auto V} von \textit{Rockstar Games} stechen heraus. 
+Wenn sich Spiele gut in Nordamerika verkauften, so verkauften sie sich in Europa in ähnlicher Weise, genauso wie im Rest der Welt und global.
+Dies wird auch durch unterschiedliche Achsenbeledungen bestätigt. Eine Korrelation über alle Regionen hinweg scheint gegeben. 
 Einzig Japan bildet aus unbekannten Gründen eine Ausnahme, da die meisten Spiele hier wie anfangs erwähnt nicht so gut verkauft werden, wenn nicht sogar gar nicht. 
 Gleichzeitig schneiden einige wenige Spiele, die in den anderen Regionen durchschnittlich verkauft werden, in Japan vergleichsweise gut ab. 
-Der mittlere Manager kann so für seine Zuhörenden den Schluss ziehen, dass eine Konzentration in diesem Genre auf eine bestimmte Region wenig Sinn ergeben würde und eine breite Aufstellung nützlich ist.
-Dass viele Titel ähnliche Verkaufszahlen aufweisen und somit je von vielen verschiedenen Personen gekauft werden, deutet auf starke Konkurrenz im Genre hin. 
-Ein neuer Titel sollte also sehr überzeugend sein oder eventuell doch in einem anderen Genre platziert werden. 
-Durch die sich im unteren Drittel der Skala befindlichen Verkaufszahlen bestehen jedoch noch Möglichkeiten.
 
-Zudem können in dieser Visualisierung Außreißer, die in allen Regionen deutlich höhere Verkaufszahlen aufweisen, als starke Konkurrenz identifiziert werden. 
-Durch Hovern über einen Datenpunkt, also eine Linie, kräftigt und verdunkelt sich ihre Farbe zur besseren Erkennung des Verlaufes und über dem Plot werden die zum Datenpunkt gehörigen Informationen angezeigt.
-So können er und seine Zuhörer leicht nachvollziehen, dass der Ausreißer im Genre \textit{Action} das Spiel \textit{Grand Theft Auto} vom Publisher \textit{Rockstar Games} ist.
-%Bild
-Es scheint also in allen Regionen starke Konkurrenz zu sein. 
-Sollte nach einer weiteren Bestätigung der Erkenntnisse im Scatterplot die Entscheidung zu weiteren Marktstudien in dem Genre getroffen werden, müsste anhand weiterer Einflussparameter der Grund für die hohen Verkaufszahlen geprüft, sowie die Sättigung des globalen Marktes durch diesen Titel genauer analysiert werden.
+Durch die Korrelation scheint eine Konzentration in diesem Genre auf eine bestimmte Region wenig Sinn zu ergeben, sodass eine breite Aufstellung und Nutzung der Beeinflussung nützlich ist.
+Gleichzeitig deutet die ansatzweise Bildung eines Clusters im unteren Drittel der Verkaufszahlen in alles Regionen auf starke Konkurrenz im Genre hin. 
+Diese wird verstärkt durch die identifizierten Ausreißer, welche wie alle anderen Titel durch Hovern über den Datenpunkt gut ablesbar sind wie obiger Abbildung zu sehen.
+Ein neuer Titel sollte also sehr überzeugend sein oder eventuell doch in einem anderen Genre platziert werden. 
+Sollte nach einer weiteren Bestätigung der Erkenntnisse im Scatterplot die Entscheidung zu weiteren Marktstudien in dem Genre getroffen werden, müsste anhand weiterer Einflussparameter unter anderem der Grund für die hohen Verkaufszahlen geprüft, sowie die Sättigung des globalen Marktes durch diesen Titel genauer analysiert werden.
 
 Im Gegensatz zu \textit{Action} gibt es im Genre \textit{Sports} keine Ausreißer über alle Regionen hinweg und die Verkaufszahlen verteilen sich stärker über die Skala. 
-Japan mit fast nur Verkaufszahlen von null bleibt bestehen. Die Vermutung liegt nahe, dass diese Spiele dort nicht angeboten wurden.
-Deutlich erkennbar ist jedoch, dass einige Spiele in Nordamerika deutlich besser verkauft werden als in Europa, im Rest der Welt und global aber wieder ähnlich, wenn auch etwas schlechter, als in Nordamerika. 
+Japan mit fast nur Verkaufszahlen von null bleibt bestehen. Eine Begründung kann die Visualisierung nicht liefern.
+%Bild
+Deutlich erkennbar ist jedoch, dass einige Spiele in Nordamerika besser verkauft werden als in Europa, im Rest der Welt und global aber wieder ähnlich, wenn auch etwas schlechter, als in Nordamerika. 
 Gleichzeitig verkaufen sich Spiele, die in Europa gut verkauft werden, in Nordamerika etwas schlechter, im Rest der Welt und global aber wiederum besser. 
-Daraus ergibt sich eine erste Tendenz, dass eine Konzentration auf eine der Regionen \textit{North America} oder \textit{Europe} sinnvoll ist.
+Daraus ergibt sich eine erste Tendenz, dass eine Konzentration auf eine der Regionen \textit{North America} oder \textit{Europe} sinnvoll ist, um wiederum die positiven Beeinflussungen dieser jeweiligen Regionen auf die restlichen Regionen zu nutzen. 
 Sie wird im Scatterplot überprüft.
 
-Der Vergleich mehrerer Dimensionen resp. mehrerer Attribute eine Videospiels wäre auch durch bspw. Icontechniken möglich. Diese Methode wäre jedoch schwerer umzusetzen und aufwändiger zu analysieren. 
+Der Vergleich mehrerer Dimensionen resp. mehrerer Attribute eine Videospiels wäre auch durch bspw. Icontechniken möglich. 
+Diese Methode wäre jedoch schwerer umzusetzen und aufwändiger zu analysieren. 
 Der Grund liegt in der Darstellung aller Dimensionen eines Videospiels auf einem Icon und einer entsprechend erschwerter Erkenntnis der Zusammenhänge und Muster über die Spiele hinweg. 
 Auch Außreißer sind mit dieser Technik nicht so gut erkennbar.
-
 
 %Wenn bspw. eines seiner Spiele in allen oder einzelnen Regionen nicht gut verkauft werden konnte, ein Spiel eines Konkurrenten in diesen Regionen jedoch gut, dann deutet das auf eine starke Konkurrenz hin. 
 %Sind alle oder die meisten Spiele der Konkurrenz in allen oder einzelnen Regionen besser verkauft worden, als das Videospiel von Publisher X, dann deutet dies auf einen gesättigten Markt des Genres mit starker Konkurrenz hin, in das sich möglicherweise weitere Investititonen nicht lohnen. 
@@ -805,11 +791,12 @@ Auch Außreißer sind mit dieser Technik nicht so gut erkennbar.
 Um zur dritten Visualisierung, dem Scatterplot, zu gelangen, wählt der mittlere Manager in seiner Präsentation den Plot im Drop-Down-Menü aus.
 Die zuvor getroffene Auswahl des Genres, zuletzt \textit{Sports} bleibt bestehen und er wählt in einem weiteren Drop-Down-Menü die Belegung der Achsen auf \textit{North America} und \textit{Europe}.
 
-Im Scatterplot werden die zuvor erkannten Cluster in den Verkaufszahlen im Vergleich von Nordamerika zu Europa noch deutlicher. 
+Im Scatterplot werden die zuvor erkannten Cluster in den Verkaufszahlen im Vergleich von Nordamerika zu Europa deutlicher. 
 Während bei einigen Spielen zwischen beiden Regionen ein deutlich positiv korreliertes Cluster sichtbar ist, scheinen die anderen Spiele ein Cluster ohne Korrelation zwischen den Regionen zu bilden.
 Dies bestätigt und verdeutlicht die Erkenntnisse aus der zweiten Visualisierung, dass sehr gute Verkaufszahlen von einigen Sportvideospielen in Nordamerika keinen Einfluss auf die Verkäufe in Europa haben. 
-Dort verkaufen sie sich vergleichsweise schlecht. Jedoch ist durch die Ansammlung der Datenpunkte in einer waagerechte, bzw. in umgekehrter Anordnung der Achsenbelegung senkrechten, Linie auch keine negative Korrelation ersichtlich.
-Die Titel im Cluster der positiv korrelierten Spiele scheinen sich jedoch gegenseitig positiv zu beeinflussen. Es kann durch etwas geringeren Verkaufszahlen in Nordamerika vermutet werden, dass die europäischen Verkaufszahlen die nordamerikanischen positiv beeinflussen. 
+%Dort verkaufen sie sich vergleichsweise schlecht. Jedoch ist durch die Ansammlung der Datenpunkte in einer waagerechte, bzw. in umgekehrter Anordnung der Achsenbelegung senkrechten, Linie auch keine negative Korrelation ersichtlich.
+Die Titel im Cluster der positiv korrelierten Spiele scheinen sich jedoch gegenseitig positiv zu beeinflussen. 
+%Es kann durch etwas geringeren Verkaufszahlen in Nordamerika vermutet werden, dass die europäischen Verkaufszahlen die nordamerikanischen positiv beeinflussen. 
 Verweist der Präsentator mittels Hovern über die Datenpunkte auf die Titel der Videospiele, wird deutlich, dass diese Cluster mutmaßlich durch die unterschiedliche Popularität der Sportarten in beiden Regionen entsteht. 
 So ist Football in Europa nicht so bekannt oder beliebt, Fußball aber in Nordamerika schon, wenn auch leicht weniger als in Europa.
 
@@ -820,111 +807,82 @@ Im Scatterplot sind jedoch die einzelnen Datenpunkte etwas besser erkenn- und zu
 Auch der zuvor erkannte Ausreißer sticht deutlich heraus. 
 Zusätzlich bestätigt sich die nicht vorhandene Korrelation zwischen den jeweiligen Regionen und Japan.
 Die Titel des eigenen Publishers befinden sich immer im unteren Bereich des Clusters und scheinen vergleichsweise bisher nicht so gut verkauft worden zu sein. 
-
 Sollte während der Präsentation der Wunsch nach einer gleichzeitigen Betrachtung des Baumdiagramms zur Übersicht der Publisher aufkommen, so kann mittels des Links am jeweiligen Seitenende in einem neuen Fenster dieser geöffnet werden und per Multitasking betrachtet werden.
 
-Eine Alternative zu Scatterplots ist sinnvoll nicht gegeben, da sie die beste und am leichtesten zu verstehende Darstellung von Beziehungen zweier Attribute eines Datenpunktes zueinander sind. 
-Aufgrund der Zweidimensionalität der Verteilungen würden auch Q- und QQ-Plots mit nur einer visualisierten Dimension gegen f-Werte bzw. gegeneinander zum Erkennen von Verschiebungen nicht die gewünschten Ergebnisse liefern.
+Eine sinnvolle Alternative zu Scatterplots ist nicht gegeben, da sie die beste und am leichtesten zu verstehende Darstellung von Beziehungen zweier Attribute eines Datenpunktes ist. 
+%Aufgrund der Zweidimensionalität der Verteilungen würden auch Q- und QQ-Plots mit nur einer visualisierten Dimension gegen f-Werte bzw. gegeneinander zum Erkennen von Verschiebungen nicht die gewünschten Ergebnisse liefern.
 
-Aufgrund der Erkenntnisse aller drei Visualisierungen können sich die oberen Manager und wichtigsten Stakeholder von \textit{505 Games} nun dazu entscheiden, sich bei weiteren, \(kosten-\) intensiven Marktstudien mit detaillierteren Visualisierungen und weiteren Attributen auf das Genre \textit{Sport} zu konzentrieren. 
+Aufgrund der Erkenntnisse aller drei Visualisierungen können sich die oberen Manager und wichtigsten Stakeholder von \textit{505 Games} nun dazu entscheiden, sich bei weiteren, (kosten-) intensiven Marktstudien mit detaillierteren Visualisierungen und weiteren Attributen auf das Genre \textit{Sport} zu konzentrieren. 
 Dort sind sie selbst noch nicht so stark präsent, es gibt weniger und in der Masse weniger starke Konkurrenz als bei \textit{Action}. 
-Weiterhin müssen nicht die Abhängigkeiten zwischen allen Regionen betrachtet werden. 
+Weiterhin müssen nicht die Abhängigkeiten zwischen allen Regionen betrachtet werden, sodass eine Fokussierung und Abschöpfung eines Marktes Sinn ergibt. 
 Eine Fokussierung auf den eurpäischen oder nordamerikanischen Markt ist möglich und für ein kleineren Publisher wie \textit{505 Games} sinnvoller. 
-Durch die Ausrichtung auf den europäischen Markt kann \textit{505 Games} jedoch die positive Korrelation zum nordamerikanischen Markt für seine Verkaufszahlen nutzen.
+Durch die Ausrichtung auf den europäischen Markt kann \textit{505 Games} jedoch die positive Korrelation mit dem nordamerikanischen Markt für seine Verkaufszahlen nutzen und damit auch ihn bedienen.
 Untersucht werden sollten künftig auch die Einflüsse für die vergleichsweise guten Verkaufszahlen für das eigene Spiel \textit{Rocket League}, um über eine mögliche Fortsetzung zu entscheiden.
  
 \section{Verwandte Arbeiten}
 In diesem Kapitel wird eine knappe Literatursuche nach ähnlichen Anwendungen zu Videospielverkäufen oder Verkaufsdaten im Allgemeinen im Bereich der Informationsvisualisierung und Visual Analytics durchgeführt. 
-Prinzipiell ist die Anwendung auf Videospielverkäufe oder andere Verkäufe sehr ähnlich, da bei beiden z.B. nach Regionen, Artikelart bzw. Genre oder Hersteller bzw. Publisher gefiltert werden kann. 
-Auch ähnliche Schlüsse können aus den Ergebnissen gezogen werden.
 
 Der erste zu diskutierende Artikel ist \textit{VizInteract: Rapid Data Exploration Through Multi-touch Interaction with Multi-dimensional Visualizations} von Chakraborty und Stuerzlinger.\cite{Chakraborty.2021}
 In diesem Artikel wird \textit{VizInterct} vorgestellt und getestet. 
-Das von den Autoren entwickelte Programm dient der Multi-Touch Interaktion, um multidimensionale Datenvisualisierung schneller und einfacher konstruieren und mit ihr interagieren zu können.
-Dies soll für Unerfahrene sowie Experten im Thema nutzbar sein und als Tool die Datenexploration vereinfachen.
-Im Tool sind verschiedene Datenvisualisierungen implementiert, ähnlich wie im hier durchgeführten Projekt, die dann mittels Verschieben und Übereinanderschieben zu neuen Plots resultieren können. 
+Es dient der Multi-Touch Interaktion, um multidimensionale Datenvisualisierung schneller und einfacher konstruieren und mit ihr interagieren zu können.
+Es sind verschiedene Datenvisualisierungen implementiert, die mittels Verschieben und Übereinanderschieben zu neuen Plots resultieren können. 
 So können laut der Autoren z.B. zwei orthogonale Histogramme durch Übereinanderschieben einen Scatterplot kreieren. 
-Forschungsziel des konkreten Artikels die Beobachtung des Nutzerverhaltens beim Anwenden von einfacheren touchbasierten Interaktionen auf einem Tablet und auf einem großen Touchdisplay.
-Es soll bewiesen werden, dass \textit{VizInteract} einfach nutzbare und leicht erlernbare Interaktionen, Flexibilität und Performance im Interface sowie eine schnelle multitouch Komposition und Editierung von Datenvisualisierungen ermöglicht.
+Forschungsziel des konkreten Artikels die Beobachtung des Nutzerverhaltens der Anwendung einfacher touchbasierter Interaktionen.
 
 Als Anwendungsfall wird für die Tester unter anderem ein Unterdatensatz der \textit{Video Game Sames 2019} bereitgestellt, mit dem sie Visualisierungen mittels des Tools erstellen und damit vorgefertigte Analysefragen beantworten sollen.
-Der Datensatz ist ähnlich zu dem hier verwendeten, gleicht sich jedoch nicht. 
+Der Datensatz ähnelt dem hier verwendeten, gleicht sich jedoch nicht. 
 In \textit{VizInteract} sind Histogramme, Scatterplots, Parallele Koordinaten Plots, Scatterplotmatrizen und Sterndiagramme möglich. 
 Somit stimmen auch zwei der im Projekt verwendeten Visualisierungstechniken mit denen im Artikel überein. 
 
-Gemeinsamkeiten zwischen der Anwendung und Implementierung im vorliegenden Projekt und dem Artikel liegen in der Möglichkeit, Notwendigkeit  und Umsetzung von Interaktionen für sinnvolle Visualisierungen, z.B. mittels Filtern.
-Weiterhin werden in beiden Fällen Scatterplots und Parallele Koordinaten eingesetzt und in den den Testern gestellten Aufgaben ähnlich angewandt wie im Anwednungsfall des Projektes. 
-Durch den Umfang von \textit{VizInteract} und die Tests im Artikel zeigt sich wiederum die Wichtigkeit, die die Autoren den Visual Analytics beimessen und welche durch die Anwendung im vorliegenden Bericht deutlich wird.
+Gemeinsamkeiten zwischen der Anwendung und Implementierung im vorliegenden Projekt und dem Artikel liegen in der Möglichkeit, Notwendigkeit und Umsetzung von Interaktionen für sinnvolle Visualisierungen, z.B. mittels Filtern.
+Weiterhin werden in beiden Fällen Scatterplots und Parallele Koordinaten eingesetzt und in den den Testern gestellten Aufgaben ähnlich angewandt wie im Anwendungsfall des Projektes. 
+Durch den Umfang von \textit{VizInteract} und die Tests im Artikel zeigt sich wiederum die Wichtigkeit, die die Autoren den Visual Analytics beimessen.
 Klar ersichtlich ist die Gemeinsamkeit der Nutzung der Videospielverkäufe mit einem sehr ähnlich aufgebauten Datensatz sowie Visualisierungen.
-
 Unterschiede ergeben sich aus den weiteren Visualisierungsmöglichkeiten des Tools, der Bedienbarkeit mit Touch-Oberflächen sowie der fortgeschrittenen Interaktion mittels Komposition der Techniken. 
-Im Artikel wird das Tool anders als hier vorliegend nicht aus einer Anwendung, der Analyse dieser und der Ableitung von Anforderungen heraus entwickelt, sondern seine Hauptmerkmale anhand derer geprüft.
-Weiterhin steht nicht die Aussage der Visualisierungstechniken im Fokus, sondern die Handhabung des Tools. 
+Im Artikel wird das Tool anders als hier vorliegend mittels eines Anwendungsfalles auf seine Hauptmerkmale geprüft und seine Handhabung fokussiert.
 
-Der zweite Artikel \textit{Implementation of Business Intelligence for Sales Data Management Using Interactive Dashboard Visualization in XYZ Stores} stammt von Akbar et al. und beschäftigt sich mit Thema.\cite{.}
-In diesem Artikel wird der Wert durch valide Informationen und ein gutes Datenmanagement von Unternehmen zur Unterstützung von Entscheidungen und Verbesserung der Effektivität und Effizienz in fokussiert.
-Dazu wird ein Prozess aus Problemidentifikation, Evaluation und Planung, Analyse, Data Warehouse Designprozess und ETL vorgeschlagen, wobei im Sinne dieser Arbeit nur der letzte Schritt der Auswahl und Anwendung der Visualisierung wichtig ist. 
-Als Anwendungsfall wird der \textit{XYZ Store} genutzt, der tägliche Gebrauchsgegenstände verkauft und dessen bisherige Applikation zur Datenverarbeitung nicht bei der Entscheidungsunterstützung hilft.
-Mittels Implementierung von Business Intelligence Applikationen soll im Artikel Abhilfe geschaffen werden, sodass beim Verständnis von Kundenverhalten, der Erstellung realistischer Ziele sowie der Erkennung von Gelegenheiten zum Crossselling unterstützt werden kann.
-
-Die in vorherigen Schritten gesammelten und vorbereiteten Daten werden dann mittels des Tools \textit{Public Tableau} in Plots visualisiert.
-Hier gibt es ein Dashboard mit elf verschiedenen Graphen, welche auf die gewünschten Funktionen zugeschnitten sind. 
-
-Aus dem Bereich der Visual Analytics nutzen die Autoren im Artikel Liniendiagramme in verschiedenen Formen, teils noch unterteilt in Artikelkategorien, Balkendiagramme und Blasendiagramme.
-Das \textit{Products Sales Dashboard} ist hier eine Sammlung der mit verschiedenen Visualisierungstechniken erstellten Plots, an dem alle Verkaufsdaten an einem Ort gesammelt aufgezeigt werden.
-
-Gemeinsamkeiten zwischen dem Artikel und dem vorliegenden Bericht liegen in der Wichtigkeit der mittels Visual Analtics aufbereiteten Informationen über Verkaufsdaten für verschiedene Zielgruppen.
-Diese weisen hierbei starke Ähnlichkeiten auf, da das interne Personal, vorrangig die Entscheidungsträger der Unternehmen angesprochen und die Daten mittels Visualisierungen zu sinnvollen Informationen für diese weiterentwickelt werden sollen.
-Auch der Zweck der Visualisierungstechniken zur Entscheidungsunterstützung und Erkennung von Gelegenheiten ähnelt sich.
-
-Unterschiede liegen zunächst im Umfang der Entscheidungsunterstützung. Während in dieser Arbeit nur die Visualisierung betrachtet wird, wird im Artikel ein ganzheitliches Konzept mit mehrere vorhergehenden Schritten vorgeschlagen. 
-Die Visualisierung und Abwägung der Techniken spielt eine sehr untergeordnete Rolle.
-Weiterhin unterscheiden sich die Arbeiten in der Tiefe der Analyse, da der Artikel nicht auf genaue Analysen als Beweis der Zweckerfüllung seiner Visualisierungen eingeht, sondern eher das Gesamtprodukt vorstellt.
-Die dort in Grafiken gezeigten Visualisierungstechniken scheinen zudem keine Möglichkeiten zur Erkennung von Korrelationen und hierarchischen Beziehungen z.B. zwischen Produkten zu beinhalten wie es in vorliegender Arbeit der Fall ist.
-
-Zuletzt sei noch \textit{Intelligent Visual Analytics Queries} von Hao et al. genannt.\cite{Hao.2007}
-In diesem Artikel möchten die Autoren vor allem Analysten bei der Erkennung von Eigenschaften und Beziehungen in ausgewählten Mustern mittels ihrer \textit{Intelligent Visual Analytics Query}, kurz \textit{IVQuery} unterstützen.
-Der Fokus liegt dabei auf großen multidimensionalen Datensätzen, in die durch das Tool Einsicht in komplexe Muster, Phänomene und Ausreißer erlangt werden soll.
+Als zweites sei \textit{Intelligent Visual Analytics Queries} von Hao et al. genannt.\cite{Hao.2007}
+In diesem Artikel möchten die Autoren Analysten mittels ihrer \textit{Intelligent Visual Analytics Query} unterstützen.
+Der Fokus liegt auf großen multidimensionalen Datensätzen, in die durch das Tool Einsicht in komplexe Muster, Phänomene und Ausreißer erlangt werden soll.
 Die angestrebte Anwendung beschreibt einen Analysten, der in einer noch unübersichtlichen Visualisierung der Daten einen Interessensbereich sowie die dazugehörigen Attribute auswählt.
-Anschließend sollen durch automatische Analysemethoden Charakterisiken und Beziehungen zu anderen Attributen und Datenpunkten identifiziert werden, wobei analytische und visuelle Methode kombiniert werden.
+Anschließend sollen durch automatische analystische und visuelle Analysemethoden Charakterisiken und Beziehungen zu anderen Attributen und Datenpunkten identifiziert werden.
 Der im Artikel genutzte Anwendungsfall bezieht sich auf Verkaufszahlen von Produkten und Kundenkaufverhalten, da Verkaufsanalysten Produktverkäufe und Promotionen laut der Autoren korrelieren wollen. 
 
 Das vorgestellte Tool nutzt eine tabellenartig angelegte visuelle Karte, bei der in den Zeilen die Gruppen an Dimensionen und in den Spalten die Datenintervalle gespeichert werden.
-Die Farbe kennzeichnet schließlich den Attributwert für den Datenpunkt. So können Korrelationen und Ähnlichkeitern mehrerer Attribute erkannt werden.
+Die Farbe kennzeichnet den Attributwert für den Datenpunkt. So können Korrelationen und Ähnlichkeitern mehrerer Attribute erkannt werden.
 Weiterhin wird wie in der hier vorliegenden Arbeit der Parallele Koordinaten Plot visualisiert. 
-Es können interessante Untergruppen von Daten ausgewählt werden und die paarweise Korrelation der gewählten Attribute berechnet. 
+Es können interessante Untergruppen von Daten ausgewählt und die paarweise Korrelation der gewählten Attribute berechnet werden. 
 Die Achsen werden schließlich so angeordnet, dass hochkorrelierte Attribute nah beieinander sind. 
-Auch Scatterplots werden genutzt, wobei diese hier so angeordnet werden, dass weiterhin multidimensionale Daten abgebildet werden können statt nur zwei Dimensionen.
+Auch Scatterplots werden genutzt, wobei diese hier so angeordnet werden, dass weiterhin multidimensionale statt zweidimensionale Daten abgebildet werden können.
 
 Gemeinsamkeiten bestehen in der Auswahl der Visualisierungstechniken und der Anwendung dieser zum Erkennen von Mustern und Korrelationen in großen multidimensionalen Datensätzen zu Verkaufszahlen.
 Zusätzlich wird die Nützlichkeit dieser Techniken und der Visual Analytics an sich für die Auswertung und das Verständnis von Verkaufsdaten ähnlich groß eingeschätzt.
 Auch die Nutzung und Bewertung der Existenz von Interaktionsmöglichkeiten in den Visualisierungen durch Filter deckt sich mit denen der Autorin der vorliegenden Arbeit.
-
-Unterschiede befassen sich mit dem Einsatz von Scatterplots für mehr als zwei Dimensionen, da sie in vorliegender Arbeit nur für zwei genutzt werden sowie für mehrere als eher weniger sinnvoll angesehen werden.
+Unterschiede befassen sich mit dem Einsatz von Scatterplots für mehr als zwei Dimensionen.
 Trotz der Ähnlichkeiten der Parallen Koordinaten Plots ist die Anordnung der Achsen hier verändert und nimmt dem Nutzer Arbeit ab. 
-So muss dieser nicht selbst die Achsen variabel verschieben, um Muster und Korrelationen besser zu erkennen. Gleichzeitig fehlt ihm diese Flexibilität bei Hao et al.
-Wie schon in den anderen Artikeln wird weniger die Beantwortung einer Frage aus dem Anwendungsfall heraus oder die Analyse mittels der Visualisierungen behandelt, sondern das Tool allgemeiner vorgestellt.
+So muss dieser nicht selbst die Achsen variabel aussuchen, um Muster und Korrelationen besser zu erkennen. 
+Gleichzeitig fehlt ihm diese Flexibilität bei Hao et al.
+Wie schon im vorherigen Artikel wird weniger die Beantwortung einer Frage aus dem Anwendungsfall heraus behandelt, sondern das Tool allgemein vorgestellt.
 
 %Führen sie eine kurze Literatursuche in der wissenschaftlichen Literatur zu Informationsvisualisierung und Visual Analytics nach ähnlichen Anwendungen durch. 
 %Diskutieren sie mindestens zwei Artikel. Stellen sie Gemeinsamkeiten und Unterschiede dar.
 
 \section{Zusammenfassung und Ausblick}
-In dieser Arbeit wurde mittels drei Visualisierungstechniken eine erste Marktanalyse der Verkaufszahlen des Videospielemarktes für die Konsole XBoxOne durchgeführt. 
+In dieser Arbeit wurde mittels drei Visualisierungstechniken eine erste Marktanalyse der Verkaufszahlen des Videospielemarktes für die Konsole \textit{XBoxOne} durchgeführt. 
 Für die Zielgruppe des mittleren und oberen Managements als auch eingeschränkt der Stakeholder der Videospielverlage, hier Publisher, wurden die vorliegenden Daten visuell aufbereitet. 
-Zum einen wurde ein Überblick über den Markt, das eigene Verlagshaus und die Konkurrenz ermöglicht, der in Präsentationen und zur wiederkehrenden Ansicht und Eigenanalyse der Zielgruppen genutzt werden kann.
-Zum anderen wurde mittels der Visualisierungen und sich zeigenden Muster und Korrelationen in den Verkaufszahlen zwischen den Regionen pro Genre eine informiertere Entscheidungunterstützung über potenzielle künftige Investitionen in neue Titel oder Fortsetzungen in den entsprechenden Genres bzw. tiefere und teurere Marktstudien hierzu ermöglicht.
-
-Die Visualisierungstechniken wurden vom Groben zum Detaillierten angeordnet. 
-Durch die Implementierung eines explizites Baumdiagramms konnte die gewünschte hierarchische Übersicht über den Markt sowie die Zusammenhänge zwischen Publisher, Genre und Titel umgesetzt werden.
+%Zum einen wurde ein Überblick über den Markt, das eigene Verlagshaus und die Konkurrenz ermöglicht, der in Präsentationen und zur wiederkehrenden Ansicht und Eigenanalyse der Zielgruppen genutzt werden kann.
+%Zum anderen wurde mittels der Visualisierungen und sich zeigenden Muster und Korrelationen in den Verkaufszahlen zwischen den Regionen pro Genre eine informiertere Entscheidungunterstützung über potenzielle künftige Investitionen in neue Titel oder Fortsetzungen in den entsprechenden Genres bzw. tiefere und teurere Marktstudien hierzu ermöglicht.
+%Die Visualisierungstechniken wurden vom Groben zum Detaillierten angeordnet. 
+Durch die Implementierung eines expliziten Baumdiagramms konnte die gewünschte hierarchische Übersicht über den Markt sowie die Zusammenhänge zwischen Publisher, Genre und Titel umgesetzt werden.
 Gleichzeitig konnte durch diese Technik die Konkurrenz betrachtet und abgeschätzt werden, welche Genres durch die quantitative Anzahl der Spiele und deren Publisher Potenzial bieten und im Folgenden näher betrachtet werden sollten.
-Mittels eines Parallelen Koordinaten Plots zur Darstellung mehrdimensionaler Datenpunkte in einer Darstellung konnten auch durch den Einsatz einer Art Röntgenstrahlentechnik Muster in den Verkaufszahlen von Videospielen eines Genres über mehrere Dimensionen, also Regionen, hinweg erkannt werden.
+Mittels eines Parallelen Koordinaten Plots zur Darstellung mehrdimensionaler Daten konnten auch durch den Einsatz einer Art Röntgenstrahlentechnik Muster in den Verkaufszahlen von Videospielen eines Genres über mehrere Dimensionen, also Regionen, hinweg erkannt werden.
 Zuletzt konnten in einem klassischen Scatterplot die Erkenntnisse aus der vorherigen Visualisierung überprüft werden. 
-Korrelationen zwischen zwei gewählten, interessanten Regionen sowie Ausreißer und die Bildung von Clustern konnten durch diese Visualisierung detaillierter dargestellt und analysiert werden.
+Korrelationen zwischen zwei gewählten Regionen sowie Ausreißer und die Bildung von Clustern konnten durch diese Visualisierung detaillierter dargestellt und analysiert werden.
 Für ein verbessertes, komfortables und schnelles Anwendungserlebnis sowie Effektivität und Effizienz wurde die Auswahl der Genre mittels Drop-Down Menü interaktiv gestaltet sowie beim komfortablen Umschalten der Visualisierungen ebenso mittels Drop-Down Menü erhalten.
 Aus demselben Grund wurde auch ein Beibehalten der flexiblen und individuellen Achsenauswahl für den Parallelen Koordinaten Plot sowie den Scatterplot integriert.
-Zur nötigen Erkennung von Details zu Publishern, Titeln und konkreten Verkaufszahlen wurden interaktive Anzeigen dieser Informationen beim Hovern über die Datenpunkte in allen Visualisierungen ermöglicht.
+%Zur nötigen Erkennung von Details zu Publishern, Titeln und konkreten Verkaufszahlen wurden interaktive Anzeigen dieser Informationen beim Hovern über die Datenpunkte in allen Visualisierungen ermöglicht.
 
-Der Mehrwert der Visualisierungen liegt für die Zielgruppe vor allem im schnellen Verständnis und Überblick über den aktuellen Videospielmarkt mit Fokus auf Verkaufszahlen für die XBoxOne.
+Der Mehrwert der Visualisierungen liegt für die Zielgruppe vor allem im schnellen Verständnis und Überblick über den aktuellen Videospielmarkt mit Fokus auf Verkaufszahlen für die \textit{XBoxOne}.
 Zusammenhänge und Muster zwischen den Regionen in den Genres können ohne Vorwissen im Bereich der Visual Analytics abgelesen, analysiert und präsentiert werden.
 So bieten die Visualisierungen erste Erkenntnisse für die Zielgruppe bezüglich neuer Möglichkeiten und Chancen im Markt sowie Ansatzpunkte für grobe Strategieentscheidungen. 
 Sie dienen als Entscheidungsunterstützung für die Beauftragung detaillierterer, fokussierter und teurerer Marktstudien für neue Investitionen.
