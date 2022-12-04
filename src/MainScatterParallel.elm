@@ -152,6 +152,127 @@ update msg model =
                     ( model, Cmd.none )
 
 
+-- definition of all needed buttons for interactions with program --
+
+-- for selecting genre --
+buttonGenreType : Html Msg
+buttonGenreType =
+    Html.select
+        [ onInput ChangeGenreType ]
+        [ Html.option [ value "Action" ] [ Html.text "Action" ]
+        , Html.option [ value "Action-Adventure" ] [ Html.text "Action-Adventure" ]
+        , Html.option [ value "Adventure" ] [ Html.text "Adventure" ]
+        , Html.option [ value "Fighting" ] [ Html.text "Fighting" ]
+        , Html.option [ value "Misc" ] [ Html.text "Misc" ]
+        , Html.option [ value "MMO" ] [ Html.text "MMO" ]
+        , Html.option [ value "Music" ] [ Html.text "Music" ]
+        , Html.option [ value "Platform" ] [ Html.text "Platform" ]
+        , Html.option [ value "Puzzle" ] [ Html.text "Puzzle" ]
+        , Html.option [ value "Racing" ] [ Html.text "Racing" ] 
+        , Html.option [ value "Role-Playing" ] [ Html.text "Role-Playing" ] 
+        , Html.option [ value "Shooter" ] [ Html.text "Shooter" ] 
+        , Html.option [ value "Simulation" ] [ Html.text "Simulation" ] 
+        , Html.option [ value "Sports" ] [ Html.text "Sports" ]
+        , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
+        ]
+
+
+-- for selecting all five axes for ParallelPlot --
+buttonAxis1 : Html Msg
+buttonAxis1 = 
+    Html.select
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFirstAxis)]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+ 
+buttonAxis2 : Html Msg
+buttonAxis2 = 
+    Html.select
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeSecondAxis)]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+
+buttonAxis3 : Html Msg
+buttonAxis3 = 
+    Html.select
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeThirdAxis)]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+
+buttonAxis4 : Html Msg
+buttonAxis4 = 
+    Html.select
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFourthAxis)]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+
+buttonAxis5 : Html Msg
+buttonAxis5 = 
+    Html.select
+        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFifthAxis)]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+
+-- for selecting x- and y-axis in Scatterplot --
+buttonRegionTypeX : Html Msg
+buttonRegionTypeX =
+    Html.select
+        [ onInput (\rx -> Data.stringToRegionType rx |> ChangeRegionX) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+
+buttonRegionTypeY : Html Msg
+buttonRegionTypeY =
+    Html.select
+        [ onInput (\ry -> Data.stringToRegionType ry |> ChangeRegionY) ]
+        [ Html.option [ value "North America" ] [ Html.text "North America" ]
+        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
+        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
+        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
+        , Html.option [ value "Global" ] [ Html.text "Global" ]
+        ]
+
+
+-- for selecting Plot --
+buttonPlot : Html Msg
+buttonPlot =
+    Html.select
+        [ onInput (\ry -> Data.stringToPlotType ry |> ChangePlot) ]
+        [ Html.option [ value "ParallelPlot" ] [ Html.text "Parallel Coordinate Plot" ]
+        , Html.option [ value "Scatterplot" ] [ Html.text "Scatterplot" ]
+        , Html.option [value "Tree Hierarchy"] [Html.text "Tree Hierarchy"]
+        ]
+
 -- filter for attribute genre, applied in view --
 -- based on code for exercise 4 --
 filterGenre : List Data.GameSales -> String -> List Data.GameSales
@@ -465,125 +586,3 @@ view model =
                                         ]
                                 ]
                         ]
-
-
--- definition of all needed buttons for interactions with program --
-
--- for selecting genre --
-buttonGenreType : Html Msg
-buttonGenreType =
-    Html.select
-        [ onInput ChangeGenreType ]
-        [ Html.option [ value "Action" ] [ Html.text "Action" ]
-        , Html.option [ value "Action-Adventure" ] [ Html.text "Action-Adventure" ]
-        , Html.option [ value "Adventure" ] [ Html.text "Adventure" ]
-        , Html.option [ value "Fighting" ] [ Html.text "Fighting" ]
-        , Html.option [ value "Misc" ] [ Html.text "Misc" ]
-        , Html.option [ value "MMO" ] [ Html.text "MMO" ]
-        , Html.option [ value "Music" ] [ Html.text "Music" ]
-        , Html.option [ value "Platform" ] [ Html.text "Platform" ]
-        , Html.option [ value "Puzzle" ] [ Html.text "Puzzle" ]
-        , Html.option [ value "Racing" ] [ Html.text "Racing" ] 
-        , Html.option [ value "Role-Playing" ] [ Html.text "Role-Playing" ] 
-        , Html.option [ value "Shooter" ] [ Html.text "Shooter" ] 
-        , Html.option [ value "Simulation" ] [ Html.text "Simulation" ] 
-        , Html.option [ value "Sports" ] [ Html.text "Sports" ]
-        , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
-        ]
-
-
--- for selecting all five axes for ParallelPlot --
-buttonAxis1 : Html Msg
-buttonAxis1 = 
-    Html.select
-        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFirstAxis)]
-        [ Html.option [ value "North America" ] [ Html.text "North America" ]
-        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
-        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
-        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
-        , Html.option [ value "Global" ] [ Html.text "Global" ]
-        ]
-
- 
-buttonAxis2 : Html Msg
-buttonAxis2 = 
-    Html.select
-        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeSecondAxis)]
-        [ Html.option [ value "North America" ] [ Html.text "North America" ]
-        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
-        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
-        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
-        , Html.option [ value "Global" ] [ Html.text "Global" ]
-        ]
-
-
-buttonAxis3 : Html Msg
-buttonAxis3 = 
-    Html.select
-        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeThirdAxis)]
-        [ Html.option [ value "North America" ] [ Html.text "North America" ]
-        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
-        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
-        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
-        , Html.option [ value "Global" ] [ Html.text "Global" ]
-        ]
-
-
-buttonAxis4 : Html Msg
-buttonAxis4 = 
-    Html.select
-        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFourthAxis)]
-        [ Html.option [ value "North America" ] [ Html.text "North America" ]
-        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
-        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
-        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
-        , Html.option [ value "Global" ] [ Html.text "Global" ]
-        ]
-
-
-buttonAxis5 : Html Msg
-buttonAxis5 = 
-    Html.select
-        [ onInput (\rx -> Data.stringToAxisType rx |> ChangeFifthAxis)]
-        [ Html.option [ value "North America" ] [ Html.text "North America" ]
-        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
-        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
-        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
-        , Html.option [ value "Global" ] [ Html.text "Global" ]
-        ]
-
-
--- for selecting x- and y-axis in Scatterplot --
-buttonRegionTypeX : Html Msg
-buttonRegionTypeX =
-    Html.select
-        [ onInput (\rx -> Data.stringToRegionType rx |> ChangeRegionX) ]
-        [ Html.option [ value "North America" ] [ Html.text "North America" ]
-        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
-        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
-        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
-        , Html.option [ value "Global" ] [ Html.text "Global" ]
-        ]
-
-
-buttonRegionTypeY : Html Msg
-buttonRegionTypeY =
-    Html.select
-        [ onInput (\ry -> Data.stringToRegionType ry |> ChangeRegionY) ]
-        [ Html.option [ value "North America" ] [ Html.text "North America" ]
-        , Html.option [ value "Europe" ] [ Html.text "Europe" ]
-        , Html.option [ value "Japan" ] [ Html.text "Japan" ]
-        , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
-        , Html.option [ value "Global" ] [ Html.text "Global" ]
-        ]
-
-
--- for selecting Plot --
-buttonPlot : Html Msg
-buttonPlot =
-    Html.select
-        [ onInput (\ry -> Data.stringToPlotType ry |> ChangePlot) ]
-        [ Html.option [ value "ParallelPlot" ] [ Html.text "Parallel Coordinate Plot" ]
-        , Html.option [ value "Scatterplot" ] [ Html.text "Scatterplot" ]
-        , Html.option [value "Tree Hierarchy"] [Html.text "Tree Hierarchy"]
-        ]
