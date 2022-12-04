@@ -289,10 +289,6 @@ view model =
                 |> Tree.map (\v -> ( v, Nothing ))
                 |> convert
                 |> Tree.flatten
-
-        layoutTree : Dict.Dict String { x : Float, y : Float }
-        layoutTree =
-            TreeLayout.treeLayout 2 convertedTree
     in
     div [ Html.Attributes.style "padding" "10px", Html.Attributes.style "background" "rgba(0, 0, 0, 0.009)"]
         [ Html.div [Html.Attributes.style "text-align" "center", Html.Attributes.style "margin" "auto", Html.Attributes.style "color" "rgba(46, 78, 23,1)"] 
@@ -312,7 +308,7 @@ view model =
             [ Html.p [] 
                 [Html.text "By clicking on the link below, you can go to more detailed visualizations of the Video Games Sales data to retrieve insights in sales data."]
             , Html.p []
-                [Html.a [href "MainScatterParallel.elm", Html.Attributes.style "color" "rgba(153, 17, 17, 1)"] 
+                [Html.a [href "MainScatterParallel.elm", Html.Attributes.style "color" "rgba(153, 17, 17, 1)", Html.Attributes.style "fontSize" "18px"] 
                     [Html.text "Detailed Plots"]
                 ]
             ]
@@ -337,39 +333,6 @@ view model =
                 [Html.text "The Tree Diagramm / Tree Hierarchy below shows the same data as the one above but a litter closer so you can explore in more detail."]
             , Html.div [Html.Attributes.style "overflow" "scroll"] [treePlot cssTree 1 convertedTree]
             ]
-        , Html.div [Html.Attributes.style "fontSize" "15px"] 
-            [ Html.text "Hierarchy of publishers, genres and videogames (Child, Maybe Parent)" ]
-        , Html.ul [Html.Attributes.style "fontSize" "10px"] <|
-            List.map
-                (\( child, parent ) ->
-                    Html.li []
-                        [ Html.text <|
-                            "(  "
-                                ++ child
-                                ++ ", "
-                                ++ Maybe.withDefault "Nothing" parent
-                                ++ ")"
-                        ]
-                )
-                convertedTree
-        , Html.div [Html.Attributes.style "fontSize" "15px"] 
-            [ Html.text "Hierarchy as Tree Layout" ]
-        , Html.ul [Html.Attributes.style "fontSize" "10px"] <|
-            List.map
-                (\( node, { x, y } ) ->
-                    Html.li []
-                        [ Html.text <|
-                            "("
-                                ++ node
-                                ++ ", x="
-                                ++ String.fromFloat x
-                                ++ ",y="
-                                ++ String.fromFloat y
-                                ++ ")"
-                        ]
-                )
-            <|
-                Dict.toList layoutTree
         ]
 
 
@@ -422,22 +385,3 @@ wideExtent values =
     ( Tuple.first closeExtent - extension |> max 0
     , Tuple.second closeExtent + extension
     )
-
-
---helpers for Tree structure
-labelToHtml : String -> Html msg
-labelToHtml l =
-    Html.text l
-
-
-toListItems : Html msg -> List (Html msg) -> Html msg
-toListItems label children =
-    case children of
-        [] ->
-            Html.li [] [ label ]
-
-        _ ->
-            Html.li []
-                [ label
-                , Html.ul [] children
-                ]
