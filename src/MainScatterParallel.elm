@@ -11,7 +11,7 @@ import Html.Events exposing (..)
 import ParallelPlot
 import Scatterplot
 
-
+-- basic elm strucutre --
 main : Program () Model Msg
 main =
     Browser.element
@@ -21,19 +21,23 @@ main =
         , view = view
         }
 
+
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.none
+
 
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( Loading
     , Http.get
-        { url = "https://raw.githubusercontent.com/Lena-Ar/Info-Vis/main/Daten/CSV/XboxOne_GameSales_test.csv"
+        { url = "https://raw.githubusercontent.com/Lena-Ar/Info-Vis/main/Daten/CSV/XboxOne_GameSales_Projekt.csv"
         , expect = Http.expectString GotText
         }
     )
 
+
+-- definition of Model --
 type Model
   = Error
   | Loading
@@ -55,6 +59,8 @@ type Model
     , plot : Data.PlotType
     }
 
+
+-- definition of Msg with all possible changes by interaction --
 type Msg
     = GotText (Result Http.Error String)
     | ChangeGenreType String
@@ -67,17 +73,21 @@ type Msg
     | ChangeRegionY Data.RegionType
     | ChangePlot Data.PlotType
 
+
+-- overwrites model according to changes -- 
+-- essential for interactions --
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         GotText result ->
             case result of
                 Ok fullText ->
+                    -- initial overwriting with values for record fields in variant Success and use of decoder by using Data.gamesSalesList --
                     ( Success <| { data = Data.gamesSalesList [fullText], genre = "Action", plot = Data.ParallelPlot, axis1 = Data.NorthAmerica, axis2 = Data.Europe, axis3 = Data.Japan, axis4 = Data.RestOfWorld, axis5 = Data.Global, name1 = Data.regionTypeToString Data.NorthAmerica, name2 = Data.regionTypeToString Data.Europe, name3 = Data.regionTypeToString Data.Japan, name4 = Data.regionTypeToString Data.RestOfWorld, name5 = Data.regionTypeToString Data.Global, xaxis = Data.NorthAmerica, yaxis = Data.NorthAmerica }, Cmd.none )
 
                 Err _ ->
                     ( model, Cmd.none )
-        
+        -- cased for overwriting/updating for all other variants defined in Msg --
         ChangeGenreType new_genre -> 
             case model of
                 Success a ->
@@ -141,14 +151,19 @@ update msg model =
                 _ -> 
                     ( model, Cmd.none )
 
+
+-- filter for attribute genre, applied in view --
+-- based on code for exercise 4 --
 filterGenre : List Data.GameSales -> String -> List Data.GameSales
 filterGenre allGames genretype =
     List.filter (\c -> c.genre == genretype) allGames
 
 
+-- transforms Model to Html Msg to show on website --
 view : Model -> Html Msg
 view model =
     case model of
+        -- one case for each variant of Model --
         Error ->
             text "Opening the data for sales of games on XBoxOne failed"
 
@@ -156,6 +171,7 @@ view model =
             text "Loading GameSales data..."
         
         Success fullText ->
+            -- outer let-in construction with functions for application of filterGenre --
             let
                 gameSalesData: List Data.GameSales
                 gameSalesData = 
@@ -165,18 +181,20 @@ view model =
                 number_games =
                     List.length gameSalesData
                 
-                --from Scatterplot to fit multiDimenData (filteredGamesGenre doesn't)
                 gameSalesDataFiltered = 
                     filterGenre fullText.data fullText.genre
+
                 number_games_genre: Int
                 number_games_genre =  
                     List.length gameSalesDataFiltered
 
             in
             case fullText.plot of 
+                -- one case for each variant of PlotType to be able to switch plots --
                 Data.ParallelPlot -> 
+                    -- inner let-in construction for each case of PlotType to be able to keep state of Model with chosen genre in all cases of PlotType --
                     let
-                        --parallelPlot
+                        -- application of assignmentAndReduce on unfiltered data --
                         gameSalesDataNull : List Data.GameSales
                         gameSalesDataNull = 
                             ParallelPlot.assignmentAndReduce gameSalesData
@@ -185,6 +203,8 @@ view model =
                         number_games_null = 
                             List.length gameSalesDataNull
 
+                        -- application of assignmentAndReduce on filtered data by genre --
+                        -- need of application of gameSalesDataFiltered from outer let-in construction to keep state of model --
                         clearedGameSalesData : List Data.GameSales
                         clearedGameSalesData = 
                             ParallelPlot.assignmentAndReduce gameSalesDataFiltered
@@ -193,6 +213,7 @@ view model =
                         number_games_cleared = 
                             List.length clearedGameSalesData
 
+                        -- application of multiDimenData by giving it all needed data --
                         multiDimFunction = 
                             ParallelPlot.multiDimenData clearedGameSalesData fullText.axis1 fullText.axis2 fullText.axis3 fullText.axis4 fullText.axis5 .game .publisher fullText.name1 fullText.name2 fullText.name3 fullText.name4 fullText.name5
                     in
@@ -228,6 +249,7 @@ view model =
                                 ]
                                 ]
                             ]
+                        -- HTML especially for parallelPlot --
                         , Html.div [Html.Attributes.style "margin" "auto"
                                     , Html.Attributes.style "background" "rgba(0, 0, 0, 0.02)"
                                     , Html.Attributes.style "border-style" "solid"
@@ -239,8 +261,12 @@ view model =
                                [ Html.h1 [Html.Attributes.style "fontSize" "30px", Html.Attributes.style "color" "rgba(75, 128, 36, 1)", Html.Attributes.style "text-align" "center"] 
                                     [ Html.text ("Parallel Coordinates Plot of Video Game Sales for XBox One") ]
                                 , Html.p [Html.Attributes.style "fontSize" "18px", Html.Attributes.style "text-align" "center"] 
-                        --to be specified and explained more
-                                    [ Html.text ("This parallel coordinates plot shows the sales of video games in millions of units for XBox One sorted by selected genre.") ]
+                                    [ Html.text ("This parallel coordinates plot shows the sales of video games in millions of units for XBox One sorted by selected genre.") 
+                                    , Html.br [][]
+                                    , Html.text ("One polyline in this plot represents one videogame. The intersection with each parallel axis shows the value of the attribute displayed here. You can easily identify patterns, clusters and outliers in selected genre over all regions of the world.")
+                                    , Html.br [][]
+                                    , Html.text ("By hovering over the lines you are able to inspect specific information for each videogame inculding exact sales data for each region.")
+                                    ]
                                ]
                             , Html.div [Html.Attributes.style "padding" "5px 10px 5px 10px"]
                                 [ Html.p [Html.Attributes.style "fontSize" "15px"]
@@ -260,58 +286,29 @@ view model =
                                         [Html.text ("Hint: All axes can be adjusted to your needs by seleceting the needed regions for each axis with the buttons below.")]
                                     , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                                         [ Html.text ("Please choose the region you want to display on the first axis with the adjacent buttons: ")
-                                            , buttonAxis1
-                                {--
-                                , button1axis1
-                                , button2axis1
-                                , button3axis1
-                                , button4axis1
-                                , button5axis1--}
-                                            ]
+                                        , buttonAxis1
+                                        ]
                                     , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                                         [ Html.text ("Please choose the region you want to display on the second axis with the adjacent buttons: ") 
-                                            , buttonAxis2
-                                {--
-                                , button1axis2
-                                , button2axis2
-                                , button3axis2
-                                , button4axis2
-                                , button5axis2--}
-                                            ]
+                                        , buttonAxis2
+                                        ]
                                     , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                                         [ Html.text ("Please choose the region you want to display on the third axis with the adjacent buttons: ")
-                                            , buttonAxis3
-                                {--
-                                , button1axis3
-                                , button2axis3
-                                , button3axis3
-                                , button4axis3
-                                , button5axis3 --}
-                                            ]
+                                        , buttonAxis3
+                                        ]
                                     , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                                         [ Html.text ("Please choose the region you want to display on the fourth axis with the adjacent buttons: ")
                                         , buttonAxis4
-                                {--
-                                , button1axis4
-                                , button2axis4
-                                , button3axis4
-                                , button4axis4
-                                , button5axis4 --}
                                         ]
                                     , Html.h4 [Html.Attributes.style "fontSize" "15px"]
                                         [ Html.text ("Please choose the region you want to display on the fifth axis with the adjacent buttons: ")
-                                            , buttonAxis5
-                                {--
-                                , button1axis5
-                                , button2axis5
-                                , button3axis5
-                                , button4axis5
-                                , button5axis5 --}
+                                        , buttonAxis5
                                         ]
                                     ]
                                 ]
                             , Html.h2 [Html.Attributes.style "fontSize" "20px", Html.Attributes.style "padding" "5px 5px 10px 10px", Html.Attributes.style "text-align" "center", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"]
                                 [Html.text ("Parallel Coordinates Plot for " ++ fullText.genre++ " with " ++ (Data.regionTypeToString fullText.axis1) ++ " as first axis, " ++ (Data.regionTypeToString fullText.axis2) ++ " as second axis, " ++ (Data.regionTypeToString fullText.axis3) ++ " as third axis, " ++ (Data.regionTypeToString fullText.axis4) ++ " as fourth axis and " ++ (Data.regionTypeToString fullText.axis5) ++ " as fifth axis.")]
+                            -- plotting scatterplotParallel by giving it the needed data --
                             , Html.div [Html.Attributes.style "padding" "5px"]
                                 [ParallelPlot.scatterplotParallel ParallelPlot.cssParallel 600 2 multiDimFunction]
                             ]
@@ -322,22 +319,25 @@ view model =
                             ]
                         ]
                 Data.Scatterplot ->
+                    -- inner let-in construction for each case of PlotType to be able to keep state of Model with chosen genre in all cases of PlotType --
                     let
-                        --scatterplot
+                        -- application of filterAndReduceGames on unfiltered data --
                         gameSalesDataNull =
                             Scatterplot.filterAndReduceGames (fullText.data)
             
                         number_clearedGames: Int
                         number_clearedGames = 
                             List.length gameSalesDataNull.data
-                
+
+                         -- application of filterAndReduceGames on filtered data by genre --
+                         -- need of application of gameSalesDataFiltered from outer let-in construction to keep state of model --
                         gameSalesDataCleared = 
                             Scatterplot.filterAndReduceGames (gameSalesDataFiltered)
-                
+                        
+                        -- application of regionFilter for x- and y-values by giving it filtered data by genre
                         valuesX : List Float
                         valuesX = 
                             Scatterplot.regionFilter gameSalesDataFiltered fullText.xaxis
-
 
                         valuesY : List Float
                         valuesY = 
@@ -375,7 +375,7 @@ view model =
                                     ]
                                 ]
                             ]
-                --scatterplot
+                        -- HTML especially for scatterplot --
                         , Html.div [Html.Attributes.style "margin" "auto"
                                     , Html.Attributes.style "background" "rgba(0, 0, 0, 0.02)"
                                     , Html.Attributes.style "border-style" "solid"
@@ -414,6 +414,7 @@ view model =
                                 ]
                             , Html.h2 [Html.Attributes.style "fontSize" "20px", Html.Attributes.style "padding" "5px 5px 10px 10px", Html.Attributes.style "text-align" "center", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"]
                                 [Html.text ("Scatterplot for " ++ fullText.genre ++ " with " ++ (Data.regionTypeToString fullText.xaxis) ++ " as x-axis and " ++ (Data.regionTypeToString fullText.yaxis) ++ " as y-axis.")]
+                            -- plotting scatterplot by giving it the needed data so all filters are finally used together --
                             , Html.div [Html.Attributes.style "padding" "5px"]
                                 [Scatterplot.scatterplot Scatterplot.cssPoint gameSalesDataCleared valuesX valuesY (Data.regionTypeToString fullText.xaxis) (Data.regionTypeToString fullText.yaxis)]
                                     
@@ -425,6 +426,7 @@ view model =
                             ]
                         ]
                 Data.TreeHierarchy -> 
+                -- no inner let-in construction and application of functions on which filterGenre is applied from outer let-in as not needed --
                     Html.div [Html.Attributes.style "padding" "10px", Html.Attributes.style "background" "rgba(0, 0, 0, 0.009)"]
                         [ Html.div [Html.Attributes.style "text-align" "center", Html.Attributes.style "margin" "auto", Html.Attributes.style "color" "rgba(46, 78, 23,1)"]
                             [ Html.h1 [Html.Attributes.style "fontSize" "40px"]
@@ -464,6 +466,10 @@ view model =
                                 ]
                         ]
 
+
+-- definition of all needed buttons for interactions with program --
+
+-- for selecting genre --
 buttonGenreType : Html Msg
 buttonGenreType =
     Html.select
@@ -484,7 +490,9 @@ buttonGenreType =
         , Html.option [ value "Sports" ] [ Html.text "Sports" ]
         , Html.option [ value "Strategy" ] [ Html.text "Strategy" ]
         ]
-    
+
+
+-- for selecting all five axes for ParallelPlot --
 buttonAxis1 : Html Msg
 buttonAxis1 = 
     Html.select
@@ -496,6 +504,7 @@ buttonAxis1 =
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
 
+ 
 buttonAxis2 : Html Msg
 buttonAxis2 = 
     Html.select
@@ -506,6 +515,7 @@ buttonAxis2 =
         , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
+
 
 buttonAxis3 : Html Msg
 buttonAxis3 = 
@@ -518,6 +528,7 @@ buttonAxis3 =
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
 
+
 buttonAxis4 : Html Msg
 buttonAxis4 = 
     Html.select
@@ -529,6 +540,7 @@ buttonAxis4 =
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
 
+
 buttonAxis5 : Html Msg
 buttonAxis5 = 
     Html.select
@@ -539,87 +551,9 @@ buttonAxis5 =
         , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
-{--
-button1axis1 : Html Msg
-button1axis1 = Html.button [onClick (ChangeFirstAxis (.northAmerica, "North America"))][Html.text "North America"]
-
-button2axis1 : Html Msg
-button2axis1 = Html.button [onClick (ChangeFirstAxis (.europe, "Europe"))][Html.text "Europe"]
-                        
-button3axis1 : Html Msg                      
-button3axis1 = Html.button [onClick (ChangeFirstAxis (.japan, "Japan"))][Html.text "Japan"]
-  
-button4axis1 : Html Msg
-button4axis1 = Html.button [onClick (ChangeFirstAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
- 
-button5axis1 : Html Msg
-button5axis1 = Html.button [onClick (ChangeFirstAxis (.global, "Global"))][Html.text "Global"]             
-
--- buttons for axis 2
-button1axis2 : Html Msg
-button1axis2 = Html.button [onClick (ChangeSecondAxis (.northAmerica, "North America"))][Html.text "North America"]
-
-button2axis2 : Html Msg
-button2axis2 = Html.button [onClick (ChangeSecondAxis (.europe, "Europe"))][Html.text "Europe"]
-                        
-button3axis2 : Html Msg                      
-button3axis2 = Html.button [onClick (ChangeSecondAxis (.japan, "Japan"))][Html.text "Japan"]
-  
-button4axis2 : Html Msg
-button4axis2 = Html.button [onClick (ChangeSecondAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
- 
-button5axis2 : Html Msg
-button5axis2 = Html.button [onClick (ChangeSecondAxis (.global, "Global"))][Html.text "Global"] 
-
---buttons for axis 3
-button1axis3 : Html Msg
-button1axis3 = Html.button [onClick (ChangeThirdAxis (.northAmerica, "North America"))][Html.text "North America"]
-
-button2axis3 : Html Msg
-button2axis3 = Html.button [onClick (ChangeThirdAxis (.europe, "Europe"))][Html.text "Europe"]
-                        
-button3axis3 : Html Msg                      
-button3axis3 = Html.button [onClick (ChangeThirdAxis (.japan, "Japan"))][Html.text "Japan"]
-  
-button4axis3 : Html Msg
-button4axis3 = Html.button [onClick (ChangeThirdAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
- 
-button5axis3 : Html Msg
-button5axis3 = Html.button [onClick (ChangeThirdAxis (.global, "Global"))][Html.text "Global"] 
-
---buttons for axis 4
-button1axis4 : Html Msg
-button1axis4 = Html.button [onClick (ChangeFourthAxis (.northAmerica, "North America"))][Html.text "North America"]
-
-button2axis4 : Html Msg
-button2axis4 = Html.button [onClick (ChangeFourthAxis (.europe, "Europe"))][Html.text "Europe"]
-                        
-button3axis4 : Html Msg                      
-button3axis4 = Html.button [onClick (ChangeFourthAxis (.japan, "Japan"))][Html.text "Japan"]
-  
-button4axis4 : Html Msg
-button4axis4 = Html.button [onClick (ChangeFourthAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
- 
-button5axis4 : Html Msg
-button5axis4 = Html.button [onClick (ChangeFourthAxis (.global, "Global"))][Html.text "Global"] 
 
 
---buttons for axis 5
-button1axis5 : Html Msg
-button1axis5 = Html.button [onClick (ChangeFifthAxis (.northAmerica, "North America"))][Html.text "North America"]
-
-button2axis5 : Html Msg
-button2axis5 = Html.button [onClick (ChangeFifthAxis (.europe, "Europe"))][Html.text "Europe"]
-                        
-button3axis5 : Html Msg                      
-button3axis5 = Html.button [onClick (ChangeFifthAxis (.japan, "Japan"))][Html.text "Japan"]
-  
-button4axis5 : Html Msg
-button4axis5 = Html.button [onClick (ChangeFifthAxis (.restOfWorld, "Rest of World"))][Html.text "Rest of World"]
- 
-button5axis5 : Html Msg
-button5axis5 = Html.button [onClick (ChangeFifthAxis (.global, "Global"))][Html.text "Global"] 
---}
+-- for selecting x- and y-axis in Scatterplot --
 buttonRegionTypeX : Html Msg
 buttonRegionTypeX =
     Html.select
@@ -630,6 +564,7 @@ buttonRegionTypeX =
         , Html.option [ value "Rest of world" ] [ Html.text "Rest of world" ]
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
+
 
 buttonRegionTypeY : Html Msg
 buttonRegionTypeY =
@@ -642,6 +577,8 @@ buttonRegionTypeY =
         , Html.option [ value "Global" ] [ Html.text "Global" ]
         ]
 
+
+-- for selecting Plot --
 buttonPlot : Html Msg
 buttonPlot =
     Html.select
