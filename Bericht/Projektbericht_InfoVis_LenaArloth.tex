@@ -436,12 +436,9 @@ Eine Änderung des Genres in einer der beiden detaillierten Visualisierungen fü
 \section{Implementierung}
 Im folgenden Kapitel wird die Implementierung der zuvor beschriebenen Visualisierungen und Interaktionen beschrieben. 
 %Der Code wird durch Kommentare ergänzt, um eine Übersichtlichkeit und Erklärung zu einzelnen Funktionen zu ermöglichen.
-Der Code wird in fünf Elm-Module unterteilt.
-%, um die vollen Möglichkeiten der Sprache zu nutzen, das Programm performanter zu machen und den Code für Außenstehende übersichtlicher zu gestalten.
-Es existiert je ein Modul für die drei einzelnen Visualisierungen (TreeHierarchy, ParallelPlot, Scatterplot), eines für Datenstrukturen (Data) und eines zur Zusammensetzung und Ausführung des Programms (MainScatterParallel). 
-Innerhalb der Module, insbesondere der Visualisierungsmodule, wird versucht, den Code einheitlich zu strukturieren. 
-Es werden zuerst kleinere Funktionen definiert, die im späteren Verlauf genutzt werden bis zuletzt allgemeine Einstellungen der Plots vorgenommen werden. 
-
+Der Code wird in fünf Elm-Module unterteilt, bestehend aus je einem Modul für die drei einzelnen Visualisierungen, einem für Datenstrukturen und einem zur Zusammensetzung und Ausführung des Hauptprogramms. 
+\textit{TreeHierarchy} dient als Ausgangspunkt der Anwendung, wobei \textit{MainScatterParallel} den Hauptteil der Anwendung durch die eigentliche Verbindung der Visualisierungen enthält.
+Innerhalb der Visualisierungs-Module werden zuerst kleinere Funktionen definiert, die im späteren Verlauf genutzt werden bis allgemeine Definitionen der Plots schließen. 
 Über alle Module hinweg werden diverse Bibliotheken genutzt, die zu Beginn jedes Moduls importiert werden.  
 %Die Bibliotheken \textit{elm/core} und \textit{elm/browser} werden nur für MainScatterParallel importiert. 
 %\textit{elm/http} wird von MainScatterParallel, Data und TreeHierarchy verwendet, \textit{elm/html} von MainScatterParallel, TreeHierarchy und Scatterplot.
@@ -451,72 +448,68 @@ Es werden zuerst kleinere Funktionen definiert, die im späteren Verlauf genutzt
 %\textit{elm-community/list-extra} und \textit{folkertdev/one-true-path-experiment} sind nur für das Zeichnen des ParallelPlots wichtig.
 %Zur Berechnung des Layouts von Bäumen wird \textit{wasdacraic/elm-tree-layout} in TreeHierarchy genutzt und \textit{zwilias/elm-rosetree} zum Speichern der Bäume in einer Datenstruktur in TreeHierarchy und Data importiert.
            
-Insgesamt war die Implementierung der Anwendung sehr zeitaufwändig, da vor allem die Routine im Programmieren mit Elm trotz der umfangreichen Übungsaufgaben fehlte.
-Die Übungsaufgaben waren eine große Stütze. Jedoch musste auch hier noch einmal nachvollzogen werden, was dort gemacht wurde. 
-Teils kamen so noch neue Erkenntnisse und neues Verständnis für den Code, sodass sich durch die Implementierung der Projektanwendung ein zusätzlicher großer Lerneffekt einstellte.
-Es gab trotz der guten Vorlagen der Abgaben der Autorin zu den Übungsaufgaben einige Schwierigkeiten, die in den folgenden Unterkapiteln Erwähnung finden.
+Insgesamt zeigte sich die Implementierung der Anwendung als zeitaufwändig, da trotz der umfangreichen Übungsaufgaben die Routine und teils das Verständnis im Programmieren mit Elm fehlte.
+Die Übungsaufgaben waren jedoch enorm hilfreich und dienten oft als Grundlage der Funktionen.
+Im gesamten Projekt gab es neue Erkenntnisse und Verständnis für die Funktionen der Sprache und des Quellodes, sodass sich ein zusätzlicher großer Lerneffekt einstellte.
+Trotz der guten Vorlagen der Abgaben der Autorin zu den Übungsserien traten einige Schwierigkeiten auf, die in den folgenden Unterkapiteln Erwähnung finden.
           
 \subsection{Data.elm}
-In diesem Modul sind nahezu alle verwendeten Datentypendeklarationen enthalten. 
-Einzig der \textit{type Model} und \textit{type Msg} aus Gründen der Übersichtlichkeit und Verständlichkeit des Codes in \textit{MainScatterParallel} sind dort nicht vertreten. 
+Dieses Modul dient der Deklaration nahezu aller verwendeten Datentypen sowie der Implementierung der Dekodierungen. 
+Einzig \textit{type Model} und \textit{type Msg} sind aus Gründen der Übersichtlichkeit und Verständlichkeit des Codes in \textit{MainScatterParallel} dort nicht vertreten. 
 
-In \textit{Data} sind zunächst die Funktionen \textit{decodeGameSales}, \textit{csvString\_to\_data} und \textit{gamesSalesList} zur Decodierung der CSV-Dateien implementiert. 
-Die einzelnen Felder der CSV-Datei als String decodiert und dann in eine Liste vom Typ GameSales geschrieben.
+Zunächst sind die Funktionen \textit{decodeGameSales}, \textit{csvString\_to\_data} und \textit{gamesSalesList} zur Decodierung der CSV-Dateien implementiert. 
+Die einzelnen Felder der CSV-Datei werden als String decodiert und in eine Liste vom Typ GameSales geschrieben.
 Darauf folgt die Decodierung der JSON-Datei mittels \textit{treeDecoder}.
-Beide Decoder basieren auf jenen für die Übungen sieben und neun verwendeten und wurden an die in diesem Projekt verwendeten Daten angepasst.
+Beide Decoder finden im \textit{update} in \textit{MainScatterParallel} zur initialen Überschreibung der Daten ihre Anwendung.
+Sie basieren den für die Übungen sieben und neun verwendeten Decodern und wurden an die hier verwendeten Daten angepasst.
 
-Es folgt die Definition der Datentypendeklarationen, die für alle Visualisierungen außer die \textit{TreeHierarchy} wichtig sind. 
-In \textit{type alias GameSales} sind die Daten aus der CSV-Datei definiert, welche dann im Model in \textit{MainScatterParallel} weiterverwendet werden. 
-Die Deklarationen \textit{type RegionType} und \textit{type PlotType} als CustomType werden für die Auswahl der Achsen in den Visualisierung zwei und drei sowie die Auswahl der anzuzeigenden Visualisierung benötigt.
+Es folgt die Deklaration jener Datentypen, die für alle Visualisierungen außer die \textit{TreeHierarchy} wichtig sind. 
+\textit{Type alias GameSales} definiert alle Daten der CSV-Datei wie sie durch den Decoder dekodiert werden und später im Model in \textit{MainScatterParallel} weiterverwendet werden. 
+Die Deklarationen \textit{type RegionType} und \textit{type PlotType} als CustomType werden für die Auswahl der Achsen in den Visualisierung zwei und drei sowie die Auswahl der anzuzeigenden Visualisierung benötigt. 
 Sie werden im \textit{type Model} und im \textit{type Msg} in \textit{MainScatterParallel}, im \textit{regionFilter} in \textit{Scatterplot} und im \textit{multiDimenData} in \textit{ParallelPlot} verwendet. 
-Als nächstes werden die spezifischen Datentypen für die Visualisierungen definiert. 
+Es folgen die durch die Übungsserien bekannten Datentypen für die spezifischen Visualisierungen. 
 %Somit sind alle drei Visualisierungen modular zusammengesetzt.
 
-Zuletzt werden die für die Buttons wichtigen Funktionen zur Datentypkonversion von einem String zu PlotType, String zu RegionType, RegionType zu String und String zu ein einem Tupel aus RegionType und String beschrieben. 
-Dies ist nicht nur zur Darstellung von Buttons, die nur Strings erlauben, also der Implementierung von Interaktionen nötig, sondern auch zur bspw. korrekten Anzeige von aktuell ausgewählten Regionen.
+Zuletzt werden die für die Buttons wichtigen Funktionen zur Typkonversion von einem String zum jeweiligen CustomType und, mit Ausnahme vom PlotType, umgekehrt beschrieben. 
+Dies ist nicht nur zur Erstellung von Buttons, die nur Strings erlauben, nötig, sondern auch zur bspw. korrekten Anzeige von aktuell ausgewählten Regionen in der Folge.
 Weiterhin ist eine Konversion von einem RegionType zu einem Tupel aus GameSales und Float für die Funktion \textit{multiDimenData} in ParallelPlot notwendig.
 
 \subsection{TreeHierarchy.elm}
-Nach dem Import der Bibliotheken beginnt dieses Modul mit den grundlegenden Funktionen \textit{main}, \textit{init} und \textit{update}. 
+Für das Modul können große Teile des von der Autorin in Übungsserie neun erstellten Quellcodes verwendet werden und müssen lediglich minimal auf die verwendeten Daten angepasst werden. 
+Begonnen wird mit den grundlegenden Funktionen \textit{main}, \textit{init} und \textit{update}. 
 Die Anwendung wird initialisiert, die Daten unter Anwendung des Decoders für JSON-Dateien geladen und die jeweils auszuführenden Aktionen bei korrektem oder inkorrektem Laden der Daten bestimmt. 
 Es folgt eine Helferfunktionen \textit{convert} zur Konvertierung des Baumes basierend auf den Vorgaben zu Übung neun.
 
-Die Funktionen \textit{line} und \textit{point} werden zum Zeichnen der Verbindungen von Eltern zu Kindknoten bzw. zur Darstellung der Knoten an sich benötigt und in \textit{treePlot} und \textit{treePlot2} angewandt. 
-Sie definieren die Linie bzw. den Knoten als Kreis mit Beschriftung mit einer Rotation von 75° und einer fett gedruckten Serifenschriftart.
+\textit{Line} und \textit{point} definieren die Linie zum Zeichnen der Verbindungen von Eltern zu Kindknoten bzw. zur Darstellung der Knoten an sich sowie die um 75° rotierte, fett gedruckte Beschriftung. 
 
-Als nächstes sind zwei Funktionen zum Zeichen des Baumes beschrieben. 
-Zur Ansicht des Baumes ohne Scrollen als Übersicht wird \textit{treePlot2} verwendet, zur näheren Ansicht des Baumes \textit{treePlot}. 
-Die Plots unterscheidet einzig die prozentuale Vergrößerung der global definierten Höhen und Breiten um 200 bzw. 150 Prozent im SVG des \textit{treePlot}.
-Die Plots an sich basierend stark auf dem Code der Autorin zu Übung neun. 
-Mittels lokaler Funktionen wird zunächst das Layout des Baumes bestimmt, bevor lokal die Abhängigkeiten des Baumes berechnet werden, um die Pfade zwischen Eltern- und Kindknoten zu zeichnen. 
-Dazu werden die X- und Y-Werte der Eltern- und Kindknoten mittels \textit{Dict.get} herausgezogen. 
-Weiterhin wird eine Verbindung des Wurzelknotens mit einem nicht existierenden Elternknoten durch die Funktionen \textit{checkRootNegative} und \textit{nodeValuesPath} verhindert.
-Zum Zeichnen der Verbindungen wird die zuvor beschriebene Funktion \textit{line} genutzt, auf die die lokale Funktion \textit{nodeValuesPath} angewandt wird. 
-Für die Punkte wird \textit{point} verwendet, auf das die lokale Funktion \textit{nodeValues} angewandt wird. 
-Die Definition von Kreis-, Linien- und Textfarben, Umrandungen derselben und entsprechenden Änderungen beim Hovern mit der Maus wird im global definierten CSS \textit{cssTree} vorgenommen. 
+\textit{TreePlot2} zur Zeichnung des Baumes ohne Scrollen und \textit{treePlot} zur näheren Ansicht des Baumes werden folgend implementiert. 
+Sie unterscheiden sich einzig in der prozentualen Vergrößerung der global definierten Höhen und Breiten um 200 bzw. 150 Prozent im \textit{treePlot}.
+Auch die Plots an sich basierend stark auf dem Quellcode der Autorin zu Übung neun. 
+Mittels lokaler Funktionen wird das Layout des Baumes bestimmt, bevor die Abhängigkeiten des Baumes mit Hilfe von \textit{Dict.get} zum Erhalt der X- und Y-Werte berechnet werden, um die Pfade zwischen Eltern- und Kindknoten zu zeichnen. 
+Die Funktionen \textit{checkRootNegative} und \textit{nodeValuesPath} verhindern das fehlerhafte Zeichnen einer Linie zum nicht existenten Elternknoten der Wurzel.
+Nachfolgend werden die berechneten Verbindungen mittels Anwendung zuvor beschriebener Funktion \textit{line} auf \textit{nodeValuesPath} gezeichnet.
+Berechnete Knoten werden durch Anwendung von \textit{point} auf \textit{nodeValues} gezeichnet. 
+Die Definition des Designs inklusive Hovern wird im global definierten CSS \textit{cssTree} vorgenommen. 
 
-In der \textit{view}-Funktion wird lokal der konvertierte Baum sowie das Layout berechnet. 
-In einem Div-Container werden geschachtelt durch weitere Container Überschriften, Erklärungen, Links und Buttons zur Ausgabe implementiert. 
-Die Anordnung sowie der Designstil ist an \textit{MainScatterParallel} angepasst. 
+In der \textit{view}-Funktion werden lokal die Daten in einen Baum konvertiert, bevor dies neben dem CSS den beiden Zeichnungsfunktionen des Baumes übergeben und diese dann ausgegeben werden können.
+Die Anordnung sowie der Designstil der HTML-Elemente ist an \textit{MainScatterParallel} angepasst. 
 %An den entsprechenden Stellen in der Abfolge der gewünschten Texte werden die beiden Baumhierarchien gezeichnet, wobei \textit{treePlot} einen Balken zum horizontalen Scrollen erhält.
 
 Zuletzt werden global allgemeine konstante Einstellungen zum Plot definiert. 
-Hierzu zählen Breite, Höhe, Innenabstand, Radius, Skalierungen, Default-Einstellungen sowie Einstellungen zum Bereich der Datenwerte.
-Diese Einstellungen basieren auf den Vorgaben in der Vorlage zum Arbeiten mit Bäumen aus Übung neun und sind auch in den Abgaben zu Übung neun der Autorin zu finden. 
+Diese Definitionen basieren mit Unterschied bestimmter Werte auf den Vorgaben in der Vorlage zum Arbeiten mit Bäumen aus Übung neun und den Abgaben der Autorin zu Übung neun. 
 
-Die Implementierung der expliziten Baumhierarchie bereitete wenig Schwierigkeit, da sehr viel auf den abgegebenen Codes der Autorin zu Übung neun basiert. 
-Lediglich der Decoder in Data musste an die Datenfelder angepasst, der Link zum Laden der Daten geändert sowie die besten Design- und Darstellungsweisen, inklusive der zweifachen Darstellung des Baumes, gefunden werden. 
-Weiterhin wurde das CSS global definiert, das allgemeine Design der darzustellenden Seite im \textit{view} an jenes aus \textit{MainScatterParallel} angepasst und Erklärungstexte für die Anwender hinzugefügt. 
+Die Implementierung der expliziten Baumhierarchie bereitete keine Schwierigkeiten, da sehr viel auf den abgegebenen Codes der Autorin zu Übung neun basiert. 
+Lediglich der Decoder in \textit{Data} musste an die Datenfelder angepasst, der Link zum Laden der Daten geändert sowie die besten Design- und Darstellungsweisen, inklusive der zweifachen Darstellung des Baumes, gefunden werden. 
+Das CSS wurde gegensätzlich global definiert und das allgemeine Design Seite im \textit{view} an jenes aus \textit{MainScatterParallel} angepasst. 
 
 \subsection{ParallelPlot.elm}
-Dieses Modul beginnt nach dem Import mit drei Funktionen zum Mapping und der Reduzierung der Datensätze um solche, die Null-Values enthalten. 
-Dies ist nach der manuellen Vorverarbeitung der Daten zwar nicht zwingend notwendig, jedoch werden somit mögliche Fehler in dieser berücksichtigt und entfernt. 
-Weiterhin ist der Code damit universeller einsetzbar, sollten andere Datengrundlagen genutzt werden wollen. 
+Dieses Modul beginnt nach dem Import mit drei Funktionen zur Zuordnung der Daten zum benötigten Datentyp und der Reduzierung der Datensätze um solche, die Null-Values enthalten. 
+Letzteres ist nach der manuellen Vorverarbeitung der Daten zwar nicht zwingend notwendig, jedoch kann so auf Fehler und Änderungen der Rohdaten eingegangen werden. 
 
-Die erste Funktion ist eine Hilfsfunktion, die mittels \textit{Maybe.map2} beim Pipen hilft.
-Die zweite Hilfsfunktion basiert auf einer normalen \textit{Maybe.map5} Funktion, die um einen Parameter erweitert wird. 
-Beide basieren auf den Dokumentationen der Elm-Core-Bibliothek zu Maybe.%\cite{EvanCzaplicki.o.J.} 
-Da es kein \textit{Maybe.map6} gibt, wird hier die vorherige Hilfsfunktion angewandt, um dieses Problem zu umgehen. 
+Die erste Hilfsfunktion dient mittels \textit{Maybe.map2} dem Pipen.
+Bsierend auf einer normalen \textit{Maybe.map5} Funktion wird die zweite Hilfsfunktion um einen Parameter erweitert. 
+Beide begründen sich aus den Dokumentationen der Elm-Core-Bibliothek zu Maybe.%\cite{EvanCzaplicki.o.J.} 
+Da es kein \textit{Maybe.map6} gibt, wird in \textit{helpMapBig} die vorherige Hilfsfunktion angewandt, um dieses Problem zu umgehen. 
 %So kann transformiert werden wie es eine Maybe.map6 Funktion machen würde, wenn es sie gäbe.
 \textit{AssignmentAndReduce} wiederum wandelt schließlich lokal mithilfe der \textit{helpMapBig} die Daten vom Typ GameSales zu Maybe GameSales um und reduziert diese um die Datensätze mit fehlenden Werten mittels \textit{List.filterMap}.
 Diese Funktion basiert auf den Abgaben der Autorin zu Übung sechs.
@@ -535,59 +528,58 @@ So muss der RegionType innerhalb der Funktion mittels \textit{regionTypeToAxisAn
 Die Funktion wird in \textit{MainScatterParallel} in der lokalen Funktion \textit{multiDimFunction} angewandt und bekommt dort die von ihr benötigten Daten übergeben.
 
 Es folgt der \textit{scatterplotParallel}, der nahezu unverändert aus den Abgaben der Autorin zu Übung sechs übernommen werden kann. 
-Hier werden unter anderem mittels lokaler Funktionen die Achsen in X-Richtung positioniert sowie die Achsen und ihre Beschriftungen in einem umgebenden Rechteckt gezeichnet.
-Die Zeichnung der Datenpunkte wird mittels Shape.line und Shape.linaerCurve realisiert.
-Zudem wird der beim Hovern über einen Datenpunkt anzuzeigende Text lokal beschrieben bevor diese Funktion dann zuletzt mit den entsprechenden Daten angewandt wird.
+Es werden unter anderem mittels lokaler Funktionen die Achsen in X-Richtung positioniert sowie folgend inklusive Beschriftungen in einem umgebenden Rechteckt gezeichnet.
+Die Zeichnung der Datenpunkte wird durch \textit{Shape.line} und \textit{Shape.linaerCurve} realisiert.
+Eine Änderung ist der beim Hovern über einen Datenpunkt anzuzeigende Text. Er wird lokal beschrieben bevor dieser Funktion zuletzt die entsprechenden Daten übergeben werden.
 
-Auch hier wird das CSS global in \textit{cssParallel} definiert. Ein besonderes Augenmerk liegt dabei auf der Definition der Opacity mit 0.5. 
-So entsteht trotz weiß gefärbtem Umgebungsrechteck der gewünschte Röntgeneffekt.
-Mögliche Cluster und Aufälligkeiten in den Datenpunkten sind durch Überlagerungen so besser erkennbar.
+Auch hier wird ein globales \textit{cssParallel} definiert.
+Zur Enstehung des gewünschten Röntgeneffektes zur erleichterten Identifikation der Cluster und Auffälligkeiten der Datenpunkte wird die Opacity der Datenpunkte auf 0.5 festgelegt.
 Durch das Einfärben in einem stärkeren Grünton beim Hovern und dem Einblenden der Details zum Datenpunkt lassen sich die einzelnen Videospiele besser nachvollziehen.
 
-Auch hier schließt die Implementierung mit den generellen Einstellungen für den Plot. Diese basieren auf den Abgaben der Autorin zu Übung sechs. 
+Die Implementierung schließt mit den generellen Einstellungen für den Plot, welche mit Ausnahme bestimmter Werte auf den Abgaben der Autorin zu Übung sechs basieren. 
 
-Die Erstellung des ParallelPlot basierte in weiten Bereichen auf den Abgaben zu Übung sechs. So bereitete das Zeichnen des Plots wenig Schwierigkeiten. 
-Etwas komplizierter war zunächst die Implementierung des Mappings und der Filterung nach Null-Werten durch das fehlende List.map6. 
-Schwieriger gestaltete sich jedoch die Umsetzung der freien Auswahl der Achsen wie oben schon beschrieben. 
-Dies war mit viel Ausprobieren und Verständnis, welcher Datentyp für welche weitere Funktion benötigt wird und welche durch die vorherige Definition der Datentypen vorhanden waren, verbunden.
+Die Erstellung des ParallelPlot stützte sich in weiten Bereichen auf den Abgaben zu Übung sechs. 
+So bereitete das Zeichnen des Plots wenig Schwierigkeiten. 
+Etwas komplizierter war zunächst die Implementierung des Mappings und der Filterung nach Null-Werten durch das fehlende \textit{List.map6}. 
+Schwieriger gestaltete sich jedoch die Umsetzung der freien Auswahl der Achsen wie zuvor beschrieben. 
+Hier war viel Ausprobieren und Verständnis, welcher Datentyp für welche weitere Funktion benötigt wird und welche durch die vorherige Definition der Datentypen vorhanden waren, nötig.
 
 \subsection{Scatterplot.elm}
-Nach dem Import der Bibliotheken folgen in diesem Modul ähnliche drei Funktionen mit demselben Zweck wie im \textit{ParallelPlot}.
-Die ersten beiden Funktionen sind dieselben.
-\textit{FilterAndReduceGames} ähnelt \textit{AssignmentAndReduce} stark, basiert aber auf den Abgaben der Autorin zu Übung eins.
-Hier werden die Daten zunächst mithilfe von \textit{helpMapBig} vom Typ GameSales dem Typ Maybe Point zugeordnet, welcher für die Funktion \textit{point} und diese für den Plot an sich benötigt wird. 
-Die zugeordneten und mit \textit{List.filteMap} gefilterten Daten in \textit{filter} werden dann unter anderem in XyData geschrieben, dass als Output der Funktion \textit{FilterAndReduceGames} definiert ist.
+Das Modul enthält ähnliche drei Funktionen mit demselben Zweck wie \textit{ParallelPlot}.
+Die ersten beiden Funktionen gleichen sich.
+\textit{FilterAndReduceGames} basiert jedoch auf den Abgaben der Autorin zu Übung eins.
+Die Daten werden zunächst mithilfe von \textit{helpMapBig} vom Typ GameSales dem Typ Maybe Point zugeordnet. 
+Die zugeordneten und mit \textit{List.filterMap} gefilterten Daten in \textit{filter} werden dann unter anderem in XyData geschrieben, dass als Output der Funktion \textit{FilterAndReduceGames} definiert ist.
 XyData werden benötigt für das Zeichnen des Scatterplots, da sie unter anderem eine Liste Daten des Typs \textit{Point} enthalten.
 
-Die Funktion \textit{regionFilter} filtert mit Eingabe einer Liste GameSales und des RegionTypes die Datenpunkte nach den je gewünschten Regionsauswahlen für die Achsen. 
-Diese Funktion ist nötig zur Interaktion innerhalb des Plots, um die Achsen frei wählen und die richtigen Datenpunkte anzeigen zu können.
-In \textit{MainScatterParallel} wird \textit{regionFilter} lokal für \textit{valuesX} und \textit{valuesY} aufgerufen und auf die nach Genre gefilterten Daten sowie die X- bzw. Y-Achse angewandt. 
-Die Funktion basiert auf den Abgaben der Autorin zu Übung vier.
+Die Funktion \textit{regionFilter}, basierend auf den Abgaben der Autorin zu Übung vier, filtert mit Eingabe einer Liste GameSales und des RegionTypes die Datenpunkte nach den je gewünschten Regionsauswahlen für die Achsen. 
+Sie wird zur Interaktion innerhalb des Plots, zur freien Auswahl der Achsen und korrekten Anzeige der entsprechenden Datenpunkte benötigt.
+Die Anwendung wird in \textit{MainScatterParallel} vorgenommen und beschrieben.
 
-In der Funktion \textit{point} wird die Positionierung der Punkte sowie deren Beschriftung für die Weiterverwendung in \textit{Scatterplot} festgelegt.
-Der \textit{scatterplot} ist für das Zeichnen des Plots mit den Datenpunkten zuständig. 
-Mit der lokalen Funktion \textit{pointsXY} wird die Variabilität der Achsen und damit X- und Y-Werte der Punkte ermöglicht, die für die Interaktivität der Achsenauswahl nötig ist.
-Dies ist in vielen Übungsabgaben der Autorin nicht umgesetzt, jedoch in Übung vier, sodass diese als Grundlage für die lokale Funktion dient. 
+In \textit{point} wird die Positionierung der Punkte sowie deren Beschriftung für die Weiterverwendung in \textit{Scatterplot} festgelegt.
+Der \textit{scatterplot} ist für das Zeichnen des Plots zuständig. 
+Mit der lokalen Funktion \textit{pointsXY} wird die Variabilität der Achsen und damit X- und Y-Werte der Punkte ermöglicht.
+%Dies ist einzig in der Abgabe der Autorin zu Übung vier umgesetzt, sodass diese als Grundlage für die lokale Funktion dient. 
 %In weiteren lokalen Funktionen wird die Abbildung bzw. Umrechnung der Daten auf SVG berechnet.
 Im SVG des \textit{scatterplot} wird die Positionierung der X- und Y-Achse, ihrer Beschriftungen und der Punkte festglegt. 
-Letzteres wird durch die lokalen Funktionen \textit{xScaleLocal}, \textit{yScaleLocal} und \textit{pointsXY} sowie der zuvor beschriebenen globalen Funktion \textit{point} erreicht.
-Der \textit{scatterplot} basiert auf den Abgaben der Autorin zu Übung 1.4 sowie Übung vier. 
+Letzteres wird durch die lokalen Funktionen \textit{xScaleLocal}, \textit{yScaleLocal} und \textit{pointsXY} sowie der globalen Funktion \textit{point} erreicht.
+Der \textit{scatterplot} basiert auf den Abgaben der Autorin zu Übung 1.4 sowie Übung vier für die lokale Funktion \textit{pointsXY}. 
 
-Zuletzt werden allgemeine, konstant für den Plot geltende Einstellungen global definiert. Diese basieren auf den Abgaben der Autorin zu Übung eins bis vier.
+Zuletzt werden wie zuvor allgemeine, konstant für den Plot geltende Einstellungen, basierend auf Übung eins bis vier, global definiert. 
 
-Die Implementierung des Scatterplots verlief in weiten Teilen problemlos, wenn auch nicht schnell durch ständiges Überprüfen der richtigen Datentypen.
-Schwieriger war wie beim \textit{ParallelPlot} auch die Umsetzung des Mappings und Filterns nach Null-Werten durch das fehlende List.map6.
-Weiterhin musste beachtet werden, dass die Achsen des Plots frei wählbar, also variabel definiert sind und nicht strikt festgelegt wie in den meisten Übungsserien.
+Die Implementierung des Scatterplots verlief in weiten Teilen problemlos, wenn auch langsam durch ständiges Überprüfen der richtigen Datentypen.
+Die Umsetzung des Mappings und Filterns nach Null-Werten stellte wie beim \textit{ParallelPlot} ein Problem dar, wobei die Lösung vereinfachend größtenteils von dort übernommen werden konnte. 
+Weiterhin musste beachtet werden, dass die Achsen des Plots frei wählbar, also variabel definiert sind, anders als in den meisten Übungsserien.
 Mit entsprechender Zeit- und Denkinvestition war auch dies überwindbar.
 
 \subsection{MainScatterParallel.elm}
 Auch das Modul \textit{MainScatterParallel} definiert zunächst die Importe. 
 Aufgrund der besseren Erkenntlichkeit aus welchen Modulen welche Funktionen stammen, werden keine Funktionen dezidiert importiert, sondern nur das allgemeine Modul. 
 
-Für dieses Modul wird die gesamte Elm-Architektur verwendet, da es den \textit{Scatterplot} und die \textit{ParallelPlot} ausführen und alle drei Visualisierungen verbinden soll.
+Es wird die gesamte Elm-Architektur verwendet, da das Modul den \textit{Scatterplot} und die \textit{ParallelPlot} ausführen und alle drei Visualisierungen verbinden soll.
 Hierzu wird das Programm zunächst wieder in der \textit{main}-Funktion definiert, sowie die \textit{subcritpions-} und die \textit{init}-Funktion implementiert.
 
-Danach folgt die Definition der Datentypendeklarationen \textit{type Model} und \textit{type Msg}. 
+Danach folgt die Definition des \textit{type Model} und \textit{type Msg}. 
 %Diese könnten zwar auch in Data definiert werden, verweilen aber zugunsten der Übersichtlichkeit und schnelleren Verständnisses des Codes in diesem Modul.
 In \textit{type Model} werden die drei Varianten Error, Loading und Success beschrieben, die in den entsprechenden Fällen angezeigt werden. 
 Die Variante Success ist gleichzeitig ein Record aus den dort beschriebenen Feldern. 
@@ -598,67 +590,62 @@ Für die Achsen des Scatterplots und Parallelen Koordinaten Plots sowie den Plot
 Der \textit{type Msg} definiert die Varianten für die Nutzung in \textit{update} zur Überschreibung des Models. 
 Es gibt eine Variante zum erfolgreichen Laden der Daten und damit der Initialisierung des Plots sowie für jeden möglichen Wechsel von Achsen in den Plots sowie den Wechsel des Plots an sich.
 
-In der \textit{update}-Funktion werden zunächst die initial anzuzeigenden Attributwerte definiert und in Success gespeichert. 
-Hierbei muss auf die entsprechenden Datentypen geachtet werden, die in \textit{type Model} unter Success gespeichert werden. 
-Außerdem wird hier die Decodierung der geladenen Daten vorgenommen. 
-Weiterhin werden für alle möglichen Interaktionen mit dem Model die Varianten von \textit{Msg} eingefügt und beschrieben, wie bei einer Änderung dieser Variante durch Klick auf deinen Button das Model überschrieben wird.
+In der \textit{update}-Funktion werden zuerst die initial anzuzeigenden Attributwerte mit Rücksicht auf die zuvor festgelegten Datentypen definiert und nach Anwendung der Dekodierung in Success gespeichert. 
+Weiterhin werden für alle Interaktionen mit dem Model die Varianten von \textit{Msg} eingefügt und beschrieben, wie bei einer Änderung dieser Variante durch Klick auf deinen Button das Model überschrieben wird.
 
-Als nächstes werden alle benötigten Buttons als Funktionen implementiert, sodass das Model bei Klick auf eine Variante überschrieben werden kann. 
-Da die Buttons nur Strings akzeptieren, die Varianten von \textit{Msg} jedoch die CustomTypes bzw. die Tupel aus CustomType und String, muss hier bei allen Buttons außer dem \textit{buttonGenreType} die entsprechende in \textit{Data} definierte Umwandlungsfunktion genutzt werden. 
-Die Änderungen werden dann in der Variante des \textit{Msg}-Typen gespeichert und durch die \textit{update}-Funktion das Model überschrieben.
+Nachfolgend werden alle benötigten Button-Funktionen zur Überschreibung des Models bei Klick auf eine Variante implementiert.
+Wichtig ist die Nutzung der in \textit{Data} definierten Umwandlungsfunktionen für alle außer den \textit{buttonGenreType} von Strings, welche die Buttons benötigen, zu den entsprechend für das Model definierten Datentypen. 
+Die Änderungen können dann in der Variante des \textit{Msg}-Typen gespeichert und durch die \textit{update}-Funktion das Model überschrieben werden.
+%Bild Button ParallelPlot
 Die Buttons basieren auf den Abgaben der Autorin aus Übung vier.
 
 Die Funktion \textit{filterGenre} beruht auf den Abgaben der Autorin zu Übung vier und wird folgend im \textit{view} angewandt. 
-Mit dieser Funktion kann der Anwender nach dem Attribut Genre filtern und ein für ihn sehenswertes Genre auswählen.
+Dem Anwender wird dadurch eine Filterung nach dem Attribut Genre ermöglicht.
 %Im Prinzip sorgt diese Funktion, wenn später im \textit{view} angewendet, dafür, dass ausgewähltes Genre und angezeigtes Genre übereinstimmen, also Gleichheit besteht.
 
-In der \textit{view}-Funktion werden die verschiedenen Fälle des Models behandelt. 
-Für diese Erklärung wird nur auf den Fall des Erfolges beim Laden eingegangen.
-Zunächst wird eine \textit{let-in}-Konstruktion auf erster Ebene erstellt. 
+In der \textit{view}-Funktion werden die verschiedenen Fälle des Models zur Ansicht behandelt, wobei hier nur auf den Erfolgsfall näher eingegangen wird. 
+Zunächst wird eine \textit{let-in}-Konstruktion auf erster. äußerer Ebene erstellt. 
 In lokalen Funktionen wird \textit{gameSalesData} sowie die Anzahl der Spiele insgesamt beschrieben.
-Zusätzlich wird auf dieser oberen Ebene der globale \textit{filterGenre} zur Filterung der Daten nach gewünschtem Genre angewandt.
-Weiterhin wird die Länge dieser neuen Liste, also die Anzahl der Spiele im ausgewählten Genre berechnet. 
-Damit nun zwischen den Plots gewechselt werden kann, werden die verschiedenen Varianten bzw. Fälle des Datentyps \textit{PlotType} im \textit{in}-Teil angelegt. 
-Deshalb befindet sich auch das Feld \textit{plot} im Record der Variante \textit{Success} des Models.
+Zusätzlich wird hier der globale \textit{filterGenre} zur Filterung der Daten nach gewünschtem Genre angewandt.
+Auch die Länge dieser Liste wird berechnet. 
+Damit nun zwischen den Plots gewechselt werden kann, werden die verschiedenen Varianten bzw. Fälle des Datentyps \textit{PlotType} wie im Record der Variante \textit{Success} des Models aufgeführt im \textit{in}-Teil angelegt. 
 Je nachdem, welcher Plot mittels Button ausgewählt wird und wie das Model durch das \textit{update} überschrieben wurde, wird einer der drei Fälle angezeigt. 
 Der Zustand des Models mit dem gefilterten Genre soll bestehen bleiben, sodass eine Interaktion mit dem Genrebutton in einer Visualisierung auch in der anderen angewandt und übernommen wird.
-Dazu dient zum einen die zuvor beschrieben Variantendefinition im \textit{in}-Teil der äußeren \textit{let-in}-Kosntruktion sowie jeweils eine weitere \textit{let-in}-Konstruktion in den jeweiligen Falldefinitionen.
-Diese befindet sind auf zweiter bzw. innerer Ebene, sodass die in der äußeren Konstruktion berechneten Zustände, also Genreauswahlen, auch hier gelten und bei einem Wechsel des Plots übernommen werden. 
-Um dieses Ziel zu erreichen müssen in den lokalen Funktionen der inneren Konstruktion der Plots die lokalen Funktionen der äußeren Ebene angewandt werden. 
-Würde in jeder der inneren Ebenen für jeden Plot die Filter nach Genre definiert werden und lokal angewandt statt in der übergeordneten Ebene, würden die Einstellungen repsektive der Zustand des Models nicht übernommen werden.
+Dazu dient zum einen die zuvor beschrieben Variantendefinition im \textit{in}-Teil der äußeren \textit{let-in}-Ebenenkonstruktion sowie jeweils eine weitere \textit{let-in}-Konstruktion in den Falldefinitionen.
+Diese befinden sind auf zweiter, innerer Ebene, sodass die in der äußeren Konstruktion berechneten Zustände, sprich Genreauswahlen, auch hier gelten und bei einem Wechsel des Plots übernommen werden. 
+In den lokalen Funktionen der inneren Konstruktion der Plots muss dazu die lokale \textit{gameSalesDataFiltered} der äußeren Ebene angewandt werden. 
+Würde in jeder der inneren Ebenen für jeden Plot die Filter nach Genre neu definiert werden und lokal angewandt statt in der übergeordneten Ebene, würden die Einstellungen repsektive der Zustand des Models nicht übernommen werden.
+%Bild Code
 
 Im ersten Case wird der ParallelPlot behandelt. 
-Lokal wird nun die \textit{assignmentAndReduce}-Funktion auf die gesamten Daten sowie zu in der äußeren Ebene nach Genre gefilterten Daten angewandt.
-In \textit{multiDimFunction} wird \textit{multiDimenData} letztlich genutzt und die entsprechenden Daten dafür übergeben. 
-Als erste Liste vom Type GameSales wird die von Null-Werten bereinigte und nach Genre gefilterte \textit{clearedGameSalesData} genutzt.
-Im \textit{in}-Teil der inneren Ebene wird das Aussehen der Seite festgelegt.
-Hierbei wird darauf geachtet, dass zur angenehmeren und weniger ablenkenden Ansicht die Farben den Grüntönen in den Plots angepasst werden. 
+Lokal wird die \textit{assignmentAndReduce}-Funktion auf die gesamten Daten sowie auf die in der äußeren Ebene nach Genre gefilterten Daten angewandt.
+In \textit{multiDimFunction} wird \textit{multiDimenData} letztlich durch Übergabe der entsprechenden bereinigten und gefilterten Daten genutzt. 
+Im \textit{in}-Teil der inneren Ebene wird die Struktur und das Design der Seite festgelegt.
+Für eine angenehmere und weniger ablenkende Ansicht werden die Farben den Grüntönen in den Plots angepasst. 
 Zur Direktion des Auges über die Seite und verbesserten Erkennung von wichtigen Abschnitten wie der Auswahl der Plots, des Genres und der Achsen werden Ränder und verschiedene Grüntonabstufungen genutzt.
 Neben Informationstexten und Überschriften werden hier auch die Buttons als Dropdown-Menü zum Wechsel des Plots, zur Änderung des Genrefilters sowie der Anpassung der Achsen eingefügt.
-Zudem wird transparent angezeigt, nach welchem Schritt wieviele Videospiele in der Auswahl verbleiben und welche Einstellungen gerade aktuell getroffen sind.
-Nach Anzeige der ausgewählten Einstellungen wird der Parallele Koordinaten Plot implementiert. 
-Hierzu wird dem \textit{scatterplotParallel} das \textit{cssParallel} übergeben sowie zwei Konstanten für die Höhe und die Aspect Ratio.
-Schließlich wird die zuvor lokal berechnete \textit{multiDimFunction} übergeben. 
-Zuletzt wird noch ein Text mit Link direkt zurück zur TreeHierarchy angeboten.
+Eine transparente Anzeige der gewählten Einstellungen und verbleibenden Videospiele wird hinzugefügt.
+Schließlich wird dem \textit{scatterplotParallel} das \textit{cssParallel} sowie zwei Konstanten für die Höhe und die Aspect Ratio übergeben bevor die zuvor lokal berechnete \textit{multiDimFunction} folgt. 
+Zuletzt wird noch ein Text mit Link direkt zurück zur TreeHierarchy in einem neuen Tab angeboten.
 
 Im zweiten Case wird der Scatterplot behandelt. 
 Das Vorgehen mit den lokalen Funktionen zur Anwendung der Filter und des Mappings ist ähnlich wie zuvor.
 Durch die lokalen Funktionen \textit{valuesX} und \textit{valuesY} werden dem \textit{regionFilter} die nach Genre gefilterten Daten als Liste von GameSales sowie die RegionTypes der X und Y-Achse übergeben.
 Somit wird der Filter nach Regionen angewandt und die Interaktion mit freier Auswahl der Achsen kann funktionieren.
-Der \textit{in}-Teil der Plotvariante Scatterplot ähnelt dem des ParallelPlots stark und unterscheidet sich nur in einigen Informationstexten sowie der Auswahl der Achsen.
-Weiterhin wird hier dem \textit{scatterplot} der \textit{cssPoint}, die zuvor berechneten \textit{gameSalesDataCleared} sowie die \textit{valuesX} und \textit{valuesY} übergeben.
-Um die Beschriftung der Achsen zu ermöglichen, werden diese mittels der Umrechnung von RegionType zu String als String hinzugefügt.
+Der \textit{in}-Teil der Plotvariante Scatterplot ähnelt dem des ParallelPlots stark und unterscheidet sich nur in den Informationstexten sowie der Auswahl der Achsen.
+Zuletzt wird dem \textit{scatterplot} der \textit{cssPoint}, die zuvor berechneten \textit{gameSalesDataCleared} sowie die \textit{valuesX} und \textit{valuesY} übergeben.
+Zur Beschriftung der Achsen werden diese mittels der Umrechnung von RegionType zu String als String hinzugefügt.
 
 Da die TreeHierarchy in \textit{TreeHierarchy.elm} implementiert ist, muss für diese Plotvariante nur das Html inklusive Link zum eigentlichen Plot des Baumdiagramms im selben Design wie zuvor definiert werden.
 %Da für das Baumdiagramm der Genrefilter irrelevant ist, muss er weder hier noch in TreeHierarchy angewandt werden. 
 
-Durch die zuvor in getrennten Anwendungen implementierten Visualisierungen war ein grundlegendes Zusammenfügen dieser durch stückweises Kopieren eher einfach umsetzbar.
-Besonders die Erstellung einer einheitlichen \textit{update}-Funktion war zeitlich jedoch durch die Menge an Interaktionsmöglichkeiten aufwändig.
-Weiterhin schwieriger war die Implementierung der Buttons für den ParallelPlot, die zunächst je einzeln und nicht als Dropdown-Menü wie gewünscht vorlagen. 
-Durch einige Denkarbeit, Ausprobieren vor allem mit der Funktion \textit{multiDimenData} und verschiedenen Konvertierungsfunktionen konnten sie doch wie gewünscht realisiert werden.
-Auch hier musste zudem zur Überprüfung immer wieder zeitaufwendig das \textit{update} angepasst werden.
-Zunächst wurden beide Plots so implementiert, dass sie untereinander gezeichnet wurden und es noch keinen Selektor für den Plot gab. 
-Entsprechend war nur eine \textit{let-in}-Kontruktion nötig und die Filterung wurde für beide Plots übernommen, was jedoch nicht dem Gewünschten entsprach.
+Durch die zuvor in getrennten Anwendungen implementierten Visualisierungen war ein grundlegendes Zusammenfügen dieser durch stückweises Kopieren unkompliziert umsetzbar.
+Besonders die Erstellung einer einheitlichen \textit{update}-Funktion war jedoch zeitlich durch die Menge an Interaktionsmöglichkeiten aufwändig.
+Weiterhin schwieriger war die Implementierung der des Dropdown-Menüs für den ParallelPlot, da die Buttons zunächst je einzeln vorlagen. 
+Durch Nachdenken und Ausprobieren vor allem mit der Funktion \textit{multiDimenData} und verschiedenen Konvertierungsfunktionen konnten sie doch wie gewünscht realisiert werden.
+Zur Überprüfung immer wieder zeitaufwendig das \textit{update} angepasst werden.
+Zunächst wurden beide Plots als untereinander auf einer Seite gezeichnet implementiert.
+Entsprechend war ohne Plot-Selektor nur eine \textit{let-in}-Kontruktion nötig und die Filterung wurde für beide übernommen, was nicht dem Gewünschten entsprach.
 Nach schrittweisem Hinzufügen der Auswahl des Plots und allen zugehörigen Codeteilen, wurde durch Ausprobieren entdeckt, dass eine Übernahme des Modelzustands durch die Schachtelung der \textit{let-in}-Konstruktionen im \textit{view} und der Anwendung des Variantenwechsels für den Plot mittels \textit{PlotType} möglich war. 
 Hier war es im Verlauf kompliziert, den Überblick über die Schachtelungen sowie außen und innen definierten lokalen Funktionen zu behalten.
 
@@ -743,6 +730,7 @@ Um zur dritten Visualisierung, dem Scatterplot, zu gelangen, wählt der mittlere
 Die zuvor getroffene Auswahl des Genres, zuletzt \textit{Sports} bleibt bestehen und er wählt in einem weiteren Drop-Down-Menü die Belegung der Achsen auf \textit{North America} und \textit{Europe}.
 
 Im Scatterplot werden die zuvor erkannten Cluster in den Verkaufszahlen im Vergleich von Nordamerika zu Europa deutlicher. 
+%Bild Sports
 Während bei einigen Spielen zwischen beiden Regionen ein deutlich positiv korreliertes Cluster sichtbar ist, scheinen die anderen Spiele ein Cluster ohne Korrelation zwischen den Regionen zu bilden.
 Dies bestätigt und verdeutlicht die Erkenntnisse aus der zweiten Visualisierung, dass sehr gute Verkaufszahlen von einigen Sportvideospielen in Nordamerika keinen Einfluss auf die Verkäufe in Europa haben. 
 %Dort verkaufen sie sich vergleichsweise schlecht. Jedoch ist durch die Ansammlung der Datenpunkte in einer waagerechte, bzw. in umgekehrter Anordnung der Achsenbelegung senkrechten, Linie auch keine negative Korrelation ersichtlich.
@@ -752,21 +740,19 @@ Verweist der Präsentator mittels Hovern über die Datenpunkte auf die Titel der
 So ist Football in Europa nicht so bekannt oder beliebt, Fußball aber in Nordamerika schon, wenn auch leicht weniger als in Europa.
 
 Zuletzt interessieren sich die Teilnehmer der Präsentation für die Überprüfung der Erkenntnisse zum Genre \textit{Action}, sodass die Filterung entsprechend angepasst wird. 
-In allen möglichen Kombinationen der Achsenbelegung außer in denen mit Japan bestätigt sich die leicht bis vollständig positive Korrelation zwischen den jeweiligen Verkaufszahlen der Regionen.
-Weiterhin bildet sich in Nähe des Ursprungs im unteren Drittel der Skalen eine Andeutung eines Clusters, wie es auch im Parallelen Koordinaten Plot zu erkennen war. 
-Im Scatterplot sind jedoch die einzelnen Datenpunkte etwas besser erkenn- und zur näheren Betrachtung auswählbar. 
+In allen möglichen Kombinationen der Achsenbelegung, abgesehen von Japan, bestätigt sich deutlich erkennbar die leicht bis vollständig positive Korrelation zwischen den jeweiligen Verkaufszahlen der Regionen.
+Im Scatterplot sind die einzelnen Datenpunkte etwas besser erkenn- und zur näheren Betrachtung auswählbar. 
 Auch der zuvor erkannte Ausreißer sticht deutlich heraus. 
 Zusätzlich bestätigt sich die nicht vorhandene Korrelation zwischen den jeweiligen Regionen und Japan.
-Die Titel des eigenen Publishers befinden sich immer im unteren Bereich des Clusters und scheinen vergleichsweise bisher nicht so gut verkauft worden zu sein. 
 Sollte während der Präsentation der Wunsch nach einer gleichzeitigen Betrachtung des Baumdiagramms zur Übersicht der Publisher aufkommen, so kann mittels des Links am jeweiligen Seitenende in einem neuen Fenster dieser geöffnet werden und per Multitasking betrachtet werden.
 
 Eine sinnvolle Alternative zu Scatterplots ist nicht gegeben, da sie die beste und am leichtesten zu verstehende Darstellung von Beziehungen zweier Attribute eines Datenpunktes ist. 
 %Aufgrund der Zweidimensionalität der Verteilungen würden auch Q- und QQ-Plots mit nur einer visualisierten Dimension gegen f-Werte bzw. gegeneinander zum Erkennen von Verschiebungen nicht die gewünschten Ergebnisse liefern.
 
-Aufgrund der Erkenntnisse aller drei Visualisierungen können sich die oberen Manager und wichtigsten Stakeholder von \textit{505 Games} nun dazu entscheiden, sich bei weiteren, (kosten-) intensiven Marktstudien mit detaillierteren Visualisierungen und weiteren Attributen auf das Genre \textit{Sport} zu konzentrieren. 
-Dort sind sie selbst noch nicht so stark präsent, es gibt weniger und in der Masse weniger starke Konkurrenz als bei \textit{Action}. 
+Durch die Erkenntnisse aller Visualisierungen können sich die oberen Manager und wichtigsten Stakeholder von \textit{505 Games} nun dazu entscheiden, sich bei weiteren, (kosten-) intensiven Marktstudien mit detaillierteren Visualisierungen und weiteren Attributen auf das Genre \textit{Sports} zu konzentrieren. 
+Dort sind sie selbst noch nicht stark präsent, es gibt weniger und in der Masse weniger starke Konkurrenz als bei \textit{Action} sowie keine extremen Ausreißer. 
 Weiterhin müssen nicht die Abhängigkeiten zwischen allen Regionen betrachtet werden, sodass eine Fokussierung und Abschöpfung eines Marktes Sinn ergibt. 
-Eine Fokussierung auf den eurpäischen oder nordamerikanischen Markt ist möglich und für ein kleineren Publisher wie \textit{505 Games} sinnvoller. 
+Die Fokussierung auf den europäischen oder nordamerikanischen Markt ist möglich und für ein kleineren Publisher wie \textit{505 Games} sinnvoller. 
 Durch die Ausrichtung auf den europäischen Markt kann \textit{505 Games} jedoch die positive Korrelation mit dem nordamerikanischen Markt für seine Verkaufszahlen nutzen und damit auch ihn bedienen.
 Untersucht werden sollten künftig auch die Einflüsse für die vergleichsweise guten Verkaufszahlen für das eigene Spiel \textit{Rocket League}, um über eine mögliche Fortsetzung zu entscheiden.
  
