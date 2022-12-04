@@ -37,7 +37,7 @@ map2pipe =
     Maybe.map2 (|>)
 
 
--- idea based on https://package.elm-lang.org/packages/elm/core/latest/Maybe#map5 but with one more to transform
+-- idea based on https://package.elm-lang.org/packages/elm/core/latest/Maybe#map5 but with one more to transform --
 {-- 
     therefore map2pipe needed to handle one more than map5 would do
     applying map2pipe to transform all like a map6 would do if it existed
@@ -233,7 +233,7 @@ cssParallel =
     """ 
 
 
--- general definitions for plot --
+-- general definitions for scatterplotParallel --
 padding : Float
 padding =
     50
