@@ -29,7 +29,7 @@ csvString_to_data csvRaw =
         |> Maybe.withDefault []
 
 
-gamesSalesList :List String -> List GameSales
+gamesSalesList : List String -> List GameSales
 gamesSalesList listGame =
     List.map(\x -> csvString_to_data x) listGame
         |> List.concat
