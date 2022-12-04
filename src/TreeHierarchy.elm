@@ -18,6 +18,8 @@ import TreeLayout
 import Tree exposing (Tree)
 import Data exposing (Model, NodeValues, Msg(..), treeDecoder)
 
+
+-- basic elm structure to define program, initialise, update and load data --
 main : Program () Model Msg
 main =
     Browser.element
@@ -27,10 +29,6 @@ main =
         , subscriptions = \m -> Sub.none
         }
 
-{--
-type alias Model =
-    { tree : Tree String, errorMsg : String }
---}
 
 init : () -> ( Model, Cmd Msg )
 init () =
@@ -38,30 +36,6 @@ init () =
     , Http.get { url = "../Daten/JSON/XBoxOne_GamesSales_Projekt.json", expect = Http.expectJson GotFlare treeDecoder }
     )
 
-{--
-type Msg
-    = GotFlare (Result Http.Error (Tree String))
---}
-{--
-treeDecoder : Json.Decode.Decoder (Tree String)
-treeDecoder =
-    Json.Decode.map2
-        (\name children ->
-            case children of
-                Nothing ->
-                    Tree.tree name []
-
-                Just c ->
-                    Tree.tree name c
-        )
-        (Json.Decode.field "data" (Json.Decode.field "id" Json.Decode.string))
-        (Json.Decode.maybe <|
-            Json.Decode.field "children" <|
-                Json.Decode.list <|
-                    Json.Decode.lazy
-                        (\_ -> treeDecoder)
-        )
---}
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -84,6 +58,228 @@ update msg model =
             )
 
 
+-- helperfunction to convert tree --
+convert : Tree ( String, Maybe String ) -> Tree ( String, Maybe String )
+convert t =
+    let
+        ( currentLabel, _ ) =
+            Tree.label t
+    in
+    Tree.mapChildren
+        (\listChildren ->
+            listChildren
+                |> List.map
+                    (\c ->
+                        convert c
+                            |> Tree.mapLabel (\( a, _ ) -> ( a, Just currentLabel ))
+                    )
+        )
+        t
+
+
+-- defines drawing line --
+line scaleX scaleY xyPoint =
+    g
+        [ class [ "point" ] ]
+        [ TypedSvg.line
+            [ x1 (Scale.convert scaleX xyPoint.childx)
+            , y1 (Scale.convert scaleY xyPoint.childy)
+            , x2 (Scale.convert scaleX xyPoint.parentx)
+            , y2 (Scale.convert scaleY xyPoint.parenty)
+            ]
+            []
+        ]
+
+
+-- defines drawing circle and text for circle --
+point scaleX scaleY xyPoint =
+    g
+        [ class [ "point" ]
+        , fontSize <| Px 20.0
+        , fontFamily [ "serif" ]
+        , fontWeight FontWeightBolder
+        , transform
+            [ Translate
+                (Scale.convert scaleX xyPoint.childx)
+                (Scale.convert scaleY xyPoint.childy)
+            ]
+        ]
+        [ circle [ cx 0, cy 0, r (radius - 0.8) ] []
+        , text_ [ x 0
+                , y -10
+                , textAnchor AnchorMiddle
+                , transform 
+                    [ Translate -5.5 -20.5
+                    , Rotate 75.0 0.0 0.0
+                    ] 
+                ] 
+                [ Html.text xyPoint.label ]
+        ]
+
+
+-- plots tree in zoomed in version with scrolling --
+treePlot : String -> Float -> List ( String, Maybe String ) -> Svg msg
+treePlot css minDist tree =
+    let
+        -- computing layout --
+        layout : Dict.Dict String { x : Float, y : Float }
+        layout = 
+            TreeLayout.treeLayout 2 tree
+
+        xValues : List Float
+        xValues =
+            Dict.toList layout
+                |> List.map (\( a, b ) -> b.x )
+
+        yValues : List Float
+        yValues =
+            Dict.toList layout
+                |> List.map (\( a, b ) -> b.y )
+
+        xScaleLocal : Scale.ContinuousScale Float
+        xScaleLocal =
+            xScale xValues
+
+        yScaleLocal : Scale.ContinuousScale Float
+        yScaleLocal =
+            yScale yValues
+
+        -- dependencies for treePlot to draw lines/paths from parent to child node --
+        -- to get x and y values from parent and child nodes --
+        nodeValues : List NodeValues
+        nodeValues =
+            List.map
+                (\( node, parent ) ->
+                    let
+                        childx =
+                            Dict.get node layout |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
+
+                        childy =
+                            Dict.get node layout |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
+
+                        parentx =
+                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
+
+                        parenty =
+                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
+
+                        label =
+                            node
+                    in
+                    NodeValues childx childy parentx parenty label
+                )
+                tree
+        --  to avoid root node getting a path as it has no parent node --
+        checkRootNegative data = 
+            if (data.parentx < 0) && (data.parenty < 0) then
+                NodeValues 0 1 data.childx data.childy data.label
+            else
+                NodeValues data.childx data.childy data.parentx data.parenty data.label
+
+        nodeValuesPath : List NodeValues
+        nodeValuesPath =
+            List.map checkRootNegative nodeValues
+    in
+    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 200, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 150 ]
+        [ TypedSvg.style []
+            [ TypedSvg.Core.text css ]
+        , g
+            [ transform [ Translate padding padding ] ]
+            (List.map (line xScaleLocal yScaleLocal) nodeValuesPath)
+        , g
+            [ transform [ Translate padding padding ] ]
+            (List.map (point xScaleLocal yScaleLocal) nodeValues)
+        ]
+
+
+-- plots tree in zoomed out version without scrolling --
+treePlot2 : String -> Float -> List ( String, Maybe String ) -> Svg msg
+treePlot2 css minDist tree =
+    let
+        -- computing layout --
+        layout : Dict.Dict String { x : Float, y : Float }
+        layout = 
+            TreeLayout.treeLayout 2 tree
+
+        xValues : List Float
+        xValues =
+            Dict.toList layout
+                |> List.map (\( a, b ) -> b.x )
+
+        yValues : List Float
+        yValues =
+            Dict.toList layout
+                |> List.map (\( a, b ) -> b.y )
+
+        xScaleLocal : Scale.ContinuousScale Float
+        xScaleLocal =
+            xScale xValues
+
+        yScaleLocal : Scale.ContinuousScale Float
+        yScaleLocal =
+            yScale yValues
+
+        -- dependencies for treePlot2 to draw lines/paths from parent to child node --
+        -- to get x and y values from parent and child nodes --
+        nodeValues : List NodeValues
+        nodeValues =
+            List.map
+                (\( node, parent ) ->
+                    let
+                        childx =
+                            Dict.get node layout |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
+
+                        childy =
+                            Dict.get node layout |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
+
+                        parentx =
+                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
+
+                        parenty =
+                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
+
+                        label =
+                            node
+                    in
+                    NodeValues childx childy parentx parenty label
+                )
+                tree
+        -- to avoid root node getting a path as it has no parent node --
+        checkRootNegative data = 
+            if (data.parentx < 0) && (data.parenty < 0) then
+                NodeValues 0 1 data.childx data.childy data.label
+            else
+                NodeValues data.childx data.childy data.parentx data.parenty data.label
+
+        nodeValuesPath : List NodeValues
+        nodeValuesPath =
+            List.map checkRootNegative nodeValues
+    in
+    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 110 ]
+        [ TypedSvg.style []
+            [ TypedSvg.Core.text css ]
+        , g
+            [ transform [ Translate padding padding ] ]
+            (List.map (line xScaleLocal yScaleLocal) nodeValuesPath)
+        , g
+            [ transform [ Translate padding padding ] ]
+            (List.map (point xScaleLocal yScaleLocal) nodeValues)
+        ]
+
+
+-- globally defined CSS --
+cssTree : String
+cssTree = 
+    """
+    .point circle { stroke: rgba(46, 78, 23,0.8); fill: rgba(100, 100, 100,1); }
+    .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
+    .point text { display: none; }
+    .point:hover circle { stroke: rgba(100, 100, 100,1); fill: rgba(75, 128, 36,1); }
+    .point:hover text { display: inline; fill: rgb(75, 128, 36, 0.8);  stroke: rgba(255, 255, 255, 1); stroke-width: 0.15 }
+    """
+
+
+-- converts tree, defines Html and output of program, gives treePlots needed data -- 
 view : Model -> Html Msg
 view model =
     let
@@ -177,212 +373,7 @@ view model =
         ]
 
 
---plotting tree
-treePlot : String -> Float -> List ( String, Maybe String ) -> Svg msg
-treePlot css minDist tree =
-    let
-        --computing layout
-        layout : Dict.Dict String { x : Float, y : Float }
-        layout = 
-            TreeLayout.treeLayout 2 tree
-
-        xValues : List Float
-        xValues =
-            Dict.toList layout
-                |> List.map (\( a, b ) -> b.x )
-
-        yValues : List Float
-        yValues =
-            Dict.toList layout
-                |> List.map (\( a, b ) -> b.y )
-
-        xScaleLocal : Scale.ContinuousScale Float
-        xScaleLocal =
-            xScale xValues
-
-        yScaleLocal : Scale.ContinuousScale Float
-        yScaleLocal =
-            yScale yValues
-
-        --dependencies for treePlot to draw lines/paths from parent to child node
-        --to get x and y values from parent and child nodes
-        nodeValues : List NodeValues
-        nodeValues =
-            List.map
-                (\( node, parent ) ->
-                    let
-                        childx =
-                            Dict.get node layout |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
-
-                        childy =
-                            Dict.get node layout |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
-
-                        parentx =
-                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
-
-                        parenty =
-                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
-
-                        label =
-                            node
-                    in
-                    NodeValues childx childy parentx parenty label
-                )
-                tree
-        --to avoid root node getting a path as it has no parent node
-        checkRootNegative data = 
-            if (data.parentx < 0) && (data.parenty < 0) then
-                NodeValues 0 1 data.childx data.childy data.label
-            else
-                NodeValues data.childx data.childy data.parentx data.parenty data.label
-
-        nodeValuesPath : List NodeValues
-        nodeValuesPath =
-            List.map checkRootNegative nodeValues
-    in
-    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 200, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 150 ]
-        [ TypedSvg.style []
-            [ TypedSvg.Core.text css ]
-        , g
-            [ transform [ Translate padding padding ] ]
-            (List.map (line xScaleLocal yScaleLocal) nodeValuesPath)
-        , g
-            [ transform [ Translate padding padding ] ]
-            (List.map (point xScaleLocal yScaleLocal) nodeValues)
-        ]
-
-cssTree : String
-cssTree = 
-    """
-    .point circle { stroke: rgba(46, 78, 23,0.8); fill: rgba(100, 100, 100,1); }
-    .point line { stroke: rgba(100, 100, 100,1); fill: rgba(100, 100, 100,1); }
-    .point text { display: none; }
-    .point:hover circle { stroke: rgba(100, 100, 100,1); fill: rgba(75, 128, 36,1); }
-    .point:hover text { display: inline; fill: rgb(75, 128, 36, 0.8);  stroke: rgba(255, 255, 255, 1); stroke-width: 0.15 }
-    """
-
-treePlot2 : String -> Float -> List ( String, Maybe String ) -> Svg msg
-treePlot2 css minDist tree =
-    let
-        --computing layout
-        layout : Dict.Dict String { x : Float, y : Float }
-        layout = 
-            TreeLayout.treeLayout 2 tree
-
-        xValues : List Float
-        xValues =
-            Dict.toList layout
-                |> List.map (\( a, b ) -> b.x )
-
-        yValues : List Float
-        yValues =
-            Dict.toList layout
-                |> List.map (\( a, b ) -> b.y )
-
-        xScaleLocal : Scale.ContinuousScale Float
-        xScaleLocal =
-            xScale xValues
-
-        yScaleLocal : Scale.ContinuousScale Float
-        yScaleLocal =
-            yScale yValues
-
-        --dependencies for treePlot to draw lines/paths from parent to child node
-        --to get x and y values from parent and child nodes
-        nodeValues : List NodeValues
-        nodeValues =
-            List.map
-                (\( node, parent ) ->
-                    let
-                        childx =
-                            Dict.get node layout |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
-
-                        childy =
-                            Dict.get node layout |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
-
-                        parentx =
-                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.x) |> Maybe.withDefault -1
-
-                        parenty =
-                            parent |> Maybe.andThen (\p -> Dict.get p layout) |> Maybe.map (\a -> a.y) |> Maybe.withDefault -1
-
-                        label =
-                            node
-                    in
-                    NodeValues childx childy parentx parenty label
-                )
-                tree
-        --to avoid root node getting a path as it has no parent node
-        checkRootNegative data = 
-            if (data.parentx < 0) && (data.parenty < 0) then
-                NodeValues 0 1 data.childx data.childy data.label
-            else
-                NodeValues data.childx data.childy data.parentx data.parenty data.label
-
-        nodeValuesPath : List NodeValues
-        nodeValuesPath =
-            List.map checkRootNegative nodeValues
-    in
-    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 110 ]
-        [ TypedSvg.style []
-            [ TypedSvg.Core.text css ]
-        , g
-            [ transform [ Translate padding padding ] ]
-            (List.map (line xScaleLocal yScaleLocal) nodeValuesPath)
-        , g
-            [ transform [ Translate padding padding ] ]
-            (List.map (point xScaleLocal yScaleLocal) nodeValues)
-        ]
-
-{--
---list of floats for values of child and parent x and y and label as string
-type alias NodeValues =
-    { childx : Float
-    , childy : Float
-    , parentx : Float
-    , parenty : Float
-    , label : String
-    }
---}
---for drawing line
-line scaleX scaleY xyPoint =
-    g
-        [ class [ "point" ] ]
-        [ TypedSvg.line
-            [ x1 (Scale.convert scaleX xyPoint.childx)
-            , y1 (Scale.convert scaleY xyPoint.childy)
-            , x2 (Scale.convert scaleX xyPoint.parentx)
-            , y2 (Scale.convert scaleY xyPoint.parenty)
-            ]
-            []
-        ]
-
---for drawing circle and text for circle
-point scaleX scaleY xyPoint =
-    g
-        [ class [ "point" ]
-        , fontSize <| Px 20.0
-        , fontFamily [ "serif" ]
-        , fontWeight FontWeightBolder
-        , transform
-            [ Translate
-                (Scale.convert scaleX xyPoint.childx)
-                (Scale.convert scaleY xyPoint.childy)
-            ]
-        ]
-        [ circle [ cx 0, cy 0, r (radius - 0.8) ] []
-        , text_ [ x 0
-                , y -10
-                , textAnchor AnchorMiddle
-                , transform 
-                    [ Translate -5.5 -20.5
-                    , Rotate 75.0 0.0 0.0
-                    ] 
-                ] 
-                [ Html.text xyPoint.label ]
-        ]
-
---general settings for visualization
+-- general settings for visualization --
 w : Float
 w =
     3000
@@ -432,24 +423,6 @@ wideExtent values =
     , Tuple.second closeExtent + extension
     )
 
-
---for converting the tree
-convert : Tree ( String, Maybe String ) -> Tree ( String, Maybe String )
-convert t =
-    let
-        ( currentLabel, _ ) =
-            Tree.label t
-    in
-    Tree.mapChildren
-        (\listChildren ->
-            listChildren
-                |> List.map
-                    (\c ->
-                        convert c
-                            |> Tree.mapLabel (\( a, _ ) -> ( a, Just currentLabel ))
-                    )
-        )
-        t
 
 --helpers for Tree structure
 labelToHtml : String -> Html msg
