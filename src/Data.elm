@@ -6,7 +6,7 @@ import Json.Decode
 import Tree exposing (Tree)
 import Http
 
---Decoder for CSV
+-- Decoder for CSV --
 decodeGameSales : Csv.Decode.Decoder (GameSales -> a) a
 decodeGameSales =
     Csv.Decode.map GameSales
@@ -20,6 +20,7 @@ decodeGameSales =
             |> Csv.Decode.andMap (Csv.Decode.field "Global" (String.toFloat >> Result.fromMaybe "error parsing string"))
         )
 
+
 csvString_to_data : String -> List GameSales
 csvString_to_data csvRaw =
     Csv.parse csvRaw
@@ -27,12 +28,14 @@ csvString_to_data csvRaw =
         |> Result.toMaybe
         |> Maybe.withDefault []
 
+
 gamesSalesList :List String -> List GameSales
 gamesSalesList listGame =
     List.map(\x -> csvString_to_data x) listGame
         |> List.concat
 
---Decoder for JSON
+
+-- Decoder for JSON --
 treeDecoder : Json.Decode.Decoder (Tree String)
 treeDecoder =
     Json.Decode.map2
@@ -52,7 +55,8 @@ treeDecoder =
                         (\_ -> treeDecoder)
         )
 
---for all plots
+
+-- datatype declarations used for all plots --
 type alias GameSales =
     { game : String
     , genre : String
@@ -64,6 +68,7 @@ type alias GameSales =
     , global : Float
     }
 
+
 type RegionType
     = NorthAmerica
     | Europe
@@ -71,12 +76,14 @@ type RegionType
     | RestOfWorld
     | Global
 
+
 type PlotType
     = ParallelPlot
     | Scatterplot
     | TreeHierarchy
 
---for Scatterplot
+
+-- datatype declarations used for Scatterplot --
 type alias Point =
     { pointGame : String
     , pointNorthAmerica : Float
@@ -93,7 +100,8 @@ type alias XyData =
     , data : List Point
     }
 
---for ParallelPlot
+
+-- datatype declaration used for ParallelPlot --
 type alias MultiDimPoint =
     { pointName : String
     , pointPublisher : String
@@ -105,7 +113,16 @@ type alias MultiDimData =
     , data : List (List MultiDimPoint)
     }
 
---for TreeHierarchy
+
+-- datatype declaration used for TreeHierarchy --
+type alias Model =
+    { tree : Tree String, errorMsg : String }
+
+
+type Msg
+    = GotFlare (Result Http.Error (Tree String))
+
+
 --list of floats for values of child and parent x and y and label as string
 type alias NodeValues =
     { childx : Float
@@ -115,12 +132,8 @@ type alias NodeValues =
     , label : String
     }
 
-type alias Model =
-    { tree : Tree String, errorMsg : String }
 
-type Msg
-    = GotFlare (Result Http.Error (Tree String))
-    
+-- datatype conversions needed for buttons --    
 stringToPlotType : String -> PlotType
 stringToPlotType plotType = 
     case plotType of
@@ -132,6 +145,7 @@ stringToPlotType plotType =
 
         _ -> 
             ParallelPlot
+
 
 regionTypeToString : RegionType -> String
 regionTypeToString regionType =
@@ -151,7 +165,7 @@ regionTypeToString regionType =
         Global ->
             "Global"
 
-        
+
 stringToRegionType : String -> RegionType
 stringToRegionType stringRegionType =
     if stringRegionType == "North America" then
@@ -169,8 +183,8 @@ stringToRegionType stringRegionType =
     else
         Global
 
---Umwandlung zu der Typannotation, die auch im Msg definiert ist, damit dann der dropdown-button klappen kann
---Anpassung als output RegionType, String wie im angepassten Msg
+
+-- conversion to type annotation as in Msg of MainScatterParallel defined to be used for drowpdown menu for axis change --
 stringToAxisType : String -> (RegionType, String)
 stringToAxisType stringAxisType =
     if stringAxisType == "North America" then
@@ -188,6 +202,8 @@ stringToAxisType stringAxisType =
     else
         (Global, "Global")
 
+
+-- datatype conversion needed for MultiDimenData in ParallelPlot --
 regionTypeToAxisAnnotation : RegionType -> (GameSales -> Float)
 regionTypeToAxisAnnotation regionType =
     case regionType of
