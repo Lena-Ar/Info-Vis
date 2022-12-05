@@ -69,8 +69,10 @@ In welches Genre und mit welchem Fokus auf die Regionen der Welt sollte ein Publ
 \subsection{Anwendungshintergrund}
 Marktanalysen sind für Unternehmen wie Publisher von zentralem Wert, da sie mit ihnen strategische Zukunftsfragen zur Ausrichtung beantworten können. 
 Sie müssen unter anderem Fragen zu Produktverbesserungen, -erweiterungen oder -neuerungen, Investitionen in diese und Potenziale und Risiken durch Korrelationen, Muster und Ausreißer beantworten können.\cite{Fleig.2020}
-Dabei kann sie detaillierter oder oberflächlicher sein. In dieser Anwendung ist eine oberflächliche Analyse geplant, mittels derer Entscheidungen für detailliertere getroffen werden können.
-Der Vorteil in diesem Vorgehen liegt in der Ersparnis von Zeit und Geld. 
+Dabei kann sie detaillierter oder oberflächlicher sein. 
+In dieser Anwendung ist eine oberflächliche Analyse zur Ersparnis von Zeit und Geld geplant, mittels derer monetär interessante Genres und Regionen identifiziert werden können.
+Aufgrunddessen kann eine Investition in eine detaillierte, deutlich aufwenigere und damit teure Marktstudie in den zuvor identifizierten Genres und mitunter Regionen in Auftrag gegeben werden. 
+Diese kann zu einer deutlich fundierteren Bestätigung oder Ablehnung der Vorabentscheidung beitragen.
 
 Der Videospielmarkt ist in verschiedene Segmente geteilt, die wiederum unterteilt sind. 
 Für diese Arbeit wird das Segment der Spieleplattform und Konsole \textit{XBoxOne} von Microsoft gewählt.
@@ -182,69 +184,85 @@ Zu beachten ist jedoch, dass als Null-Werte auch solche aufgeführt sind, deren 
 %Welche Datenvorverarbeitungsschritte sind notwendig? Beschreiben Sie die einzelnen Schritte und begründen sie sie, z.B. warum werden manche Daten weggelassen, über welche Mengen werden Durchschnitte berechnet, warum sind die so berechneten Werte aussagekräftiger als andere Werte. Wenn möglich sollen sie die Datenvorverarbeitung in Elm programmieren, so dass ihre Anwendung auf eine Änderung der Rohdaten reagieren kan. 
 
 \section{Visualisierungen}
-Im folgenden Kapitel wird eine Analyse der Anwendung zur Lösung des einleitend beschriebenen Zielproblems durchgeführt, anhand derer Anforderungen an die Visualisierungen abgeleitet werden. 
-Schließlich werden die Visualisierungen präsentiert.
+Nachfolgend wird eine Analyse der Anwendungaufgaben zur Lösung des Zielproblems durchgeführt, Anforderungen an die Visualisierungen abgeleitet und diese präsentiert.
 
 \subsection{Analyse der Anwendungsaufgaben}
-Das Zielproblem dieses Projekts ist eine überblicksartige, grobe Marktanalyse des Videospielemarktes mit Fokus auf den Verkaufszahlen der Plattform \textit{XBoxOne} aus Sicht der Publisher.
-Ziel der Marktanalyse ist eine Übersicht über das Genre- und Videospielangebot des eigenen Verlagshaus sowie der Konkurrenz und Erkenntnisse über Zusammenhänge innerhalb von Genres in und zwischen verschiedenen Regionen der Welt durch Muster, Cluster und Korrelationen zu erhalten.
-Übergeordnet soll mittels dieser Informationen eine fundierte Entscheidung über Investitionen in detailliertere, zielgerichtetere Marktstudien in bestimmte Genres oder Regionen getroffen werden können, um den Publisher mit der Beauftragung neuer Videospiele strategisch für die Zukunft aufzustellen. 
-Weiterhin sollen mit den Erkenntnissen erste Vorentscheide und Vorbereitungen für diese Spieleinvestitionen getroffen werden können.
+Das Zielproblem der konkreten Anwendungsaufgaben ist eine grobgranulare Marktanalyse des Videospielmarktes der \textit{XBoxOne} 
+als Entscheidungsunterstützung zur Investition in detaillierte Studien und folglich neue Videospiele. 
+Fokussiert wird die Frage, welche Genres und möglicherweise Spezifizierungen auf bestimmte Regionen dort untersucht werden sollen. 
+Zur Problemlösung sollen die Verlagshäuser sowie ihre Konkurrenz betrachtet werden als auch Verkaufschancen, Zusammenhänge und Auffälligkeiten in den einzelnen Genres zwischen den Regionen der Welt. 
+Mit Rücksicht auf die Zielgruppe ist eine Lösung im Kontext von Präsentationen sowie Kosten- und Zeitminimierung wichtig. 
+
+Als erste Anwendungsaufgabe ergibt sich die Schaffung eines Marktüberblicks als Ansatzpunkt weiterer Entscheidungen und erste Eingrenzungen der zu untersuchenden Genres. 
+Das Management der Publisher benötigt eine Übersicht über die eigenen und konkurrierende Angebote, die insbesondere für größere, breit aufgestellte Verleger sinvoll ist.
+In dieser Übersicht sollten die Publisher, ihre abgedeckten Genres und die in ihnen kategorisierten Videospieltitel ersichtlich sein. 
+Je nach Strategie des betrachtenden Publishers können bspw. aufgrund der geringen Anzahl der eigenen Spiele in einem Genre oder aber der hohen Anzahl der konkurrierenden Titel in einem solchen Vorentscheidungen zur Eingrenzung des mittels nachfolgender Anwendungaufgabe näher zu untersuchenden Genres getroffen werden. 
+Zur Lösung der Anwendungsaufgabe soll ein mentales Modell von Abhängigkeiten und Hierarchien zwischen Publishern, Genre und Titel bildlich entstehen, bestenfalls auf einen Blick.
+Dies könnte auch schriftlich durch Tabellen oder Texte umgangen werden, jedoch unterstützt das mentale Modell das Verständnis und beschleunigt den Vorentscheid ungemein. 
+Besonders im Rahmen einer Präsentation ist es unumgänglich.
+
+Als zweite Anwendungsaufgabe ergibt sich die Entscheidung für eine Investition in ein Genre mit Bezug auf die Regionen mittels einer Analyse von Verkaufschancen, Zusammenhänge und Auffälligkeiten in diesem.
+Es ist wichtig, erste Auffälligkeiten in allen Regionen der Welt zu erkennen, um ein Genre für eine Investition in eine folgende Marktstudie zu fokussieren.
+Dazu zählen Spiele, die auffällig gut verkauft wurden und eine starke Konkurrenz darstellen sowie Muster in den Verkaufszahlen, die aus mehreren Videospielen im Genre in den Regionen der Welt gebildet werden wie bspw. viele Spiele, die in allen Regionen außer einer mittelmäßig gut verkauft wurden.
+Weiterhin ist es für eine mögliche Spezifikation der künftigen Marktstudie auf eine Region sinnvoll, diese Muster genauer durch Untersuchung nur besonders interessanter Regionen zu prüfen. 
+Somit können Abhängigkeiten besonders zwischen zwei Regionen detailliert analysiert werden. 
+Benötigt wird zudem eine Erkennbarkeit der konkreten Informationen der Spieletitel. 
+Bei der Bearbeitung können zwei mentale Modelle helfen.
+Zum einen soll mental eine Art Sicht von oben auf die Welt mit allen Regionen entstehen, die durch die Videospiele als Datenpuntke verbunden sind. 
+Durch Häufungen von Videospielen und Ähnlichkeiten in den Verbindungen vieler Spiele, sollen mental Muster und Cluster über alle Regionen entstehen.
+Zum anderen ist ein mentales Modell mit erhöhtem Detaillierungsgrad zur Lösung der Anwendungsaufgabe sinnvoll, mit dem je zwei zuvor als interessant erkannte Regionen vergrößert werden. 
+Hierbei sollen durch Punkte in Raum die Verkaufszahlen mental positioniert und damit vergleichbar werden sowie Korrelationen in ihrer Art leichter bestimmbar sein. 
+Durch Punkthaufen und deutlich anders positionierte Punkte sollen auch die vorher erkannten Muster, Cluster und Ausreißer im Detail prüfbar sein. %hier evtl umformulieren oder weg
+Visualisierungen zum Aufbau dieser mentalen Modelle sind elementar, da ohne sie teils Analysen der gewünschten Aspekte nur sehr schwer möglich sind, vor allem die Erkennung von Clustern und Korrelationen.
+
+%Das Zielproblem dieses Projekts ist eine überblicksartige, grobe Marktanalyse des Videospielemarktes mit Fokus auf den Verkaufszahlen der Plattform \textit{XBoxOne} aus Sicht der Publisher.
+%Ziel der Marktanalyse ist eine Übersicht über das Genre- und Videospielangebot des eigenen Verlagshaus sowie der Konkurrenz und Erkenntnisse über Zusammenhänge innerhalb von Genres in und zwischen verschiedenen Regionen der Welt durch Muster, Cluster und Korrelationen zu erhalten.
+%Übergeordnet soll mittels dieser Informationen eine fundierte Entscheidung über Investitionen in detailliertere, zielgerichtetere Marktstudien in bestimmte Genres oder Regionen getroffen werden können, um den Publisher mit der Beauftragung neuer Videospiele strategisch für die Zukunft aufzustellen. 
+%Weiterhin sollen mit den Erkenntnissen erste Vorentscheide und Vorbereitungen für diese Spieleinvestitionen getroffen werden können.
 
 %Unterfragen der Problemstellung hier definiert und analysiert statt Einleitung
 %weiterhin wichtig: Sprache Englisch!!
-Welche Publisher bieten welche und wieviele Videospiele in welchem Genre an?
-Gibt es Muster, Cluster, Ausreißer oder Korrelationen in den Verkaufszahlen zwischen den einzelnen Regionen der Welt oder gar über alle Regionen hinweg?
+%Welche Publisher bieten welche und wieviele Videospiele in welchem Genre an?
+%Gibt es Muster, Cluster, Ausreißer oder Korrelationen in den Verkaufszahlen zwischen den einzelnen Regionen der Welt oder gar über alle Regionen hinweg?
 
-%aus Einleitung hier eingefügt
-Durch eine schnell erstellte, intuitiv erklär-, präsentier- und verstehbare Visualisierung der grobgranularen Daten der Marktanalyse können im Publishingunternehmen erste vorab gültige Strategieentscheidungen bzgl. Investitionen in Titel eines Gernes getroffen und Maßnahmen vorbereitet werden.
-Weiterhin kann dann eine detaillierte und deutlich aufwenigere und damit teurere Marktstudie in den zuvor identifizierten Genres und mitunter Regionen in Auftrag gegeben werden. 
-Diese kann zu einer deutlich fundierteren Bestätigung oder Ablehnung der vorherigen Vorabentscheidung beitragen. 
-Durch die Erstellung einer groben Marktanalyse und der Visualisierung derer Daten kann die Anzahl bzw. der Umfang detaillierterer, teuerer und zeitintensiverer Marktanalysen minimiert werden.
-Entsprechend sollte auch der Fokus einer Visualisierung auf Zeit- und Kosteneffizienz bei gutem Nutzen für zuvor beschriebenes liegen.
+%Zunächst soll die Frage nach den angebotenen Videospielen der Publisher und ihrer Konkurrenz in einem ersten, qualitativen Überblick beantwortet werden. 
+%Der Fokus liegt aufgrund der gegebenen Daten und deren Übersichtsmöglichkeiten auf der Identifikation der von einem Publisher angebotenen Genres und der Videospiele, die jenen zugeordnet werden können. 
+%So lässt sich die vergangene Wahl des Schwerpunktes der Publishers bzgl. des Genres und der in diesem angebotenen Spiele erkennen. 
+%Besonders für größere Publisher mit vielen Videospielen oder vielfältigen Genres ist ein solcher Überlick sinnvoll.
+%In Kombination mit einer Übersicht über die konkurrierenden Publisher in derselben Art, kann ermittelt werden, welcher Publisher eine starke Konkurrenz in welchem Genres darstellen kann, welche Genres stark oder weniger stark angeboten werden und wieviele Videospiele ihnen zugeordnet werden können.
+%Somit können erste potenzielle Marktlücken, aber auch Sättigungen identifiziert werden, die für eine zukünftige Ausrichtung des Publishers relevant sein können. 
+%Es wird die Annahme getroffen, dass die Zielgruppe häufig und in unregelmäßigen Abständen einen Überblick über ihre Videospiele, deren Genres und ihre Konkurrenz auf den einen Blick benötigt. 
+%Dies kann sowohl im persönlichen Rahmen des Betrachtens durch Einzelpersonen des oberen und mittleren Managements der Fall sein als auch im Rahmen von Präsentationen der Analyse für das obere Management und wichtige Stakeholder.
+%Durch die Übersicht soll bei der Zielgruppe ein mentales Modell der Hierarchie und Zugehörigkeit der Videospiele zu Genres und dieser Genres zu den Publishern entstehen. 
 
-%aus Einleitung eingefügt
-Wichtig dabei ist das Bedürfnis nach Intuitivität der Visualisierungen, Schnelligkeit im Verständnis und der Erstellung sowie des vergleichweise geringen Preises für sie zu berücksichtigen. 
-Die Visualisierungen müssen immer wieder schnell verständlich und erklärbar für andere sein, auch auf den ersten Blick.
+%Die zweite Unterfrage beschäftigt sich mit der Gewinnung von Erkenntnissen über Muster, Cluster, Ausreißer oder Korrelationen in den Verkaufszahlen zwischen den einzelnen Regionen der Welt und über alle Regionen hinweg.
+%Dazu müssen die Daten so aufbereitet werden, dass sie in einer oder mehreren Darstellungen durch die Positionierung im Raum miteinander vergleichbar sind. 
+%Alle Erkenntnisse müssen schnell und einfach ersichtlich sein, sodass im Kopf der Personen der Zielgruppen leicht Bilder entstehen können.  
+%Datenpunkte in jedweder Form müssen sich zur Bildung von Mustern und Clustern zu Gruppen mittels Farbe, Position oder Form zusammenfinden können, die von anderen unterscheidbar sind. 
+%Ausreißer können ebenso erkannt werden.
+%Korrelationen in den Verkaufszahlen zwischen den Regionen werden weiterführend mental meist am besten als Gruppe von Datenpunkten im Raum positioniert durch Absteigen, Aufsteigen oder Verstreuung erkannt.
 
-Zunächst soll die Frage nach den angebotenen Videospielen der Publisher und ihrer Konkurrenz in einem ersten, qualitativen Überblick beantwortet werden. 
-Der Fokus liegt aufgrund der gegebenen Daten und deren Übersichtsmöglichkeiten auf der Identifikation der von einem Publisher angebotenen Genres und der Videospiele, die jenen zugeordnet werden können. 
-So lässt sich die vergangene Wahl des Schwerpunktes der Publishers bzgl. des Genres und der in diesem angebotenen Spiele erkennen. 
-Besonders für größere Publisher mit vielen Videospielen oder vielfältigen Genres ist ein solcher Überlick sinnvoll.
-In Kombination mit einer Übersicht über die konkurrierenden Publisher in derselben Art, kann ermittelt werden, welcher Publisher eine starke Konkurrenz in welchem Genres darstellen kann, welche Genres stark oder weniger stark angeboten werden und wieviele Videospiele ihnen zugeordnet werden können.
-Somit können erste potenzielle Marktlücken, aber auch Sättigungen identifiziert werden, die für eine zukünftige Ausrichtung des Publishers relevant sein können. 
-Es wird die Annahme getroffen, dass die Zielgruppe häufig und in unregelmäßigen Abständen einen Überblick über ihre Videospiele, deren Genres und ihre Konkurrenz auf den einen Blick benötigt. 
-Dies kann sowohl im persönlichen Rahmen des Betrachtens durch Einzelpersonen des oberen und mittleren Managements der Fall sein als auch im Rahmen von Präsentationen der Analyse für das obere Management und wichtige Stakeholder.
-Durch die Übersicht soll bei der Zielgruppe ein mentales Modell der Hierarchie und Zugehörigkeit der Videospiele zu Genres und dieser Genres zu den Publishern entstehen. 
+%Es ist schlussfolgernd sinnvoll, der Zielgruppe mittels einer Visualisierung erst eine Übersicht auf alle Regionen, sprich Attribute, auf einmal zu gewähren, in der Muster und Cluster sowie Ausreißer durch Markierung mit Farbe, Form oder Position über alle Regionen hinweg erkennbar sind. 
+%Mental soll ein Blick von oben auf die Welt entstehen. 
+%So kann sich ein zusammenhängendes Bild über die Verkaufszahlen in den Regionen ergeben ähnlich zu einem Motiv, dass sich durch das Verbinden von Zahlen in einem Zahlenbild für Kinder ergibt.
+%Werden verschiedene solcher Bilder übereinandergelegt, hier entsprechend der konkurrierenden Videospiele, lassen sich Unterschiede erkennen.
+%Sollte es zudem bspw. einen Ausreißer geben, der besonders gute Verkaufszahlen in dieser Region und global aufweist, dann deutet das auf eine Bedarfsdeckung dieser Region durch das entsprechende Videospiel hin. 
+%Eine weitere Investition in diese Region in dem Genre wäre entsprechend zu überdenken. 
+%Ist aber bswp. ein Videospiel des Publishers X in dieser Region der Ausreißer und besitzt auch global gute Verkaufszahlen, so ist eine Investition in weitere Videospiele dieser Reihe eine sinnvolle Option.
+%In einem mentalen Modell können diese Analysen durch räumliche Abbildungen bzw. Abbildungen der Daten auf Positionen in einem Kontext dargestellt werden.
 
-Die zweite Unterfrage beschäftigt sich mit der Gewinnung von Erkenntnissen über Muster, Cluster, Ausreißer oder Korrelationen in den Verkaufszahlen zwischen den einzelnen Regionen der Welt und über alle Regionen hinweg.
-Dazu müssen die Daten so aufbereitet werden, dass sie in einer oder mehreren Darstellungen durch die Positionierung im Raum miteinander vergleichbar sind. 
-Alle Erkenntnisse müssen schnell und einfach ersichtlich sein, sodass im Kopf der Personen der Zielgruppen leicht Bilder entstehen können.  
-Datenpunkte in jedweder Form müssen sich zur Bildung von Mustern und Clustern zu Gruppen mittels Farbe, Position oder Form zusammenfinden können, die von anderen unterscheidbar sind. 
-Ausreißer können ebenso erkannt werden.
-Korrelationen in den Verkaufszahlen zwischen den Regionen werden weiterführend mental meist am besten als Gruppe von Datenpunkten im Raum positioniert durch Absteigen, Aufsteigen oder Verstreuung erkannt.
+%Mittels einer weiteren Visualisierung soll der Blick konkretisiert und auf zwei interessante Regionen fokussiert werden. 
+%Mental soll in das zuvor entstandene Bild hineingezoomt werden, um detaillierter auf zwei ausgesuchte Regionen des Genres blicken zu können.
+%Sie können genauer auf Cluster und Ausreißer geprüft und die Art der möglichen Korrelation konkretisiert werden.
+%Eine weitere Betrachtung der Gründe für letztere und der Ausnutzung dieser Korrelation in fortführenden Studien ist sinnvoll. 
+%Für die Bearbeitung dieser Unterfrage und vor allem der leichten Erkennung von Korrelationen und Clustern ist ein räumliches mentales Modell der Abbildung der Daten auf Positionen sehr wichtig und notwendig.
+%Die Bestimmung der zu untesuchenden Regionen für weitere Investitionen in fortführenden Marktstudien kann so besser eingegrenzt werden.
 
-Es ist schlussfolgernd sinnvoll, der Zielgruppe mittels einer Visualisierung erst eine Übersicht auf alle Regionen, sprich Attribute, auf einmal zu gewähren, in der Muster und Cluster sowie Ausreißer durch Markierung mit Farbe, Form oder Position über alle Regionen hinweg erkennbar sind. 
-Mental soll ein Blick von oben auf die Welt entstehen. 
-So kann sich ein zusammenhängendes Bild über die Verkaufszahlen in den Regionen ergeben ähnlich zu einem Motiv, dass sich durch das Verbinden von Zahlen in einem Zahlenbild für Kinder ergibt.
-Werden verschiedene solcher Bilder übereinandergelegt, hier entsprechend der konkurrierenden Videospiele, lassen sich Unterschiede erkennen.
-Sollte es zudem bspw. einen Ausreißer geben, der besonders gute Verkaufszahlen in dieser Region und global aufweist, dann deutet das auf eine Bedarfsdeckung dieser Region durch das entsprechende Videospiel hin. 
-Eine weitere Investition in diese Region in dem Genre wäre entsprechend zu überdenken. 
-Ist aber bswp. ein Videospiel des Publishers X in dieser Region der Ausreißer und besitzt auch global gute Verkaufszahlen, so ist eine Investition in weitere Videospiele dieser Reihe eine sinnvolle Option.
-In einem mentalen Modell können diese Analysen durch räumliche Abbildungen bzw. Abbildungen der Daten auf Positionen in einem Kontext dargestellt werden.
-
-Mittels einer weiteren Visualisierung soll der Blick konkretisiert und auf zwei interessante Regionen fokussiert werden. 
-Mental soll in das zuvor entstandene Bild hineingezoomt werden, um detaillierter auf zwei ausgesuchte Regionen des Genres blicken zu können.
-Sie können genauer auf Cluster und Ausreißer geprüft und die Art der möglichen Korrelation konkretisiert werden.
-Eine weitere Betrachtung der Gründe für letztere und der Ausnutzung dieser Korrelation in fortführenden Studien ist sinnvoll. 
-Für die Bearbeitung dieser Unterfrage und vor allem der leichten Erkennung von Korrelationen und Clustern ist ein räumliches mentales Modell der Abbildung der Daten auf Positionen sehr wichtig und notwendig.
-Die Bestimmung der zu untesuchenden Regionen für weitere Investitionen in fortführenden Marktstudien kann so besser eingegrenzt werden.
-
-Untergeordnet, jedoch sekundär auch für die Beantwortung der Hauptfrage wichtig, ist die Darstellung und Erkennbarkeit der Performanz der Videospiele des Genres in einer solchen Weise, dass einzelne Spiele konrekt erkannt und zugeordnet werden können.
-So können Verkaufszahlen und damit Erfolge einzelner Spiele im Genre konkret verglichen werden. 
-ufszahlen seiner Spiele feststellen.  
-Bei der Bearbeitung dessen helfen dieselben mentale Modelle sowohl zur konkreten Ansicht als auch der gleichzeitigen Darstellung aller Attribute wie zur Beantwortung des zweiten Unterziels. 
-Wichtig dabei ist die Möglichkeit der Identifizierung der Datenpunkte durch Beschriftung.
+%Untergeordnet, jedoch sekundär auch für die Beantwortung der Hauptfrage wichtig, ist die Darstellung und Erkennbarkeit der Performanz der Videospiele des Genres in einer solchen Weise, dass einzelne Spiele konrekt erkannt und zugeordnet werden können.
+%So können Verkaufszahlen und damit Erfolge einzelner Spiele im Genre konkret verglichen werden. 
+%ufszahlen seiner Spiele feststellen.  
+%Bei der Bearbeitung dessen helfen dieselben mentale Modelle sowohl zur konkreten Ansicht als auch der gleichzeitigen Darstellung aller Attribute wie zur Beantwortung des zweiten Unterziels. 
+%Wichtig dabei ist die Möglichkeit der Identifizierung der Datenpunkte durch Beschriftung.
 
 %Analysieren sie die konkreten Anwendungsaufgaben, die die Lösung des Zielproblems durch die Anwender:innen bearbeitet werden müssen. 
 %Welche sinnvollen mentale Modelle helfen den Personen bei der Bearbeitung. 
@@ -299,6 +317,20 @@ Sogenannte \textit{Just Noticable Differences}, also gerade so erkennbare Farb- 
 Allen spezifischen Anforderungen voran steht die Anforderung an die Angemessenheit. 
 Die eingesetzten Visualisierungstechniken sollten günstig sein und deshalb einfacher gestaltet. 
 Gleichzeitig sollten sie durch die Notwendigkeit von schnellen Entscheidungen zügig erstellbar und ebenso schnell und einfach verständlich sein, damit auch die in den Visual Analytics ungeübten Personen der Zielgruppe ein möglichst breites und präzises Verständnis für die Marktsituation, Verkaufszahlen und Korrelationen zwischen den Regionen erhalten können.
+
+%aus Einleitung eingefügt
+Wichtig zur Lösung des Zielproblems ist das intuitive, schnelle und eindeutig bei allen Managern der Publisher Entstehen der mentalen Modelle zur einheitlichen Analyse der Daten gerade bei Präsentationen oder dem kurzfristigen Gebrauch der Visualisierungen.
+Die Analyse der Anwendungsaufgaben ergibt zudem möglichst geringe monetäre und zeitliche Aufwände zur Erstellung der Visualisierungen zur Unterstützung der mentalen Modelle.
+Die Begründung liegt in der gewünschten Kostenersparnis durch eine vorab günstigere, grobgranulare Marktanalyse zur Investitionsentscheidung in detaillierte, teuere und zeitintensive Marktanalysen höheren Umfangs.
+
+Durch die der Zielgruppe zugrunde liegende minimal verfügbare Zeit zum Verständnis liegt der Fokus klar auf zeitlicher Effizienz bei bestmöglicher Effektivität.
+Schnelligkeit im Verständnis und der Erstellung sowie des vergleichweise geringen Preises für sie zu berücksichtigen. 
+Die Visualisierungen müssen immer wieder schnell verständlich und erklärbar für andere sein, auch auf den ersten Blick.
+%aus Einleitung hier eingefügt
+Durch eine schnell erstellte, intuitiv erklär-, präsentier- und verstehbare Visualisierung der grobgranularen Daten der Marktanalyse können im Publishingunternehmen erste vorab gültige Strategieentscheidungen bzgl. Investitionen in Titel eines Gernes getroffen und Maßnahmen vorbereitet werden.
+ 
+Durch die Erstellung einer groben Marktanalyse und der Visualisierung derer Daten kann die Anzahl bzw. der Umfang detaillierterer, teuerer und zeitintensiverer Marktanalysen minimiert werden.
+Entsprechend sollte auch der Fokus einer Visualisierung auf Zeit- und Kosteneffizienz bei gutem Nutzen für zuvor beschriebenes liegen.
 
 %Leiten sie Anforderungen an das Design der Visualisierungen ab, die sich durch ihre Analyse des Zielproblems ergeben.
 \subsection{Präsentation der Visualisierungen}
