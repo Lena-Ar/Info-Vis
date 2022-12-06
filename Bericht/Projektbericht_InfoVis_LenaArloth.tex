@@ -360,8 +360,11 @@ Nützlich ist eine Überprüfung der in der zweiten Visualisierung sichtbaren Mu
 
 %Leiten sie Anforderungen an das Design der Visualisierungen ab, die sich durch ihre Analyse des Zielproblems ergeben.
 \subsection{Präsentation der Visualisierungen}
-Zur Erfüllung der Anaylsen und Anforderungen werden die Visualisierungstechniken \textit{explizites Baumdiagramm}, \textit{parallele Koordinate} und \textit{Scatterplot} gewählt.
-Nachfolgend werden die ausgesuchten Visualisierungen vorgestellt und diskutiert. 
+Es werden drei Visualisierungstechniken zur Erfüllung der Anforderungen gewählt und präsentiert.
+Für alle Visualisierungen werden neben Weiß und Schwarz zwei harmonische Grüntöne genutzt, die durch ihre verschiedenen Kontraste und Opazitäten Datenpunkte markieren, hervorheben und den Blick des Betrachters indirekt über die Website leiten. 
+
+%Zur Erfüllung der Anaylsen und Anforderungen werden die Visualisierungstechniken \textit{explizites Baumdiagramm}, \textit{parallele Koordinate} und \textit{Scatterplot} gewählt.
+%Nachfolgend werden die ausgesuchten Visualisierungen vorgestellt und diskutiert. 
 %Präsentieren sie die visuelle Abbildungen und Kodierungen der Daten und Interaktionsmöglichkeiten. 
 %Sie müssen  begründen, warum und wie gut ihre Designentscheidungen die erstellten Anforderungen erfüllen. 
 %Weiterhin müssen sie begründen, warum die gewählte visuelle Kodierung der Daten für das zulösenden Problem passend ist.
@@ -374,37 +377,70 @@ Nachfolgend werden die ausgesuchten Visualisierungen vorgestellt und diskutiert.
 %Die eben beschriebenen Präsentationen und Begründungen sollen für jede der drei folgenden Visualisierungen durchgeführt werden. 
 
 \subsubsection{Visualisierung Eins}
-Zur Erfüllung der Anforderungen wird für die erste Visualisierung ein explizites Baumdiagramm gewählt.
-Mit einem solchen können Hierarchien gut, übersichtlich und auf allgemein bekannte Weise dargestellt werden. 
+Zur Erfüllung der Anforderungen an die Visualsierung der ersten Anwendungsaufgabe wird ein explizites Baumdiagramm gewählt.
+Mittels dieser können hierarchische Beziehungen zwischen Attributwerten als Knoten in Form eines Baumes mit einem Wurzelknoten abgebildet werden. 
+Hierarchische Beziehungen zwischen den Knoten seien durch gerade Linien, Kurven oder Bögen gekennzeichnet, die Knoten miteinander verbinden.%\cite[1]{Schulz.2011} 
+
+Pfade zwischen den Knoten, sowie die Positionierung von Eltern über Kindknoten stellen hier die hierarchische Beziehung dar. 
+Publisher sind Elternknoten der Genres, die wiederum Elternknoten der Videospieltitel sind.
+Zur Verhinderung von ungewollten Kreuzungen der Pfade zwischen Publishern und Genres, wird letzteren zur eindeutigen Identifikation das Kürzel des zugehörigen Publishers hinzugefügt.
+Andernfalls verlöre die Visualisierung ihren Zweck der Übersicht und einfachen Betrachtung der eigenen abgedeckten Genres und in ihnen verordnete Titel sowie der Vergleich mit der Konkurrenz.
+Eine erste Eingrenzung der Genres durch oben genannte Analysen ist so möglich.
+
+Die aufgeführten Anforderungen an Expressivität, Effektivität und Angemessenheit werden durch ein explizites Baumdiagramm gut erfüllt.
+So ist eine zweifelsfreie Darstellung der Beziehungen und Abbildung der Hierarchien möglich, ohne unpassende Assoziationen zu wecken. 
+Alle Informationen, die hier für die obere visuelle Ebene der Informationen nötig sind, werden übermittelt. 
+In den Daten versteckte Beziehungen werden offengelegt und konkrete Details durch die Anzeige der Knotenbezeichnungen bei Hovern mit der Maus aufgeführt.
+Durch das intuitive, schnelle Verständnis ohne notwendige Erklärungen und Legenden, die überblicksartige Ansicht und die weite Verbreitung solcher Diagramme in vielen unterschiedlichen Bereichen ist auch die Effektivität der Visualsierung hinreichend gegeben. 
+Die durch Hovern angezeigten expliziten Informationen sowie die schnelle quantitative Übersicht über Angebote durch Zählung der von einem Elternknoten ausgehenden Pfade trägt unter anderem dazu bei.
+Weiterhin ist diese Visualisierungstechnik durch den eher als gering einzuschätzenden monetären und zeitlichen Aufwand zur Erstellung bei starker Expressivität und Effektivität angemessen.
+
+Wie erwähnt, wird durch das explizite Baumdiagramm die Anforderung an die Darstellung von hierarchischen Beziehungen erfüllt.
+Durch den Einsatz des Walker-Algorithmus wird die Effektivität dank einheitlicher Positionierung der Knoten nochmals verbessert.%\cite[688ff.]{Walker.1990}
+Vermindert wird sie gleichzeitig durch die hohe Anzahl an Knoten, die zu einem breiteren, leicht weniger überischtlichem Diagramm führen. 
+
+Aufgrunddessen ergeben sich hyperbolische Bäume als Alternativen zum expliziten Baumdiagramm. 
+Durch die Zeichnung der Beziehungen und Knoten im hyperbolsichen Raum und einen proportional wachsenden Kreisumfang bietet diese Technik mehr Platz für Knoten und entsprechend größere Hierarchien sind möglich.%\cite[2f.]{Lamping.1995}
+Jedoch zögen diese Alternativen einen höheren (Kosten-)Aufwand mit sich, weniger Intuitivität in der Erkennung der eigenen und konkurrierenden Angebote sowie eine suboptimale quantitative Übersicht der qualitativen Daten. 
+Implizite Baumdiagramme sind eine weitere Alternative, bei der die Eltern-Kind-Beziehung durch Umschließung des Kindknotens durch den Elternknoten visualisiert werde.%\cite[394]{Schulz.2011}
+Dabei ginge jedoch entweder die Erkenntlichkeit der Beziehung von Titel zum Publisher zwei Ebenen höher oder aber die Übersichtlichkeit an sich durch sehr viele Publisherknoten und in ihnen dargestellte Kind- und Kindeskindknoten.
+Bei der Zielgruppe sind sie vermutlich zudem unbekannter und bedürften mehr Erklärungen unter zeitlichem Mehraufwand in Erstellung und Verständnis bedeuteten.
+
+So besticht das explizite Baumdiagramm vor allem durch seine Angemessenheit bei starker Expressivität und hinreichender Effektivität durch inuitives Verständnis. 
+Durch das Duplizieren des Diagramm mit veränderter Größe wird der Nachteil der größeren Menge an Knoten reduziert.
+
+
+%Zur Erfüllung der Anforderungen wird für die erste Visualisierung ein explizites Baumdiagramm gewählt.
+%Mit einem solchen können Hierarchien gut, übersichtlich und auf allgemein bekannte Weise dargestellt werden. 
 
 %warum Baum + Theorie + Wahrnehmungsprinzip
 
-In der Visualisierung gibt es einen Wurzelknoten, der als Kindknoten die Publisher hat, die wiederum als Kindknoten die vom jeweiligen Publisher abgedeckten Genres besitzen. 
-Zur besseren Übersicht und Vergleichbarkeit werden nur diejenigen Genres pro Publisher abgebildet, die dieser Publisher anbietet und in alphabetischer Reihenfolge aufgeführt. 
-Wichtig dabei ist, dass keine sich überkreuzenden Pfade entstehen respektive es keinen Kindknoten gibt, der mehrere Elternknoten hat. 
-Dies dient der Erfüllung der Anforderungen und der Übersichtlichkeit der Visualisierung.
-Die Genreknoten besitzen wiederum Kindknoten, die die Titel der Videospiele, die dem entsprechenden Genre zugeordnet sind, tragen. 
-So entsteht die gewünschte hierarchische Übersicht über das Angebot jedes Publishers, welche durch die Beschriftung und Hervorhebung bei Hovern über jeden Knoten unterstützt wird.
-Die Anforderungen an eine schnelle, intuitive und für jeden verständliche Übersicht werden größtenteils erfüllt. 
-Jedoch besteht der Nachteil der Größe des Baumes durch die vielen Publisher- und Genreknoten. 
-Trotzdem kann der Baum durch seine Nutzung der Hierarchie, also Abbbildung der nominalen Daten auf eine Position im Raum, sowie durch die Nutzung von Verbindungslinien zur Unterstützung der Positionierung und damit Erstellung des mentalen Modells der gewünschten Hierarchie die Anforderungen an Effektivität gut erfüllen.
-Entsprechende visuelle Variablen werden als sehr effektive Abbildungsmethodik für nominale Daten eingestuft. 
-Expressiv und damit ohne viele Erklärungen und Missverständnisse ist diese Technik zudem.
-Jedoch leidet die Expressivität etwas unter der Menge an Knoten und damit der Größe des Baumes.
-Auch angemessen ist eine Visualsierung als explizites Baumdiagramm, da es wenig Ressourcen fordert. 
+%In der Visualisierung gibt es einen Wurzelknoten, der als Kindknoten die Publisher hat, die wiederum als Kindknoten die vom jeweiligen Publisher abgedeckten Genres besitzen. 
+%Zur besseren Übersicht und Vergleichbarkeit werden nur diejenigen Genres pro Publisher abgebildet, die dieser Publisher anbietet und in alphabetischer Reihenfolge aufgeführt. 
+%Wichtig dabei ist, dass keine sich überkreuzenden Pfade entstehen respektive es keinen Kindknoten gibt, der mehrere Elternknoten hat. 
+%Dies dient der Erfüllung der Anforderungen und der Übersichtlichkeit der Visualisierung.
+%Die Genreknoten besitzen wiederum Kindknoten, die die Titel der Videospiele, die dem entsprechenden Genre zugeordnet sind, tragen. 
+%So entsteht die gewünschte hierarchische Übersicht über das Angebot jedes Publishers, welche durch die Beschriftung und Hervorhebung bei Hovern über jeden Knoten unterstützt wird.
+%Die Anforderungen an eine schnelle, intuitive und für jeden verständliche Übersicht werden größtenteils erfüllt. 
+%Jedoch besteht der Nachteil der Größe des Baumes durch die vielen Publisher- und Genreknoten. 
+%Trotzdem kann der Baum durch seine Nutzung der Hierarchie, also Abbbildung der nominalen Daten auf eine Position im Raum, sowie durch die Nutzung von Verbindungslinien zur Unterstützung der Positionierung und damit Erstellung des mentalen Modells der gewünschten Hierarchie die Anforderungen an Effektivität gut erfüllen.
+%Entsprechende visuelle Variablen werden als sehr effektive Abbildungsmethodik für nominale Daten eingestuft. 
+%Expressiv und damit ohne viele Erklärungen und Missverständnisse ist diese Technik zudem.
+%Jedoch leidet die Expressivität etwas unter der Menge an Knoten und damit der Größe des Baumes.
+%Auch angemessen ist eine Visualsierung als explizites Baumdiagramm, da es wenig Ressourcen fordert. 
 
-Alternativen zu dieser Darstellung sind implizite Baumdiagramme, radiale Baumdarstellungen und hyperbolische Bäume. 
-Implizite Baumdarstellungen können ebenso wie explizite die Hierarchien zwischen Eltern- und Kind-Knoten darstellen. 
+%Alternativen zu dieser Darstellung sind implizite Baumdiagramme, radiale Baumdarstellungen und hyperbolische Bäume. 
+%Implizite Baumdarstellungen können ebenso wie explizite die Hierarchien zwischen Eltern- und Kind-Knoten darstellen. 
 %Grund
 %umschließen, unüberischtlichkeit, nicht so direkt verständlich mit vielen Erklärungen & beschriftungen
-Radiale und hyperbolische Bäume sind gute Alternativen für Darstellungen mit vielen Knoten wie es in dieser Visualisierung auch der Fall ist. 
+%Radiale und hyperbolische Bäume sind gute Alternativen für Darstellungen mit vielen Knoten wie es in dieser Visualisierung auch der Fall ist. 
 %Grund
 %macht Sinn wegen anzahl knoten, aber probleme mit überschneidungen, schnelles lesen, platz knoten wächst linear mit umfang aber Knoten können exponentiell wachsen
 %Platzierungsprobleme nicht, aber durch Darstellung evtl schwieriger zu veregleich mit Konkurrenz, angemessenheit nicht 100, da viel aufwand ressourcen zum erstellen und mehr zum lesen bei der eig überblicksartigsten & einfachsten Visualisierung
-Vor allem letztere Alternativen bieten in Bezug auf Expressivität, Effektivität und Angemessenheit nahezu dieselben Vorteile wie die expliziten Bäume. 
-Letztlich wird die Entscheidung für ein explizites Baumdiagramm trotz des Nachteils der vielen Knoten, die durch hyperbolische und radiale Bäume übersichtlicher gestaltet werden könnten, aufgrund der Übersichtlichkeit durch Intuitivität der expliziten Baumdarstellungen getroffen. 
-Dies mag paradox wirken, jedoch sind explizite Bäume durch ihr häufigeres Vorkommen in allen Lebenssituationen noch ein wenig intuitiver und damit effektiver verständlich als die Alternativen. 
-Da die Anforderung vor allem auf schnellem Erkennen und Wiedererkennen insbesondere des eigenen Verlagshauses liegt, wird diesem Aspekt eine hohe Gewichtung gegeben.
+%Vor allem letztere Alternativen bieten in Bezug auf Expressivität, Effektivität und Angemessenheit nahezu dieselben Vorteile wie die expliziten Bäume. 
+%Letztlich wird die Entscheidung für ein explizites Baumdiagramm trotz des Nachteils der vielen Knoten, die durch hyperbolische und radiale Bäume übersichtlicher gestaltet werden könnten, aufgrund der Übersichtlichkeit durch Intuitivität der expliziten Baumdarstellungen getroffen. 
+%Dies mag paradox wirken, jedoch sind explizite Bäume durch ihr häufigeres Vorkommen in allen Lebenssituationen noch ein wenig intuitiver und damit effektiver verständlich als die Alternativen. 
+%Da die Anforderung vor allem auf schnellem Erkennen und Wiedererkennen insbesondere des eigenen Verlagshauses liegt, wird diesem Aspekt eine hohe Gewichtung gegeben.
 
 \subsubsection{Visualisierung Zwei}
 Als zweite Visualisierungstechnik zur Teillösung der zweiten Unteranwendung werden die parallelen Koordinaten gewählt.
