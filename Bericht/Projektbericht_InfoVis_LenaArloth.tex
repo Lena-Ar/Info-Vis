@@ -361,7 +361,7 @@ Nützlich ist eine Überprüfung der in der zweiten Visualisierung sichtbaren Mu
 %Leiten sie Anforderungen an das Design der Visualisierungen ab, die sich durch ihre Analyse des Zielproblems ergeben.
 \subsection{Präsentation der Visualisierungen}
 Es werden drei Visualisierungstechniken zur Erfüllung der Anforderungen gewählt und präsentiert.
-Für alle Visualisierungen werden neben Weiß und Schwarz zwei harmonische Grüntöne genutzt, die durch ihre verschiedenen Kontraste und Opazitäten Datenpunkte markieren, hervorheben und den Blick des Betrachters indirekt über die Website leiten. 
+Zur Datenpunktmarkierung und -hervorhebung sowie der Leitung des Blicks über die Website werden neben Schwarz-Weiß werden zwei harmonische Grüntöne in unterschiedlichen Konstraten und Opazitäten genutzt.
 
 %Zur Erfüllung der Anaylsen und Anforderungen werden die Visualisierungstechniken \textit{explizites Baumdiagramm}, \textit{parallele Koordinate} und \textit{Scatterplot} gewählt.
 %Nachfolgend werden die ausgesuchten Visualisierungen vorgestellt und diskutiert. 
@@ -398,17 +398,14 @@ Weiterhin ist diese Visualisierungstechnik durch den eher als gering einzuschät
 Wie erwähnt, wird durch das explizite Baumdiagramm die Anforderung an die Darstellung von hierarchischen Beziehungen erfüllt.
 Durch den Einsatz des Walker-Algorithmus wird die Effektivität dank einheitlicher Positionierung der Knoten nochmals verbessert.%\cite[688ff.]{Walker.1990}
 Vermindert wird sie gleichzeitig durch die hohe Anzahl an Knoten, die zu einem breiteren, leicht weniger überischtlichem Diagramm führen. 
+Durch das Duplizieren des Diagramms mit veränderter Größe wird der Nachteil der größeren Menge an Knoten reduziert.
 
-Aufgrunddessen ergeben sich hyperbolische Bäume als Alternativen zum expliziten Baumdiagramm. 
-Durch die Zeichnung der Beziehungen und Knoten im hyperbolsichen Raum und einen proportional wachsenden Kreisumfang bietet diese Technik mehr Platz für Knoten und entsprechend größere Hierarchien sind möglich.%\cite[2f.]{Lamping.1995}
-Jedoch zögen diese Alternativen einen höheren (Kosten-)Aufwand mit sich, weniger Intuitivität in der Erkennung der eigenen und konkurrierenden Angebote sowie eine suboptimale quantitative Übersicht der qualitativen Daten. 
+Hyperbolische Bäume sind eine Alternative zum expliziten Baumdiagramm. 
+Durch die Zeichnung der Beziehungen und Knoten im hyperbolsichen Raum und einen wachsenden Kreisumfang bietet diese Technik mehr Platz für größere Hierarchien.%\cite[2f.]{Lamping.1995}
+Jedoch zöge diese Alternative einen höheren (Kosten-)Aufwand mit sich, weniger Intuitivität in der Erkennung der eigenen und konkurrierenden Angebote sowie eine suboptimale quantitative Übersicht der qualitativen Daten. 
 Implizite Baumdiagramme sind eine weitere Alternative, bei der die Eltern-Kind-Beziehung durch Umschließung des Kindknotens durch den Elternknoten visualisiert werde.%\cite[394]{Schulz.2011}
-Dabei ginge jedoch entweder die Erkenntlichkeit der Beziehung von Titel zum Publisher zwei Ebenen höher oder aber die Übersichtlichkeit an sich durch sehr viele Publisherknoten und in ihnen dargestellte Kind- und Kindeskindknoten.
-Bei der Zielgruppe sind sie vermutlich zudem unbekannter und bedürften mehr Erklärungen unter zeitlichem Mehraufwand in Erstellung und Verständnis bedeuteten.
-
-So besticht das explizite Baumdiagramm vor allem durch seine Angemessenheit bei starker Expressivität und hinreichender Effektivität durch inuitives Verständnis. 
-Durch das Duplizieren des Diagramm mit veränderter Größe wird der Nachteil der größeren Menge an Knoten reduziert.
-
+Sie sind platzsparender, aber durch einen geringeren Bekanntheitsgrad in der Zielgruppe wengier intuitiv verstehbar. 
+Als Überblick bieten sie zudem weniger schnell eine Übersicht über eigene und konkurrierende Angebote statt einges Entlangfahrens der Kanten mit dem Auge.
 
 %Zur Erfüllung der Anforderungen wird für die erste Visualisierung ein explizites Baumdiagramm gewählt.
 %Mit einem solchen können Hierarchien gut, übersichtlich und auf allgemein bekannte Weise dargestellt werden. 
@@ -443,40 +440,74 @@ Durch das Duplizieren des Diagramm mit veränderter Größe wird der Nachteil de
 %Da die Anforderung vor allem auf schnellem Erkennen und Wiedererkennen insbesondere des eigenen Verlagshauses liegt, wird diesem Aspekt eine hohe Gewichtung gegeben.
 
 \subsubsection{Visualisierung Zwei}
-Als zweite Visualisierungstechnik zur Teillösung der zweiten Unteranwendung werden die parallelen Koordinaten gewählt.
+Für die erste Teilbearbeitung der zweiten Anwendungsaufgabe wird der Parallele Koordinaten Plot gewählt, da er sich gut für Visualisierungen von Datenverteilungen und Abhängigkeiten zwischen Attributen eigne.%\cite[11]{Chan.2006}
+In positiver Richtung der Y-Achse werden parallel zueinander die in ihrem Wertebereich linear skalierten Achsen positioniert.
+Ein Datenpunkt hat verschiedene Koordinaten, mittels derer Polygonzüge konstruiert werden.
+Die Schnittpunkte mit den jeweiligen Achse zeigen den Attributwert.%\cite[25f.]{Inselberg.1987} %\cite[11]{Chan.2006}
+
+Auf den parallelen Achsen werden die Wertebereiche der Verkaufszahlen der fünf verschiedenen Regionen skaliert und nebeneinander angeordnet abgebildet.
+Die Schnittpunkte der Polygonzüge, resp. Datenpunkte, mit den Achsen kodieren die jeweiligen Attributausprägungen in den Regionen.
+Mehrdimensionalität und ein ganzheitlicher Blick werden erfüllt.
+
+Es können sowohl die expliziten Details zu Videospielen und ihren Verkaufszahlen als auch die in den Daten versteckten Informationen zu Muster- und Clusterbildung, Abhängigkeiten zwischen mehreren Regionen und Ausreißer offengelegt werden.
+Ersteres wird durch die Anzeige der Informationen bei Hovern über ein Polygonzug über dem Plot visualisiert. 
+Zweiteres durch die Verbindung der Attributausprägungen eines Titels durch Polygonzüge sowie die sich durch Überschneidungen, Überlappungen und Ansammlungen der Linien bildenden Muster. 
+Weiterhin eignet sich die Technik durch die Abbildung der Attributwerte auf Position und in gewissem Maße Orientierung gut für quantitative Daten, wie es Bertin beschreibt.%\cite[]{}
+Durch eine freie Wahl der Achsenbelegungen mittels Drop-Down-Menü aller Achsen können zudem weitere interessante Muster, um den gesamten erwünschten Blick von oben zu erhalten, erkannt werden. 
+Das Problem der laut Lehman bestehenden Darstellung von Abhängigkeiten nur zwischen drei benachbarten Achsen kann somit umgangen werden. %\cite[594]{Lehmann.2010}
+Die Expressivität wird insgesamt gut erfüllt.
+
+Muster, Cluster und Ausreißer lassen sich grundlegend gut durch die Polygonzüge erkennen. 
+Nichtsdestotrotz wird die Effektivität leicht gemindert, da das korrekte Verständnis der Kodierung der Daten einigen Personen der Zielgruppe schwieriger fallen kann.
+Umso wichtiger ist die zuvor beschriebene Möglichkeit zur Wahl der Achsenbelegung sowie prägnanter Erklärtexte.
+Bei großen Datensätzen ist es in Parallelen Koordinaten Plots problematisch, einzelne Polygonzüge durch Überlagerungen zu verfolgen.
+Durch ein Hervorheben der Linie und der Informationsanzeige beim Hovern kann dies gelöst werden. 
+Gleichzeitig erhalten alle Polygonzüge eine grüne Färbung mit geringerer Opazität, sodass Schnittstellen und Häufungen von Liniensegmenten durch einen kräftigeren Ton leicht erkennbar sind. 
+Diese Art von Röntgenstrahlentechnik kann die Erkennung von Mustern und Clustern verbessern und verbessert die Effektivität wieder.
+Das Design der Visualisierung mittels Filterung und freier Wahl der Achsenbelegung verhindert zwar nicht die vielen Kombinationsmöglichkeiten, jedoch die dabei mittels einfachem Achsentausch auftretende Überforderung.
+Parallele Koordinaten Plots sind zwar etwas (kosten-)aufwändiger zu erstellen, bleiben aber trotzdem im Kontext der Anwendungsaufgabe angemessen.
+
+Eine Alternativen zu Parallelen Koordinaten Plots stellen Icon-Techniken, bspw. Star Plots oder Stickfigures dar.
+In Star Plots seien die Dimensionen als eckige Achsen ausgehend von einem Kreismittelpunkt mit einer äußeren Verbindungslinie zur Repräsentation der Attributausprägung jeder der Dimensionen visualisiert.
+Dabei steigt jedoch die Anzahl der zu erstellenden Gylphen mit steigernder Menge an Datenpunkten stark, da sie nur je einen Datenpunkt repräsentieren können.%\cite[20]{Chan.2006}
+Ein ähnliches Problem existiert auch bei Stickfigures, die zusätzlich durch zwei Attribute in einem Koordinatensystem mit weiteren positioniert werden.
+Zwar können so grobe Muster und Cluster erkannt werden, die anderen Anforderungen bspw. konkrete Informationen zu Datenpunkten werden allerdings unzureichend erfüllt.
+Intuitivität und Effektivität sind im vorherrschenden Kontext unzureichend, womit Icon-Techniken alternativ ungeeignet sind. 
+
+%Als zweite Visualisierungstechnik zur Teillösung der zweiten Unteranwendung werden die parallelen Koordinaten gewählt.
 %warum parallele + Tehorie + Wahrnehnumgsprinzip
 
-Für diese Visualisierung werden die Datenpunkte als Abfolge von Liniensegmenten dargestellt, wobei der Attributwert der jeweilige Endpunkt des Liniensegments ist. 
-Visualisiert werden die Wertebereiche der Attribute \textit{North America}, \textit{Europe}, \textit{Japan}, \textit{Rest of World} und \textit{Global}, welche die Verkaufszahlen in Millionen Einheiten der Videospiele in den verschiedenen Regionen darstellen.
-Durch die Verbindung der Liniensegmente und den jeweiligen Endpunkten auf den parallelen Liniensegmenten bzw. Achsen kann die Zielgruppe die Attributwerte dieser fünf Attribute ablesen. 
-Durch die Darstellung aller Videospiele als je eine solche Sequenz von Liniensegmenten können Unterschiede erkannt werden. 
+%Für diese Visualisierung werden die Datenpunkte als Abfolge von Liniensegmenten dargestellt, wobei der Attributwert der jeweilige Endpunkt des Liniensegments ist. 
+%Visualisiert werden die Wertebereiche der Attribute \textit{North America}, \textit{Europe}, \textit{Japan}, \textit{Rest of World} und \textit{Global}, welche die Verkaufszahlen in Millionen Einheiten der Videospiele in den verschiedenen Regionen darstellen.
+%Durch die Verbindung der Liniensegmente und den jeweiligen Endpunkten auf den parallelen Liniensegmenten bzw. Achsen kann die Zielgruppe die Attributwerte dieser fünf Attribute ablesen. 
+%Durch die Darstellung aller Videospiele als je eine solche Sequenz von Liniensegmenten können Unterschiede erkannt werden. 
 
-Wie in den Anforderungen beschrieben, soll es zur besseren Vergleichbarkeit der Datenpunkte und damit Videospiele eine Filterung nach Genres geben, die mittels eines Drop-Down-Menüs umgesetzt wird. 
-Da es bei parallelen Koordinaten zu Problemen mit dem Überzeichenen von Liniensegmenten kommen kann, wenn es zu viele Datenpunkte gibt, schafft die Filterung hierbei zudem Abhilfe. 
+%Wie in den Anforderungen beschrieben, soll es zur besseren Vergleichbarkeit der Datenpunkte und damit Videospiele eine Filterung nach Genres geben, die mittels eines Drop-Down-Menüs umgesetzt wird. 
+%Da es bei parallelen Koordinaten zu Problemen mit dem Überzeichenen von Liniensegmenten kommen kann, wenn es zu viele Datenpunkte gibt, schafft die Filterung hierbei zudem Abhilfe. 
 
-Durch die Implementierung einer Art umgekehrten Röntgenstrahleneffekt durch die Nutzung einer Farbe mit wenig Deckkraft kann dieses Problem zusätzlich gelöst werden. 
-Zudem können Überlappungen dadurch besser zur Visualisierung der geforderten Muster, aber vor allem Cluster genutzt werden. 
-Je dunkler bestimmte Segmente, desto mehr Datenpunkte laufen hier überein. 
-Auch Überkreuzungen von Datenpunkten sind einfach durch die dunklere Farbe am Kreuzungspunkt erkennbar. 
+%Durch die Implementierung einer Art umgekehrten Röntgenstrahleneffekt durch die Nutzung einer Farbe mit wenig Deckkraft kann dieses Problem zusätzlich gelöst werden. 
+%Zudem können Überlappungen dadurch besser zur Visualisierung der geforderten Muster, aber vor allem Cluster genutzt werden. 
+%Je dunkler bestimmte Segmente, desto mehr Datenpunkte laufen hier überein. 
+%Auch Überkreuzungen von Datenpunkten sind einfach durch die dunklere Farbe am Kreuzungspunkt erkennbar. 
 
-Zur Erkennung des Videospieltitels und des Publishers, wird beim Hovern über ein Liniensegment beides eingeblendet. 
-Die Verkaufszahlen sind anhand der Achsenbeschriftung ungefähr ablesbar, beim Hovern allerdings konkret. 
-So überwiegt wie gewünscht das visuelle Erkennen und Vergleichen, aber auch die genaue Erkennbarkeit der Videospiele ist gegeben.
-Zudem wird der entsprechende Datenpunkt mittels Farbe hervorgehoben, um ihn eindeutig erkennbar zu machen. 
-Dadurch können die konkreten Anforderungen sowie die allgemeinen Anforderungen an Expressivität und Effektivität an die zweite Visualisierung  erfüllt werden. 
+%Zur Erkennung des Videospieltitels und des Publishers, wird beim Hovern über ein Liniensegment beides eingeblendet. 
+%Die Verkaufszahlen sind anhand der Achsenbeschriftung ungefähr ablesbar, beim Hovern allerdings konkret. 
+%So überwiegt wie gewünscht das visuelle Erkennen und Vergleichen, aber auch die genaue Erkennbarkeit der Videospiele ist gegeben.
+%Zudem wird der entsprechende Datenpunkt mittels Farbe hervorgehoben, um ihn eindeutig erkennbar zu machen. 
+%Dadurch können die konkreten Anforderungen sowie die allgemeinen Anforderungen an Expressivität und Effektivität an die zweite Visualisierung  erfüllt werden. 
 
-Quantitative Daten werden weiterhin am besten mit den visuellen Variablen Position, aber auch Orientierung dargestellt.
-Beides wird in den parallelen Koordinaten umgesetzt, die Orientierung vor allem durch die Sequenz an verbundenen Liniensegmenten, die parallelen Achsen und den entstehenden Kontext der Daten. 
+%Quantitative Daten werden weiterhin am besten mit den visuellen Variablen Position, aber auch Orientierung dargestellt.
+%Beides wird in den parallelen Koordinaten umgesetzt, die Orientierung vor allem durch die Sequenz an verbundenen Liniensegmenten, die parallelen Achsen und den entstehenden Kontext der Daten. 
 
-Die Expressivität wird zusätzlich durch die eindeutige Beschriftung der Liniensegmente beim Hovern, die Einfärbung und die eindeutige Beschriftung der Achsen erreicht. 
-Auch die weiteren Anforderungen vor allem an die Vergleichbarkeit und Erkennung von Mustern in einem Genre über alle Regionen hinweg in einer leicht verständlichen Art und Weise wird erfüllt.
+%Die Expressivität wird zusätzlich durch die eindeutige Beschriftung der Liniensegmente beim Hovern, die Einfärbung und die eindeutige Beschriftung der Achsen erreicht. 
+%Auch die weiteren Anforderungen vor allem an die Vergleichbarkeit und Erkennung von Mustern in einem Genre über alle Regionen hinweg in einer leicht verständlichen Art und Weise wird erfüllt.
 %Zusätzlich können leicht Cluster erkannt werden, wenn bestimmte Videospiele, bspw. eine Reihe in einem Genre, alle in allen Attributen, sprich Regionen, gute Werte aufzeigen. 
 %Auch dies bietet Aufschlüsse über den Markt und entsprechende Konkurrenz.
 
-Eine der Alternativen zu sind parallelen Koordinaten die Icon Techniken. 
-Sie werden jedoch als weniger gut im Vergleich zu den parallelen Koordinaten eingeschätzt.
+%Eine der Alternativen zu sind parallelen Koordinaten die Icon Techniken. 
+%Sie werden jedoch als weniger gut im Vergleich zu den parallelen Koordinaten eingeschätzt.
 %Grund
-Zuletzt bieten Sternkoordinaten und auch Polar Plots alternative Möglichkeiten der Darstellung mehrdimensionaler Daten. Allerdings
+%Zuletzt bieten Sternkoordinaten und auch Polar Plots alternative Möglichkeiten der Darstellung mehrdimensionaler Daten. Allerdings
 %Grund S. 232
 
 \subsubsection{Visualisierung Drei}
@@ -808,11 +839,13 @@ Um folgend Zusammenhänge zwischen den anderen Regionen besser erkennen zu könn
 Durch die Röntgenstrahlen nachempfunde Darstellungsweise lässt sich nun ein Muster erkennen. 
 Zum einen befindet sich der Großteil der Videospiele im unteren Drittel der Verkaufszahlen in allen Regionen, was durch die Überlappungen der Datenpunkte und damit kräftigeren Grüntöne besser erkennbar ist.
 Einzig \textit{Assassin's Creed: Unity} und vor allem \textit{Grand Theft Auto V} von \textit{Rockstar Games} stechen heraus. 
+%hier evtl ein satz mehr zu achsenwechsel & Abhängigkeiten nur zwischen drei benachbarten Achsen
 Wenn sich Spiele gut in Nordamerika verkauften, so verkauften sie sich in Europa in ähnlicher Weise, ebenso wie im Rest der Welt und global.
 Dies wird auch durch unterschiedliche Achsenbelegungen bestätigt. Eine Korrelation über alle Regionen hinweg scheint gegeben. 
 Einzig Japan bildet aus unbekannten Gründen eine Ausnahme, da die meisten Spiele hier wie anfangs erwähnt nicht so gut verkauft werden, wenn nicht sogar gar nicht. 
 Gleichzeitig schneiden einige wenige Spiele, die in den anderen Regionen durchschnittlich verkauft werden, in Japan vergleichsweise gut ab. 
 
+%auch hier evtl korrelation nochmal genauer präzisieren dass durch achsentausch auch sichtlich dass es wirklcih zwischen allen ist
 Durch die Korrelation scheint eine Konzentration in diesem Genre auf eine bestimmte Region wenig Sinn zu ergeben, sodass eine breite Aufstellung und Nutzung der Beeinflussung nützlich ist.
 Gleichzeitig deutet die ansatzweise Bildung eines Clusters im unteren Drittel der Verkaufszahlen in alles Regionen auf starke Konkurrenz im Genre hin. 
 Diese wird verstärkt durch die identifizierten Ausreißer, welche wie alle anderen Titel durch Hovern über den Datenpunkt gut ablesbar sind wie obiger Abbildung zu sehen.
