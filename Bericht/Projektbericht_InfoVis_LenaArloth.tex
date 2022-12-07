@@ -584,27 +584,50 @@ Visualisierung für statistische Daten und eignet sich damit perfekt zur abschli
 %und Korrelationstabellen. 
 
 \subsection{Interaktion}
-In der ersten Visualisierung werden Knoten bei Interaktion durch Hovern über sie mittels Farbe hervorgehoben sowie beschriftet. 
-So ist eine allgemeine Übersicht ohne zu viele Details auf einmal möglich.
-Die detaillierten Visualisierungen sind durch die Interaktion des Klicks auf die Weiterleitung erreichbar.
-So wird die Struktur der zuerst angebotenen Übersicht und der dann folgenden Detaillierung mittels Verkaufszahlen ermöglicht. 
-In dem Parallelen Koordinaten Plot sind die Regionen pro Achse frei wählbar. 
-Ein einfacher Achsentausch ist mit steigender Anzahl der Achsen unüberischtlich und beansprucht in der Auswahl zu viel Zeit.
-Die freie Wahl ermöglicht der Zielgruppe mehr Schnelligkeit und Einfachkeit in der Wahl der gewünschten Reihenfolge. 
-Weiterhin werden die Datenpunkte bei Interaktion durch Hovern über sie mittels Farbe hervorgehoben und die Details außerhalb des Koordinatensystems angezeigt.
-Im Scatterplot wird ist die Belegung der X- und Y-Achse ebenso frei mit den vorhandenen Regionen belegbar.
-Die Zielgruppe kann somit individuell wählen, welche Regionen durch zuvor betrachtete Parallele Koordianten interessant sind und dargestellt werden. 
-Auch hier werden bei Interaktion durch Hovern die Datenpunkte durch Farbe hevorgehoben sowie Details zum jeweiligen Videospiel angezeigt. 
-Somit entsteht eine Einheitlichkeit in allen Visualisierungen, vor allem aber in der zweiten und dritten. 
+In jeder der Visualisierungen sind Interaktionen mittels Hovern über die Datenpunkte zur Anzeige konkreter Informationen im jeweiligen Kontext des Plots sowie zum Aufleuchten des Datenpunkts zur besseren Erkennung möglich.
+Dies dient der Erfüllung der Anforderungen an stets mögliche Detailansichten sowie der Verbesserung der Effektivität und Effizienz wie in den vorherigen Kapiteln beschrieben.
 
-Weiterhin kann durch die Interaktion mit einem Dropdown-Menü zwischen allen drei Visualsierungen gewechselt werden. 
-Änderungen der Achseneinstellungen im Parallelen Koordinaten Plot und im Scatterplot bleiben beim Wechsel zwischen diesen bestehen, sodass eine erneute Einstellung nicht nötig ist. 
-So sind schnelle Vergleiche und Wechsel zwischen beiden detaillierten Visualisierung möglich. 
-Das Baumdiagramm als Ausgangsübersicht ist zudem mittels Interkation mit Link über jede der beiden anderen Visualisierungen möglich.
-In den Anforderungen für Visualisierung zwei (Parallele Koordianten) und drei (Scatterplot) ist eine Filterung nach Genre formuliert. 
-Diese ist per Interaktion mit Dropdown-Menü und Auswahl eines Genres erreichbar. 
-Wird dies in einer der beiden Visualisierungen ausgewählt, wird es in der anderen übernommen ohne bei Wechsel zu dieser Visualisierung nochmal ausgewählt werden zu müssen.
-Eine Änderung des Genres in einer der beiden detaillierten Visualisierungen führt zu einer Änderung in der anderen.
+Auch in jeder einzelner Visualsierung sind Interaktionsmöglichkeiten integriert. 
+So kann im expliziten Baumdiagramm der vergrößerte Baum mittels Scrollbar verschoben werden und mithilfe eines Links zu den detaillierteren Visualisierungen gewechselt werden.
+Von jeder der detaillierten Plots kann der Anwender durch einen Link am unteren Ende der Website schnell einen weiteren Tab zur Rückkehr zum Baumdiagramm als Ausgangspunkt und Übersicht für bspw. einen Abgleich öffnen.
+Im Parallelen Koordinaten Plot sind die Achsen frei belegbar dank eines Drop-Down-Menüs für jede der Achsen. 
+Wie in Kapitel 3.3.2 beschrieben, können so Überforderung, Unübersichtlichkeit und Zeitverlust durch bloßen Achsentausch verhindert werden sowie die Abhängikeiten zwischen den Regionen in jeder Kombination untersucht und versteckte Details entdeckt werden. 
+Die Betrachtung der Abhängigkeiten zwischen nur drei benachbarten Dimensionen ist damit weniger problematisch.
+Auch der Scatterplot bietet die Interaktion mit je einem Button als Drop-Down-Menü zur freien Achsenbelegung, um die detaillierte Untersuchung von Abhängigkeiten und den Vergleich zwischen zwei beliebigen Attributen zu ermöglichen.
+Dies dient auch der gewünschten Vergrößerung und Detaillierung der vorherigen Visualisierung.
+
+Ist der Anwender bei den detaillierten Plots angelangt, kann er mit einem Button als Drop-Down-Menü interagieren und so leicht und schnell zwischen allen Visualisierungen wechseln und die entsprechende wird angezeigt.
+Bei einem Wechsel zum Baumdiagramm leitet der Link zur eigentlichen Visualisierung dieses weiter. 
+Für eine verbesserte Effektivität, Zeitersparnis und Komfort bleiben die Achsenbelegungen bei einem Plotwechsel mittels Drop-Down-Menü gespeichert und müssen bei erneutem Wechsel zurück nicht wieder neu eingestellt werden. 
+Welche Attribute auf den Achsen ausgewählt sind, ist durch eine sich anpassende Unterüberschrift des Plots gekennzeichnet. 
+
+Zuletzt wird die Anforderung an einen Filter zur Auswahl der Genres und entsprechender Eingrenzung der Stichprobe in den Visualisierungen Paralleler Koordinaten Plot und Scatterplot umgesetzt.
+Hierzu gibt es bei beiden Visualisierungen die Möglichkeit zur Interaktion mit einem Drop-Down-Menü, in dem das gewünschte zu betrachtende Genre ausgewählt werden kann und sich die visualisierten Daten entsprechend anpassen.
+Diese Filterung bleibt bei Umschalten des Plots bestehen und wird direkt auf den anderen angewandt, sodass eine Interaktion mit einem Plot zur Änderung des anderen führt. 
+Durch die Anzeige des Menüs sowie die sich anpassende Unterüberschrift des Plots ist das gewählte Genre nachvollziehbar.
+Die Zielgruppe kann durch die Interaktion mittels genrefilter die Spiele und die Abhängigkeiten derer zwischen den Regionen sinnvoller vergleichen und vielversprechende Genres und in diesem möglicherweise Regionen für die Investition in weitere Marktstudien eingrenzen.
+
+%In der ersten Visualisierung werden Knoten bei Interaktion durch Hovern über sie mittels Farbe hervorgehoben sowie beschriftet. 
+%So ist eine allgemeine Übersicht ohne zu viele Details auf einmal möglich.
+%Die detaillierten Visualisierungen sind durch die Interaktion des Klicks auf die Weiterleitung erreichbar.
+%So wird die Struktur der zuerst angebotenen Übersicht und der dann folgenden Detaillierung mittels Verkaufszahlen ermöglicht. 
+%In dem Parallelen Koordinaten Plot sind die Regionen pro Achse frei wählbar. 
+%Ein einfacher Achsentausch ist mit steigender Anzahl der Achsen unüberischtlich und beansprucht in der Auswahl zu viel Zeit.
+%Die freie Wahl ermöglicht der Zielgruppe mehr Schnelligkeit und Einfachkeit in der Wahl der gewünschten Reihenfolge. 
+%Weiterhin werden die Datenpunkte bei Interaktion durch Hovern über sie mittels Farbe hervorgehoben und die Details außerhalb des Koordinatensystems angezeigt.
+%Im Scatterplot wird ist die Belegung der X- und Y-Achse ebenso frei mit den vorhandenen Regionen belegbar.
+%Die Zielgruppe kann somit individuell wählen, welche Regionen durch zuvor betrachtete Parallele Koordianten interessant sind und dargestellt werden. 
+%Auch hier werden bei Interaktion durch Hovern die Datenpunkte durch Farbe hevorgehoben sowie Details zum jeweiligen Videospiel angezeigt. 
+%Somit entsteht eine Einheitlichkeit in allen Visualisierungen, vor allem aber in der zweiten und dritten. 
+
+%Weiterhin kann durch die Interaktion mit einem Dropdown-Menü zwischen allen drei Visualsierungen gewechselt werden. 
+%Änderungen der Achseneinstellungen im Parallelen Koordinaten Plot und im Scatterplot bleiben beim Wechsel zwischen diesen bestehen, sodass eine erneute Einstellung nicht nötig ist. 
+%So sind schnelle Vergleiche und Wechsel zwischen beiden detaillierten Visualisierung möglich. 
+%Das Baumdiagramm als Ausgangsübersicht ist zudem mittels Interkation mit Link über jede der beiden anderen Visualisierungen möglich.
+%In den Anforderungen für Visualisierung zwei (Parallele Koordianten) und drei (Scatterplot) ist eine Filterung nach Genre formuliert. 
+%Diese ist per Interaktion mit Dropdown-Menü und Auswahl eines Genres erreichbar. 
+%Wird dies in einer der beiden Visualisierungen ausgewählt, wird es in der anderen übernommen ohne bei Wechsel zu dieser Visualisierung nochmal ausgewählt werden zu müssen.
+%Eine Änderung des Genres in einer der beiden detaillierten Visualisierungen führt zu einer Änderung in der anderen.
 
 \section{Implementierung}
 Im folgenden Kapitel wird die Implementierung der zuvor beschriebenen Visualisierungen und Interaktionen beschrieben. 
