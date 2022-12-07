@@ -31,7 +31,7 @@ main =
 init : () -> ( Model, Cmd Msg )
 init () =
     ( { tree = Tree.singleton "", errorMsg = "Loading ..." }
-    , Http.get { url = "../Daten/JSON/XBoxOne_GamesSales_Projekt.json", expect = Http.expectJson GotFlare treeDecoder }
+    , Http.get { url = "https://raw.githubusercontent.com/Lena-Ar/Info-Vis/main/Daten/JSON/XBoxOne_GamesSales_Projekt.json", expect = Http.expectJson GotFlare treeDecoder }
     )
 
 
