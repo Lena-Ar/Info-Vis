@@ -306,7 +306,7 @@ view model =
             [ Html.p [] 
                 [text "By clicking on the link below, you can go to more detailed visualizations of the Video Games Sales data to retrieve insights in sales data."]
             , Html.p []
-                [Html.a [href "MainScatterParallel.elm", Html.Attributes.style "color" "rgba(153, 17, 17, 1)", Html.Attributes.style "fontSize" "18px"] 
+                [Html.a [href "MainScatterParallel.html", Html.Attributes.style "color" "rgba(153, 17, 17, 1)", Html.Attributes.style "fontSize" "18px"] 
                     [text "Detailed Plots"]
                 ]
             ]

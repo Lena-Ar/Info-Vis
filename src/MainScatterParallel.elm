@@ -435,7 +435,7 @@ view model =
                             ]
                         , Html.p [Html.Attributes.style "fontSize" "15px", Html.Attributes.style "color" "rgba(0, 0, 0, 0.57)"] 
                             [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
-                            , Html.a [href "TreeHierarchy.elm", target "_blank", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"] 
+                            , Html.a [href "index.html", target "_blank", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"] 
                                 [Html.text "take you back and open another tab!"]
                             ]
                         ]
@@ -542,7 +542,7 @@ view model =
                             ]
                         , Html.p [Html.Attributes.style "fontSize" "15px", Html.Attributes.style "color" "rgba(0, 0, 0, 0.57)"] 
                             [ Html.text ("You would like to go back to the Tree Diagramm/Tree Hierarchy? No problem, this link will ")
-                            , Html.a [href "TreeHierarchy.elm", target "_blank", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"] 
+                            , Html.a [href "index.html", target "_blank", Html.Attributes.style "color" "rgb(75, 128, 36, 0.75)"] 
                                 [Html.text "take you back and open another tab!"]
                             ]
                         ]
@@ -579,7 +579,7 @@ view model =
                                     , Html.div [Html.Attributes.style "padding" "5px 10px 5px 10px"]
                                         [ Html.h4 [Html.Attributes.style "fontSize" "16px"] 
                                         [ Html.text ("If you want to display the Tree Diagram/Tree Hierarchy you saw in the beginning, you can ")
-                                        , Html.a [href "TreeHierarchy.elm", Html.Attributes.style "color" "rgba(153, 17, 17, 1)"] 
+                                        , Html.a [href "index.html", Html.Attributes.style "color" "rgba(153, 17, 17, 1)"] 
                                             [Html.text "click here!"]
                                         ]
                                         ]
