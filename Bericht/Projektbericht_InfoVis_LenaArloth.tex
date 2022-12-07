@@ -121,7 +121,7 @@ Mittels aller Visualisierungen kann die übergeordnete Fragestellung beantwortet
 
 \section{Daten}
 Der genutzte Datensatz \textit{"Video Games Sales Dataset"} stammt von der Plattform \textit{Kaggle} vom Nutzer \textit{SID\_TWR}.\cite{SID_TWR.} 
-Die Daten entstanden laut SID\_TWR durch Erweiterung der Daten eines Web Scrapes von \textit{VGChartz Video Games Sales} motiviert durch Gregpry Smith um weitere Attribute aus einem Web Scrape von \textit{Metacrtitic}.  
+Die Daten entstanden laut SID\_TWR durch Erweiterung der Daten eines Web Scrapes von \textit{VGChartz Video Games Sales} motiviert durch Gregpry Smith um weitere Attribute aus einem Web Scrape von \textit{Metacrtitic}.
 Von den drei zur Verfügung gestellten Datensätzen wird \textit{XBoxOne\_GameSales} für dieses Projekt ausgewählt. 
 Die zuvor erwähnten Erweiterungen um Attribute stammend von \textit{Metacrtitics} sind hier nicht enthalten. 
 Der Originaldatensatz liegt als CSV-Datei vor und beinhaltet zehn Spalten mit 613 einzelnen Positionen. 
@@ -281,7 +281,7 @@ Es werden drei visuelle Ebenen der Informationen definiert, von denen hier die o
 Für eine gute Expressivität im Rahmen dieser oberen Ebene ist entsprechend die Visualisierung expliziter Fakten zu den Videospielen und Verkaufszahlen sowie versteckte Zusammenhänge. 
 Wie zuvor analysiert sind hier vor allem Offenlegung von Hierarchien und Mustern, Abhängigkeiten und Ausreißern zwischen Regionen in einem Genre zu nennen.
 Zur Erfüllung der Effektivität ist ein intuitives, schnelles Verständnis der Visualisierungen gefordert.
-Die Wichtigkeit dieser Anforderung begründet sich im zuvor analysierten Zeitdruck durch die Anwendung in Präsentationen sowie der Entscheidungen.    
+Die Wichtigkeit dieser Anforderung begründet sich im zuvor analysierten Zeitdruck durch die Anwendung in Präsentationen sowie der Entscheidungen.
 Aufgrund der mit wenig spezifischem Vorwissen im Bereich Visual Analytics ausgestatteten Zielgruppe bedeutet Effektivität auch eine geringere Komplexität der Darstellungen, ergo intuitiv für ie Zielgruppe verständliche Visualsierungen vor allem von Korrelationen und Mustern.
 Durch die der Zielgruppe zugrunde liegende minimal verfügbare Zeit zum Verständnis liegt der Fokus klar auf zeitlicher Effizienz bei bestmöglicher Effektivität.
 Durch die Anwendung der Visualisierungen zur Entscheidungsunterstützung des Fokus weiterer Marktstudien ist besonders die Anforderung an Angemessenheit zentral. 
@@ -511,43 +511,77 @@ Intuitivität und Effektivität sind im vorherrschenden Kontext unzureichend, wo
 %Grund S. 232
 
 \subsubsection{Visualisierung Drei}
-Zuletzt wird zur weiteren Teillösung der zweiten Unteranwendung die Visualisierungtechnik Scatterplot umgesetzt. 
+Zur vollständigen Beantwortung der zweiten Anwendungsaufgabe wird eine weitere Visualisierung benötigt, für die die Technik des Scatterplot gewählt wird.
+In einem karthesischen Koordinatensystem mit orthogonaler X- und Y-Achse werden X- und Y-Werte zweier variabler Attribute eines Datenpunkts zu bivariaten Paaren zusammengefasst, die als Punkte in diesem abgetragen werden.
+Durch die Position werden die Attributwerte visualisiert. %\cite[103]{Friendly.2005}
+So werden, auch durch Abbildung vieler Datenpunkte, die Form von Abhängigkeiten, Muster und Ausreißer zwischen zwei Attributen sichtbar.%cite[9]{Chan.2006} %\cite[103]{Friendly.2005}
+Die Schwäche des Scatterplots durch Verlust an Informationen von mehreren Dimensionen wird in diesem Fall durch eine Detaillierung und Überprüfung der Erkenntnisse des Parallelen Koordinaten Plots im Einzelnen zum Vorteil.%\cite[9]{Chan.2006} %\cite[93]{Wegman.1997}
+
+Im Design dieses Scatterplots ist die Belegung der Achsen zur Darstellung der Wertebereiche der Attribute \textit{North America}, \textit{Europe}, \textit{Japan}, \textit{Rest of World} und \textit{Global} frei wählbar, 
+um den Anforderungen nach Auswahl der interessanten Attribute des Parallelen Koordinaten Plots zur Überprüfung und Detaillierung dieses nachzukommen.
+Weiterhin sind somit alle möglichen Abhängigkeiten zwischen Attributkombinationen untersuchbar. 
+Die Datenpunkte werden zur visuellen Ablesbarkeit wie oben beschrieben als Attributwert-Kombinationen kodiert, an den Achsen skaliert und als klassische Kreise im Raum des Koordinatensystems positioniert. 
+Quantitative Daten lassen sich am besten auf Position und untergeordnet auch auf Orientierung abbilden, was der Scatterplot bestens umsetzt.%\cite[]{}
+
+Die Anforderungen an die Expressivität in Bezug aus die obere visuelle Ebene der Informationen werden durch die unmissverständliche Zuweisung der Videospielinformationen zum Punkt im Diagramm mittels Hovern sowie die Visualisierung von 
+versteckten Informationen erfüllt. 
+Letztere bestehen aus dem deutlichen Aufzeigen von Korrelationen und ihrer Art, Clustern und Ausreißern zwischen zwei wählbaren Attributen.
+Weiterhin lässt sich mit ihm die gewünschte Vergrößerung der multidimensionalen Daten auf eine Ansicht von nur zwei Attributen und dem damit verbundenen höheren Detaillierungsgrad umsetzen. 
+So kann die Analyse des komplizierteren Parallelen Koordianten Plots überprüft und Fehler erkannt werden. 
+Detailfragen zur finalen Entscheidung für ein weiter zu fokussierendes Genre oder eventuelle Korrelationen zwischen Regionen in diesem, die hinder- oder förderlich sein können, werden beantwortet. 
+Durch eine deutliche räumliche Abgrenzung von Punkthaufen jeder Form können Cluster erkannt und bestätigt sowie einzelne Ausreißer bestimmt werden.
+Diese konkreten Anforderungen werden also auch erfüllt.
+
+Auch Effektivität und Angemessenheit sind klar gegeben. 
+Ersteres ergibt sich aus der starken Verbreitung der Technik in allen Bereichen und der unmissverständlichen, sich durch die Positionierung der Punkte ergebenden Darstellung. 
+Damit visualisiert er intuitiv und schnell lesbar eine Fülle an detaillierten statistischen Informationen.
+Der Scatterplot ist durch seine Trivialität in der Abbildung zweier quantitativer Attribute angemessen. 
+Dadurch ist er vergleichsweise unkompliziert und kostengünstig bei hoher Expressivität und Effektivität.
+
+In diesem Kontext sind keine sinnvollen Alternativen möglich. 
+Korrelationstabellen listen die Abhändigkeiten nur tabellarisch auf, visualisieren sie also nicht mittels einer spezifischen Technik.
+Mittels QQ-Plots können zwei statistische Variablen miteinander verglichen werden, jedoch mittels der geordneten Gegenüberstellung ihrer Quantile zur Erkennung von Verteilungen.
+Diese dienen nicht der Lösung des Zielproblem, könnten aber nach der Entscheidung für eine Investition in detaillierte Marktstudien in einem Genre dort Verwendung finden.
+So sei der Scatterplot "the most versatile, polymorphic, and generally useful"%\cite[103]{Friendly.2005} 
+Visualisierung für statistische Daten und eignet sich damit perfekt zur abschließenden Beantwortung der zweiten Anwendungsaufgabe und des gesamten Zielproblems.
+
+%Zuletzt wird zur weiteren Teillösung der zweiten Unteranwendung die Visualisierungtechnik Scatterplot umgesetzt. 
 %Scatterplot + Grund + Theorie + Wahrnehmungsprinzip
 
-In diesem Scatterplot wird auf die X-Achse je nach Auswahlwunsch des Betrachters je der Wertebereich der Attribute \textit{North America}, \textit{Europe}, \textit{Japan}, \textit{Rest of World} und \textit{Global} abgebildet.
-Die Abbildung der Wertebereiche auf die Y-Achse funktioniert auf dieselbe Art. 
-So kann der Anwender frei zwischen zwei Attributen seiner Wahl wählen, die er untersuchen möchte.
-Es werden je die Datenpunkte visualisiert, die dem per Drop-Down-Menü ausgewählten Genre entsprechen. 
+%In diesem Scatterplot wird auf die X-Achse je nach Auswahlwunsch des Betrachters je der Wertebereich der Attribute \textit{North America}, \textit{Europe}, \textit{Japan}, \textit{Rest of World} und \textit{Global} abgebildet.
+%Die Abbildung der Wertebereiche auf die Y-Achse funktioniert auf dieselbe Art. 
+%So kann der Anwender frei zwischen zwei Attributen seiner Wahl wählen, die er untersuchen möchte.
+%Es werden je die Datenpunkte visualisiert, die dem per Drop-Down-Menü ausgewählten Genre entsprechen. 
 
-Die Datenpunkte werden klassisch als ungefüllte Kreise dargestellt, wobei sich ihre Position aus den Werten der oben beschriebenen, momentan ausgewählten Atribute bestimmt. 
-Beim Hovern über die Punkte werden diese eingefärbt und ein weiteres Attribut, der Titel des Videospiels angezeigt. 
-Zur exakten Erkennung der Attributwerte der Verkaufszahlen werden diese hinter dem Titel in Klammern aufgelistet. 
-Es wird zuerst der Wert für die X-Achse, dann der Wert für die Y-Achse dargestellt.
+%Die Datenpunkte werden klassisch als ungefüllte Kreise dargestellt, wobei sich ihre Position aus den Werten der oben beschriebenen, momentan ausgewählten Atribute bestimmt. 
+%Beim Hovern über die Punkte werden diese eingefärbt und ein weiteres Attribut, der Titel des Videospiels angezeigt. 
+%Zur exakten Erkennung der Attributwerte der Verkaufszahlen werden diese hinter dem Titel in Klammern aufgelistet. 
+%Es wird zuerst der Wert für die X-Achse, dann der Wert für die Y-Achse dargestellt.
 
-Durch diese Designentscheidungen werden die zuvor formulierten Anforderungen erfüllt. 
-Die Kodierung der Daten auf die Punkte im Scatterplot, also Koordinatensystem ermöglichen ein Wahrnehmen und damit eine Orientierung im Raum, der mental entsteht und das Verständnis für die Relation der Datenpunkte zueinander verbessert.
-Weiterhin ist dadurch die visuelle Darstellung von möglichen Korrelationen zwischen zwei Attributen erkennbar. 
+%Durch diese Designentscheidungen werden die zuvor formulierten Anforderungen erfüllt. 
+%ie Kodierung der Daten auf die Punkte im Scatterplot, also Koordinatensystem ermöglichen ein Wahrnehmen und damit eine Orientierung im Raum, der mental entsteht und das Verständnis für die Relation der Datenpunkte zueinander verbessert.
+%Weiterhin ist dadurch die visuelle Darstellung von möglichen Korrelationen zwischen zwei Attributen erkennbar. 
 
-Durch die zweidimensionale Darstellung der Attribute kann eine genauere Betrachtung dieser erfolgen. 
-Entsprechend können Korrelationen besser analysiert werden.
-Auch die zuvor schon erkannten Muster und Ausreißer können überprüft werden.
-Durch die Einblendung der exakten Attributwerte ist auch die untergeordnete Anforderung der genauen Erkennbarkeit der Videospiele erfüllt. 
+%Durch die zweidimensionale Darstellung der Attribute kann eine genauere Betrachtung dieser erfolgen. 
+%Entsprechend können Korrelationen besser analysiert werden.
+%Auch die zuvor schon erkannten Muster und Ausreißer können überprüft werden.
+%Durch die Einblendung der exakten Attributwerte ist auch die untergeordnete Anforderung der genauen Erkennbarkeit der Videospiele erfüllt. 
 
-Die eher klassische Darstellung als Punkte erleichtert das Erkennen von Punktwolken respektive Cluster durch Intuition, insbesondere sollte es Korrelationen zwischen einer Region und den globalen Verkaufszahlen geben. 
-Ähnlich wie in Visualisierung zwei werden auch in Scatterplots die für quantitative Daten gut geeigneten visuellen Variablen Position, Orientierung und Gebiet genutzt. %bibliografie
+%Die eher klassische Darstellung als Punkte erleichtert das Erkennen von Punktwolken respektive Cluster durch Intuition, insbesondere sollte es Korrelationen zwischen einer Region und den globalen Verkaufszahlen geben. 
+%Ähnlich wie in Visualisierung zwei werden auch in Scatterplots die für quantitative Daten gut geeigneten visuellen Variablen Position, Orientierung und Gebiet genutzt. %bibliografie
 
-Weiterhin ist diese Darstellungsweise allgemein bekannt, sodass eine schnelle Analyse einzelner Wertpaare, aber auch Korrelationen und Ausreißer möglich ist. 
-Dadurch und durch die oben genannten Aspekte ist die Effektivität gegeben. 
-Auch expressiv ist diese Visualisierung, da die Darstellung der Datenpunkte als Kreise auch ohne Legende schnell erkannt wird. 
-Durch die Einblendung der exakten Werte beim Hovern wird eine mögliche Verwirrung durch Überlagerung verschiedener Symbole, Farben oder Größen der Punkte verhindert. 
-Die Wahl einer Farbe zur Darstellung der Datenpunkte, Füllung dieser beim Hovern und Wahl einer nicht einhundertpozentigen Deckkraft zur Ermöglichung der vereinfachten Erkennung der Punkte bei Überdeckung verbessert die Expressivität weiter. 
-Durch die unkomplizierte und schnell erstellbare Darstellung ist auch die Angemessenheit gegeben. 
+%Weiterhin ist diese Darstellungsweise allgemein bekannt, sodass eine schnelle Analyse einzelner Wertpaare, aber auch Korrelationen und Ausreißer möglich ist. 
+%Dadurch und durch die oben genannten Aspekte ist die Effektivität gegeben. 
+%Auch expressiv ist diese Visualisierung, da die Darstellung der Datenpunkte als Kreise auch ohne Legende schnell erkannt wird. 
+%Durch die Einblendung der exakten Werte beim Hovern wird eine mögliche Verwirrung durch Überlagerung verschiedener Symbole, Farben oder Größen der Punkte verhindert. 
+%Die Wahl einer Farbe zur Darstellung der Datenpunkte, Füllung dieser beim Hovern und Wahl einer nicht einhundertpozentigen Deckkraft zur Ermöglichung der vereinfachten Erkennung der Punkte bei Überdeckung verbessert die Expressivität weiter. 
+%Durch die unkomplizierte und schnell erstellbare Darstellung ist auch die Angemessenheit gegeben. 
 
-Alternativ bestehen in diesem Kontext keine sinnvollen Visualisierungsmöglichkeiten.
-Q- und QQ-Plots stellen Attributwerte nur F-Werten gegenüber bzw. auch gegeneinander, dann jedoch um Verschiebungen zueinander zu erkennen. 
-Korrelationstabellen lassen die hier vor allem gewünschten Korrelationen genau analysieren, stellen diese jedoch nicht visuell dar.
-So leiden Expressivität und Effektivität stark und die Anforderungen an Intuitivität, sowie Überprüfung von Mustern und Ausreißern sind nicht gegeben. 
-und Korrelationstabellen. 
+%Alternativ bestehen in diesem Kontext keine sinnvollen Visualisierungsmöglichkeiten.
+%Q- und QQ-Plots stellen Attributwerte nur F-Werten gegenüber bzw. auch gegeneinander, dann jedoch um Verschiebungen zueinander zu erkennen. 
+%Korrelationstabellen lassen die hier vor allem gewünschten Korrelationen genau analysieren, stellen diese jedoch nicht visuell dar.
+%So leiden Expressivität und Effektivität stark und die Anforderungen an Intuitivität, sowie Überprüfung von Mustern und Ausreißern sind nicht gegeben. 
+%und Korrelationstabellen. 
 
 \subsection{Interaktion}
 In der ersten Visualisierung werden Knoten bei Interaktion durch Hovern über sie mittels Farbe hervorgehoben sowie beschriftet. 
