@@ -7,6 +7,7 @@ Dieses Projekt umfasst die studentische Tätigkeit zur Erzielung einer grobgranu
 Folgende Programmierwerkzeugen wurden verwendet: 
 * ELM
 * LaTex
+* HTML (created automatically by Elm)
 
 Folgende Formate zur Speicherung der Daten wurden genutzt:
 * JSON
