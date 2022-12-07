@@ -29,7 +29,7 @@
             () \\
             \vspace{10pt}
             Link zur öffentlich zugänglichen Website (GitHub-Pages):\\
-            \url{}
+            \url{https://lena-ar.github.io/Info-Vis/}
             }
 
 \maketitle% verwendet die zuvor gemachte Angaben zur Gestaltung eines Titels
@@ -184,7 +184,7 @@ Zu beachten ist jedoch, dass als Null-Werte auch solche aufgeführt sind, deren 
 %Welche Datenvorverarbeitungsschritte sind notwendig? Beschreiben Sie die einzelnen Schritte und begründen sie sie, z.B. warum werden manche Daten weggelassen, über welche Mengen werden Durchschnitte berechnet, warum sind die so berechneten Werte aussagekräftiger als andere Werte. Wenn möglich sollen sie die Datenvorverarbeitung in Elm programmieren, so dass ihre Anwendung auf eine Änderung der Rohdaten reagieren kan. 
 
 \section{Visualisierungen}
-Nachfolgend wird eine Analyse der Anwendungaufgaben zur Lösung des Zielproblems durchgeführt, Anforderungen an die Visualisierungen abgeleitet und diese präsentiert.
+Nachfolgend wird eine Analyse der Anwendungsaufgaben zur Lösung des Zielproblems durchgeführt, Anforderungen an die Visualisierungen abgeleitet und diese präsentiert.
 
 \subsection{Analyse der Anwendungsaufgaben}
 Das Zielproblem der konkreten Anwendungsaufgaben ist eine grobgranulare Marktanalyse des Videospielmarktes der \textit{XBoxOne} 
@@ -195,9 +195,9 @@ Mit Rücksicht auf die Zielgruppe ist eine Lösung im Kontext von Präsentatione
 Weiterhin ist die sprachliche Diversität der Zielgruppe durch die globale Verteilung der Publisher zu berücksichtigen.
 
 Als erste Anwendungsaufgabe ergibt sich die Schaffung eines Marktüberblicks als Ansatzpunkt weiterer Entscheidungen und erste Eingrenzungen der zu untersuchenden Genres. 
-Das Management der Publisher benötigt eine Übersicht über die eigenen und konkurrierende Angebote, die insbesondere für größere, breit aufgestellte Verleger sinvoll ist.
+Das Management der Publisher benötigt eine Übersicht über eigene und konkurrierende Angebote, die insbesondere für größere, breit aufgestellte Verleger sinnvoll ist.
 In dieser Übersicht sollten die Publisher, ihre abgedeckten Genres und die in ihnen kategorisierten Videospieltitel ersichtlich sein. 
-Je nach Strategie des betrachtenden Publishers können bspw. aufgrund der geringen Anzahl der eigenen Spiele in einem Genre oder aber der hohen Anzahl der konkurrierenden Titel in einem solchen Vorentscheidungen zur Eingrenzung des mittels nachfolgender Anwendungaufgabe näher zu untersuchenden Genres getroffen werden. 
+Je nach Strategie des betrachtenden Publishers können bspw. aufgrund der geringen Anzahl eigener oder hoher Anzahl konkurrierender Spiele in einem Genre Vorentscheidungen zur Eingrenzung des mittels nachfolgender Anwendungsaufgabe näher zu untersuchenden Genres getroffen werden. 
 Zur Lösung der Anwendungsaufgabe soll ein mentales Modell von Beziehungen und Hierarchien zwischen Publishern, Genre und Titel bildlich entstehen, bestenfalls auf einen Blick.
 Dies könnte auch schriftlich durch Tabellen oder Texte umgangen werden, jedoch unterstützt das mentale Modell das Verständnis und beschleunigt den Vorentscheid ungemein. 
 Besonders im Rahmen einer Präsentation ist es unumgänglich.
@@ -209,10 +209,10 @@ Weiterhin ist es für eine mögliche Spezifikation der künftigen Marktstudie au
 Somit können Abhängigkeiten besonders zwischen zwei Regionen detailliert analysiert werden. 
 Benötigt wird zudem eine Erkennbarkeit der konkreten Informationen der Spieletitel. 
 Bei der Bearbeitung können zwei mentale Modelle helfen.
-Zum einen soll mental eine Art Sicht von oben auf die Welt mit allen Regionen entstehen, die durch die Videospiele als Datenpuntke verbunden sind. 
-Durch Häufungen von Videospielen und Ähnlichkeiten in den Verbindungen vieler Spiele, sollen mental Muster und Cluster über alle Regionen entstehen.
+Zum einen soll mental eine Art Sicht von oben auf die Welt mit allen Regionen entstehen, die durch die Videospiele als Datenpunkte verbunden sind. 
+Durch Häufungen von Videospielen und Ähnlichkeiten in den Verbindungen vieler Spiele sollen mental Muster und Cluster über alle Regionen entstehen.
 Zum anderen ist ein mentales Modell mit erhöhtem Detaillierungsgrad zur Lösung der Anwendungsaufgabe sinnvoll, mit dem je zwei zuvor als interessant erkannte Regionen vergrößert werden. 
-Hierbei sollen durch Punkte in Raum die Verkaufszahlen mental positioniert und damit vergleichbar werden sowie Korrelationen in ihrer Art leichter bestimmbar sein. 
+Hierbei sollen durch Punkte im Raum die Verkaufszahlen mental positioniert und damit vergleichbar werden sowie Korrelationen in ihrer Art leichter bestimmbar sein. 
 Durch Punkthaufen und deutlich anders positionierte Punkte sollen auch die vorher erkannten Muster, Cluster und Ausreißer im Detail prüfbar sein. %hier evtl umformulieren oder weg
 Visualisierungen zum Aufbau dieser mentalen Modelle sind elementar, da ohne sie teils Analysen der gewünschten Aspekte nur sehr schwer möglich sind, vor allem die Erkennung von Clustern und Korrelationen.
 
@@ -283,25 +283,25 @@ Für eine gute Expressivität im Rahmen dieser oberen Ebene ist entsprechend die
 Wie zuvor analysiert sind hier vor allem Offenlegung von Hierarchien und Mustern, Abhängigkeiten und Ausreißern zwischen Regionen in einem Genre zu nennen.
 Zur Erfüllung der Effektivität ist ein intuitives, schnelles Verständnis der Visualisierungen gefordert.
 Die Wichtigkeit dieser Anforderung begründet sich im zuvor analysierten Zeitdruck durch die Anwendung in Präsentationen sowie der Entscheidungen.
-Aufgrund der mit wenig spezifischem Vorwissen im Bereich Visual Analytics ausgestatteten Zielgruppe bedeutet Effektivität auch eine geringere Komplexität der Darstellungen, ergo intuitiv für ie Zielgruppe verständliche Visualsierungen vor allem von Korrelationen und Mustern.
+Aufgrund der mit wenig spezifischem Vorwissen im Bereich Visual Analytics ausgestatteten Zielgruppe bedeutet Effektivität auch eine geringere Komplexität der Darstellungen, ergo intuitiv für die Zielgruppe verständliche Visualisierungen vor allem von Korrelationen und Mustern.
 Durch die der Zielgruppe zugrunde liegende minimal verfügbare Zeit zum Verständnis liegt der Fokus klar auf zeitlicher Effizienz bei bestmöglicher Effektivität.
 Durch die Anwendung der Visualisierungen zur Entscheidungsunterstützung des Fokus weiterer Marktstudien ist besonders die Anforderung an Angemessenheit zentral. 
-Die Visualisierungen müssen wenig Zeit- und Kostenaufwändig sein, um einen Vorteil in dem vorgestellten Verfahren zu bieten. 
+Die Visualisierungen müssen wenig zeit- und kostenaufwendig sein, um einen Vorteil in dem vorgestellten Verfahren zu bieten. 
 Dazu ist es notwendig, den Umfang und den Aufwand der Visualisierungen zum Erreichen der Expressivität für die Darstellung der oberen visuellen Ebene der Informationen auf niedrigerem Niveau zu halten.
 
 Bezüglich der Farbgebung der Visualisierungen und Website ist eine Rücksichtnahme auf mögliche Sehschwächen der Zielgruppe nötig. 
 Ohne Expressivität und Effektivität negativ zu beeinflussen, ist eine Beschränkung auf eine Farbgruppe sinnvoll. 
 Untergeordnet sind außerdem Anforderungen an Ästhetik und indirekte Leitung des Blicks über die Website durch gerade erkennbare Abstufungen in Farbe und Kontrast, sogenannte \textit{Just Noticable Differences}.
-Zum einheitlichen Verständnis der Visualisierungen die Diversität der Zielgruppe berücksichtigend, wird die Sprache Englisch festgelegt.
+Zum einheitlichen Verständnis der Visualisierungen, die Diversität der Zielgruppe berücksichtigend, wird die Sprache Englisch festgelegt.
 
 Die Analyse der zweiten Anwendungsaufgabe ergab zuvor die Notwendigkeit der Auswahl möglicher Genres zur Entscheidung für Investitionen in Marktstudien in bestimmten Genres.
 Folglich gilt die Anforderung an einen Filter zur Auswahl der Genres in den zwei Visualisierungen der Verkaufszahlen. 
-Aus der Analyse jener zweiten Anwendugnsaufgabe folgt außerdem die Anforderung an die dritte Visualisierung mit der Auswahl von zwei Regionen zum Vergleich. 
+Aus der Analyse jener zweiten Anwendungsaufgabe folgt außerdem die Anforderung an die dritte Visualisierung mit der Auswahl von zwei Regionen zum Vergleich. 
 
 Konkret muss die erste Visualisierung als Ausgangspunkt der Anwendung die in der Analyse der ersten Anwendungsaufgabe geforderten Beziehungen zwischen Publishern, Genres und Titel abbilden und auf einen Blick für die Zielgruppe sichtbar machen.
 An die zweite Visualisierung stellt sich die Anforderung nach einer ganzheitlichen Sicht über alle Attribute der Regionen sowie die Aufdeckung von in den Verkaufszahlen der Regionen versteckten Mustern, Clusterbildungen und möglichen Ausreißern über alle Regionen hinweg.
-Die Abbildung mehrdimensionaler Daten ist essentiell.
-Zur gewünschten Vergrößerung der vorherigen Ansicht auf zwei interessante Attribute, ist für die dritte Visualisierung die Ansicht zweidimensionaler Daten ausreichend.
+Die Abbildung mehrdimensionaler Daten ist essenziell.
+Zur gewünschten Vergrößerung der vorherigen Ansicht auf zwei interessante Attribute genügt die Ansicht zweidimensionaler Daten für die dritte Visualisierung.
 Jedoch müssen die Attribute resp. Regionen dazu variabel wählbar sein. 
 An die dritte Visualisierung wird vor allem die Anforderung nach detaillierter Darstellung von Korrelationen und deren Arten gestellt. 
 Nützlich ist eine Überprüfung der in der zweiten Visualisierung sichtbaren Muster und Cluster in den zwei gewählten Dimensionen.
@@ -363,7 +363,7 @@ Nützlich ist eine Überprüfung der in der zweiten Visualisierung sichtbaren Mu
 %Leiten sie Anforderungen an das Design der Visualisierungen ab, die sich durch ihre Analyse des Zielproblems ergeben.
 \subsection{Präsentation der Visualisierungen}
 Es werden drei Visualisierungstechniken zur Erfüllung der Anforderungen gewählt und präsentiert.
-Zur Datenpunktmarkierung und -hervorhebung sowie der Leitung des Blicks über die Website werden neben Schwarz-Weiß werden zwei harmonische Grüntöne in unterschiedlichen Konstraten und Opazitäten genutzt.
+Zur Datenpunktmarkierung und -hervorhebung sowie der Leitung des Blicks über die Website werden neben Schwarz-Weiß werden zwei harmonische Grüntöne in unterschiedlichen Kontrasten und Opazitäten genutzt.
 
 %Zur Erfüllung der Anaylsen und Anforderungen werden die Visualisierungstechniken \textit{explizites Baumdiagramm}, \textit{parallele Koordinate} und \textit{Scatterplot} gewählt.
 %Nachfolgend werden die ausgesuchten Visualisierungen vorgestellt und diskutiert. 
@@ -379,35 +379,35 @@ Zur Datenpunktmarkierung und -hervorhebung sowie der Leitung des Blicks über di
 %Die eben beschriebenen Präsentationen und Begründungen sollen für jede der drei folgenden Visualisierungen durchgeführt werden. 
 
 \subsubsection{Visualisierung Eins}
-Zur Erfüllung der Anforderungen an die Visualsierung der ersten Anwendungsaufgabe wird ein explizites Baumdiagramm gewählt.
+Zur Erfüllung der Anforderungen an die Visualisierung der ersten Anwendungsaufgabe wird ein explizites Baumdiagramm gewählt.
 Mittels dieser können hierarchische Beziehungen zwischen Attributwerten als Knoten in Form eines Baumes mit einem Wurzelknoten abgebildet werden. 
 Hierarchische Beziehungen zwischen den Knoten seien durch gerade Linien, Kurven oder Bögen gekennzeichnet, die Knoten miteinander verbinden.\cite[1]{Schulz.2011} 
 
-Pfade zwischen den Knoten, sowie die Positionierung von Eltern über Kindknoten stellen hier die hierarchische Beziehung dar. 
+Pfade zwischen den Knoten sowie die Positionierung von Eltern über Kindknoten stellen hier die hierarchische Beziehung dar. 
 Publisher sind Elternknoten der Genres, die wiederum Elternknoten der Videospieltitel sind.
-Zur Verhinderung von ungewollten Kreuzungen der Pfade zwischen Publishern und Genres, wird letzteren zur eindeutigen Identifikation das Kürzel des zugehörigen Publishers hinzugefügt.
+Um ungewollten Kreuzungen der Pfade zwischen Publishern und Genres zu verhindern, wird letzteren zur eindeutigen Identifikation das Kürzel des zugehörigen Publishers hinzugefügt.
 Andernfalls verlöre die Visualisierung ihren Zweck der Übersicht und einfachen Betrachtung der eigenen abgedeckten Genres und in ihnen verordnete Titel sowie der Vergleich mit der Konkurrenz.
 Eine erste Eingrenzung der Genres durch oben genannte Analysen ist so möglich.
 
 Die aufgeführten Anforderungen an Expressivität, Effektivität und Angemessenheit werden durch ein explizites Baumdiagramm gut erfüllt.
 So ist eine zweifelsfreie Darstellung der Beziehungen und Abbildung der Hierarchien möglich, ohne unpassende Assoziationen zu wecken. 
 Alle Informationen, die hier für die obere visuelle Ebene der Informationen nötig sind, werden übermittelt. 
-In den Daten versteckte Beziehungen werden offengelegt und konkrete Details durch die Anzeige der Knotenbezeichnungen bei Hovern mit der Maus aufgeführt.
-Durch das intuitive, schnelle Verständnis ohne notwendige Erklärungen und Legenden, die überblicksartige Ansicht und die weite Verbreitung solcher Diagramme in vielen unterschiedlichen Bereichen ist auch die Effektivität der Visualsierung hinreichend gegeben. 
+In den Daten versteckte Beziehungen werden offengelegt und konkrete Details durch die Anzeige der Knotenbezeichnungen beim Hovern mit der Maus aufgeführt.
+Durch das intuitive, schnelle Verständnis ohne notwendige Erklärungen und Legenden, die überblicksartige Ansicht und die weite Verbreitung solcher Diagramme in vielen unterschiedlichen Bereichen ist auch die Effektivität der Visualisierung hinreichend gegeben. 
 Die durch Hovern angezeigten expliziten Informationen sowie die schnelle quantitative Übersicht über Angebote durch Zählung der von einem Elternknoten ausgehenden Pfade trägt unter anderem dazu bei.
 Weiterhin ist diese Visualisierungstechnik durch den eher als gering einzuschätzenden monetären und zeitlichen Aufwand zur Erstellung bei starker Expressivität und Effektivität angemessen.
 
 Wie erwähnt, wird durch das explizite Baumdiagramm die Anforderung an die Darstellung von hierarchischen Beziehungen erfüllt.
 Durch den Einsatz des Walker-Algorithmus wird die Effektivität dank einheitlicher Positionierung der Knoten nochmals verbessert.\cite[688ff.]{Walker.1990}
-Vermindert wird sie gleichzeitig durch die hohe Anzahl an Knoten, die zu einem breiteren, leicht weniger überischtlichem Diagramm führen. 
+Vermindert wird sie gleichzeitig durch die hohe Anzahl an Knoten, die zu einem breiteren, leicht weniger übersichtlichem Diagramm führen. 
 Durch das Duplizieren des Diagramms mit veränderter Größe wird der Nachteil der größeren Menge an Knoten reduziert.
 
 Hyperbolische Bäume sind eine Alternative zum expliziten Baumdiagramm. 
-Durch die Zeichnung der Beziehungen und Knoten im hyperbolsichen Raum und einen wachsenden Kreisumfang bietet diese Technik mehr Platz für größere Hierarchien.\cite[2f.]{Lamping.1995}
+Durch die Zeichnung der Beziehungen und Knoten im hyperbolischen Raum und einen wachsenden Kreisumfang bietet diese Technik mehr Platz für größere Hierarchien.\cite[2f.]{Lamping.1995}
 Jedoch zöge diese Alternative einen höheren (Kosten-)Aufwand mit sich, weniger Intuitivität in der Erkennung der eigenen und konkurrierenden Angebote sowie eine suboptimale quantitative Übersicht der qualitativen Daten. 
 Implizite Baumdiagramme sind eine weitere Alternative, bei der die Eltern-Kind-Beziehung durch Umschließung des Kindknotens durch den Elternknoten visualisiert werde.\cite[394]{Schulz.2011}
-Sie sind platzsparender, aber durch einen geringeren Bekanntheitsgrad in der Zielgruppe wengier intuitiv verstehbar. 
-Als Überblick bieten sie zudem weniger schnell eine Übersicht über eigene und konkurrierende Angebote statt einges Entlangfahrens der Kanten mit dem Auge.
+Sie sind platzsparender, aber durch einen geringeren Bekanntheitsgrad in der Zielgruppe weniger intuitiv verstehbar. 
+Als Überblick bieten sie zudem weniger schnell eine Übersicht über eigene und konkurrierende Angebote statt eines Entlangfahrens der Kanten mit dem Auge.
 
 %Zur Erfüllung der Anforderungen wird für die erste Visualisierung ein explizites Baumdiagramm gewählt.
 %Mit einem solchen können Hierarchien gut, übersichtlich und auf allgemein bekannte Weise dargestellt werden. 
@@ -443,9 +443,9 @@ Als Überblick bieten sie zudem weniger schnell eine Übersicht über eigene und
 
 \subsubsection{Visualisierung Zwei}
 Für die erste Teilbearbeitung der zweiten Anwendungsaufgabe wird der Parallele Koordinaten Plot gewählt, da er sich gut für Visualisierungen von Datenverteilungen und Abhängigkeiten zwischen Attributen eigne.\cite[11]{Chan.2006}
-In positiver Richtung der Y-Achse werden parallel zueinander die in ihrem Wertebereich linear skalierten Achsen positioniert.
+In positiver Richtung der y-Achse werden parallel zueinander die in ihrem Wertebereich linear skalierten Achsen positioniert.
 Ein Datenpunkt hat verschiedene Koordinaten, mittels derer Polygonzüge konstruiert werden.
-Die Schnittpunkte mit den jeweiligen Achse zeigen den Attributwert.\cite[25f.]{Inselberg.1987} \cite[11]{Chan.2006}
+Die Schnittpunkte mit den jeweiligen Achsen zeigen den Attributwert.\cite[25f.]{Inselberg.1987} \cite[11]{Chan.2006}
 
 Auf den parallelen Achsen werden die Wertebereiche der Verkaufszahlen der fünf verschiedenen Regionen skaliert und nebeneinander angeordnet abgebildet.
 Die Schnittpunkte der Polygonzüge, resp. Datenpunkte, mit den Achsen kodieren die jeweiligen Attributausprägungen in den Regionen.
@@ -466,12 +466,12 @@ Bei großen Datensätzen ist es in Parallelen Koordinaten Plots problematisch, e
 Durch ein Hervorheben der Linie und der Informationsanzeige beim Hovern kann dies gelöst werden. 
 Gleichzeitig erhalten alle Polygonzüge eine grüne Färbung mit geringerer Opazität, sodass Schnittstellen und Häufungen von Liniensegmenten durch einen kräftigeren Ton leicht erkennbar sind. 
 Diese Art von Röntgenstrahlentechnik kann die Erkennung von Mustern und Clustern verbessern und verbessert die Effektivität wieder.
-Das Design der Visualisierung mittels Filterung und freier Wahl der Achsenbelegung verhindert zwar nicht die vielen Kombinationsmöglichkeiten, jedoch die dabei mittels einfachem Achsentausch auftretende Überforderung.
-Parallele Koordinaten Plots sind zwar etwas (kosten-)aufwändiger zu erstellen, bleiben aber trotzdem im Kontext der Anwendungsaufgabe angemessen.
+Das Design der Visualisierung mittels Filterung und freier Wahl der Achsenbelegung verhindert zwar nicht die vielen Kombinationsmöglichkeiten, jedoch die dabei mittels einfachen Achsentausches auftretende Überforderung.
+Parallele Koordinaten Plots sind zwar etwas (kosten-)aufwendiger zu erstellen, bleiben aber trotzdem im Kontext der Anwendungsaufgabe angemessen.
 
 Eine Alternativen zu Parallelen Koordinaten Plots stellen Icon-Techniken, bspw. Star Plots oder Stickfigures dar.
 In Star Plots seien die Dimensionen als eckige Achsen ausgehend von einem Kreismittelpunkt mit einer äußeren Verbindungslinie zur Repräsentation der Attributausprägung jeder der Dimensionen visualisiert.
-Dabei steigt jedoch die Anzahl der zu erstellenden Gylphen mit steigernder Menge an Datenpunkten stark, da sie nur je einen Datenpunkt repräsentieren können.\cite[20]{Chan.2006}
+Dabei steigt jedoch die Anzahl der zu erstellenden Icons mit steigernder Menge an Datenpunkten stark, da sie nur je einen Datenpunkt repräsentieren können.\cite[20]{Chan.2006}
 Ein ähnliches Problem existiert auch bei Stickfigures, die zusätzlich durch zwei Attribute in einem Koordinatensystem mit weiteren positioniert werden.
 Zwar können so grobe Muster und Cluster erkannt werden, die anderen Anforderungen bspw. konkrete Informationen zu Datenpunkten werden allerdings unzureichend erfüllt.
 Intuitivität und Effektivität sind im vorherrschenden Kontext unzureichend, womit Icon-Techniken alternativ ungeeignet sind. 
@@ -514,7 +514,7 @@ Intuitivität und Effektivität sind im vorherrschenden Kontext unzureichend, wo
 
 \subsubsection{Visualisierung Drei}
 Zur vollständigen Beantwortung der zweiten Anwendungsaufgabe wird eine weitere Visualisierung benötigt, für die die Technik des Scatterplot gewählt wird.
-In einem karthesischen Koordinatensystem mit orthogonaler X- und Y-Achse werden X- und Y-Werte zweier variabler Attribute eines Datenpunkts zu bivariaten Paaren zusammengefasst, die als Punkte in diesem abgetragen werden.
+In einem kartesischen Koordinatensystem mit orthogonaler x- und y-Achse werden x- und y-Werte zweier variabler Attribute eines Datenpunkts zu bivariaten Paaren zusammengefasst, die als Punkte in diesem abgetragen werden.
 Durch die Position werden die Attributwerte visualisiert.\cite[103]{Friendly.2005}
 So werden, auch durch Abbildung vieler Datenpunkte, die Form von Abhängigkeiten, Muster und Ausreißer zwischen zwei Attributen sichtbar.\cite[9]{Chan.2006} \cite[103]{Friendly.2005}
 Die Schwäche des Scatterplots durch Verlust an Informationen von mehreren Dimensionen wird in diesem Fall durch eine Detaillierung und Überprüfung der Erkenntnisse des Parallelen Koordinaten Plots im Einzelnen zum Vorteil.\cite[9]{Chan.2006} \cite[93]{Wegman.1997}
@@ -525,10 +525,10 @@ Weiterhin sind somit alle möglichen Abhängigkeiten zwischen Attributkombinatio
 Die Datenpunkte werden zur visuellen Ablesbarkeit wie oben beschrieben als Attributwert-Kombinationen kodiert, an den Achsen skaliert und als klassische Kreise im Raum des Koordinatensystems positioniert. 
 Quantitative Daten lassen sich am besten auf Position und untergeordnet auch auf Orientierung abbilden, was der Scatterplot bestens umsetzt.\cite{Bertin.1982}
 
-Die Anforderungen an die Expressivität in Bezug aus die obere visuelle Ebene der Informationen werden durch die unmissverständliche Zuweisung der Videospielinformationen zum Punkt im Diagramm mittels Hovern sowie die Visualisierung von 
+Die Anforderungen an die Expressivität in Bezug auf die obere visuelle Ebene der Informationen werden durch die unmissverständliche Zuweisung der Videospielinformationen zum Punkt im Diagramm mittels Hovern sowie die Visualisierung von 
 versteckten Informationen erfüllt. 
 Letztere bestehen aus dem deutlichen Aufzeigen von Korrelationen und ihrer Art, Clustern und Ausreißern zwischen zwei wählbaren Attributen.
-Weiterhin lässt sich mit ihm die gewünschte Vergrößerung der multidimensionalen Daten auf eine Ansicht von nur zwei Attributen und dem damit verbundenen höheren Detaillierungsgrad umsetzen. 
+Weiterhin lässt sich mit ihm die gewünschte Vergrößerung der multidimensionalen Daten auf eine Ansicht von nur zwei Attributen und den damit verbundenen höheren Detaillierungsgrad umsetzen. 
 So kann die Analyse des komplizierteren Parallelen Koordianten Plots überprüft und Fehler erkannt werden. 
 Detailfragen zur finalen Entscheidung für ein weiter zu fokussierendes Genre oder eventuelle Korrelationen zwischen Regionen in diesem, die hinder- oder förderlich sein können, werden beantwortet. 
 Durch eine deutliche räumliche Abgrenzung von Punkthaufen jeder Form können Cluster erkannt und bestätigt sowie einzelne Ausreißer bestimmt werden.
@@ -541,9 +541,9 @@ Der Scatterplot ist durch seine Trivialität in der Abbildung zweier quantitativ
 Dadurch ist er vergleichsweise unkompliziert und kostengünstig bei hoher Expressivität und Effektivität.
 
 In diesem Kontext sind keine sinnvollen Alternativen möglich. 
-Korrelationstabellen listen die Abhändigkeiten nur tabellarisch auf, visualisieren sie also nicht mittels einer spezifischen Technik.
+Korrelationstabellen listen die Abhängigkeiten nur tabellarisch auf, visualisieren sie also nicht mittels einer spezifischen Technik.
 Mittels QQ-Plots können zwei statistische Variablen miteinander verglichen werden, jedoch mittels der geordneten Gegenüberstellung ihrer Quantile zur Erkennung von Verteilungen.
-Diese dienen nicht der Lösung des Zielproblem, könnten aber nach der Entscheidung für eine Investition in detaillierte Marktstudien in einem Genre dort Verwendung finden.
+Diese dienen nicht der Lösung des Zielproblems, könnten aber nach der Entscheidung für eine Investition in detaillierte Marktstudien in einem Genre dort Verwendung finden.
 So sei der Scatterplot "the most versatile, polymorphic, and generally useful"\cite[103]{Friendly.2005} Visualisierung für statistische Daten und eignet sich damit perfekt zur abschließenden Beantwortung der zweiten Anwendungsaufgabe und des gesamten Zielproblems.
 
 %Zuletzt wird zur weiteren Teillösung der zweiten Unteranwendung die Visualisierungtechnik Scatterplot umgesetzt. 
@@ -588,11 +588,11 @@ So sei der Scatterplot "the most versatile, polymorphic, and generally useful"\c
 In jeder der Visualisierungen sind Interaktionen mittels Hovern über die Datenpunkte zur Anzeige konkreter Informationen im jeweiligen Kontext des Plots sowie zum Aufleuchten des Datenpunkts zur besseren Erkennung möglich.
 Dies dient der Erfüllung der Anforderungen an stets mögliche Detailansichten sowie der Verbesserung der Effektivität und Effizienz wie in den vorherigen Kapiteln beschrieben.
 
-Auch in jeder einzelner Visualsierung sind Interaktionsmöglichkeiten integriert. 
+Auch in jeder einzelner Visualisierung sind Interaktionsmöglichkeiten integriert. 
 So kann im expliziten Baumdiagramm der vergrößerte Baum mittels Scrollbar verschoben werden und mithilfe eines Links zu den detaillierteren Visualisierungen gewechselt werden.
 Von jeder der detaillierten Plots kann der Anwender durch einen Link am unteren Ende der Website schnell einen weiteren Tab zur Rückkehr zum Baumdiagramm als Ausgangspunkt und Übersicht für bspw. einen Abgleich öffnen.
 Im Parallelen Koordinaten Plot sind die Achsen frei belegbar dank eines Drop-Down-Menüs für jede der Achsen. 
-Wie in Kapitel 3.3.2 beschrieben, können so Überforderung, Unübersichtlichkeit und Zeitverlust durch bloßen Achsentausch verhindert werden sowie die Abhängikeiten zwischen den Regionen in jeder Kombination untersucht und versteckte Details entdeckt werden. 
+Wie in Kapitel 3.3.2 beschrieben, können so Überforderung, Unübersichtlichkeit und Zeitverlust durch bloßen Achsentausch verhindert werden sowie die Abhängigkeiten zwischen den Regionen in jeder Kombination untersucht und versteckte Details entdeckt werden. 
 Die Betrachtung der Abhängigkeiten zwischen nur drei benachbarten Dimensionen ist damit weniger problematisch.
 Auch der Scatterplot bietet die Interaktion mit je einem Button als Drop-Down-Menü zur freien Achsenbelegung, um die detaillierte Untersuchung von Abhängigkeiten und den Vergleich zwischen zwei beliebigen Attributen zu ermöglichen.
 Dies dient auch der gewünschten Vergrößerung und Detaillierung der vorherigen Visualisierung.
@@ -606,7 +606,7 @@ Zuletzt wird die Anforderung an einen Filter zur Auswahl der Genres und entsprec
 Hierzu gibt es bei beiden Visualisierungen die Möglichkeit zur Interaktion mit einem Drop-Down-Menü, in dem das gewünschte zu betrachtende Genre ausgewählt werden kann und sich die visualisierten Daten entsprechend anpassen.
 Diese Filterung bleibt bei Umschalten des Plots bestehen und wird direkt auf den anderen angewandt, sodass eine Interaktion mit einem Plot zur Änderung des anderen führt. 
 Durch die Anzeige des Menüs sowie die sich anpassende Unterüberschrift des Plots ist das gewählte Genre nachvollziehbar.
-Die Zielgruppe kann durch die Interaktion mittels genrefilter die Spiele und die Abhängigkeiten derer zwischen den Regionen sinnvoller vergleichen und vielversprechende Genres und in diesem möglicherweise Regionen für die Investition in weitere Marktstudien eingrenzen.
+Die Zielgruppe kann durch die Interaktion mittels Genrefilter die Spiele und die Abhängigkeiten derer zwischen den Regionen sinnvoller vergleichen und vielversprechende Genres und in diesen möglicherweise Regionen für die Investition in weitere Marktstudien eingrenzen.
 
 %In der ersten Visualisierung werden Knoten bei Interaktion durch Hovern über sie mittels Farbe hervorgehoben sowie beschriftet. 
 %So ist eine allgemeine Übersicht ohne zu viele Details auf einmal möglich.
