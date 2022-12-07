@@ -1,6 +1,6 @@
 module Data exposing (..)
 
-import Csv exposing (parse)
+import Csv
 import Csv.Decode exposing (..)
 import Json.Decode
 import Tree exposing (Tree)

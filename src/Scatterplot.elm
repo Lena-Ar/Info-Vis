@@ -1,18 +1,12 @@
 module Scatterplot exposing (..)
 
-import Browser
-import Csv exposing (parse)
-import Csv.Decode exposing (..)
-import Html exposing (Html, pre, text, br)
-import Html.Events exposing (onInput)
-import Html.Attributes exposing (value)
-import Http
+import Html exposing (text)
 import Axis
-import Scale exposing (ContinuousScale, domain)
+import Scale exposing (ContinuousScale)
 import Statistics
-import TypedSvg exposing (circle, g, line, rect, style, svg, text_)
-import TypedSvg.Attributes exposing (class, fontFamily, fontSize, stroke, strokeWidth, textAnchor, transform, viewBox)
-import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y, y1, y2)
+import TypedSvg exposing (circle, g, style, svg, text_)
+import TypedSvg.Attributes exposing (class, fontFamily, fontSize, textAnchor, transform, viewBox)
+import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, y)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
 import Data exposing (Point, XyData, RegionType(..), GameSales)
@@ -117,7 +111,7 @@ point scaleX scaleY pointLabel xyPoint =
                 , y <| (Scale.convert scaleY <| Tuple.second xyPoint) - (radius + 1.5)
                 , textAnchor AnchorMiddle 
                 ]
-            [ Html.text <| 
+            [ text <| 
                 pointLabel.pointGame
                     ++ "("
                     ++ (String.fromFloat <| Tuple.first xyPoint)
@@ -175,7 +169,7 @@ scatterplot css model xValues yValues labelX labelY =
                 , fontSize <| Px 13
                 , fontFamily [ "sans-serif" ]
                 ]
-                [ Html.text labelX ]
+                [ text labelX ]
             ]
 
         -- y-axis --
@@ -189,7 +183,7 @@ scatterplot css model xValues yValues labelX labelY =
                 , fontSize <| Px 13
                 , fontFamily [ "sans-serif" ]
                 ]
-                [ Html.text labelY ]
+                [ text labelY ]
             ]
 
         -- points --

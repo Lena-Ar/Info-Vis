@@ -1,25 +1,17 @@
 module ParallelPlot exposing (..)
 
-import Browser
-import Csv exposing (parse)
-import Csv.Decode exposing (..)
-import Html exposing (Html, pre, text)
-import Html.Attributes exposing (href, placeholder, type_, value)
-import Html.Events exposing (..)
-import Http
 import Statistics
 import Axis
 import Shape
-import Scale exposing (ContinuousScale, domain)
+import Scale
 import List.Extra
 import Color
 import Path
-import TypedSvg exposing (circle, g, line, path, rect, style, svg, text_)
+import TypedSvg exposing (g, rect, style, svg, text_)
 import TypedSvg.Attributes exposing (class, fontFamily, fontSize, stroke, strokeWidth, textAnchor, transform, viewBox, fill)
-import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y, y1, y2)
+import TypedSvg.Attributes.InPx exposing (height, width, x, x1, x2, y, y1, y2)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
-import Html exposing (button)
 import Data exposing (MultiDimData, MultiDimPoint, GameSales, RegionType, regionTypeToAxisAnnotation)
 
 

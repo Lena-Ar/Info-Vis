@@ -2,14 +2,13 @@ module MainScatterParallel exposing (..)
 
 import Browser
 import Http
-import Csv exposing (parse)
-import Csv.Decode exposing (..)
 import Data
-import Html exposing (Html, pre, text)
-import Html.Attributes exposing (href, placeholder, type_, value, target)
+import Html exposing (Html, text)
+import Html.Attributes exposing (href, value, target)
 import Html.Events exposing (..)
 import ParallelPlot
 import Scatterplot
+-- import full Plots and Data to explicitly show where the functions originate --
 
 -- basic elm strucutre --
 main : Program () Model Msg
@@ -384,7 +383,8 @@ view model =
                                 , Html.p [Html.Attributes.style "fontSize" "18px", Html.Attributes.style "text-align" "center"] 
                                     [ Html.text ("This parallel coordinates plot shows the sales of video games in millions of units for XBox One sorted by selected genre.") 
                                     , Html.br [][]
-                                    , Html.text ("One polyline in this plot represents one videogame. The intersection with each parallel axis shows the value of the attribute displayed here. You can easily identify patterns, clusters and outliers in selected genre over all regions of the world.")
+                                    , Html.text ("One polyline in this plot represents one videogame. The intersection with each parallel axis shows the value of the attribute displayed here. You can easily identify patterns, clusters and outliers in selected genre over all regions of the world. Note that you can only see the correlations of one axis to the neighbouring two. Feel free to change the axes to inspect all.")
+                                    , Html.br [][]
                                     , Html.br [][]
                                     , Html.text ("By hovering over the lines you are able to inspect specific information for each videogame inculding exact sales data for each region.")
                                     ]
@@ -563,8 +563,7 @@ view model =
                                 [ Html.h4 []
                                     [ Html.text ("Please choose which plot you would like to see.")
                                     , Html.p []
-                                        [buttonPlot]
-                                    , Html.text ("Don't worry, your settings for genre will stay selected.")]
+                                        [buttonPlot]]
                                 ]
                                 , Html.div [Html.Attributes.style "margin" "auto"
                                     , Html.Attributes.style "background" "rgba(0, 0, 0, 0.02)"
