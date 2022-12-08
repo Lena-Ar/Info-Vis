@@ -707,7 +707,7 @@ Letzteres ist nach der manuellen Vorverarbeitung der Daten zwar nicht zwingend n
 
 Die erste Hilfsfunktion dient mittels \textit{Maybe.map2} dem Pipen.
 Basierend auf einer normalen \textit{Maybe.map5} Funktion wird die zweite Hilfsfunktion um einen Parameter erweitert. 
-Beide begründen sich aus den Dokumentationen der Elm-Core-Bibliothek zu Maybe.%\cite{EvanCzaplicki.o.J.} 
+Beide begründen sich aus den Dokumentationen der Elm-Core-Bibliothek zu Maybe.\cite{EvanCzaplicki.o.J.} 
 Da es kein \textit{Maybe.map6} gibt, wird in \textit{helpMapBig} die vorherige Hilfsfunktion angewandt, um dieses Problem zu umgehen. 
 %So kann transformiert werden wie es eine Maybe.map6 Funktion machen würde, wenn es sie gäbe.
 \textit{AssignmentAndReduce} wiederum wandelt schließlich lokal mithilfe der \textit{helpMapBig} die Daten vom Typ GameSales zu Maybe GameSales um und reduziert diese um die Datensätze mit fehlenden Werten mittels \textit{List.filterMap}.
