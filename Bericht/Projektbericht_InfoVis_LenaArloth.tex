@@ -850,111 +850,138 @@ Hier war es im Verlauf kompliziert, den Überblick über die Schachtelungen sowi
 %Beschreiben Sie die Implementierung ihrer Visualisierungsanwendung in Elm. Stellen die Gliederung ihres Quellcodes vor. Haben Sie verschiedene Elm-Module erstellt. Was war aufwändig umzusetzen, was ließ sich mit dem vorhanden Code aus den Übungen relativ einfach umsetzen? 
 %Wie sieht die Elm-Datenstruktur für das Model aus, in dem die verschiedenen Zustände der Interaktion gespeichert werden können.
 \section{Anwendungsfälle}
-Im folgenden Kapitel wird ein möglicher Anwendungsfall der implementierten Visualisierungen dargestellt.
-Dabei werden diese aus der Sicht eines mittleren Managers des Publishers \textit{505 Games} betrachtet, der sie und die Erkenntnisse aus ihnen dem oberen Management des Publishers sowie Stakeholdern des Unternehmens präsentiert. 
-Daraus sollen Indikatoren für potenzielle Investitionen in neue Videospiele bzw. Fortsetzungen vorhandener Titel eines Genres gefunden werden. 
-Kann ein solcher Indikator für Potenzial gefunden werden, so kann entschieden werden, ob weitere detailliertere Marktstudien in Auftrag gegeben werden sollen. 
-Zudem können Vorentscheidungen zur Aufstellung eines neuen Videospiels im Markt getroffen werden, wobei zwischen einer breiten, globalen Aufstellung oder der Konzentration auf bestimmte Märkte resp. Regionen entschieden werden kann.
+Im folgenden Kapitel wird ein möglicher Anwendungsfall der implementierten Visualisierungen präsentiert.
+Dabei präsentiert ein mittlerer Manager des Publishers \textit{505 Games} die Visualisierungen zur Vorstellung der Erkenntnisse dem oberen Management sowie den Stakeholdern des Unternehmens, um weiter analysierend eine fundierte Investitionsentscheidung zu treffen. 
+Es sollen Indikatoren für potenzielle Investitionen in neue Videospiele bzw. Fortsetzungen vorhandener Titel eines Genres gefunden werden, die zu einer Entscheidung zur Inauftraggabe detaillierter Marktstudien in den identifizierten Genres und potenziell zu fokussierenden Regionen führen.
+%Kann ein solcher Indikator für Potenzial gefunden werden, so kann entschieden werden, ob weitere detailliertere Marktstudien in Auftrag gegeben werden sollen. 
+%Zudem können Vorentscheidungen zur Aufstellung eines neuen Videospiels im Markt getroffen werden, wobei zwischen einer breiten, globalen Aufstellung oder der Konzentration auf bestimmte Märkte resp. Regionen entschieden werden kann.
 
 %Präsentieren sie für jede der drei Visualisierungen einen sinnvollen Anwendungsfall in dem ein bestimmter Fakt, ein Muster oder die Abwesenheit eines Musters visuell festgestellt wird. Begründen sie warum dieser Anwendungsfall wichtig für die Zielgruppe der Anwenderinnen ist. Diskutieren sie weiterhin, ob die oben beschriebene Information auch mit anderen Visualisierungstechniken hätte gefunden werden können. Falls dies möglich wäre, vergleichen sie die den Aufwand und die Schwierigkeiten ihres Ansatzes und der Alternativen. 
 \subsection{Anwendung Visualisierung Eins}
-Zuerst lädt das explizite Baumdiagramm. 
+%Zuerst lädt das explizite Baumdiagramm. 
 %Dank Überschriften und Unterüberschriften ist eine inhaltliche Orientierung auf der Website gegeben.
 %Der Informationstext hilft beim Verständnis des Diagramms.
-Mittels farblicher Unterschiede der einzelnen Websitebereiche sowie der Abgrenzung der Container durch Umrandungen wird das Auge der Betrachter schnell und unbemerkt auf die wichtigen Steuerungselemente sowie die eigentliche Visualisierung gelenkt.
-Zu diesem Zweck wird mit Ausnahme des Navigationscontainers mit \textit{Just Noticable Differences} gearbeitet.
-Sollte eine Person mit Farbsehschwäche unter den Präsentationsteilnehmern sitzen, so ist dies durch Abstufungen der Grüntöne auch im Kontrast auf der Website und in den Visualisierungen kein Problem. 
-Falsche Farberkennungen spielen für das Verständnis keine Rolle.
+Wie in allen Visualisierungen übereinstimmend enworfen, wird auch im expliziten Baumdiagramm mittels teils minimaler farblicher Unterschiede der einzelnen Websitebereiche und der Abgrenzung der Container durch Umrandungen 
+das Auge der Betrachter schnell und indirekt auf die wichtigen Steuerungselemente sowie die eigentliche Visualisierung gelenkt.
+%Zu diesem Zweck wird mit Ausnahme des Navigationscontainers mit \textit{Just Noticable Differences} gearbeitet.
+Sitzt eine Person mit Farbsehschwäche unter den Präsentationsteilnehmern, so ist dies durch Abstufungen der Grüntöne und des Kontrastes auf der Website und in den Visualisierungen unproblematisch. 
+%Falsche Farberkennungen spielen für das Verständnis keine Rolle.
 
-Im ersten Ausschnitt des Baumdiagramms kann der Präsentator den Teilnehmern einen Überblick über die Publisher gewähren sowie die eigene Position im Baum aufzeigen.
-Im zweiten, detaillierteren Ausschnitt wird den Managern und Stakeholdern dargestellt, welche Genres sie mit \textit{505 Games} bedienen sowie die darunter kategorisierten Spiele.
-Insgesamt bieten sie fünfzehn Videospiele in acht Genres an, wobei \textit{Adventure}, \textit{Racing} und \textit{Shooter} die meisten Spiele haben.
-Dank der Einblendungen der Titel und Genres beim Hovern über die sich grün färbenden Knoten in beiden Diagrammen sowie das Scrollen im zweiten Diagramm sind konkrete Ein- und Überblicke effektiv möglich. 
-Es wird entschieden, die Genres \textit{Action}, \textit{Platform} und \textit{Sports} aufgrund der bisher eher geringen Ausprägung im eigenen Unternehmen näher zu betrachten. 
+Der erste Ausschnitt des Baumdiagramms gewährt den Teilnehmern einen Überblick über alle Publisher sowie die eigene Position im Baum.
+Im zweiten, detaillierteren Ausschnitt wird den Managern und Stakeholdern dargestellt, welche Genres sie mit \textit{505 Games} bedienen und welche ihrer Spiele in welches Genre passen.
+Durch die einfache Baumstruktur ist schnell erkennbar, dass sie fünfzehn Videospiele in acht Genres anbieten, wobei \textit{Adventure}, \textit{Racing} und \textit{Shooter} die meisten Spiele aufweisen.
+Dank Einblendung der Titel und Genres beim Hovern über die sich grün färbenden Knoten in beiden Diagrammen sowie das Scrollen im zweiten Diagramm sind konkrete Ein- und Überblicke effektiv möglich. 
+Die Genres \textit{Action} und \textit{Sports} werden aufgrund der bisher eher geringen Ausprägung im eigenen Unternehmen näher betrachtet. 
 
-Aus dem Baumdiagramm ergibt sich durch die hohe Anzahl an anbietenden Publishern vor allem eine Konkurrenz im Genre \textit{Action}. 
-Durch die Struktur und Positionierung der Knoten ist schnell erkennbar, dass hier vor allem \textit{Activision}, \textit{Capcom}, \textit{Ubisoft} und \textit{Warner Bros.} durch ein hohes Spieleangebot die stärkste Konkurrenz zu sein scheinen. 
-In diesem Genre kann Potenzial durch viele Käufer liegen, da viele Publisher hier Spiele anbieten. 
-Gleichzeitig gibt es viel Konkurrenz, wodurch eine Sicht auf mögliche Korrelationen in den Regionen der Welt und die entsprechend beste Positionierung im Markt wichtig ist.
-\textit{Sports} und vor allem \textit{Platform} haben weniger Konkurrenz, wobei gerade ersteres durch Publisher wie \textit{EA Sports} und \textit{2K Sports} dominiert wird.
+Durch die hohe Zahl der anbietenden Publishern ergibt sich vor allem Konkurrenz im Genre \textit{Action}, wodurch eine Sicht auf mögliche Abhängigkeiten zwischen den Regionen der Welt und die entsprechend beste Positionierung im Markt wichtig ist.
+Schnell erkennbar durch Struktur und Positionierung der Knoten, zeigen sich vor allem \textit{Activision}, \textit{Capcom}, \textit{Ubisoft} und \textit{Warner Bros.} durch ein hohes Spieleangebot als stärkste Konkurrenz. 
+Das große Angebot in dem Genre kann Potenzial durch möglicherweise viele Käufer bieten.
+\textit{Sports} hat weniger Konkurrenz, allerdings wird es durch Publisher wie \textit{EA Sports} und \textit{2K Sports} dominiert.
+Aufgrunddessen entschied der Präsentator im Vorfeld, nachfolgend \textit{Action} und \textit{Sports} zu fokussieren.
+%Mit Klick auf den Link in der Navigation gelangen die Betrachter zu den detaillierteren Visualisierungen.
 
-Aufgrund dieser ersten Übersicht entscheidet der Präsentator, dass nachfolgend der Fokus auf die Genres \textit{Action} und \textit{Sports} gelegt wird.
-Mit Klick auf den Link in der Navigation gelangt der Betrachter zu den detaillierteren Visualisierungen.
-
-Die Informationen hätten auch durch ein implizites Baumdiagramm ermittelt werden können. Aufwand und Schwierigkeit der Implementierung wären im Vergleich leicht erhöht, das Verständnis bei den potenziell ungeschulten Betrachtern, vor allem Stakeholdern, gerade in kurzen Momenten einer Präsentation aber leicht gemindert. 
-Baumdarstellungen anderer Anordnung, bspw. radialer, wären auch möglich, würden gut verstanden werden, zögen aber deutlich erhöhten Aufwand und Schwierigkeiten der Implementierung mit sich. 
+Auch ein implizites Baumdiagramm hätte dem Informationsbedarf genügt. 
+Aufwand und Schwierigkeit der Implementierung wären im Vergleich leicht erhöht, das Verständnis bei den potenziell ungeschulten Betrachtern wie bspw. Stakeholdern, gerade in kurzen Momenten einer Präsentation, aber gemindert. 
+Hyperbolische Baumdarstellungen wären möglich, würden gut verstanden, zögen aber erhöhten Aufwand und Schwierigkeiten der Implementierung mit sich. 
 %Somit sind sie für eine Voranalyse der Verkaufszahlen im Videospielmarkt wie hier angenommen, zu aufwändig.
 
 \subsection{Anwendung Visualisierung Zwei}
-In dieser Visualisierung eines Parallelen Koordinaten Plots kann der mittlere Manager in seiner Präsentation den oberen Managern und Stakeholder einen detaillierteren Blick auf die Verkaufszahlen der Videospiele eines Genres in den verschiedenen Regionen der Welt bieten.
-Der Blick der Betrachter wird wie zuvor beschrieben gelenkt.
-Zusätzlich finden sich wieder Erklärungen zu Einheiten und Darstellungsweisen auf der Webseite.
+Mit der Visualisierung des Parallelen Koordinaten Plots präsentiert der mittlere Manager einen detaillierteren Blick auf die Verkaufszahlen der Videospiele eines Genres in allen Regionen der Welt.
+%Der Blick der Betrachter wird wie zuvor beschrieben gelenkt.
+Es finden sich Erklärungen zu Einheiten und Darstellungsweisen auf der Website.
 
-Der Präsentator wählt nun das zuvor festgelegte Genre \textit{Action} aus und kann den Parallelen Koordinaten Plot mit den voreingestellten Achsenbelegungen und den gefilterten Videospielen als Datenpunkte betrachten. 
-Schnell fällt der beinahe zu allen Spielen sichtbare Abstieg der Verkaufszahlen in Japan auf. 
-Um folgend Zusammenhänge zwischen den anderen Regionen besser erkennen zu können, wird die Achsenbelegung wie im folgenden Bild gezeigt ausgewählt.
+Das festgelegte Genre \textit{Action} wird ausgewählt und sodass die Visualisierung mit zunächst voreingestellten Achsenbelegungen und den gefilterten Videospielen betrachtet werden kann. 
+Schnell fällt Japan auf, das viele Titel mit Verkaufszahlen von null aufweist. 
+Weiterhin scheint es durch im Vergleich besser oder schlechter verkaufte Spiele keine Beziehungen zwischen den Regionen mit Japan zu geben.
+Um Zusammenhänge zwischen den anderen Regionen besser erkennen zu können, wird die letzte Achse unverändert mit Japan belegt (s. Abb. ...).
 %Bild
-Durch die Röntgenstrahlen nachempfunde Darstellungsweise lässt sich nun ein Muster erkennen. 
-Zum einen befindet sich der Großteil der Videospiele im unteren Drittel der Verkaufszahlen in allen Regionen, was durch die Überlappungen der Datenpunkte und damit kräftigeren Grüntöne besser erkennbar ist.
-Einzig \textit{Assassin's Creed: Unity} und vor allem \textit{Grand Theft Auto V} von \textit{Rockstar Games} stechen heraus. 
+Es lässt sich immer dasselbe Muster erkennen, bestätigt und verdeutlicht durch diverse Kombinationen der Achsenbelegung und der Röntgenstrahlentechnik.
+Einerseits befindet sich der Großteil der Videospiele in allen Regionen im unteren Drittel der Verkaufszahlen, was durch die Überlappungen der Datenpunkte und damit kräftigeren Grüntöne gut erkennbar ist.
+Andererseits scheint es Abhängigkeiten zwischen allen Regionen außer Japan zu geben, erkenntlich durch die konstant waagerecht verlaufenden Datenpunkte.
+\textit{Grand Theft Auto V} von \textit{Rockstar Games} sticht als Ausreißer heraus. 
 %hier evtl ein satz mehr zu achsenwechsel & Abhängigkeiten nur zwischen drei benachbarten Achsen
-Wenn sich Spiele gut in Nordamerika verkauften, so verkauften sie sich in Europa in ähnlicher Weise, ebenso wie im Rest der Welt und global.
-Dies wird auch durch unterschiedliche Achsenbelegungen bestätigt. Eine Korrelation über alle Regionen hinweg scheint gegeben. 
-Einzig Japan bildet aus unbekannten Gründen eine Ausnahme, da die meisten Spiele hier wie anfangs erwähnt nicht so gut verkauft werden, wenn nicht sogar gar nicht. 
-Gleichzeitig schneiden einige wenige Spiele, die in den anderen Regionen durchschnittlich verkauft werden, in Japan vergleichsweise gut ab. 
+%hier nochmal erklärung anschauen ob korrekt
+%Wenn sich Spiele gut in Nordamerika verkauften, so verkauften sie sich in Europa in ähnlicher Weise, ebenso wie im Rest der Welt und global.
+%Dies wird auch durch unterschiedliche Achsenbelegungen bestätigt. Eine Korrelation über alle Regionen hinweg scheint gegeben. 
+%Einzig Japan bildet aus unbekannten Gründen eine Ausnahme, da die meisten Spiele hier wie anfangs erwähnt nicht so gut verkauft werden, wenn nicht sogar gar nicht. 
+%Gleichzeitig schneiden einige wenige Spiele, die in den anderen Regionen durchschnittlich verkauft werden, in Japan vergleichsweise gut ab. 
 
-%auch hier evtl korrelation nochmal genauer präzisieren dass durch achsentausch auch sichtlich dass es wirklcih zwischen allen ist
-Durch die Korrelation scheint eine Konzentration in diesem Genre auf eine bestimmte Region wenig Sinn zu ergeben, sodass eine breite Aufstellung und Nutzung der Beeinflussung nützlich ist.
-Gleichzeitig deutet die ansatzweise Bildung eines Clusters im unteren Drittel der Verkaufszahlen in alles Regionen auf starke Konkurrenz im Genre hin. 
-Diese wird verstärkt durch die identifizierten Ausreißer, welche wie alle anderen Titel durch Hovern über den Datenpunkt gut ablesbar sind wie obiger Abbildung zu sehen.
-Ein neuer Titel sollte also sehr überzeugend sein oder eventuell doch in einem anderen Genre platziert werden. 
-Sollte nach einer weiteren Bestätigung der Erkenntnisse im Scatterplot die Entscheidung zu weiteren Marktstudien in dem Genre getroffen werden, müsste anhand weiterer Einflussparameter unter anderem der Grund für die hohen Verkaufszahlen geprüft sowie die Sättigung des globalen Marktes durch diesen Titel genauer analysiert werden.
+Durch die positive Korrelation scheint eine möglichst universelle Aufstellung und Nutzung der Synergieeffekte durch Abhängigkeiten nützlich.
+Positive Korrelationen werden zudem als erstrebenswert für global agierende Unternehmen gedeutet, was das Genre \textit{Action} vorteilhafter für eine weitere Investition macht.
+Gleichzeitig weist eine Clusterbildung im unteren Drittel der Verkaufszahlen aller Regionen auf starke Konkurrenz oder mögliche Sättigung im Genre hin. 
+%Der durch Hovern zu identifizierende Ausreißer sollte bei Entscheidung für \textit{Action} genauer untersucht werden.
+%Ein neuer Titel sollte also sehr überzeugend sein oder eventuell doch in einem anderen Genre platziert werden. 
+Sollte die Entscheidung zu weiteren Marktstudien in diesem Genre getroffen werden, 
+müsste anhand weiterer Einflussparameter unter anderem der Grund für die hohen Verkaufszahlen des Ausreißers geprüft sowie die Sättigung des der Märkte und Einflussfaktoren der Verkaufszahlen der weiteren Spiele analysiert werden.
+Aufgrund der unkomplizierten Erkenntnisse aus dieser Visualisierung ist eine Überprüfung im Scatterplot nicht zwingend nötig.
 
-Im Gegensatz zu \textit{Action} gibt es im Genre \textit{Sports} keine Ausreißer über alle Regionen hinweg. Auch die Verkaufszahlen verteilen sich stärker über die Skala. 
-Japan mit fast nur Verkaufszahlen von null bleibt bestehen. Eine Begründung kann die Visualisierung nicht liefern.
-%Bild
-Deutlich erkennbar ist jedoch, dass einige Spiele in Nordamerika besser verkauft werden als in Europa, im Rest der Welt und global jedoch wieder ähnlich, wenn auch etwas schlechter als in Nordamerika. 
-Gleichzeitig verkaufen sich Spiele, die in Europa gut verkauft werden, in Nordamerika etwas schlechter, im Rest der Welt und global wiederum besser. 
-Daraus ergibt sich eine erste Tendenz, dass eine Konzentration auf eine der Regionen \textit{North America} oder \textit{Europe} sinnvoll ist, um wiederum die positiven Beeinflussungen dieser jeweiligen Regionen auf die restlichen Regionen zu nutzen. 
-Sie wird im Scatterplot überprüft.
+Im Genre \textit{Sports} gibt es keine Ausreißer über alle Regionen hinweg. Auch die Verkaufszahlen verteilen sich stärker über die Skalen. 
+Japan mit in nahezu allen Titeln erkennbaren Verkaufszahlen von null bleibt bestehen und wird aus weiteren Analysen ausgenommen.
+Im unteren Bild erkennbar ist jedoch die leichte Bildung verschiedener Cluster, die sich auch mit unterschiedlichen Achsenbelegungen bestätigt.
+%Bild 
+Es scheint eine Gruppe an Spieletiteln zu geben, die in Nordamerika und dem Rest der Welt gut verkauft werden konnten, global gesehen und vor allem in Europa deutlich schlechter.
+Weiterhin deutet sich, wenn auch nur sehr schwach sichtbar, ein Cluster an, in dem Spiele überall gut verkauft werden, in Nordamerika im Vergleich jedoch nicht.
+Die restlichen Spiele bilden ein weiteres Cluster am unteren Rand der Skala mit durchgängig positiven Abhängigkeiten. 
+Da sich diese Cluster besonders durch Unterschiede zwischen den Verkaufszahlen in Europa und Nordamerika unterteilen, werden diese Regionen im Scatterplot näher betrachtet. 
+%, dass einige Spiele in Nordamerika besser verkauft werden als in Europa, im Rest der Welt und global jedoch wieder ähnlich, wenn auch etwas schlechter als in Nordamerika. 
+%Gleichzeitig verkaufen sich Spiele, die in Europa gut verkauft werden, in Nordamerika etwas schlechter, im Rest der Welt und global wiederum besser. 
+%Daraus ergibt sich eine erste Tendenz, dass eine Konzentration auf eine der Regionen \textit{North America} oder \textit{Europe} sinnvoll ist, um wiederum die positiven Beeinflussungen dieser jeweiligen Regionen auf die restlichen Regionen zu nutzen. 
+%Sie wird im Scatterplot überprüft.
 
-Der Vergleich mehrerer Dimensionen resp. mehrerer Attribute eines Videospiels wäre auch durch bspw. Icontechniken möglich. 
-Diese Methode wäre jedoch schwerer umzusetzen und aufwendiger zu analysieren. 
-Der Grund liegt in der Darstellung aller Dimensionen eines Videospiels auf einem Icon und einer entsprechend erschwerter Erkenntnis der Zusammenhänge und Muster über die Spiele hinweg. 
-Auch Ausreißer sind mit dieser Technik nicht so gut erkennbar.
+Der Vergleich mehrerer Dimensionen resp. mehrerer Attribute eines Videospiels wäre auch durch Icontechniken möglich. 
+Diese Methode ist jedoch durch die Anzahl der zu erstellenden Icons und Kodierung der Daten auf diese aufwendiger zu erstellen und die Analyse
+gestaltet sich durch möglicherweise zu wenig vorhandene Datenpunkte zur Musterbildung und einer erschwerten Erkennung konkreter Zusammenhängen zwischen allen Regionen kompliziert.
 
 %Wenn bspw. eines seiner Spiele in allen oder einzelnen Regionen nicht gut verkauft werden konnte, ein Spiel eines Konkurrenten in diesen Regionen jedoch gut, dann deutet das auf eine starke Konkurrenz hin. 
 %Sind alle oder die meisten Spiele der Konkurrenz in allen oder einzelnen Regionen besser verkauft worden, als das Videospiel von Publisher X, dann deutet dies auf einen gesättigten Markt des Genres mit starker Konkurrenz hin, in das sich möglicherweise weitere Investititonen nicht lohnen. 
 \subsection{Anwendung Visualisierung Drei}
-Um zur dritten Visualisierung, dem Scatterplot, zu gelangen, wählt der mittlere Manager in seiner Präsentation den Plot im Drop-Down-Menü aus.
-Die zuvor getroffene Auswahl des Genres, zuletzt \textit{Sports} bleibt bestehen und er wählt in einem weiteren Drop-Down-Menü die Belegung der Achsen auf \textit{North America} und \textit{Europe}.
+In seiner Präsentation wählt der mittlere Manager nun den Scatterplot im Drop-Down-Menü aus.
+Die zuvor getroffene Auswahl des Genres, zuletzt \textit{Sports}, bleibt bestehen und 
+er belegt Achsen in einem weiteren Drop-Down-Menü mit \textit{North America} und \textit{Europe}.
 
-Im Scatterplot werden die zuvor erkannten Cluster in den Verkaufszahlen im Vergleich von Nordamerika zu Europa deutlicher. 
+Die zuvor erkannten Cluster in den Verkaufszahlen im Vergleich von Nordamerika zu Europa verdeutlichen sich. 
+Manager oder Stakeholder, die die vorherige Visualisierung möglicherweise weniger gut nachvollziehen konnten, verstehen nun zumindest deutlich die Abhängigkeiten zwischen zwei visualisierten Dimensionen. 
+Im unten abgebildeten Scatterplot ist deutlich ein positiv korreliertes Cluster sichtbar. 
+Im zweiten zuvor entdeckten Cluster lässt sich auch bei Achsentausch keine Korrelation zwischen den Regionen finden, kennzeichnet duch die rein waagerechte bzw. senkrechte Verteilung.
+%Je besser sich Videospiele in Nordamerika/Eurpa verkaufen hat keine Einfluss auf die Verkaufszahlen in der je anderen Region.
+Einzig das dritte Cluster lässt sich nicht direkt bestätigen, deutet sich aber durch einen Punkthaufen nahe des Ursprungs an.
 %Bild Sports
-Während bei einigen Spielen zwischen beiden Regionen ein deutlich positiv korreliertes Cluster sichtbar ist, scheinen die anderen Spiele ein Cluster ohne Korrelation zwischen den Regionen zu bilden.
-Dies bestätigt und verdeutlicht die Erkenntnisse aus der zweiten Visualisierung, dass sehr gute Verkaufszahlen von einigen Sportvideospielen in Nordamerika keinen Einfluss auf die Verkäufe in Europa haben. 
+%Während bei einigen Spielen zwischen beiden Regionen ein deutlich positiv korreliertes Cluster sichtbar ist, 
+%scheinen die anderen Spiele ein Cluster ohne Korrelation zwischen den Regionen zu bilden.
+Die Erkenntnisse aus der zweiten Visualisierung werden bestätigt. 
+Sportvideospiele des ersten Clusters, die in Nordamerika gut verkauft wurden, hatten auch in Europa einen guten Absatz und durch Achsentausch erkennbar auch umgekehrt.
+Dort zeigt ein flacherer Anstieg zeigt auch, dass gut in Europa verkaufte Spiele in Nordamerika weniger gut verkauft wurden. 
+Sehr gute Verkaufszahlen der anderen Gruppe in Nordamerika haben keinen Einfluss auf die Verkäufe in Europa, schlechte Verkäufe in Europa ebenso nicht auf die nordamerikanischen. 
+Durch Einblenden konkreter Details der Datenpunkte wird ersichtlich, dass jene Cluster mutmaßlich in der unterschiedlichen Popularität der Sportarten in den Regionen begründet sind. 
+Fußball scheint mit Abstrichen auch in Nordamerika beliebt, Football in Europa weniger.
+
 %Dort verkaufen sie sich vergleichsweise schlecht. Jedoch ist durch die Ansammlung der Datenpunkte in einer waagerechte, bzw. in umgekehrter Anordnung der Achsenbelegung senkrechten, Linie auch keine negative Korrelation ersichtlich.
-Die Titel im Cluster der positiv korrelierten Spiele scheinen sich jedoch gegenseitig positiv zu beeinflussen. 
 %Es kann durch etwas geringeren Verkaufszahlen in Nordamerika vermutet werden, dass die europäischen Verkaufszahlen die nordamerikanischen positiv beeinflussen. 
-Verweist der Präsentator mittels Hovern über die Datenpunkte auf die Titel der Videospiele, wird deutlich, dass diese Cluster mutmaßlich durch die unterschiedliche Popularität der Sportarten in beiden Regionen entsteht. 
-So ist Football in Europa nicht so bekannt oder beliebt, Fußball aber in Nordamerika schon, wenn auch leicht weniger als in Europa.
+%Verweist der Präsentator mittels Hovern über die Datenpunkte auf die Titel der Videospiele, wird deutlich, dass diese Cluster mutmaßlich durch die unterschiedliche Popularität der Sportarten in beiden Regionen entsteht. 
 
-Zuletzt interessieren sich die Teilnehmer der Präsentation für die Überprüfung der Erkenntnisse zum Genre \textit{Action}, sodass die Filterung entsprechend angepasst wird. 
-In allen möglichen Kombinationen der Achsenbelegung, abgesehen von Japan, bestätigt sich deutlich erkennbar die leicht bis vollständig positive Korrelation zwischen den jeweiligen Verkaufszahlen der Regionen.
-Im Scatterplot sind die einzelnen Datenpunkte etwas besser erkenn- und zur näheren Betrachtung auswählbar. 
-Auch der zuvor erkannte Ausreißer sticht deutlich heraus. 
-Zusätzlich bestätigt sich die nicht vorhandene Korrelation zwischen den jeweiligen Regionen und Japan.
-Sollte während der Präsentation der Wunsch nach einer gleichzeitigen Betrachtung des Baumdiagramms zur Übersicht der Publisher aufkommen, so kann mittels des Links am jeweiligen Seitenende in einem neuen Fenster dieser geöffnet werden und per Multitasking betrachtet werden.
+%Zuletzt werden die Erkenntnisse im Genre \textit{Action} überprüft, sodass die Filterung angepasst wird. 
+%Durch Belegung der Achsen in allen Kombinationen, außer jenen mit Japan, 
+%bestätigt sich deutlich die leicht bis vollständig positive Korrelation zwischen den jeweiligen Verkaufszahlen der Regionen sowie der Ausreißer.
+%Auch die nicht vorhandene Abhängigkeit zwischen den Regionen und Japan zeigt sich deutlich.
+%Einzelnen Datenpunkte sind im Scatterplot jedoch besser erkenn- und zur näheren Betrachtung auswählbar. 
+%Sollte der Wunsch nach paralleler Betrachtung des Baumdiagramms aufkommen, 
+%so kann dieser durch den Link am jeweiligen Seitenende in einem neuen Fenster geöffnet werden.
 
-Eine sinnvolle Alternative zu Scatterplots ist nicht gegeben, da sie die beste und am leichtesten zu verstehende Darstellung von Beziehungen zweier Attribute eines Datenpunktes ist. 
+Eine sinnvolle Alternative zu Scatterplots ist nicht gegeben, 
+da sie die leichteste, deutlichste Darstellung von Beziehungen zweier Attribute eines Datenpunktes liefern. 
 %Aufgrund der Zweidimensionalität der Verteilungen würden auch Q- und QQ-Plots mit nur einer visualisierten Dimension gegen f-Werte bzw. gegeneinander zum Erkennen von Verschiebungen nicht die gewünschten Ergebnisse liefern.
 
-Durch die Erkenntnisse aller Visualisierungen können sich die oberen Manager und wichtigsten Stakeholder von \textit{505 Games} nun dazu entscheiden, sich bei weiteren, (kosten-) intensiven Marktstudien mit detaillierteren Visualisierungen und weiteren Attributen auf das Genre \textit{Sports} zu konzentrieren. 
-Dort sind sie selbst noch nicht stark präsent, es gibt weniger und in der Masse weniger starke Konkurrenz als bei \textit{Action} sowie keine extremen Ausreißer. 
-Weiterhin müssen nicht die Abhängigkeiten zwischen allen Regionen betrachtet werden, sodass eine Fokussierung und Abschöpfung eines Marktes Sinn ergibt. 
-Die Fokussierung auf den europäischen oder nordamerikanischen Markt ist möglich und für ein kleineren Publisher wie \textit{505 Games} sinnvoller. 
-Durch die Ausrichtung auf den europäischen Markt kann \textit{505 Games} jedoch die positive Korrelation mit dem nordamerikanischen Markt für seine Verkaufszahlen nutzen und damit auch ihn bedienen.
-Untersucht werden sollten künftig auch die Einflüsse für die vergleichsweise guten Verkaufszahlen für das eigene Spiel \textit{Rocket League}, um über eine mögliche Fortsetzung zu entscheiden.
+%Japan komplett unfokussiert weil viele Null-Werte oder eben sehr kleine Verkaufsmengen und keine Korrelationen
+%Es besteht jedoch die Möglichkeit, dass der Absatz in Japan schlicht zu gering ist, um hier gezählt zu werden.
+Abschließend kann sich das obere Management und wichtigsten Stakeholder von \textit{505 Games}
+zu einer Investition in eine (kosten-)intensive Marktstudie zur Beurteilung weiterer Einflüsse im Genre \textit{Sports} entscheiden. 
+Die eigene Präsenz dort ist ausbaufähig, es gibt weniger und in der Masse weniger starke Konkurrenz als bei \textit{Action} sowie keine extremen Ausreißer.
+Zwar verzichtet man auf Nutzung der positiven Korrelationen zwischen allen Regionen, kann aber durch Fokussierung auf beliebte Sportarten des europäischen Marktes diese Abhängigkeiten, begrenzt auch in Nordamerika, nutzen.   
+Für einen vergleichsweise kleineren Publisher ist diese Strategie durch effizienten Einsatz von Mitteln sinnvoller.
+%Weiterhin müssen nicht die Abhängigkeiten zwischen allen Regionen betrachtet werden, sodass eine Fokussierung und Abschöpfung eines Marktes Sinn ergibt. 
+%Die Fokussierung auf den europäischen oder nordamerikanischen Markt ist möglich und für ein kleineren Publisher wie \textit{505 Games} sinnvoller. 
+%Durch die Ausrichtung auf den europäischen Markt kann \textit{505 Games} jedoch die positive Korrelation mit dem nordamerikanischen Markt für seine Verkaufszahlen nutzen und damit auch ihn bedienen.
+%Untersucht werden sollten künftig auch die Einflüsse für die vergleichsweise guten Verkaufszahlen für das eigene Spiel \textit{Rocket League}, um über eine mögliche Fortsetzung zu entscheiden.
  
 \section{Verwandte Arbeiten}
 In diesem Kapitel folgt eine knappe Literatursuche nach ähnlichen Anwendungen zu Videospielverkäufen oder Verkaufsdaten im Allgemeinen im Bereich der Informationsvisualisierung und Visual Analytics. 
@@ -1004,36 +1031,42 @@ Wie schon im vorherigen Artikel wird weniger die Beantwortung einer Frage aus de
 %Diskutieren sie mindestens zwei Artikel. Stellen sie Gemeinsamkeiten und Unterschiede dar.
 
 \section{Zusammenfassung und Ausblick}
-In dieser Arbeit wurde mittels drei Visualisierungstechniken eine erste Marktanalyse der Verkaufszahlen des Videospielemarktes für die Konsole \textit{XBoxOne} durchgeführt. 
-Für die Zielgruppe des mittleren und oberen Managements als auch eingeschränkt der Stakeholder der Videospielverlage, hier Publisher, wurden die vorliegenden Daten visuell aufbereitet. 
+In dieser Arbeit wurde mittels drei Visualisierungstechniken eine grobgranulare Marktanalyse 
+der Verkaufszahlen des Videospielemarktes für die Konsole \textit{XBoxOne} durchgeführt, 
+um die Zielgruppe des mittleren und oberen Managements sowie eingeschränkt der Stakeholder der Videospielverlage 
+in ihren Investitionsentscheidungen zu unterstützen.
+Sie erhalten ein schnelles Verständnis und Überblick über den aktuellen Videospielmarkt mit Fokus auf den Verkaufszahlen.
+Zusammenhänge und Muster zwischen den Regionen in den Genres können ohne Vorwissen im Bereich der Visual Analytics abgelesen, analysiert und präsentiert werden.
+So werden erste Erkenntnisse bezüglich neuer Möglichkeiten und Chancen im Markt sowie Ansatzpunkte für Strategieentscheidungen ermöglicht. 
+Sie dienen als Entscheidungsunterstützung für die Beauftragung detaillierterer und teurerer Marktstudien für neue Investitionen.
+
 %Zum einen wurde ein Überblick über den Markt, das eigene Verlagshaus und die Konkurrenz ermöglicht, der in Präsentationen und zur wiederkehrenden Ansicht und Eigenanalyse der Zielgruppen genutzt werden kann.
 %Zum anderen wurde mittels der Visualisierungen und sich zeigenden Muster und Korrelationen in den Verkaufszahlen zwischen den Regionen pro Genre eine informiertere Entscheidungunterstützung über potenzielle künftige Investitionen in neue Titel oder Fortsetzungen in den entsprechenden Genres bzw. tiefere und teurere Marktstudien hierzu ermöglicht.
 %Die Visualisierungstechniken wurden vom Groben zum Detaillierten angeordnet. 
-Durch die Implementierung eines expliziten Baumdiagramms konnte die gewünschte hierarchische Übersicht über den Markt sowie die Zusammenhänge zwischen Publisher, Genre und Titel umgesetzt werden.
-Gleichzeitig konnte durch diese Technik die Konkurrenz betrachtet und abgeschätzt werden, welche Genres durch die quantitative Anzahl der Spiele und deren Publisher Potenzial bieten und im Folgenden näher betrachtet werden sollten.
-Mittels eines Parallelen Koordinaten Plots zur Darstellung mehrdimensionaler Daten konnten auch durch den Einsatz einer Art Röntgenstrahlentechnik Muster in den Verkaufszahlen von Videospielen eines Genres über mehrere Dimensionen, also Regionen, hinweg erkannt werden.
-Zuletzt konnten in einem klassischen Scatterplot die Erkenntnisse aus der vorherigen Visualisierung überprüft werden. 
-Korrelationen zwischen zwei gewählten Regionen sowie Ausreißer und die Bildung von Clustern konnten durch diese Visualisierung detaillierter dargestellt und analysiert werden.
-Für ein verbessertes, komfortables und schnelles Anwendungserlebnis sowie Effektivität und Effizienz wurde die Auswahl der Genres mittels Drop-Down Menü interaktiv gestaltet sowie beim komfortablen Umschalten der Visualisierungen ebenso mittels Drop-Down Menü erhalten.
-Aus demselben Grund wurde auch ein Beibehalten der flexiblen und individuellen Achsenauswahl für den Parallelen Koordinaten Plot sowie den Scatterplot integriert.
+Durch die Implementierung eines expliziten Baumdiagramms konnte eine hierarchische Übersicht über den Markt sowie die Zusammenhänge zwischen Publisher, Genre und Titel des eignen Verlagshauses und der Konkurrenz umgesetzt werden.
+%Gleichzeitig konnte durch diese Technik die Konkurrenz betrachtet und abgeschätzt werden, welche Genres durch die quantitative Anzahl der Spiele und deren Publisher Potenzial bieten und im Folgenden näher betrachtet werden sollten.
+Mittels eines Parallelen Koordinaten Plots zur Darstellung mehrdimensionaler Daten konnten auch durch den Einsatz einer Röntgenstrahlentechnik 
+Abhängigkeitsmuster in den Verkaufszahlen von Videospielen eines Genres über mehrere Dimensionen, also Regionen, hinweg erkannt werden.
+Zuletzt konnten in einem klassischen Scatterplot die Erkenntnisse aus der vorherigen Visualisierung inklusive Clusterbildung, 
+Ausreißern und Korrelationen zwischen zwei Regionen konkretisiert werden. 
+%Korrelationen zwischen zwei gewählten Regionen sowie Ausreißer und die Bildung von Clustern konnten somit detaillierter dargestellt und analysiert werden.
+Für ein verbessertes, komfortables und schnelles Anwendungserlebnis sowie Effektivität und Effizienz wurde die Auswahl der Genres mittels Drop-Down Menü interaktiv gestaltet 
+sowie beim komfortablen Umschalten der Visualisierungen ebenso mittels Drop-Down Menü erhalten.
+Aus demselben Grund wurde ein Beibehalten der flexiblen, individuellen Achsenauswahl für den Parallelen Koordinaten Plot sowie den Scatterplot integriert.
 %Zur nötigen Erkennung von Details zu Publishern, Titeln und konkreten Verkaufszahlen wurden interaktive Anzeigen dieser Informationen beim Hovern über die Datenpunkte in allen Visualisierungen ermöglicht.
 
-Der Mehrwert der Visualisierungen liegt für die Zielgruppe vor allem im schnellen Verständnis und Überblick über den aktuellen Videospielmarkt mit Fokus auf Verkaufszahlen für die \textit{XBoxOne}.
-Zusammenhänge und Muster zwischen den Regionen in den Genres können ohne Vorwissen im Bereich der Visual Analytics abgelesen, analysiert und präsentiert werden.
-So bieten die Visualisierungen erste Erkenntnisse für die Zielgruppe bezüglich neuer Möglichkeiten und Chancen im Markt sowie Ansatzpunkte für grobe Strategieentscheidungen. 
-Sie dienen als Entscheidungsunterstützung für die Beauftragung detaillierterer, fokussierter und teurerer Marktstudien für neue Investitionen.
+Eine sinnvolle Erweiterung der Daten ist der Einbezug von (Nutzer-)Kritiken und deren Auswirkungen auf die Verkaufszahlen. 
+Auch Analysen auf Korrelationen nicht öffentlich zugänglicher Daten zu Entwicklungskosten und Umsätzen pro Spiel bieten Potenzial.
+Dies ist jedoch Teil der angesprochenen weiterführenden Marktstudien.
+Interessant ist eine weitere Unterteilung der Region \textit{Rest of World}, die unter anderem Afrika, Asien und Südamerika enthält.
+Bezüglich der Visualisierungstechniken können Verbesserungen und weitere Kopplungen von Interaktionen direkt in den Plots Sinn ergeben, 
+sind jedoch im Kontext der Andwendungsaufgaben eine zusätzliche Spielerei.
+Mehr Potenzial bieten Ansätze aus den \textit{verwandten Arbeiten}. 
+So ist ein automatisches Anordnen der Achsen je nach Korrelationsstärke im Parallelen Koordinaten Plots nach Hao et al. interessant.\cite{Hao.2007}
+Zur Verbesserung der Interaktionen auf der vielfältigen Wahl der Endgeräte ergibt eine Implementierung einer Komposition von Visualisierungen durch Zusammenschieben nach Chakraborty und Stuerzlinger Sinn.\cite{Chakraborty.2021}
 
-Sinnvolle Erweiterungen der Daten wären der Einbezug von (Nutzer-)Kritiken und deren mögliche Auswirkungen und Korrelationen auf die Verkaufszahlen sowie zwischen den Regionen. 
-Auch die Analyse bspw. auf Korrelationen nicht öffentlich zugänglicher Daten zu Entwicklungskosten und Umsätzen pro Spiel bieten Potenzial.
-Dies ist jedoch Teil einer angesprochenen weiterführenden, detaillierten Marktstudie.
-Interessant wäre eine weitere Unterteilung der Regionen, vor allem der unter \textit{Rest of World} zusammengefassten Regionen wie Afrika, Asien und Südamerika.
-Bezüglich der Visualisierungstechniken kann eine Interaktion mit Klick auf einen Genreknoten im Baumdiagramm und die Anzeige des dazu passenden Parallelen Koordinaten- und Scatterplots Sinn ergeben.
-Deutlich mehr Potenzial bieten jedoch Ansätze aus den \textit{verwandten Arbeiten}. 
-So ist ein automatisches Anordnen der Achsen je nach Korrelationsstärke im Parallelen Koordinaten Plots wie bei Hao et al. interessant.\cite{Hao.2007}
-Zur Verbesserung der Interaktionen gerade auf der heutzutage vielfältigen Auswahl von Endgeräten ergibt eine Implementierung einer Komposition von Visualisierungen durch Zusammenschieben wie bei Chakraborty und Stuerzlinger Sinn.\cite{Chakraborty.2021}
-
-Insgesamt konnten die durch die mögliche Anwendung entstandenen Anforderungen an die implementierten Visualisierungen zufriedenstellend umgesetzt werden.
-
+Insgesamt konnten die Anforderungen an die Visualisierungen zur Lösung des Zielproblems zufriedenstellend umgesetzt werden.
+\newpage
 \section*{Anhang: Git-Historie}
 
 \printbibliography
