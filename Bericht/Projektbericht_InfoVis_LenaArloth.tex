@@ -67,9 +67,6 @@ Für ein erleichtertes Verständnis sowie das Aufdecken dieser sind Techniken au
 
 Es leitet sich folgende Fragestellung ab, die es mittels oben genannter, grobgranularer und durch Visualisierungstechniken unterstützer Marktanalyse zu beantworten gilt:\\
 In welches Genre und mit welchem Fokus auf die Regionen der Welt sollte ein Publisher künftig mit der Beauftragung detaillierter, teuerer Marktstudien zur Entscheidung über die Auftragsvergabe neuer Videospieltitel investieren?
-%Tipps zu Latex und Koma-Script für Hausarbeiten sind im \href{http://mirrors.ctan.org/info/latex-refsheet/LaTeX_RefSheet.pdf}{LaTeX Reference Sheet for a thesis with KOMA-Script} von Marion Lammarsch und Elke Schubert zusammengefasst. 
-%Der Bericht fällt in die Kategorie von InfoVis-Paper, die Tamara Munzner Design Study nennt \cite{Munzner2008}: In der Einleitung sollen sie zuerst das Zielproblem beschrieben. Daraus sollen sie Fragestellungen motivieren, die mittels Techniken der Informationsvisualisierung beantwortet werden können. 
-%In dem Abschnitt direkt unter der Überschrift Einleitung sollen Sie nach einer kurzen Einleitung Fragestellungen und das Zielproblem motivieren und besschreiben. 
 
 \subsection{Anwendungshintergrund}
 Marktanalysen sind für Unternehmen wie Publisher zur Beantwortung strategischer Zukunftsfragen für die Ausrichtung von zentralem Wert.
@@ -85,7 +82,6 @@ Der Videospielmarkt selbst ist in verschiedene nochmals unterteilte Segmente auf
 Für diese Arbeit wird das Segment der Spieleplattform und Konsole \textit{XBoxOne} von Microsoft gewählt.
 Dies ist zum einen in der Verfügbarkeit der Daten begründet und zum anderen in der Beliebtheit der Konsole und der Konkurrenz zu anderen Plattformen wie \textit{Playstation 4} und \textit{Computer}.
 Gleichzeitig sind Analysen innerhalb einer Plattform durch Inkompatibiltät untereinander für die Entscheidungsunterstützung künftiger Investitionen in Titel dieser Plattform sinnhaft. 
-%da die Plattformen untereinander inkompatibel sind.
 
 Die Konsole \textit{XBoxOne} von Microsoft verkaufte sich besonders zwischen 2013 und Anfang 2019 gut, mit einer Spitze im Dezember 2015 mit rund 715.000 verkauften Einheiten im Monat.
 Bis dato ist die Beliebtheit der Konsole zwar stark gesunken, doch lassen sich aus den Verkaufszahlen von Videospielen ihrer Plattform weiterhin Erkenntnisse für die Zukunft 
@@ -95,8 +91,6 @@ Durch die Abwärtskompatibilität scheint es wahrscheinlich, dass Nutzer der \te
 Somit behalten die Verkaufszahlen der \textit{XBoxOne} ihre wenn auch leicht verminderte Aussagekraft.
 Der Sinn einer übersichtsartigen, grobgranularen Marktanalyse dieses Segments bleibt bestehen.
 Zur besseren Vergleichbarkeit und Aussagekraft der Verkaufszahlen und ihrer Auffälligkeiten ist eine Filterung nach Genre sinnvoll.
-%Sie müssen genug Hintergrund bereitstellen, so dass die Lesenden sich ein Urteil bilden können, ob ihre Lösung funktioniert. 
-%Sie sollen die Lesenden jedoch nicht mit Anwendungsdetails so überschütten, dass der Fokus auf die Fragen zur Informationsvisualisierung untergehen. 
 
 \subsection{Zielgruppe}
 Die in dieser Arbeit betrachtete Zielgruppe setzt sich aus Entscheidern der Publisher von Videospielen zusammen. 
@@ -116,8 +110,6 @@ im Sinne der eigenen Position und der der Konkurrenz bezüglich der Verbindungen
 Weiterhin werden Informationsbedürfnisse nach Zusammenhängen, Mustern und Auffälligkeiten zwischen Regionen in den jeweiligen Genres befriedigt, 
 um daraus strategische Entscheidungen ableiten zu können.
 Zuletzt wird das Bedürfnis nach konkreten Verkaufszahlen der einzelnen Spieletitel angesprochen.
-%Beschreiben sie die Personengruppe oder Personengruppen, die das von ihnen benannte Anwendungsproblem lösen möchte. Auf welches Vorwissen können sie in dieser Gruppen von Anwenderinnen aufbauen? 
-%Welche Informations"-bedürf"-nisse werden durch die Visualisierungen adressiert?
 
 \subsection{Überblick und Beiträge}
 Die verwendeten Daten entstammen einem Datensatz für die \textit{XBoxOne} mit den Attributen 
@@ -131,10 +123,9 @@ Zuletzt können in einem Scatterplot Korrelationen zwischen zwei Regionen sowie 
 In allen Visualisierungen sind Spieletitel mit Detailinformationen zu Publishern und Verkaufszahlen für einen konkreten Vergleich erkennbar.
 Mittels der Visualisierungen kann die übergeordnete Fragestellung zur Lösung der Problemstellung beantwortet werden, 
 welches Genre durch positive Korrelationen, Analysen zu Konkurrenz, Mustern und Ausreißern Potenzial bietet und damit detaillierterer Marktstudien bedarf.
-%In diesem Abschnitt geben sie einen kurzen Überblick über die Daten und verwendeten Visualisierungen. Dann benennen sie die Beiträge ihres Projekts. Diese Beiträge müssen sie in den hinteren Teilen des Berichts genauer ausführen und belegen.
 
 \section{Daten}
-Der genutzte Datensatz \textit{"Video Games Sales Dataset"} entstammt der Plattform \textit{Kaggle}.\cite{SID_TWR.} 
+Der genutzte Datensatz \textit{Video Games Sales Dataset} entstammt der Plattform \textit{Kaggle}.\cite{SID_TWR.} 
 Die Daten entstanden laut SID\_TWR durch die von Gregory Smith motivierte Erweiterung eines Web Scrapes von \textit{VGChartz Video Games Sales}  
 um Attribute eines Web Scrapes von \textit{Metacrtitic}.
 Aus den drei zur Verfügung gestellten Datensätzen wird \textit{XBoxOne\_GameSales} für dieses Projekt gewählt. 
@@ -159,19 +150,18 @@ Die originale CSV-Datei wird zur Bearbeitung in \textit{Open Office Calc} in das
 und mit allen modifizierten Datendateien, dem Quellcode und dem Bericht in einem öffentlichen GitHub Repository bereitgestellt. 
 Die Datendateien sind im Ordner \textit{Daten} in den Unterordnern \textit{CSV}, \textit{JSON} und \textit{Tabelle} je nach Format auffindbar. 
 
-Es wird eine JSON-Datei benötigt, in der die Beziehungen der Publisher, Genre und Videospiele zueinander beschrieben sind. 
+Es wird eine JSON-Datei zur Beschreibung der Beziehungen der Publisher, Genre und Videospiele zueinander benötigt. 
 Videospiele seien Kinder der Genres, die wiederum Kinder der Publisher sind und unter einem Wurzelknoten zusammengefasst werden. 
-Zusätzlich wird für weitere Visualisierungen eine CSV-Datei mit nachfolgend beschriebenen Modifikationen benötigt. 
+Zusätzlich braucht es für weitere Visualisierungen eine CSV-Datei mit nachfolgend beschriebenen Modifikationen. 
 
-Der Datensatz enthält fehlende Werte bei Publishern und Verkaufszahlen jeder Region sowie für die Anwendung nicht benötigte Informationen. 
-Zur besseren Nachvollziehbarkeit und Dokumentation des Ablaufs der Datenvorverarbeitung befindet sich im GitHub Repository im Ordner \textit{Daten} eine zweite README.md-Datei.
-Die benötigte Datengrundlage wird in sieben Schritten erreicht, die folgend grob beschrieben sind und detailliert in angesprochener README nachvollzogen werden können.
+Der Datensatz enthält fehlende Werte bei Publishern und Verkaufszahlen jeder Region sowie für die Anwendung irrelevante Informationen. 
+Zur besseren Dokumentation des Ablaufs der Datenvorverarbeitung befindet sich im GitHub Repository im Ordner \textit{Daten} eine zweite README.md-Datei.
+Die benötigte Datengrundlage wird in sieben Schritten erreicht, die folgend grob beschrieben sind und detailliert in erwähnter README nachvollzogen werden können.
 
-Aus der Originaldatei und ihrer konvertiertes ODS-Pendant werden Testversionen der Originaldaten mit den ersten 20 Positionen im CSV- und ODS-Format erstellt.
-Sie werden um die Spalte des Erscheinungsjahres reduziert und dienen der Übersichtlichkeit und Funktionalität in der Entwicklungsphase.
+Aus der Originaldatei und dem konvertierten ODS-Pendant werden Testversionen mit den ersten 20 Positionen im CSV- und ODS-Format erstellt.
+Sie werden um die Spalte des Erscheinungsjahres reduziert und dienen einer übersichtlicheren, funktionelleren Entwicklung.
 
 Es folgt die eigentliche Modifikation der Originaldaten unter Erstellung neuer Dateien zur Bewahrung der Transparenz.
-%Dabei werden neue Dateien erstellt, um transparent die Originaldaten weiterhin zur Verfügung stellen zu können.
 Das Erscheinungsjahr des jeweiligen Videospiels wird aus der durchzuführenden Marktanalyse und ihrer Visualisierung ausgegliedert und gelöscht. 
 Es können weder Daten für ein Zeitreihendiagramm extrahiert werden, noch ergibt ein Vergleich der kumulierten Verkaufszahlen in Relation zum Erscheinungsjahr 
 für die Problemstellung und deren Lösung keinen Sinn. 
@@ -195,30 +185,25 @@ Zur Erläuterung dienen Informationstexte und die passenden Achsenbeschriftungen
 Die Filterung der Positionen, die in nur einer Region Null-Werte aufzeigen, wurde in Betracht gezogen, jedoch verworfen.
 Diese Positionen würden nicht angezeigt, obwohl auch Informationen über keine erfolgten Verkäufe und die entsprechende Region relevant sind. 
 Es ist zu beachten, dass als Null-Werte auch solche aufgeführt sind, deren Verkaufszahlen bei unter 0.01 Millionen Stück verkaufter Videospielkopien liegen. 
-%Beschreiben Sie vorhandenen Daten. Gehen sie kritisch darauf ein, in wie weit sich die Daten für die Bearbeitung der Fragestellungen und dem Erreichen von Lösungen für die oben beschriebene Zielgruppen eignen. Haben sie die Daten sinnvoll mit weiteren Datenquellen ergänzt? Wenn ja, wie?
-%Erklären sie die technische Bereitstellung der Daten.
-%Wie sind die Daten zugänglich? Welche Formate werden genutzt. Gibt es Besonderheiten beim Lesen der Formate?
-%Beschreiben sie die Datenvorverarbeitung.
-%Welche Datenvorverarbeitungsschritte sind notwendig? Beschreiben Sie die einzelnen Schritte und begründen sie sie, z.B. warum werden manche Daten weggelassen, über welche Mengen werden Durchschnitte berechnet, warum sind die so berechneten Werte aussagekräftiger als andere Werte. Wenn möglich sollen sie die Datenvorverarbeitung in Elm programmieren, so dass ihre Anwendung auf eine Änderung der Rohdaten reagieren kan. 
 
 \section{Visualisierungen}
 Nachfolgend wird eine Analyse der Anwendungsaufgaben zur Lösung des Zielproblems durchgeführt, Anforderungen an die Visualisierungen abgeleitet und diese präsentiert.
 
 \subsection{Analyse der Anwendungsaufgaben}
-Das Zielproblem der konkreten Anwendungsaufgaben ist eine grobgranulare Marktanalyse des Videospielmarktes der \textit{XBoxOne} 
+Das Zielproblem der Anwendungsaufgaben ist eine grobgranulare Marktanalyse des Videospielmarktes der \textit{XBoxOne} 
 als Entscheidungsunterstützung zur Investition in detaillierte Studien und folglich neue Videospiele. 
 Fokussiert wird die Frage, welche Genres und möglicherweise Spezifizierungen auf bestimmte Regionen dort untersucht werden sollen. 
 Zur Problemlösung sollen sowohl die Publisher und ihre Konkurrenz betrachtet werden als auch Verkaufschancen, Zusammenhänge und Auffälligkeiten in den einzelnen Genres zwischen den Regionen der Welt. 
 Mit Rücksicht auf die Zielgruppe ist eine sprachlich von jedem zu verstehende Lösung im Kontext von Präsentationen sowie Kosten- und Zeitminimierung wichtig. 
 Das intuitive, schnelle und eindeutig bei allen Managern der Publisher Entstehen der mentalen Modelle zur 
-einheitlichen Analyse der Daten gerade bei Präsentationen oder dem kurzfristigen Gebrauch der Visualisierungen ist essenziell, 
+einheitlichen Datenanalyse gerade bei Präsentationen oder dem kurzfristigen Gebrauch der Visualisierungen ist essenziell, 
 da schnelle Entscheidungen Wettbewerbsvorteile ermöglichen.
 
-Als erste Anwendungsaufgabe ergibt sich die Schaffung eines Marktüberblicks als Ansatzpunkt weiterer Entscheidungen und erste Eingrenzungen der zu untersuchenden Genres. 
+Als erste Anwendungsaufgabe ergibt sich die Schaffung eines Marktüberblicks als Ansatzpunkt weiterer Entscheidungen und Eingrenzung der zu untersuchenden Genres. 
 Das Management der Publisher benötigt eine Übersicht über eigene und konkurrierende Angebote, die insbesondere für größere, breit aufgestellte Verleger sinnvoll ist.
 Es sollten die Publisher, ihre abgedeckten Genres und die in ihnen kategorisierten Videospieltitel ersichtlich sein. 
 Je nach Strategie des betrachtenden Publishers können bspw. aufgrund der geringen Anzahl eigener oder hoher Anzahl konkurrierender Spiele in einem Genre 
-Vorentscheidungen zur Eingrenzung des mittels nachfolgender Anwendungsaufgabe näher zu untersuchenden Genres getroffen werden. 
+Vorentscheidungen zur Eingrenzung der nachfolgend näher zu untersuchenden Genres getroffen werden. 
 Zur Lösung der Anwendungsaufgabe soll ein mentales Modell von bildlich dargestellten Beziehungen und Hierarchien zwischen Publishern, Genre und Titel entstehen.
 Dies könnte durch schriftliche Repräsentationen umgangen werden, jedoch unterstützt das mentale Modell das Verständnis und beschleunigt den Vorentscheid ungemein. 
 Besonders im Rahmen einer Präsentation ist es unumgänglich.
@@ -238,83 +223,30 @@ Hierbei sollen durch Punkte im Raum die Verkaufszahlen mental positioniert und d
 Visualisierungen zum Aufbau dieser mentalen Modelle sind elementar.
 Ohne sie sind Analysen der gewünschten Aspekte teils nur sehr schwer möglich sind.
 
-Die Analyse der Anwendungsaufgaben ergibt möglichst geringe monetäre und zeitliche Aufwände zur Erstellung der Visualisierungen 
+Die Analysen ergiben möglichst geringe monetäre und zeitliche Aufwände zur Erstellung der Visualisierungen 
 zur Unterstützung der mentalen Modelle.
 Dadurch kann die gewünschte Kostenersparnis durch eine vorab günstigere, grobgranulare Marktanalyse zur Investitionsentscheidung in 
 detaillierte, teuere und zeitintensive Marktanalysen höheren Umfangs erreicht werden.
 
-%Das Zielproblem dieses Projekts ist eine überblicksartige, grobe Marktanalyse des Videospielemarktes mit Fokus auf den Verkaufszahlen der Plattform \textit{XBoxOne} aus Sicht der Publisher.
-%Ziel der Marktanalyse ist eine Übersicht über das Genre- und Videospielangebot des eigenen Verlagshaus sowie der Konkurrenz und Erkenntnisse über Zusammenhänge innerhalb von Genres in und zwischen verschiedenen Regionen der Welt durch Muster, Cluster und Korrelationen zu erhalten.
-%Übergeordnet soll mittels dieser Informationen eine fundierte Entscheidung über Investitionen in detailliertere, zielgerichtetere Marktstudien in bestimmte Genres oder Regionen getroffen werden können, um den Publisher mit der Beauftragung neuer Videospiele strategisch für die Zukunft aufzustellen. 
-%Weiterhin sollen mit den Erkenntnissen erste Vorentscheide und Vorbereitungen für diese Spieleinvestitionen getroffen werden können.
-
-%Unterfragen der Problemstellung hier definiert und analysiert statt Einleitung
-%weiterhin wichtig: Sprache Englisch!!
-%Welche Publisher bieten welche und wieviele Videospiele in welchem Genre an?
-%Gibt es Muster, Cluster, Ausreißer oder Korrelationen in den Verkaufszahlen zwischen den einzelnen Regionen der Welt oder gar über alle Regionen hinweg?
-
-%Zunächst soll die Frage nach den angebotenen Videospielen der Publisher und ihrer Konkurrenz in einem ersten, qualitativen Überblick beantwortet werden. 
-%Der Fokus liegt aufgrund der gegebenen Daten und deren Übersichtsmöglichkeiten auf der Identifikation der von einem Publisher angebotenen Genres und der Videospiele, die jenen zugeordnet werden können. 
-%So lässt sich die vergangene Wahl des Schwerpunktes der Publishers bzgl. des Genres und der in diesem angebotenen Spiele erkennen. 
-%Besonders für größere Publisher mit vielen Videospielen oder vielfältigen Genres ist ein solcher Überlick sinnvoll.
-%In Kombination mit einer Übersicht über die konkurrierenden Publisher in derselben Art, kann ermittelt werden, welcher Publisher eine starke Konkurrenz in welchem Genres darstellen kann, welche Genres stark oder weniger stark angeboten werden und wieviele Videospiele ihnen zugeordnet werden können.
-%Somit können erste potenzielle Marktlücken, aber auch Sättigungen identifiziert werden, die für eine zukünftige Ausrichtung des Publishers relevant sein können. 
-%Es wird die Annahme getroffen, dass die Zielgruppe häufig und in unregelmäßigen Abständen einen Überblick über ihre Videospiele, deren Genres und ihre Konkurrenz auf den einen Blick benötigt. 
-%Dies kann sowohl im persönlichen Rahmen des Betrachtens durch Einzelpersonen des oberen und mittleren Managements der Fall sein als auch im Rahmen von Präsentationen der Analyse für das obere Management und wichtige Stakeholder.
-%Durch die Übersicht soll bei der Zielgruppe ein mentales Modell der Hierarchie und Zugehörigkeit der Videospiele zu Genres und dieser Genres zu den Publishern entstehen. 
-
-%Die zweite Unterfrage beschäftigt sich mit der Gewinnung von Erkenntnissen über Muster, Cluster, Ausreißer oder Korrelationen in den Verkaufszahlen zwischen den einzelnen Regionen der Welt und über alle Regionen hinweg.
-%Dazu müssen die Daten so aufbereitet werden, dass sie in einer oder mehreren Darstellungen durch die Positionierung im Raum miteinander vergleichbar sind. 
-%Alle Erkenntnisse müssen schnell und einfach ersichtlich sein, sodass im Kopf der Personen der Zielgruppen leicht Bilder entstehen können.  
-%Datenpunkte in jedweder Form müssen sich zur Bildung von Mustern und Clustern zu Gruppen mittels Farbe, Position oder Form zusammenfinden können, die von anderen unterscheidbar sind. 
-%Ausreißer können ebenso erkannt werden.
-%Korrelationen in den Verkaufszahlen zwischen den Regionen werden weiterführend mental meist am besten als Gruppe von Datenpunkten im Raum positioniert durch Absteigen, Aufsteigen oder Verstreuung erkannt.
-
-%Es ist schlussfolgernd sinnvoll, der Zielgruppe mittels einer Visualisierung erst eine Übersicht auf alle Regionen, sprich Attribute, auf einmal zu gewähren, in der Muster und Cluster sowie Ausreißer durch Markierung mit Farbe, Form oder Position über alle Regionen hinweg erkennbar sind. 
-%Mental soll ein Blick von oben auf die Welt entstehen. 
-%So kann sich ein zusammenhängendes Bild über die Verkaufszahlen in den Regionen ergeben ähnlich zu einem Motiv, dass sich durch das Verbinden von Zahlen in einem Zahlenbild für Kinder ergibt.
-%Werden verschiedene solcher Bilder übereinandergelegt, hier entsprechend der konkurrierenden Videospiele, lassen sich Unterschiede erkennen.
-%Sollte es zudem bspw. einen Ausreißer geben, der besonders gute Verkaufszahlen in dieser Region und global aufweist, dann deutet das auf eine Bedarfsdeckung dieser Region durch das entsprechende Videospiel hin. 
-%Eine weitere Investition in diese Region in dem Genre wäre entsprechend zu überdenken. 
-%Ist aber bswp. ein Videospiel des Publishers X in dieser Region der Ausreißer und besitzt auch global gute Verkaufszahlen, so ist eine Investition in weitere Videospiele dieser Reihe eine sinnvolle Option.
-%In einem mentalen Modell können diese Analysen durch räumliche Abbildungen bzw. Abbildungen der Daten auf Positionen in einem Kontext dargestellt werden.
-
-%Mittels einer weiteren Visualisierung soll der Blick konkretisiert und auf zwei interessante Regionen fokussiert werden. 
-%Mental soll in das zuvor entstandene Bild hineingezoomt werden, um detaillierter auf zwei ausgesuchte Regionen des Genres blicken zu können.
-%Sie können genauer auf Cluster und Ausreißer geprüft und die Art der möglichen Korrelation konkretisiert werden.
-%Eine weitere Betrachtung der Gründe für letztere und der Ausnutzung dieser Korrelation in fortführenden Studien ist sinnvoll. 
-%Für die Bearbeitung dieser Unterfrage und vor allem der leichten Erkennung von Korrelationen und Clustern ist ein räumliches mentales Modell der Abbildung der Daten auf Positionen sehr wichtig und notwendig.
-%Die Bestimmung der zu untesuchenden Regionen für weitere Investitionen in fortführenden Marktstudien kann so besser eingegrenzt werden.
-
-%Untergeordnet, jedoch sekundär auch für die Beantwortung der Hauptfrage wichtig, ist die Darstellung und Erkennbarkeit der Performanz der Videospiele des Genres in einer solchen Weise, dass einzelne Spiele konrekt erkannt und zugeordnet werden können.
-%So können Verkaufszahlen und damit Erfolge einzelner Spiele im Genre konkret verglichen werden. 
-%ufszahlen seiner Spiele feststellen.  
-%Bei der Bearbeitung dessen helfen dieselben mentale Modelle sowohl zur konkreten Ansicht als auch der gleichzeitigen Darstellung aller Attribute wie zur Beantwortung des zweiten Unterziels. 
-%Wichtig dabei ist die Möglichkeit der Identifizierung der Datenpunkte durch Beschriftung.
-
-%Analysieren sie die konkreten Anwendungsaufgaben, die die Lösung des Zielproblems durch die Anwender:innen bearbeitet werden müssen. 
-%Welche sinnvollen mentale Modelle helfen den Personen bei der Bearbeitung. 
-%Welche Visualisierungen helfen den Personen, die die Software verwenden, sinnvolle mentale Modelle aufzubauen. 
-%Sind diese mentalen Modelle für sie notwendig, um die Aufgaben lösen zu können? Gehen sie bei ihrer Argumentation von den Anwendungsaufgaben aus und kommen sie dann zu den mentalen Modellen, deren Aufbau durch Visualisierungen unterstützt wird. 
 \subsection{Anforderungen an die Visualisierungen}
 Über alle Anwendungsaufgaben hinweg stellen sich die Anforderungen nach Expressivität, Effektivität und Angemessenheit nach Schuman und Müller.\cite[9ff.]{Schumann.2000}
 Für die gewünschte Expressivität ist das Verständnis der Visualisierungen ohne Missverständnisse oder Doppel- bzw. Mehrdeutigkeiten der Daten nötig, 
 sodass nur die in den Daten enthaltenen Aussagen visualisiert werden. 
 Es werden drei visuelle Ebenen der Informationen definiert, von denen hier die obere Ebene zutrifft.\cite{Bertin.1982}
 Für eine gute Expressivität im Rahmen dieser ist die Visualisierung expliziter Fakten zu Videospielen und Verkaufszahlen sowie versteckte Zusammenhänge nötig. 
-Wie zuvor analysiert sind hier vor allem die Offenlegung von Hierarchien und Mustern, Abhängigkeiten und Ausreißern zwischen Regionen in einem Genre zu nennen.
+Wie zuvor analysiert sind dabei vor allem die Offenlegung von Hierarchien und Mustern, Abhängigkeiten und Ausreißern zwischen Regionen in einem Genre zu nennen.
 Zur Erfüllung der Effektivität ist ein intuitives, schnelles Verständnis der Visualisierungen gefordert.
 Die Stellenwert dieser Anforderung begründet sich im zuvor analysierten Zeitdruck durch die potenzielle Anwendung in Präsentationen sowie der Entscheidungen.
 Aufgrund der mit wenig spezifischem Vorwissen in den Visual Analytics ausgestatteten Zielgruppe 
-bedeutet Effektivität auch eine geringere Komplexität der Darstellungen, ergo intuitiv für die Zielgruppe verständliche Visualisierungen 
-vor allem von Korrelationen und Mustern.
-Die der Zielgruppe zugrunde liegende minimal verfügbare Zeit zum Verständnis legt den Fokus klar auf zeitlicher Effizienz bei bestmöglicher Effektivität.
+bedeutet Effektivität auch eine geringere Komplexität der Darstellungen sodass für die Zielgruppe intuitiv verständliche Visualisierungen 
+vor allem von Korrelationen und Mustern entstehen.
+Die der Zielgruppe zugrunde liegende minimal verfügbare Zeit zum Verständnis legt den Fokus auf zeitliche Effektivität bei bestmöglicher Expressivität.
 Durch die angestrebte Nutzung der Visualisierungen zur Entscheidungsunterstützung des Fokus weiterer Marktstudien ist besonders die Anforderung an Angemessenheit zentral. 
-Die Visualisierungen müssen für einen Vorteil im vorgestellten Verfahren wenig zeit- und kostenaufwendig sein. 
-Dazu ist es notwendig, den Umfang und Aufwand der Visualisierungen zum Erreichen der Expressivität für die Darstellung der oberen visuellen Ebene der Informationen 
+Der Vorteil des vorgestellten Verfahrens ergibt sich aus wenig zeit- und kostenaufwendigen Visualisierungen. 
+Deshalb ist es notwendig, Umfang und Aufwand der Visualisierungen zum Erreichen der beschriebenen Expressivität 
 auf niedrigerem Niveau zu halten.
 
-Eine Rücksichtnahme auf mögliche Sehschwächen der Zielgruppe durch durchdachte Farbgebung von Visualisierungen und Website ist nötig. 
+Mögliche Sehschwächen der Zielgruppe sind durch durchdachte Farbgebung zu berücksichtigen. 
 Ohne Expressivität und Effektivität negativ zu beeinflussen, ist eine Beschränkung auf eine Farbgruppe sinnvoll. 
 Untergeordnet sind außerdem Anforderungen an Ästhetik und indirekte Leitung des Blicks über die Website durch gerade erkennbare Abstufungen in Farbe und Kontrast, 
 sogenannte \textit{Just Noticable Differences}, zu erfüllen.
@@ -324,97 +256,30 @@ Die Analyse der zweiten Anwendungsaufgabe ergab die Notwendigkeit der Auswahl m�
 Folglich gilt die Anforderung an einen Filter zur Auswahl der Genres in den zwei Visualisierungen der Verkaufszahlen. 
 Aus der Analyse jener zweiten Anwendungsaufgabe folgt außerdem die Anforderung an die dritte Visualisierung mit der Auswahl von zwei Regionen zum Vergleich. 
 
-Konkret muss die erste Visualisierung als Ausgangspunkt der Anwendung die in der Analyse der ersten Anwendungsaufgabe geforderten Beziehungen zwischen Publishern, Genres und Titel abbilden 
+Die erste Visualisierung muss als Ausgangspunkt der Anwendung die in der Analyse der ersten Anwendungsaufgabe geforderten Beziehungen zwischen Publishern, Genres und Titel abbilden 
 und auf einen Blick für die Zielgruppe sichtbar machen.
 An die zweite Visualisierung stellt sich die Anforderung nach einer ganzheitlichen Sicht über alle Attribute der Regionen 
 sowie die Aufdeckung von in den Verkaufszahlen der Regionen versteckten Mustern, Clusterbildungen und möglichen Ausreißern über alle Regionen hinweg.
 Die Abbildung mehrdimensionaler Daten ist essenziell.
-Zur gewünschten Vergrößerung der vorherigen Ansicht auf zwei interessante Attribute genügt die Ansicht zweidimensionaler Daten für die dritte Visualisierung.
-Jedoch müssen die Attribute resp. Regionen variabel wählbar sein. 
-An die dritte Visualisierung wird vor allem die Anforderung nach detaillierter Darstellung der Art der Korrelationen gestellt. 
-Nützlich ist eine Überprüfung der in der zweiten Visualisierung sichtbaren Muster und Cluster in den zwei gewählten Dimensionen.
+Zur gewünschten Vergrößerung der vorherigen Ansicht auf zwei interessante Attribute genügt eine Technik für zweidimensionale Daten für die dritte Visualisierung.
+Die Attribute resp. Regionen müssen variabel wählbar sein. 
+An die dritte Visualisierung stellt sich vor allem die Anforderung nach detaillierter Darstellung der Art der Korrelationen 
+sowie die Überprüfung der in der zweiten Visualisierung sichtbaren Muster und Cluster in den zwei gewählten Dimensionen.
 
-%Aus den zuvor analysierten Anwendungsaufgaben leiten sich Anforderungen an die Visualisierungen ab. 
-%Allgemein sollen alle Visualsierungen effizient, expressiv und angemessen sein. %bibliografie 
-%So ist bedingt durch die Zielgruppe und die Nutzung der Visualisierungen im Rahmen von Präsentationen vorrangig wichtig, dass die Inhalte intuitiv und ohne viele Erklärungen erkennbar werden. 
-%Weiterhin muss die Aussagekraft eindeutig sein, um unbeabsichtigte Suggestionen zu vermeiden. 
-%Zuletzt sollte besonders im Kontext einer betriebswirtschaftlich orientierten Analyse auch die Angemessenheit gegeben sein. 
-%Zwar ist eine hier anvisierte Marktanalyse essentiell für ein Verlagshaus und entsprechend auch bezüglich des Ressourchenverbrauchs wertvoll, jedoch werden besonders hier die Kosten in Bezug zur Effektivität gestellt. 
-%Es ist für eine grobe Marktanalyse wenig sinnvoll, sehr komplexe, tiefgründige Visualsierungen mit hohem Ressourcenverbrauch zu nutzen, wenn es besonders in Bezug auf die Zielgruppe sinnvollere, eventuell weniger komplexe, 
-%aber dafür leichter und schneller verständliche Visualisierungstechniken gibt, die entsprechend weniger Ressourcen in der Erstellung benötigen. 
-%Selbiges gilt für den Detaillierungsgrad der Daten, die für die Anwendungsaufgaben wie zuvor definiert grober sein dürfen und erst nach Entscheidung mithilfe der hier präsentierten Visualisierungen detaillierter und durch weitere Visualisierungstechniken komplexer dargestellt werden sollen.
-
-%Zur Beantwortung der einleitend ersten gestellten und zuvor analysierten Unterfrage ist eine überlicksartige, hierarchische Darstellung der Daten zu Publishern, den von ihnen bedienten Genres und in diesen angebotenen Videospielen notwendig.  
-%Die Darstellung sollte von den jeweiligen Publishern ausgehend spezifischer werden. 
-%Zur schnellen Erkennung der Videospielangebote sollte nicht nur die Anzahl und Art der Genres je Publisher berücksichtig werden. 
-%Aufgrund der mentalen Gewichtung und Bewertung der abgedeckten Genres muss auch die Darstellung der Videospieltitel je Genre des jeweiligen Publisher vorgenommen werden. 
-%Zur Ermittlung der Konkurrenz ist es nötig, alle Publisher in der Übersicht in derselben Art und Weise abzubilden. 
-%Neben diesen Anforderungen ist jedoch die schnelle Übersicht, vor allem über das eigene Verlagshaus die wichtigste. 
-%Es muss ohne viel Nachdenken und viele Erklärungen sowohl für die primäre Zielgruppe, als auch für die sekundäre, also Stakeholder des Verlages, ersichtlich werden, welche Genres der Publisher anbietet, welche und wieviele Spiele unter diesen Genres katgorisiert sind und wie die Konkurrenz aufgestellt ist.
-%Die Hauptaufgabe der ersten Visualisierung liegt in der Präsentation der schon klar bestimmten Daten des Sachverhaltes der Publisher, der von ihnen abgedeckten Genres und den ihnen zugeordneten Videospielen in einer schnell verständlichen, hierarchischen Darstellung.
-
-%Aus der Analyse der zweiten Unterfrage ergibt sich die übergeordnete Anforderung der visuellen Analyse der Datenmenge für die zweite Visualisierung. 
-%Es muss in der Visualisierung in einem Vergleich auf einen Blick erkennbar werden, wie sich welche Spiele eines Genres in welchen Regionen der Welt verkauften. 
-%Somit ist es von Nöten, alle in den Daten gegebenen Regionen in einer Darstellung abzutragen, in der sie miteinander verglichen werden können. 
-%Die Visualisierung mehrdimensionaler Daten ist essentiell.
-%Für eine bessere Vergleichbarkeit der Daten soll nach Genre kategorierisiert werden und dieses je nach Betrachtungswunsch ausgewählt werden.
-%Um die geforderten Muster und Cluster über alle Regionen hinweg zu visualisieren, ist eine visuelle Zuordnung zueinander mittels Farbe und Position wichtig. 
-%Muster sind bspw. gut durch Überlappungen der Datenpunkte erkennbar.
-%Durch die exponierte Positionen können zudem Ausreißer erkannt werden. 
-%Es braucht eine deutliche Unterscheidung der Spiele untereinander, bspw. mittels Farbe, sowie eine Beschriftung mit den Titeln der Videospiele, um die untergeordnete genaue Erkennbarkeit aller Videospiele zu ermöglichen.
-%Die Ausprägung der Verkaufszahlen muss zumindest grob ablesbar sein, wobei der visuelle Vergleich zur Unterstützung des mentalen Modells des übersichtsartigen Vergleichens vor expliziten, genauen Zahlen Vorrang hat.
-
-%Die übergeordnete Anforderung an die dritte Visualisierung ist wieder die visuelle Analyse der Datenmenge. 
-%Hierbei soll es der Zielgruppe möglich sein, im Detail Korrelationen zwischen den Regionen der Videospielverkäufe zu erkennen. 
-%So kann erkannt werden, wie die Zusammenhänge zwischen bspw. sehr guten Verkaufszahlen einer Region zu den Verkaufszahlen einer anderen gegeben sind. 
-%Weiterhin sollen noch einmal präziser die Verkaufszahlen der Videospiele der Publisher in einem Genre im Kontext dargestellt werden. 
-%Auch hier besteht die Anforderung, die Analyse und Visualisierung im Kontext des Genres vorzunehmen, damit die Zielgruppen die einzlenen Videospiele konkreter vergleichen können.
-%In dieser Visualisierung muss die Relation von zwei Regionen zueinander dargestellt werden, sowie der Titel des entsprechendes Videospiel ersichtlich werden. 
-%Zum präzisen Vergleich von Verkaufszahlen in den Regionen müssen auch die exakten Zahlen zu finden sein und möglichst nicht nur rein visuell abgetragen werden. 
-%Für eine Visualisierung der möglichen Cluster und Zusammenhänge zwischen den Verkaufszahlen konkurrierender Spiele, müssen alle Titel aller Publisher des Genres vertreten sein.
-%Durch die gewünschte detaillierte Analyse ist eine intuitiv verständliche Visualisierung sowie ein gut verständliches Design dieser wichtig. 
-
-%Über alle Visualisierungen hinweg ist eine einheitliche Wahl der Farbgebung zur Verbesserung der Effektivität und Effienz nötig. 
-%Um Probleme bei Sehschwächen der diversen Zielgruppe zu vermeiden, ist die Wahl nur einer Farbe zur Hervorhebung und Darstellung der Datenpunkte sinnvoll. 
-%Durch Abstufung mittels Deckkraft sind sie auch für Farbblinde erkennbar und verdeutlichen zudem bestimmte Erkenntnisse.
-%Sogenannte \textit{Just Noticable Differences}, also gerade so erkennbare Farb- und Kontrastunterschiede, in der Gestaltung der Website an sich helfen bei der Führung des Auges des Betrachters.
-
-%Allen spezifischen Anforderungen voran steht die Anforderung an die Angemessenheit. 
-%Die eingesetzten Visualisierungstechniken sollten günstig sein und deshalb einfacher gestaltet. 
-%Gleichzeitig sollten sie durch die Notwendigkeit von schnellen Entscheidungen zügig erstellbar und ebenso schnell und einfach verständlich sein, damit auch die in den Visual Analytics ungeübten Personen der Zielgruppe ein möglichst breites und präzises Verständnis für die Marktsituation, Verkaufszahlen und Korrelationen zwischen den Regionen erhalten können.
-
-%aus Einleitung eingefügt
-%Durch eine schnell erstellte, intuitiv erklär-, präsentier- und verstehbare Visualisierung der grobgranularen Daten der Marktanalyse können im Publishingunternehmen erste vorab gültige Strategieentscheidungen bzgl. Investitionen in Titel eines Gernes getroffen und Maßnahmen vorbereitet werden.
-%Durch die Erstellung einer groben Marktanalyse und der Visualisierung derer Daten kann die Anzahl bzw. der Umfang detaillierterer, teuerer und zeitintensiverer Marktanalysen minimiert werden.
-%Entsprechend sollte auch der Fokus einer Visualisierung auf Zeit- und Kosteneffizienz bei gutem Nutzen für zuvor beschriebenes liegen.
-
-%Leiten sie Anforderungen an das Design der Visualisierungen ab, die sich durch ihre Analyse des Zielproblems ergeben.
 \subsection{Präsentation der Visualisierungen}
-Es werden drei Visualisierungstechniken zur Erfüllung der Anforderungen gewählt und präsentiert.
-Zur Datenpunktmarkierung und -hervorhebung sowie der Leitung des Blicks über die Website werden neben Schwarz-Weiß werden zwei harmonische Grüntöne in unterschiedlichen Kontrasten und Opazitäten genutzt.
-
-%Zur Erfüllung der Anaylsen und Anforderungen werden die Visualisierungstechniken \textit{explizites Baumdiagramm}, \textit{parallele Koordinate} und \textit{Scatterplot} gewählt.
-%Nachfolgend werden die ausgesuchten Visualisierungen vorgestellt und diskutiert. 
-%Präsentieren sie die visuelle Abbildungen und Kodierungen der Daten und Interaktionsmöglichkeiten. 
-%Sie müssen  begründen, warum und wie gut ihre Designentscheidungen die erstellten Anforderungen erfüllen. 
-%Weiterhin müssen sie begründen, warum die gewählte visuelle Kodierung der Daten für das zulösenden Problem passend ist.
-%Typische Argumente würden hier auf Wahrnehmungsprinzipien und Theorie über Informationsvisualisierung verweisen. 
-%Die besten Begründungen diskutieren explizit die konkrete Auswahl der Visualisierungen im Kontext von mehreren verschiedenen Alternativen. 
-%Machen sie hier nicht den Fehler, einfach nur Visualisierung aus den vorgegebenen Bereichen zu diskutieren, weil das in der Regel nicht sinnvoll ist.
-%Wenn sie sich für einen Scatterplot entschieden haben, ist ein Zeitreihendiagramm in der Regel keine Alternative.
-%Diskutieren sie also nicht einfach Zeitreihendiagramme, weil sie in den Anforderungenen an das Projekt neben Scatterplots stehen, sondern suchen sie nach echten alternativen Visualisierungen, die zum Aufbau eines vergleichbaren mentalen Modells führen. 
-%Diskutieren sie die Expressivität und die Effektivität der einzelnen Visualisierungen. 
-%Die eben beschriebenen Präsentationen und Begründungen sollen für jede der drei folgenden Visualisierungen durchgeführt werden. 
+Es werden drei Visualisierungstechniken zur Erfüllung der Anforderungen präsentiert.
+Zur Datenpunktmarkierung und -hervorhebung sowie der Leitung des Blicks über die Website werden neben Schwarz-Weiß zwei harmonische Grüntöne in unterschiedlichen Opazitäten genutzt.
 
 \subsubsection{Visualisierung Eins}
 Zur Erfüllung der Anforderungen an die Visualisierung der ersten Anwendungsaufgabe wird ein explizites Baumdiagramm gewählt.
 Mittels dieser können hierarchische Beziehungen zwischen Attributwerten als Knoten in Form eines Baumes mit einem Wurzelknoten abgebildet werden. 
 Hierarchische Beziehungen zwischen den Knoten seien durch gerade Linien, Kurven oder Bögen gekennzeichnet, die Knoten miteinander verbinden.\cite[1]{Schulz.2011} 
 
-Pfade zwischen den Knoten sowie die Positionierung von Eltern über Kindknoten stellen hier die hierarchische Beziehung dar. 
+Pfade zwischen den Knoten und die Positionierung von Eltern über Kindknoten stellen die hierarchische Beziehung dar. 
 Publisher sind Elternknoten der Genres, die wiederum Elternknoten der Videospieltitel sind.
+%Bild Baum
 Um ungewollten Kreuzungen der Pfade zwischen Publishern und Genres zu verhindern, wird letzteren zur eindeutigen Identifikation das Kürzel des zugehörigen Publishers hinzugefügt.
-Andernfalls verlöre die Visualisierung ihren Zweck der Übersicht und einfachen Betrachtung der eigenen abgedeckten Genres und in ihnen verordnete Titel sowie der Vergleich mit der Konkurrenz.
+Andernfalls verlöre die Visualisierung ihre Übersichtlichkeit und die einfache Betrachtung der eigenen abgedeckten Genres und Titel und der Vergleich mit der Konkurrenz.
 Eine erste Eingrenzung der Genres durch oben genannte Analysen ist so möglich.
 
 Die aufgeführten Anforderungen an Expressivität, Effektivität und Angemessenheit werden durch ein explizites Baumdiagramm gut erfüllt.
@@ -432,48 +297,16 @@ Durch das Duplizieren des Diagramms mit veränderter Größe wird der Nachteil d
 
 Hyperbolische Bäume sind eine Alternative zum expliziten Baumdiagramm. 
 Durch die Zeichnung der Beziehungen und Knoten im hyperbolischen Raum und einen wachsenden Kreisumfang bietet diese Technik mehr Platz für größere Hierarchien.\cite[2f.]{Lamping.1995}
-Jedoch zöge diese Alternative einen höheren (Kosten-)Aufwand mit sich, weniger Intuitivität in der Erkennung der eigenen und konkurrierenden Angebote sowie eine suboptimale quantitative Übersicht der qualitativen Daten. 
+Jedoch zöge diese Alternative einen höheren (Kosten-) Aufwand mit sich, weniger Intuitivität in der Erkennung der eigenen und konkurrierenden Angebote sowie eine suboptimale quantitative Übersicht der qualitativen Daten. 
 Implizite Baumdiagramme sind eine weitere Alternative, bei der die Eltern-Kind-Beziehung durch Umschließung des Kindknotens durch den Elternknoten visualisiert werde.\cite[394]{Schulz.2011}
 Sie sind platzsparender, aber durch einen geringeren Bekanntheitsgrad in der Zielgruppe weniger intuitiv verstehbar. 
 Als Überblick bieten sie zudem weniger schnell eine Übersicht über eigene und konkurrierende Angebote statt eines Entlangfahrens der Kanten mit dem Auge.
-
-%Zur Erfüllung der Anforderungen wird für die erste Visualisierung ein explizites Baumdiagramm gewählt.
-%Mit einem solchen können Hierarchien gut, übersichtlich und auf allgemein bekannte Weise dargestellt werden. 
-
-%warum Baum + Theorie + Wahrnehmungsprinzip
-
-%In der Visualisierung gibt es einen Wurzelknoten, der als Kindknoten die Publisher hat, die wiederum als Kindknoten die vom jeweiligen Publisher abgedeckten Genres besitzen. 
-%Zur besseren Übersicht und Vergleichbarkeit werden nur diejenigen Genres pro Publisher abgebildet, die dieser Publisher anbietet und in alphabetischer Reihenfolge aufgeführt. 
-%Wichtig dabei ist, dass keine sich überkreuzenden Pfade entstehen respektive es keinen Kindknoten gibt, der mehrere Elternknoten hat. 
-%Dies dient der Erfüllung der Anforderungen und der Übersichtlichkeit der Visualisierung.
-%Die Genreknoten besitzen wiederum Kindknoten, die die Titel der Videospiele, die dem entsprechenden Genre zugeordnet sind, tragen. 
-%So entsteht die gewünschte hierarchische Übersicht über das Angebot jedes Publishers, welche durch die Beschriftung und Hervorhebung bei Hovern über jeden Knoten unterstützt wird.
-%Die Anforderungen an eine schnelle, intuitive und für jeden verständliche Übersicht werden größtenteils erfüllt. 
-%Jedoch besteht der Nachteil der Größe des Baumes durch die vielen Publisher- und Genreknoten. 
-%Trotzdem kann der Baum durch seine Nutzung der Hierarchie, also Abbbildung der nominalen Daten auf eine Position im Raum, sowie durch die Nutzung von Verbindungslinien zur Unterstützung der Positionierung und damit Erstellung des mentalen Modells der gewünschten Hierarchie die Anforderungen an Effektivität gut erfüllen.
-%Entsprechende visuelle Variablen werden als sehr effektive Abbildungsmethodik für nominale Daten eingestuft. 
-%Expressiv und damit ohne viele Erklärungen und Missverständnisse ist diese Technik zudem.
-%Jedoch leidet die Expressivität etwas unter der Menge an Knoten und damit der Größe des Baumes.
-%Auch angemessen ist eine Visualsierung als explizites Baumdiagramm, da es wenig Ressourcen fordert. 
-
-%Alternativen zu dieser Darstellung sind implizite Baumdiagramme, radiale Baumdarstellungen und hyperbolische Bäume. 
-%Implizite Baumdarstellungen können ebenso wie explizite die Hierarchien zwischen Eltern- und Kind-Knoten darstellen. 
-%Grund
-%umschließen, unüberischtlichkeit, nicht so direkt verständlich mit vielen Erklärungen & beschriftungen
-%Radiale und hyperbolische Bäume sind gute Alternativen für Darstellungen mit vielen Knoten wie es in dieser Visualisierung auch der Fall ist. 
-%Grund
-%macht Sinn wegen anzahl knoten, aber probleme mit überschneidungen, schnelles lesen, platz knoten wächst linear mit umfang aber Knoten können exponentiell wachsen
-%Platzierungsprobleme nicht, aber durch Darstellung evtl schwieriger zu veregleich mit Konkurrenz, angemessenheit nicht 100, da viel aufwand ressourcen zum erstellen und mehr zum lesen bei der eig überblicksartigsten & einfachsten Visualisierung
-%Vor allem letztere Alternativen bieten in Bezug auf Expressivität, Effektivität und Angemessenheit nahezu dieselben Vorteile wie die expliziten Bäume. 
-%Letztlich wird die Entscheidung für ein explizites Baumdiagramm trotz des Nachteils der vielen Knoten, die durch hyperbolische und radiale Bäume übersichtlicher gestaltet werden könnten, aufgrund der Übersichtlichkeit durch Intuitivität der expliziten Baumdarstellungen getroffen. 
-%Dies mag paradox wirken, jedoch sind explizite Bäume durch ihr häufigeres Vorkommen in allen Lebenssituationen noch ein wenig intuitiver und damit effektiver verständlich als die Alternativen. 
-%Da die Anforderung vor allem auf schnellem Erkennen und Wiedererkennen insbesondere des eigenen Verlagshauses liegt, wird diesem Aspekt eine hohe Gewichtung gegeben.
 
 \subsubsection{Visualisierung Zwei}
 Für die erste Teilbearbeitung der zweiten Anwendungsaufgabe wird der Parallele Koordinaten Plot gewählt, da er sich gut für Visualisierungen von Datenverteilungen und Abhängigkeiten zwischen Attributen eigne.\cite[11]{Chan.2006}
 In positiver Richtung der y-Achse werden parallel zueinander die in ihrem Wertebereich linear skalierten Achsen positioniert.
 Ein Datenpunkt hat verschiedene Koordinaten, mittels derer Polygonzüge konstruiert werden.
-Die Schnittpunkte mit den jeweiligen Achsen zeigen den Attributwert.\cite[25f.]{Inselberg.1987} \cite[11]{Chan.2006}
+Die Schnittpunkte mit den jeweiligen Achsen zeigen den Attributwert.\cite[25f.]{Inselberg.1987}~\cite[11]{Chan.2006}
 
 Auf den parallelen Achsen werden die Wertebereiche der Verkaufszahlen der fünf verschiedenen Regionen skaliert und nebeneinander angeordnet abgebildet.
 Die Schnittpunkte der Polygonzüge, resp. Datenpunkte, mit den Achsen kodieren die jeweiligen Attributausprägungen in den Regionen.
@@ -481,7 +314,8 @@ Mehrdimensionalität und ein ganzheitlicher Blick werden erfüllt.
 
 Es können sowohl die expliziten Details zu Videospielen und ihren Verkaufszahlen als auch die in den Daten versteckten Informationen zu Muster- und Clusterbildung, Abhängigkeiten zwischen mehreren Regionen und Ausreißer offengelegt werden.
 Ersteres wird durch die Anzeige der Informationen bei Hovern über ein Polygonzug über dem Plot visualisiert. 
-Zweiteres durch die Verbindung der Attributausprägungen eines Titels durch Polygonzüge sowie die sich durch Überschneidungen, Überlappungen und Ansammlungen der Linien bildenden Muster. 
+Zweiteres durch die Verbindung der Attributausprägungen eines Titels durch Polygonzüge sowie die sich durch Überschneidungen, Überlappungen und Ansammlungen der Linien bildenden Muster (s. Abb. 2). 
+%Bild ParallelPlot
 Weiterhin eignet sich die Technik durch die Abbildung der Attributwerte auf Position und in gewissem Maße Orientierung gut für quantitative Daten.\cite{Bertin.1982}
 Durch eine freie Wahl der Achsenbelegungen mittels Drop-Down-Menü aller Achsen können zudem weitere interessante Muster, um den gesamten erwünschten Blick von oben zu erhalten, erkannt werden. 
 Das Problem der laut Lehman bestehenden Darstellung von Abhängigkeiten nur zwischen drei benachbarten Achsen kann somit umgangen werden.\cite[594]{Lehmann.2010}
@@ -495,7 +329,7 @@ Durch ein Hervorheben der Linie und der Informationsanzeige beim Hovern kann die
 Gleichzeitig erhalten alle Polygonzüge eine grüne Färbung mit geringerer Opazität, sodass Schnittstellen und Häufungen von Liniensegmenten durch einen kräftigeren Ton leicht erkennbar sind. 
 Diese Art von Röntgenstrahlentechnik kann die Erkennung von Mustern und Clustern verbessern und verbessert die Effektivität wieder.
 Das Design der Visualisierung mittels Filterung und freier Wahl der Achsenbelegung verhindert zwar nicht die vielen Kombinationsmöglichkeiten, jedoch die dabei mittels einfachen Achsentausches auftretende Überforderung.
-Parallele Koordinaten Plots sind zwar etwas (kosten-)aufwendiger zu erstellen, bleiben aber trotzdem im Kontext der Anwendungsaufgabe angemessen.
+Parallele Koordinaten Plots sind zwar etwas (kosten-) aufwendiger zu erstellen, bleiben aber trotzdem im Kontext der Anwendungsaufgabe angemessen.
 
 Eine Alternativen zu Parallelen Koordinaten Plots stellen Icon-Techniken, bspw. Star Plots oder Stickfigures dar.
 In Star Plots seien die Dimensionen als eckige Achsen ausgehend von einem Kreismittelpunkt mit einer äußeren Verbindungslinie zur Repräsentation der Attributausprägung jeder der Dimensionen visualisiert.
@@ -504,60 +338,26 @@ Ein ähnliches Problem existiert auch bei Stickfigures, die zusätzlich durch zw
 Zwar können so grobe Muster und Cluster erkannt werden, die anderen Anforderungen bspw. konkrete Informationen zu Datenpunkten werden allerdings unzureichend erfüllt.
 Intuitivität und Effektivität sind im vorherrschenden Kontext unzureichend, womit Icon-Techniken alternativ ungeeignet sind. 
 
-%Als zweite Visualisierungstechnik zur Teillösung der zweiten Unteranwendung werden die parallelen Koordinaten gewählt.
-%warum parallele + Tehorie + Wahrnehnumgsprinzip
-
-%Für diese Visualisierung werden die Datenpunkte als Abfolge von Liniensegmenten dargestellt, wobei der Attributwert der jeweilige Endpunkt des Liniensegments ist. 
-%Visualisiert werden die Wertebereiche der Attribute \textit{North America}, \textit{Europe}, \textit{Japan}, \textit{Rest of World} und \textit{Global}, welche die Verkaufszahlen in Millionen Einheiten der Videospiele in den verschiedenen Regionen darstellen.
-%Durch die Verbindung der Liniensegmente und den jeweiligen Endpunkten auf den parallelen Liniensegmenten bzw. Achsen kann die Zielgruppe die Attributwerte dieser fünf Attribute ablesen. 
-%Durch die Darstellung aller Videospiele als je eine solche Sequenz von Liniensegmenten können Unterschiede erkannt werden. 
-
-%Wie in den Anforderungen beschrieben, soll es zur besseren Vergleichbarkeit der Datenpunkte und damit Videospiele eine Filterung nach Genres geben, die mittels eines Drop-Down-Menüs umgesetzt wird. 
-%Da es bei parallelen Koordinaten zu Problemen mit dem Überzeichenen von Liniensegmenten kommen kann, wenn es zu viele Datenpunkte gibt, schafft die Filterung hierbei zudem Abhilfe. 
-
-%Durch die Implementierung einer Art umgekehrten Röntgenstrahleneffekt durch die Nutzung einer Farbe mit wenig Deckkraft kann dieses Problem zusätzlich gelöst werden. 
-%Zudem können Überlappungen dadurch besser zur Visualisierung der geforderten Muster, aber vor allem Cluster genutzt werden. 
-%Je dunkler bestimmte Segmente, desto mehr Datenpunkte laufen hier überein. 
-%Auch Überkreuzungen von Datenpunkten sind einfach durch die dunklere Farbe am Kreuzungspunkt erkennbar. 
-
-%Zur Erkennung des Videospieltitels und des Publishers, wird beim Hovern über ein Liniensegment beides eingeblendet. 
-%Die Verkaufszahlen sind anhand der Achsenbeschriftung ungefähr ablesbar, beim Hovern allerdings konkret. 
-%So überwiegt wie gewünscht das visuelle Erkennen und Vergleichen, aber auch die genaue Erkennbarkeit der Videospiele ist gegeben.
-%Zudem wird der entsprechende Datenpunkt mittels Farbe hervorgehoben, um ihn eindeutig erkennbar zu machen. 
-%Dadurch können die konkreten Anforderungen sowie die allgemeinen Anforderungen an Expressivität und Effektivität an die zweite Visualisierung  erfüllt werden. 
-
-%Quantitative Daten werden weiterhin am besten mit den visuellen Variablen Position, aber auch Orientierung dargestellt.
-%Beides wird in den parallelen Koordinaten umgesetzt, die Orientierung vor allem durch die Sequenz an verbundenen Liniensegmenten, die parallelen Achsen und den entstehenden Kontext der Daten. 
-
-%Die Expressivität wird zusätzlich durch die eindeutige Beschriftung der Liniensegmente beim Hovern, die Einfärbung und die eindeutige Beschriftung der Achsen erreicht. 
-%Auch die weiteren Anforderungen vor allem an die Vergleichbarkeit und Erkennung von Mustern in einem Genre über alle Regionen hinweg in einer leicht verständlichen Art und Weise wird erfüllt.
-%Zusätzlich können leicht Cluster erkannt werden, wenn bestimmte Videospiele, bspw. eine Reihe in einem Genre, alle in allen Attributen, sprich Regionen, gute Werte aufzeigen. 
-%Auch dies bietet Aufschlüsse über den Markt und entsprechende Konkurrenz.
-
-%Eine der Alternativen zu sind parallelen Koordinaten die Icon Techniken. 
-%Sie werden jedoch als weniger gut im Vergleich zu den parallelen Koordinaten eingeschätzt.
-%Grund
-%Zuletzt bieten Sternkoordinaten und auch Polar Plots alternative Möglichkeiten der Darstellung mehrdimensionaler Daten. Allerdings
-%Grund S. 232
-
 \subsubsection{Visualisierung Drei}
 Die vollständige Beantwortung der zweiten Anwendungsaufgabe bedingt eine weitere Visualisierung, für die die Technik des Scatterplots gewählt wird.
-In einem kartesischen Koordinatensystem mit orthogonaler x- und y-Achse werden x- und y-Werte zweier variabler Attribute eines Datenpunkts zu bivariaten Paaren zusammengefasst.
-Durch die Abtragung und Positionierung dieser als Punkte im Koordinatensystem werden die Attributwerte visualisiert.\cite[103]{Friendly.2005}
-Durch Abbildung vieler Datenpunkte wird die Form von Abhängigkeiten, Muster und Ausreißer zwischen zwei Attributen sichtbar.\cite[9]{Chan.2006} \cite[103]{Friendly.2005}
-Die Schwäche des Scatterplots durch Verlust an Informationen von mehreren Dimensionen wandelt sich in diesem Fall durch eine Detaillierung und Überprüfung der Erkenntnisse des Parallelen Koordinaten Plots zum Vorteil.\cite[9]{Chan.2006} \cite[93]{Wegman.1997}
+In einem kartesischen Koordinatensystem mit orthogonaler x- und y-Achse werden x- und y-Werte 
+zweier variabler Attribute eines Datenpunkts zu bivariaten Paaren zusammengefasst.
+Durch die Positionierung dieser als Punkte im Koordinatensystem werden die Attributwerte visualisiert.\cite[103]{Friendly.2005}
+Mittels Abtragung vieler Datenpunkte werden Form der Abhängigkeiten, Muster und Ausreißer zwischen zwei Attributen sichtbar.\cite[9]{Chan.2006}~\cite[103]{Friendly.2005}
+Die Schwäche des Scatterplots durch Verlust an Informationen von mehreren Dimensionen wandelt sich in diesem Fall durch eine Detaillierung und Überprüfung der Erkenntnisse des Parallelen Koordinaten Plots zum Vorteil.\cite[9]{Chan.2006}~\cite[93]{Wegman.1997}
 
-Im Design dieses Scatterplots ist die Belegung der Achsen zur Darstellung der Wertebereiche der Attribute \textit{North America}, \textit{Europe}, \textit{Japan}, \textit{Rest of World} und \textit{Global} frei wählbar, 
-um den Anforderungen nach Auswahl der interessanten Attribute des Parallelen Koordinaten Plots zur Detaillierung dieses nachzukommen.
-Zudem sind alle möglichen Abhängigkeiten zwischen Attributkombinationen untersuchbar. 
+Im diesem Scatterplot ist die Belegung der Achsen zur Darstellung der Wertebereiche der Attribute \textit{North America}, \textit{Europe}, \textit{Japan}, \textit{Rest of World} und \textit{Global} frei wählbar, 
+um den Anforderungen nach Auswahl interessanter Attribute des Parallelen Koordinaten Plots zur Detaillierung dieses nachzukommen (s. Abb. 3).
+%Bild Scatterplot
+Zudem sind Abhängigkeiten zwischen allen Attributkombinationen untersuchbar. 
 Die Datenpunkte werden zur visuellen Ablesbarkeit wie oben beschrieben als Attributwert-Kombinationen kodiert, 
 an den Achsen skaliert und als klassische Kreise im Raum des Koordinatensystems positioniert. 
 Quantitative Daten lassen sich am besten auf Position und untergeordnet auch auf Orientierung abbilden, 
 was der Scatterplot bestens umsetzt.\cite{Bertin.1982}
 
-Die Anforderungen an die Expressivität auch in Bezug auf die obere visuelle Ebene der Informationen werden durch die unmissverständliche Zuweisung der Videospielinformationen zum Punkt im Diagramm mittels Hovern sowie die Visualisierung von 
-versteckten Informationen erfüllt. 
-Letztere bestehen aus dem deutlichen Aufzeigen der Art der Korrelationen, Clustern und Ausreißern zwischen zwei wählbaren Attributen.
+Die Anforderungen an die Expressivität auch bezüglich der oberen visuellen Ebene der Informationen werden durch die 
+unmissverständliche Zuweisung der Videospielinformationen zum Punkt im Diagramm mittels Hovern sowie die Visualisierung von versteckten Informationen erfüllt. 
+Letztere bestehen aus dem Aufzeigen der Art der Korrelationen, Clustern und Ausreißern zwischen zwei wählbaren Attributen.
 Weiterhin lässt sich mit ihm die gewünschte Vergrößerung der multidimensionalen Daten auf eine Ansicht von nur zwei Attributen und der damit verbundene höhere Detaillierungsgrad umsetzen. 
 Die Analyse des komplizierteren Parallelen Koordianten Plots kann überprüft und Fehler erkannt werden. 
 Detailfragen zur finalen Entscheidung für ein weiter zu fokussierendes Genre oder eventuelle Korrelationen zwischen Regionen in diesem, 
@@ -569,52 +369,14 @@ Effektivität und Angemessenheit sind klar gegeben.
 Ersteres ergibt sich aus der starken Verbreitung der Technik in allen Bereichen und der unmissverständlichen, sich durch die Positionierung der Punkte ergebenden Darstellung. 
 Damit visualisiert der Scatterplot intuitiv und schnell lesbar eine Fülle an detaillierten statistischen Informationen.
 Er ist durch seine Trivialität in der Abbildung zweier quantitativer Attribute angemessen. 
-Bei hoher Expressivität und Effektivität ist der Scatterplot vergleichsweise unkompliziert und kostengünstig..
+Bei hoher Expressivität und Effektivität ist der Scatterplot vergleichsweise unkompliziert und kostengünstig.
 
 In diesem Kontext sind keine sinnvollen Alternativen möglich. 
 Korrelationstabellen listen Abhängigkeiten nur tabellarisch auf, visualisieren sie jedoch nicht mittels einer spezifischen Technik.
 In QQ-Plots können zwei statistische Variablen miteinander verglichen werden, allerdings durch geordnete Gegenüberstellung ihrer Quantile zur Erkennung von Verteilungen.
 Dies dient nicht der Lösung des Zielproblems, könnte aber in einerzu beauftragenden detaillierteren Marktstudie Verwendung finden.
-So sei der Scatterplot "the most versatile, polymorphic, and generally useful"\cite[103]{Friendly.2005} Visualisierung für statistische Daten und 
+So sei der Scatterplot „the most versatile, polymorphic, and generally useful”\cite[103]{Friendly.2005} Visualisierung für statistische Daten und 
 eignet sich perfekt zur abschließenden Beantwortung der zweiten Anwendungsaufgabe und des gesamten Zielproblems.
-
-%Zuletzt wird zur weiteren Teillösung der zweiten Unteranwendung die Visualisierungtechnik Scatterplot umgesetzt. 
-%Scatterplot + Grund + Theorie + Wahrnehmungsprinzip
-
-%In diesem Scatterplot wird auf die X-Achse je nach Auswahlwunsch des Betrachters je der Wertebereich der Attribute \textit{North America}, \textit{Europe}, \textit{Japan}, \textit{Rest of World} und \textit{Global} abgebildet.
-%Die Abbildung der Wertebereiche auf die Y-Achse funktioniert auf dieselbe Art. 
-%So kann der Anwender frei zwischen zwei Attributen seiner Wahl wählen, die er untersuchen möchte.
-%Es werden je die Datenpunkte visualisiert, die dem per Drop-Down-Menü ausgewählten Genre entsprechen. 
-
-%Die Datenpunkte werden klassisch als ungefüllte Kreise dargestellt, wobei sich ihre Position aus den Werten der oben beschriebenen, momentan ausgewählten Atribute bestimmt. 
-%Beim Hovern über die Punkte werden diese eingefärbt und ein weiteres Attribut, der Titel des Videospiels angezeigt. 
-%Zur exakten Erkennung der Attributwerte der Verkaufszahlen werden diese hinter dem Titel in Klammern aufgelistet. 
-%Es wird zuerst der Wert für die X-Achse, dann der Wert für die Y-Achse dargestellt.
-
-%Durch diese Designentscheidungen werden die zuvor formulierten Anforderungen erfüllt. 
-%ie Kodierung der Daten auf die Punkte im Scatterplot, also Koordinatensystem ermöglichen ein Wahrnehmen und damit eine Orientierung im Raum, der mental entsteht und das Verständnis für die Relation der Datenpunkte zueinander verbessert.
-%Weiterhin ist dadurch die visuelle Darstellung von möglichen Korrelationen zwischen zwei Attributen erkennbar. 
-
-%Durch die zweidimensionale Darstellung der Attribute kann eine genauere Betrachtung dieser erfolgen. 
-%Entsprechend können Korrelationen besser analysiert werden.
-%Auch die zuvor schon erkannten Muster und Ausreißer können überprüft werden.
-%Durch die Einblendung der exakten Attributwerte ist auch die untergeordnete Anforderung der genauen Erkennbarkeit der Videospiele erfüllt. 
-
-%Die eher klassische Darstellung als Punkte erleichtert das Erkennen von Punktwolken respektive Cluster durch Intuition, insbesondere sollte es Korrelationen zwischen einer Region und den globalen Verkaufszahlen geben. 
-%Ähnlich wie in Visualisierung zwei werden auch in Scatterplots die für quantitative Daten gut geeigneten visuellen Variablen Position, Orientierung und Gebiet genutzt. %bibliografie
-
-%Weiterhin ist diese Darstellungsweise allgemein bekannt, sodass eine schnelle Analyse einzelner Wertpaare, aber auch Korrelationen und Ausreißer möglich ist. 
-%Dadurch und durch die oben genannten Aspekte ist die Effektivität gegeben. 
-%Auch expressiv ist diese Visualisierung, da die Darstellung der Datenpunkte als Kreise auch ohne Legende schnell erkannt wird. 
-%Durch die Einblendung der exakten Werte beim Hovern wird eine mögliche Verwirrung durch Überlagerung verschiedener Symbole, Farben oder Größen der Punkte verhindert. 
-%Die Wahl einer Farbe zur Darstellung der Datenpunkte, Füllung dieser beim Hovern und Wahl einer nicht einhundertpozentigen Deckkraft zur Ermöglichung der vereinfachten Erkennung der Punkte bei Überdeckung verbessert die Expressivität weiter. 
-%Durch die unkomplizierte und schnell erstellbare Darstellung ist auch die Angemessenheit gegeben. 
-
-%Alternativ bestehen in diesem Kontext keine sinnvollen Visualisierungsmöglichkeiten.
-%Q- und QQ-Plots stellen Attributwerte nur F-Werten gegenüber bzw. auch gegeneinander, dann jedoch um Verschiebungen zueinander zu erkennen. 
-%Korrelationstabellen lassen die hier vor allem gewünschten Korrelationen genau analysieren, stellen diese jedoch nicht visuell dar.
-%So leiden Expressivität und Effektivität stark und die Anforderungen an Intuitivität, sowie Überprüfung von Mustern und Ausreißern sind nicht gegeben. 
-%und Korrelationstabellen. 
 
 \subsection{Interaktion}
 In jeder Visualisierung sind Interaktionen mittels Hovern über die Datenpunkte zur Anzeige konkreter Informationen im jeweiligen Kontext des Plots 
@@ -624,7 +386,7 @@ So werden die Anforderungen an stets mögliche Detailansichten sowie Verbesserun
 In jeder einzelnen Visualisierung sind weitere Interaktionsmöglichkeiten integriert. 
 So kann im expliziten Baumdiagramm der vergrößerte Baum mittels Scrollbar verschoben und mithilfe eines Links zu den detaillierteren Visualisierungen gewechselt werden.
 Von jeder der detaillierten Plots kann der Anwender durch einen Link am unteren Ende der Website schnell einen weiteren Tab zur Rückkehr zum Baumdiagramm als Ausgangspunkt und Übersicht für bspw. einen Abgleich öffnen.
-Im Parallelen Koordinaten Plot sind die Achsen dank eines Drop-Down-Menüs für jede frei belegbar . 
+Im Parallelen Koordinaten Plot sind die Achsen dank eines Drop-Down-Menüs für jede frei belegbar. 
 Wie in Kapitel 3.3.2 beschrieben, kann dies Überforderung, Unübersichtlichkeit und Zeitverlust durch bloßen Achsentausch verhindern 
 sowie die teils versteckten Abhängigkeiten zwischen den Regionen in jeder Kombination sichtbar machen. 
 Die Betrachtung der Abhängigkeiten zwischen nur drei benachbarten Dimensionen ist so weniger problematisch.
@@ -639,58 +401,27 @@ Für eine verbesserte Effektivität, Zeitersparnis und Komfort bleiben die Achse
 und müssen bei erneutem Wechsel zurück nicht neu eingestellt werden. 
 Welche Attribute auf den Achsen ausgewählt sind, ist durch eine sich anpassende Unterüberschrift des Plots gekennzeichnet. 
 
-Zuletzt wird die Anforderung an einen Filter zur Auswahl der Genres und entsprechender Eingrenzung der Stichprobe in den Visualisierungen Paralleler Koordinaten Plot und Scatterplot umgesetzt.
+Zuletzt wird die Anforderung an einen Filter zur Auswahl der Genres und entsprechender Eingrenzung der Stichprobe in den Visualisierungen Paralleler Koordinaten Plot und Scatterplot umgesetzt (s. Abb. 4).
 Hierzu gibt es bei beiden Visualisierungen die Möglichkeit zur Interaktion mit einem Drop-Down-Menü, 
 in dem das gewünschte zu betrachtende Genre unter Anpassung der visualisierten Daten ausgewählt werden kann.
 Die Filterung bleibt bei Umschalten des Plots bestehen und wird direkt auf den anderen angewandt, 
 sodass eine Interaktion mit einem Plot zur Änderung des anderen führt. 
 Durch die Anzeige des Menüs sowie die sich anpassende Unterüberschrift des Plots ist das gewählte Genre nachvollziehbar.
+%Bild Filter
 Die Zielgruppe kann durch die Interaktion mittels Genrefilter die Spiele und die Abhängigkeiten derer zwischen den Regionen sinnvoller vergleichen 
 und vielversprechende Genres und in diesen möglicherweise Regionen für die Investition in weitere Marktstudien eingrenzen.
 
-%In der ersten Visualisierung werden Knoten bei Interaktion durch Hovern über sie mittels Farbe hervorgehoben sowie beschriftet. 
-%So ist eine allgemeine Übersicht ohne zu viele Details auf einmal möglich.
-%Die detaillierten Visualisierungen sind durch die Interaktion des Klicks auf die Weiterleitung erreichbar.
-%So wird die Struktur der zuerst angebotenen Übersicht und der dann folgenden Detaillierung mittels Verkaufszahlen ermöglicht. 
-%In dem Parallelen Koordinaten Plot sind die Regionen pro Achse frei wählbar. 
-%Ein einfacher Achsentausch ist mit steigender Anzahl der Achsen unüberischtlich und beansprucht in der Auswahl zu viel Zeit.
-%Die freie Wahl ermöglicht der Zielgruppe mehr Schnelligkeit und Einfachkeit in der Wahl der gewünschten Reihenfolge. 
-%Weiterhin werden die Datenpunkte bei Interaktion durch Hovern über sie mittels Farbe hervorgehoben und die Details außerhalb des Koordinatensystems angezeigt.
-%Im Scatterplot wird ist die Belegung der X- und Y-Achse ebenso frei mit den vorhandenen Regionen belegbar.
-%Die Zielgruppe kann somit individuell wählen, welche Regionen durch zuvor betrachtete Parallele Koordianten interessant sind und dargestellt werden. 
-%Auch hier werden bei Interaktion durch Hovern die Datenpunkte durch Farbe hevorgehoben sowie Details zum jeweiligen Videospiel angezeigt. 
-%Somit entsteht eine Einheitlichkeit in allen Visualisierungen, vor allem aber in der zweiten und dritten. 
-
-%Weiterhin kann durch die Interaktion mit einem Dropdown-Menü zwischen allen drei Visualsierungen gewechselt werden. 
-%Änderungen der Achseneinstellungen im Parallelen Koordinaten Plot und im Scatterplot bleiben beim Wechsel zwischen diesen bestehen, sodass eine erneute Einstellung nicht nötig ist. 
-%So sind schnelle Vergleiche und Wechsel zwischen beiden detaillierten Visualisierung möglich. 
-%Das Baumdiagramm als Ausgangsübersicht ist zudem mittels Interkation mit Link über jede der beiden anderen Visualisierungen möglich.
-%In den Anforderungen für Visualisierung zwei (Parallele Koordianten) und drei (Scatterplot) ist eine Filterung nach Genre formuliert. 
-%Diese ist per Interaktion mit Dropdown-Menü und Auswahl eines Genres erreichbar. 
-%Wird dies in einer der beiden Visualisierungen ausgewählt, wird es in der anderen übernommen ohne bei Wechsel zu dieser Visualisierung nochmal ausgewählt werden zu müssen.
-%Eine Änderung des Genres in einer der beiden detaillierten Visualisierungen führt zu einer Änderung in der anderen.
-
 \section{Implementierung}
 Nachfolgend wird die Implementierung der präsentierten Visualisierungen und Interaktionen beschrieben. 
-%Der Code wird durch Kommentare ergänzt, um eine Übersichtlichkeit und Erklärung zu einzelnen Funktionen zu ermöglichen.
 Der Code unterteilt sich in fünf Elm-Module, in denen die drei einzelnen Visualisierungen, die Datenstrukturen 
 und die Zusammensetzung und Ausführung des Hauptprogramms implementiert sind. 
 \textit{TreeHierarchy} dient als Ausgangspunkt, wobei \textit{MainScatterParallel} den Hauptteil der Anwendung durch die eigentliche Verbindung 
 der Visualisierungen enthält.
-Innerhalb der Visualisierungsmodule werden zuerst kleinere Funktionen zur späteren Nutzung definiert, 
-bis allgemeine Definitionen der Plots schließen. 
-Diverse genutze Bibliotheken werden je zu Beginn des Moduls importiert.
-%Die Bibliotheken \textit{elm/core} und \textit{elm/browser} werden nur für MainScatterParallel importiert. 
-%\textit{elm/http} wird von MainScatterParallel, Data und TreeHierarchy verwendet, \textit{elm/html} von MainScatterParallel, TreeHierarchy und Scatterplot.
-%Zur Decodierung von JSON-Dateien für TreeHierarchy wird die Bibliothek \textit{elm/json} in Data genutzt, für die Decodierung von CSV-Dateien für Scatterplot und ParallelPlot in Data \textit{lovasoa/elm-csv} und \textit{ericgj/elm-csv-decode}.
-%Die Bibliothek \textit{elm-community/typed-svg} wird für das Zeichnen der Plots in Scatterplot, ParallelPlot und TreeHierarchy gebraucht ebenso wie die Bibliothek \textit{gampleman/elm-visualization}. 
-%\textit{avh4/elm-color} wird nur in ParallelPlot und TreeHierarchy genutzt. 
-%\textit{elm-community/list-extra} und \textit{folkertdev/one-true-path-experiment} sind nur für das Zeichnen des ParallelPlots wichtig.
-%Zur Berechnung des Layouts von Bäumen wird \textit{wasdacraic/elm-tree-layout} in TreeHierarchy genutzt und \textit{zwilias/elm-rosetree} zum Speichern der Bäume in einer Datenstruktur in TreeHierarchy und Data importiert.
+Es werden verschiedene Bibliotheken genutzt, die je zu Beginn des Moduls importiert werden.
            
 Die Implementierung zeigte sich als zeitaufwendig, da trotz umfangreicher Übungsaufgaben die Routine im Programmieren mit Elm fehlte.
 Die Übungsaufgaben waren jedoch hilfreich und dienten oft als Grundlage der Funktionen.
-Im gesamten Projekt gab es neue Erkenntnisse und Verständnis für die Funktionen der Sprache und des Übungs-Quellcodes, 
+Im gesamten Projekt gab es neue Erkenntnisse und Verständnis für die Funktionen der Sprache und des Übungsquellcodes, 
 sodass sich ein großer zusätzlicher Lerneffekt einstellte.
 Trotz der guten Abgabevorlagen der Autorin zu den Übungsserien traten Schwierigkeiten auf, 
 die in den folgenden Unterkapiteln Erwähnung finden.
@@ -699,172 +430,148 @@ die in den folgenden Unterkapiteln Erwähnung finden.
 \textit{Data} dient der Deklaration fast aller verwendeten Datentypen sowie der Decodierungen. 
 Nur \textit{Model} und \textit{Msg} sind aus Verständnisgründen des Quellcodes in \textit{MainScatterParallel} definiert. 
 
-Zunächst wird mit \textit{decodeGameSales}, \textit{csvString\_to\_data} und \textit{gamesSalesList} die Decodierung der CSV-Dateien implementiert. 
-Einzelne Felder der CSV-Datei werden als String decodiert und in eine Liste vom Typ GameSales geschrieben.
+Zunächst wird mit \textit{decodeGameSales}, \textit{csvString\_to\_data} und \textit{gamesSalesList} die Decodierung der Felder der CSV-Dateien 
+als String bzw. Float implementiert und in eine Liste vom Typ GameSales geschrieben. 
 Darauf folgt die Decodierung der JSON-Datei mittels \textit{treeDecoder}.
 Beide Decoder finden im \textit{update} in \textit{MainScatterParallel} zur initialen Überschreibung der Daten ihre Anwendung.
 Sie basieren auf den für die Übungen sieben und neun verwendeten Decodern und wurden an die hier verwendeten Daten angepasst.
 
-Es folgt die Deklaration jener Datentypen, die für alle Visualisierungen außer die \textit{TreeHierarchy} wichtig sind. 
-\textit{Type alias GameSales} definiert die grundlegenden Datentypen der CSV-Datei, die im Model in \textit{MainScatterParallel} weiterverwendet werden. 
+Es folgt die Deklaration der für alle Visualisierungen außer \textit{TreeHierarchy} wichtigen Datentypen.
+\textit{Type alias GameSales} definiert die grundlegenden Datentypen der CSV-Datei, die u. a. im Model in \textit{MainScatterParallel} weiterverwendet werden. 
 Der \textit{type RegionType} und der \textit{type PlotType} als CustomTypes dienen der Achsenauswahl in den Visualisierungen zwei und drei 
 sowie der Wahl der anzuzeigenden Visualisierung. 
-Sie werden vom \textit{type Model} und \textit{type Msg} in \textit{MainScatterParallel}, vom \textit{regionFilter} in \textit{Scatterplot} 
-und von \textit{multiDimenData} in \textit{ParallelPlot} verwendet. 
 Es folgen die durch die Übungen bekannten Datentypen für die spezifischen Visualisierungen. 
-%Somit sind alle drei Visualisierungen modular zusammengesetzt.
 Zuletzt werden die für die Buttons wichtigen Funktionen zur Konvertierung eines Strings zum jeweiligen CustomType 
 und mit Ausnahme vom PlotType umgekehrt beschrieben. 
 Dies dient der Erstellung von nur Strings erlaubenden Buttons und der bspw. resultierenden korrekten Anzeige von aktuell ausgewählten Regionen.
 Die Konvertierung eines RegionType zu einem Tupel aus GameSales und Float für \textit{multiDimenData} in \textit{ParallelPlot} nötig.
 
 \subsection{TreeHierarchy.elm}
-Für das Modul können große Teile des von der Autorin in Übungsserie neun erstellten Quellcodes verwendet werden 
-und müssen lediglich minimal auf die verwendeten Daten angepasst werden. 
+Für das Modul können große Teile des von der Autorin in Übungsserie neun erstellten Quellcodes unter minimaler Anpassung an die verwendeten Daten genutzt werden.
 Nach der Definition der \textit{main}-Funktion wird die Anwendung initialisiert, 
 die Daten unter Anwendung des JSON-Decoders geladen und die jeweils auszuführenden Aktionen bei korrektem oder inkorrektem Laden der Daten bestimmt. 
 Es folgt die Helferfunktion \textit{convert} zur Konvertierung des Baumes basierend auf den Vorgaben zu Übung neun.
 
-%\textit{Line} und \textit{point} definieren die Linie zum Zeichnen der Verbindungen von Eltern zu Kindknoten bzw. zur Darstellung der Knoten an sich sowie die um 75° rotierte, fett gedruckte Beschriftung. 
-
 \textit{TreePlot2} zur Zeichnung des Baumes ohne Scrollen und \textit{treePlot} zur näheren Ansicht des Baumes werden folgend implementiert. 
 Sie unterscheiden sich einzig in der prozentualen Vergrößerung der global definierten Höhen und Breiten um 200 bzw. 150 Prozent im \textit{treePlot}.
-%Die Quellcode der Plots basiert stark auf dem Quellcode der Autorin zu Übung neun. 
-Mittels lokaler Funktionen wird das Layout des Baumes bestimmt, bevor die Abhängigkeiten des Baumes mit Hilfe von \textit{Dict.get} 
+Mittels lokaler Funktionen wird das Layout des Baumes bestimmt, bevor die Abhängigkeiten mit Hilfe von \textit{Dict.get} 
 zum Erhalt der x- und y-Werte berechnet werden, um die Pfade zwischen Eltern- und Kindknoten zu zeichnen. 
 Die Funktionen \textit{checkRootNegative} und \textit{nodeValuesPath} verhindern das fehlerhafte Zeichnen einer Linie zum nicht existenten Elternknoten der Wurzel.
-Nachfolgend werden die berechneten Verbindungen mittels Anwendung zuvor global implementierter Funktion \textit{line} auf \textit{nodeValuesPath} gezeichnet.
+Nachfolgend werden die berechneten Verbindungen durch Anwendung zuvor global implementierter Funktion \textit{line} auf \textit{nodeValuesPath} gezeichnet.
 Berechnete Knoten werden durch Anwendung von zuvor definiertem \textit{point} auf \textit{nodeValues} mit einer fett gedruckten, um 75° rotierten Beschriftung visualisiert. 
 Das Design wird im global definierten CSS \textit{cssTree} vorgenommen. 
 
-In der \textit{view}-Funktion werden lokal die Daten in einen Baum konvertiert, 
-bevor dieser mit dem CSS den beiden Plotfunktionen des Baumes übergeben und ausgegeben werden kann.
+In der \textit{view}-Funktion werden die Daten in einen Baum konvertiert, 
+bevor dieser mit dem CSS den beiden Plotfunktionen des Baumes übergeben wird.
 Anordnung sowie der Design der HTML-Elemente sind an \textit{MainScatterParallel} angepasst. 
-%An den entsprechenden Stellen in der Abfolge der gewünschten Texte werden die beiden Baumhierarchien gezeichnet, wobei \textit{treePlot} einen Balken zum horizontalen Scrollen erhält.
+Zuletzt werden allgemeine, konstante Einstellungen zum Plot definiert, die abgesehen von bestimmten Werten
+auf den Vorgaben der Vorlage zum Arbeiten mit Bäumen und den Abgaben der Autorin zu Übung neun basieren.
 
-Zuletzt werden allgemeine, konstante Einstellungen zum Plot definiert. 
-Diese basieren abgesehen von bestimmten Werte auf den Vorgaben in der Vorlage zum Arbeiten mit Bäumen aus Übung neun 
-und den Abgaben der Autorin zu Übung neun. 
-
-Die Implementierung der expliziten Baumhierarchie stelle keine Schwierigkeiten dar, 
-da sehr viel auf den abgegebenen Codes der Autorin zu Übung neun basiert. 
-Lediglich der Decoder in \textit{Data} musste an die Datenfelder angepasst, der Link zum Laden der Daten geändert 
-sowie die besten Design- und Darstellungsweisen inklusive der zweifachen Darstellung des Baumes gefunden werden. 
-Das CSS wurde global definiert und das allgemeine Design Seite im \textit{view} an jenes aus \textit{MainScatterParallel} angepasst. 
+Die Implementierung der expliziten Baumdarstellung bereitete keine Schwierigkeiten, 
+da sehr viel auf den abgegebenen Quellcodes der Autorin zu Übung neun basiert. 
+Lediglich der Decoder musste an die Datenfelder angepasst, der Link zum Laden der Daten geändert, das CSS global definiert  
+sowie die besten Design- und Darstellungsweisen mit zweifacher Darstellung des Baumes gefunden werden. 
+Das Seitendesign im \textit{view} wurde an jenes des \textit{MainScatterParallel} angepasst. 
 
 \subsection{ParallelPlot.elm}
 Der \textit{ParallelPlot} enthält zunächst drei Funktionen zur Zuordnung der Daten zum benötigten Datentyp und der Reduzierung der Datensätze um solche, 
 die Null-Values enthalten. 
-Letzteres ist nach der manuellen Datenvorverarbeitung zwar nicht zwingend notwendig, 
+Letzteres ist durch die manuelle Datenvorverarbeitung zwar nicht zwingend notwendig, 
 schließt jedoch Fehler aus und es kann auf Änderungen der Rohdaten eingegangen werden. 
 
 Die erste Hilfsfunktion dient mittels \textit{Maybe.map2} dem Pipen.
 Basierend auf einer normalen \textit{Maybe.map5} Funktion wird die zweite Hilfsfunktion um einen Parameter erweitert. 
 Beide begründen sich aus den Elm-Core-Bibliothek-Dokumentationen zu Maybe.\cite{EvanCzaplicki.o.J.} 
 Aufgrund des fehlenden \textit{Maybe.map6}, wird zum Umgehen des Problems in \textit{helpMapBig} die erste Hilfsfunktion angewandt. 
-%So kann transformiert werden wie es eine Maybe.map6 Funktion machen würde, wenn es sie gäbe.
 \textit{AssignmentAndReduce} wandelt schließlich lokal mittels \textit{helpMapBig} die Daten vom Typ GameSales zu Maybe GameSales 
 und reduziert sie um die Datensätze mit fehlenden Werten mittels \textit{List.filterMap}.
 Diese Funktion basiert auf den Abgaben der Autorin zu Übung sechs.
 
-Die Funktion \textit{multiDimenData} dient zusammen mit der lokalen Funktion \textit{multiDimFunction} aus \textit{MainScatterParallel} 
+D\textit{MultiDimenData} dient zusammen mit der lokalen Funktion \textit{multiDimFunction} aus \textit{MainScatterParallel} 
 der freien Achsenbelegung.
-%sowie der Anwendung der Filterung nach Genre. 
 Das Grundgerüst beider Funktionen basiert auf den Abgaben der Autorin zu Übung sechs, 
 wobei der dortige Achsentausch für die Anforderungen an die Visualisierungen geändert wurde. 
 \textit{MultiDimenData} benötigt eine Liste von GameSales, fünf RegionTypes als auszuwählende Regionen für die Achsen, 
-den Namen des Spieles und den seinen Publisher als String zur Anzeige dieser im späteren Plot. 
-%Der Typ begründet sich aus dem \textit{type alias GameSales}.
+den Namen des Spieles und seinen Publisher als String zur Anzeige dieser im späteren Plot. 
 Zusätzlich sind fünf Namen, also Beschriftungen als String nötig. 
-Begründet ist dies in der Definition der Recordfelder in \textit{type Model} sowie dem für das \textit{update} benötigten Datentypen 
+Die Begründung liegt in der Definition der Recordfelder in \textit{type Model} sowie den für das \textit{update} benötigten Datentypen 
 \textit{(RegionType, String)}.
 Die Funktion gibt den Typ \textit{MultiDimData} zur Übergabe an \textit{scatterplotParallel} aus. 
-Eine besondere Schwierigkeit in der Konstruktion lag im Umfang und Verständnis für benötigte Datentypen der Funktion. 
+Eine besondere Schwierigkeit in der Konstruktion lag im Umfang und Verständnis der nötigen Datentypen. 
 So muss der RegionType innerhalb der Funktion mittels \textit{regionTypeToAxisAnnotation} umgeschrieben werden, 
 um zu \textit{MultiDimPoint} zu passen und alles schlussendlich als \textit{MultiDimData} auszugeben. 
 Die lokale Funktion \textit{multiDimFunction} aus \textit{MainScatterParallel} wendet \textit{multiDimenData} 
 letztlich mit den benötigten Daten für die Parameter an.
 
 Der \textit{scatterplotParallel} kann nahezu unverändert aus den Abgaben der Autorin zu Übung sechs übernommen werden. 
-Es werden unter anderem mittels lokaler Funktionen die Achsen parallel zueinander positioniert sowie inklusive Beschriftungen in einem umgebenden Rechteck gezeichnet.
+Hier werden unter anderem die Achsen parallel zueinander positioniert sowie inklusive Beschriftungen in einem umgebenden Rechteck gezeichnet.
 Die Zeichnung der Datenpunkte wird durch \textit{Shape.line} und \textit{Shape.linaerCurve} realisiert.
 Der beim Hovern über einen Polygonzug anzuzeigende Text wird in einer lokalen Funktion beschrieben, bevor dieser die entsprechenden Daten übergeben werden.
-
-Im anschließend global definierten \textit{cssParallel} wird die Farbopazität der Datenpunkte zur Erzielung des Röntgeneffektes auf 0.5 festgelegt, 
-sowie das Einfärben in einem stärkeren Grünton beim Hovern zu erleichterten Identifikation. 
-Die abschließenden generellen Einstellungen für den Plot basieren mit Ausnahme bestimmter Werte auf den Abgaben der Autorin zu Übung sechs. 
+Im anschließend global definierten \textit{cssParallel} wird die Farbopazität der Datenpunkte zur Erzielung des Röntgeneffektes auf 0.5 festgelegt 
+und die stärkere grüne Färbung beim Hovern hinzugefügt. 
+Die abschließenden generellen Ploteinstellungen basieren abgesehen von einigen Werten auf den Abgaben der Autorin zu Übung sechs. 
  
 Das Zeichnen des \textit{ParallelPlots} bereitete wenig Schwierigkeiten, da sich die Erstellung in weiten Bereichen auf den Abgaben zu Übung sechs stützte.
 Komplizierter war zunächst die Implementierung des Mappings und der Filterung nach Null-Werten durch das fehlende \textit{List.map6} 
 sowie die Umsetzung der freien Achsenauswahl wie zuvor beschrieben. 
 Dabei benötigte es viel Ausprobieren und Verständnis, welche Datentypen für welche weiteren Funktionen benötigt 
-und welche durch die vorherige Definition der Datentypen vorhanden waren.
+und welche als Eingabe möglich waren.
 
 \subsection{Scatterplot.elm}
-Für den \textit{Scatterplot} sind drei ähnliche Funktionen mit demselben Zweck des Mappings und Reduzierens wie in \textit{ParallelPlot} nötig,
+Für den \textit{Scatterplot} sind beginnend drei ähnliche Funktionen mit demselben Zweck wie in \textit{ParallelPlot} nötig,
 wobei sich erstere zwei gleichen und \textit{FilterAndReduceGames} auf den Abgaben der Autorin zu Übung eins basiert, aber ähnlich funktioniert.
-Die Eingabedaten werden hier dem Typ Maybe Point zugeordnet und mit \textit{List.filterMap} gefiltert.
-Als Output werden sie in XyData geschrieben, um diese für das Zeichnen des Plots zu nutzen.
-Der \textit{regionFilter} basiert auf den Abgaben der Autorin zu Übung vier und filtert unter Eingabe einer Liste GameSales und des RegionTypes 
-die Datenpunkte nach der gewählten Region zur Ermöglichung der Interaktion innerhalb des Plots mit freier Achsenbelegung 
-und der korrekten Datenpunkte.
-%Die Anwendung wird in \textit{MainScatterParallel} vorgenommen und beschrieben.
+Unterschiedlich ist hier die Zuordnung der Eingabedaten zum Typ Maybe Point.
+Die gefilterten Daten werden als Output für das Zeichnen des Plots in XyData geschrieben.
+Der \textit{regionFilter} stammt aus der vierten Übungsserie der Autorin und filtert unter Eingabe der Liste GameSales und des RegionTypes 
+die Datenpunkte nach der gewählten Region zur Interaktion durch freie Achsenbelegung innerhalb des Plots.
 
 \textit{Point} legt die Positionierung und Beschriftung der Punkte für die Weiterverwendung in \textit{Scatterplot} fest.
-Der \textit{scatterplot} zeichnet den Plot. 
-Durch die lokale Funktion \textit{pointsXY} wird die Variabilität der Achsen und damit x- und y-Werte der Punkte ermöglicht.
-%Dies ist einzig in der Abgabe der Autorin zu Übung vier umgesetzt, sodass diese als Grundlage für die lokale Funktion dient. 
-%In weiteren lokalen Funktionen wird die Abbildung bzw. Umrechnung der Daten auf SVG berechnet.
-Weiterhin wird im \textit{scatterplot} mittels SVG die Positionierung der x- und y-Achse, ihrer Beschriftungen und der Punkte festgelegt. 
-Letzteres wird durch die lokalen Funktionen \textit{xScaleLocal}, \textit{yScaleLocal} und \textit{pointsXY} sowie der globalen Funktion \textit{point} erreicht.
+Der \textit{scatterplot} zeichnet den Plot, bei dem die lokale Funktion \textit{pointsXY} die Variabilität der Achsen und damit x- und y-Werte der Punkte ermöglicht.
+Weiterhin wird im \textit{scatterplot} mittels SVG die Positionierung der x- und y-Achse, ihrer Beschriftungen 
+und der Punkte mittels \textit{xScaleLocal}, \textit{yScaleLocal} und \textit{pointsXY} sowie der globalen Funktion \textit{point} vorgenommen. 
 Der \textit{scatterplot} basiert auf den Abgaben der Autorin zu Übung 1.4 sowie Übung vier für die lokale Funktion \textit{pointsXY}. 
-
 Der \textit{cssPoint} wird global definiert, bevor allgemeine, konstant für den Plot geltende Einstellungen, 
 basierend auf den Übungen eins bis vier, folgen. 
 
-Die Implementierung dieses Moduls verlief weitgehend problemlos, jedoch langsam durch ständiges Überprüfen der richtigen Datentypen.
-Problematisch war wie zuvor die Umsetzung des Mappings und Filterns nach Null-Werten, wobei die Lösung größtenteils aus dem \textit{ParallelPlot} übernommen werden konnte. 
+Die Implementierung des \textit{Scatterplots} verlief überwiegend problemlos, jedoch langsam durch stetes Überprüfen der richtigen Datentypen.
+Schwieriger war wie zuvor die Umsetzung des Mappings und Filterns nach Null-Werten, wobei die Lösung weitgehend aus dem \textit{ParallelPlot} übernommen werden konnte. 
 Weiterhin musste, konträr zu den meisten Übungsserien, auf die variable Definition der Achsen zur freien Achsenbelegung geachtet werden.
-Entsprechende Zeit- und Denkinvestitionen überwanden diese Probleme.
+Entsprechende Zeit- und Denkinvestitionen überwanden die Probleme.
 
 \subsection{MainScatterParallel.elm}
-Aufgrund der besseren Erkenntlichkeit des Ursprungs von Funktionen aus zuvor beschriebenen Elm-Modulen in \textit{MainScatterParallel}
-werden sie nicht dezidiert sondern das allgemeine Modul importiert. 
-Für \textit{MainScatterParallel} wird die gesamte Elm-Architektur verwendet, da das Modul den \textit{Scatterplot} und die \textit{ParallelPlot} ausführen 
+Aufgrund besserer Erkenntlichkeit des Ursprungs von Funktionen aus zuvor beschriebenen Elm-Modulen in \textit{MainScatterParallel}
+werden nur die allgemeinen Module importiert. 
+Für \textit{MainScatterParallel} wird die gesamte Elm-Architektur verwendet, da das Modul den \textit{Scatterplot} und den \textit{ParallelPlot} ausführen 
 und alle drei Visualisierungen verbinden soll.
 Zunächst wird das Programm in der \textit{main}-Funktion definiert sowie die \textit{subcritpions-} und \textit{init}-Funktion implementiert.
 
-Es folgt die Definition des \textit{type Model} und \textit{type Msg}. 
-%Diese könnten zwar auch in Data definiert werden, verweilen aber zugunsten der Übersichtlichkeit und schnelleren Verständnisses des Codes in diesem Modul.
 In \textit{type Model} werden die drei Varianten Error, Loading und Success zur Anzeige in den entsprechenden Fällen beschrieben, 
 wobei die Variante Success gleichzeitig ein Record mit den dort beschriebenen Feldern ist. 
 Die initialen Werte werden in dieser Implementierung erst durch die \textit{update}-Funktion dort hinein geschrieben.
-Im Feld \textit{data} werden die geladenen und decodierten Daten als Liste vom Typ GameSales gespeichert. 
+Im Feld \textit{data} werden die geladenen und decodierten Daten als Liste von GameSales gespeichert. 
 Zur Ermöglichung der Interaktionen bestehen die weiteren Felder für das Genre, die Achsen eins bis fünf, 
 die Namen der Achsen eins bis fünf, die x- und y-Achse und den gewünschten Plot. 
-%Für die Achsen des Scatterplots und Parallelen Koordinaten Plots sowie den Plot an sich sind die entsprechenden CustomTypes definiert.
 Der \textit{type Msg} definiert die Varianten zur Überschreibung des Models mittels \textit{update}. 
-Es gibt eine Variante zum erfolgreichen Laden und Initialisieren der Daten sowie für jeden möglichen Achselwechsel in den Plots sowie den Wechsel des Plots an sich.
+Es gibt eine Variante zum erfolgreichen Laden und Initialisieren der Daten, je eine für jeden möglichen Achsenwechsel in den Plots und den Plotwechsel an sich.
 
-In der \textit{update}-Funktion werden zuerst die initial anzuzeigenden Attributwerte definiert und nach Anwendung der Decodierung in Success gespeichert. 
+In der \textit{update}-Funktion werden zuerst die initialen Attributwerte definiert und nach Anwendung der Decodierung in Success gespeichert. 
 Weiterhin werden für alle Interaktionen mit dem Model die \textit{Msg}-Varianten beschrieben, 
-um zu definieren wie bei einer Änderung der Variante durch Klick auf einen Button das Model überschrieben wird.
+um die Überschreibung der Variante durch Klick auf einen Button das Model festzulegen.
 
-Nachfolgend sind die benötigten Button-Funktionen zur Überschreibung des Models implementiert.
-Wichtig ist die Nutzung der in \textit{Data} definierten Umwandlungsfunktionen für alle außer den \textit{buttonGenreType} 
-von Strings für die Buttons zu den entsprechend definierten Datentypen. 
-Die Änderungen werden in der \textit{Msg}-Variante gespeichert und durch \textit{update} das Model überschrieben.
+Nachfolgend sind die Button-Funktionen zur Überschreibung des Models implementiert.
 %Bild Button ParallelPlot
+Für alle außer den \textit{buttonGenreType} ist die Nutzung der in \textit{Data} definierten Umwandlungsfunktionen 
+von Strings für die Buttons zu den entsprechend definierten Datentypen wichtig. 
+Die Änderungen werden in der \textit{Msg}-Variante gespeichert und durch \textit{update} das Model überschrieben.
 Die Buttons basieren auf den Abgaben der Autorin aus Übung vier, ebenso die folgende Funktion \textit{filterGenre}. 
 Sie wird im \textit{view} zur Filterung nach Genre angewandt.
-%Im Prinzip sorgt diese Funktion, wenn später im \textit{view} angewendet, dafür, dass ausgewähltes Genre und angezeigtes Genre übereinstimmen, also Gleichheit besteht.
 
-In der \textit{view}-Funktion werden die verschiedenen Fälle des Models zur Ansicht behandelt, wobei nur auf den Erfolgsfall näher eingegangen wird. 
+In der \textit{view}-Funktion werden die Varianten des Models zur Ansicht behandelt, wobei nur auf den Erfolgsfall näher eingegangen wird. 
 Zunächst wird eine \textit{let-in}-Konstruktion auf erster äußerer Ebene erstellt. 
-In lokalen Funktionen wird \textit{gameSalesData} sowie die Anzahl der Spiele insgesamt beschrieben 
+In lokalen Funktionen werden \textit{gameSalesData} und die Spieleanzahl insgesamt beschrieben 
 sowie der globale \textit{filterGenre} zur Datenfilterung nach Genre angewandt und die Listenlänge berechnet. 
-Damit zwischen den Plots gewechselt werden kann, 
-werden die verschiedenen Varianten des Datentyps \textit{PlotType} im \textit{in}-Teil angelegt. 
+Zum Wechsel zwischen den Plots werden die Varianten des Datentyps \textit{PlotType} im \textit{in}-Teil angelegt (s. Abb. 6). 
+%Bild Code LetIn
 Je nachdem, welcher Plot mittels Button ausgewählt und das Model durch \textit{update} überschrieben wird, wird einer der drei Fälle angezeigt. 
 Der Zustand des Models mit gefiltertem Genre soll bestehen bleiben, 
 sodass eine Interaktion mit dem Genrebutton in einer Visualisierung zu einer Änderung der anderen führt.
@@ -875,69 +582,56 @@ und bei einem Plotwechsel übernommen werden.
 In den lokalen Funktionen der inneren Konstruktion der Plots muss dazu die lokale \textit{gameSalesDataFiltered} der äußeren Ebene angewandt werden. 
 Würde statt in der übergeordneten Ebene in jeder der inneren Ebenen für jeden Plot der Genrefilter neu definiert und lokal angewandt werden, 
 könnten der Zustand des Models nicht übernommen werden und eine Änderung des einen würde keine Änderung des anderen Plots herbeiführen.
-%Bild Code
 
 Der erste Case behandelt den ParallelPlot, wobei lokal die \textit{assignmentAndReduce}-Funktion auf die gesamten Daten 
 sowie auf die in der äußeren Ebene nach Genre gefilterten Daten angewandt wird.
-In \textit{multiDimFunction} wird \textit{multiDimenData} letztlich durch Übergabe der entsprechenden bereinigten und gefilterten Daten genutzt. 
+\textit{multiDimenData} wird in \textit{multiDimFunction} durch Übergabe der entsprechenden bereinigten und gefilterten Daten genutzt. 
 Im \textit{in}-Teil der inneren Ebene wird die Struktur und das Design der Seite in einer wenig ablenkenden Auswahl und Abstufung zweier 
 schon in den Plots vorkommenden Grüntöne sowie Ränder festgelegt.
-%Für eine angenehmere und wenig ablenkende Ansicht werden die Farben den Grüntönen in den Plots angepasst. 
-%Zur Direktion des Auges über die Seite und verbesserten Erkennung von wichtigen Abschnitten wie der Auswahl der Plots, des Genres und der Achsen werden Ränder und verschiedene Grüntonabstufungen genutzt.
-Neben Informationstexten und Überschriften werden hier auch die Buttons als Dropdown-Menü zum Wechsel des Plots, 
+Neben Texten werden hier auch die Buttons als Dropdown-Menü zum Wechsel des Plots, 
 zur Änderung des Genrefilters sowie der Anpassung der Achsen eingefügt.
-Eine transparente Anzeige der gewählten Einstellungen und verbleibenden Videospiele wird hinzugefügt.
-Genanntes gleicht sich in allen Plotvarianten und unterscheidet sich lediglich in den Texten, Achsenbuttons sowie Plots an sich.
-Schließlich wird dem \textit{scatterplotParallel} das \textit{cssParallel}, zwei Konstanten für die Höhe und die Aspect Ratio 
-und die zuvor lokal berechnete \textit{multiDimFunction} übergeben, 
+Die gewählten Einstellungen und verbleibenden Videospiele werden transparent angezeigt.
+Genanntes gleicht sich in allen Plotvarianten und unterscheidet sich lediglich inhaltlich.
+Schließlich werden dem \textit{scatterplotParallel} das \textit{cssParallel}, zwei Konstanten für die Höhe und die Aspect Ratio 
+und die zuvor lokal berechnete \textit{multiDimFunction} übergeben.
 Abschließend folgt ein Text mit Link zur TreeHierarchy in einem neuen Tab.
 
-Im zweiten Case, dem Scatterplot wird mit den lokalen Funktionen zur Anwendung der Filter und des Mappings ähnlich wie zuvor vorgegangen.
+Im zweiten Case, dem Scatterplot, wird die Anwendung von Filter und Mapping ähnlich wie zuvor vorgenommen.
 Durch die lokalen Funktionen \textit{valuesX} und \textit{valuesY} werden dem \textit{regionFilter} die nach Genre gefilterten Daten 
-als Liste von GameSales und die RegionTypes der x- und y-Achse übergeben.
-Der Regionsfilter wird somit zur Interaktion mit freier Achsenbelegung angewandt.
-Der \textit{in}-Teil dieser Plotvariante wird nach Design und Struktur dem \textit{scatterplot} der \textit{cssPoint}, die zuvor berechneten \textit{gameSalesDataCleared} sowie die \textit{valuesX} und \textit{valuesY} übergeben.
-Zur Beschriftung der Achsen werden diese nach Umrechnung von RegionType zu String hinzugefügt.
+als Liste von GameSales und die RegionTypes der x- und y-Achse übergeben und zur Interaktion mit freier Achsenbelegung angewandt.
+Im \textit{in}-Teil dieser Plotvariante werden dem \textit{scatterplot} der \textit{cssPoint}, 
+die zuvor berechneten \textit{gameSalesDataCleared} sowie die \textit{valuesX} und \textit{valuesY} übergeben.
+Zur Beschriftung der Achsen werden diese nach Umrechnung zu Strings hinzugefügt.
 
 Durch die Implementierung des Baumdiagramms in \textit{TreeHierarchy.elm}, 
-muss für diese Plotvariante nur die HTML-Anzeige mit Link zum Plot im gleichen Design wie zuvor definiert werden.
-%Da für das Baumdiagramm der Genrefilter irrelevant ist, muss er weder hier noch in TreeHierarchy angewandt werden. 
+muss für diese Plotvariante nur die HTML-Anzeige mit Link zum Plot definiert werden.
 
 Durch die zuvor in getrennten Anwendungen implementierten Visualisierungen war ein grundlegendes Zusammenfügen dieser 
 durch stückweises Kopieren unkompliziert umsetzbar.
-Die Erstellung einer einheitlichen \textit{update}-Funktion war jedoch zeitlich durch die Menge an Interaktionsmöglichkeiten aufwendig.
-Als schwierig stellte sich die finale Implementierung der Dropdown-Menüs für den ParallelPlot dar, da die Buttons zunächst je einzeln vorlagen. 
+Die Erstellung einer einheitlichen \textit{update}-Funktion stellte sich durch die Menge an Interaktionen als zeitlich aufwendig heraus.
+Schwierig war die finale Implementierung der Dropdown-Menüs für den ParallelPlot, da die Buttons zunächst je einzeln vorlagen. 
 Durch Nachdenken und Ausprobieren mit \textit{multiDimenData} und verschiedenen Konvertierungsfunktionen konnten sie jedoch wie gewünscht realisiert werden.
 Zur Überprüfung musste zeitaufwendig das \textit{update} immer neu angepasst werden.
 Beide Plots wurden zuerst, konträr zum Gewünschten, als untereinander auf einer Seite stehend implementiert, 
 sodass ohne Plot-Selektor nur eine \textit{let-in}-Konstruktion zur gleichzeitigen Filterung nötig war.
-Nach schrittweisem Hinzufügen der Auswahl des Plots und allen zugehörigen Codeteilen, wurde durch Ausprobieren entdeckt, 
+Nach schrittweisem Hinzufügen der Auswahl des Plots und allen zugehörigen Codeteilen wurde durch Ausprobieren entdeckt, 
 dass eine Übernahme des Modelzustands durch Schachtelung der \textit{let-in}-Konstruktionen 
-und der Anwendung des Plotvariantenwechsels mittels \textit{PlotType} möglich war. 
-Der Überblick über die Schachtelungen sowie außen und innen definierte lokale Funktionen gestaltete sich als kompliziert.
+und der Anwendung des Plotvariantenwechsels mittels \textit{PlotType} möglich ist. 
+Der Überblick über diese sowie außen und innen definierte lokale Funktionen gestaltete sich als kompliziert.
 
-%Beschreiben Sie die Implementierung ihrer Visualisierungsanwendung in Elm. Stellen die Gliederung ihres Quellcodes vor. Haben Sie verschiedene Elm-Module erstellt. Was war aufwändig umzusetzen, was ließ sich mit dem vorhanden Code aus den Übungen relativ einfach umsetzen? 
-%Wie sieht die Elm-Datenstruktur für das Model aus, in dem die verschiedenen Zustände der Interaktion gespeichert werden können.
 \section{Anwendungsfälle}
 Im folgenden Kapitel wird ein möglicher Anwendungsfall der implementierten Visualisierungen präsentiert.
 Dabei präsentiert ein mittlerer Manager des Publishers \textit{505 Games} die Visualisierungen zur Vorstellung der Erkenntnisse dem oberen Management sowie den Stakeholdern des Unternehmens, um weiter analysierend eine fundierte Investitionsentscheidung zu treffen. 
 Es sollen Indikatoren für potenzielle Investitionen in neue Videospiele bzw. Fortsetzungen vorhandener Titel eines Genres gefunden werden, die zu einer Entscheidung zur Inauftraggabe detaillierter Marktstudien in den identifizierten Genres und potenziell zu fokussierenden Regionen führen.
-%Kann ein solcher Indikator für Potenzial gefunden werden, so kann entschieden werden, ob weitere detailliertere Marktstudien in Auftrag gegeben werden sollen. 
-%Zudem können Vorentscheidungen zur Aufstellung eines neuen Videospiels im Markt getroffen werden, wobei zwischen einer breiten, globalen Aufstellung oder der Konzentration auf bestimmte Märkte resp. Regionen entschieden werden kann.
 
-%Präsentieren sie für jede der drei Visualisierungen einen sinnvollen Anwendungsfall in dem ein bestimmter Fakt, ein Muster oder die Abwesenheit eines Musters visuell festgestellt wird. Begründen sie warum dieser Anwendungsfall wichtig für die Zielgruppe der Anwenderinnen ist. Diskutieren sie weiterhin, ob die oben beschriebene Information auch mit anderen Visualisierungstechniken hätte gefunden werden können. Falls dies möglich wäre, vergleichen sie die den Aufwand und die Schwierigkeiten ihres Ansatzes und der Alternativen. 
 \subsection{Anwendung Visualisierung Eins}
-%Zuerst lädt das explizite Baumdiagramm. 
-%Dank Überschriften und Unterüberschriften ist eine inhaltliche Orientierung auf der Website gegeben.
-%Der Informationstext hilft beim Verständnis des Diagramms.
 Wie in allen Visualisierungen übereinstimmend enworfen, wird auch im expliziten Baumdiagramm mittels teils minimaler farblicher Unterschiede der einzelnen Websitebereiche und der Abgrenzung der Container durch Umrandungen 
 das Auge der Betrachter schnell und indirekt auf die wichtigen Steuerungselemente sowie die eigentliche Visualisierung gelenkt.
-%Zu diesem Zweck wird mit Ausnahme des Navigationscontainers mit \textit{Just Noticable Differences} gearbeitet.
 Sitzt eine Person mit Farbsehschwäche unter den Präsentationsteilnehmern, so ist dies durch Abstufungen der Grüntöne und des Kontrastes auf der Website und in den Visualisierungen unproblematisch. 
-%Falsche Farberkennungen spielen für das Verständnis keine Rolle.
 
 Der erste Ausschnitt des Baumdiagramms gewährt den Teilnehmern einen Überblick über alle Publisher sowie die eigene Position im Baum.
 Im zweiten, detaillierteren Ausschnitt wird den Managern und Stakeholdern dargestellt, welche Genres sie mit \textit{505 Games} bedienen und welche ihrer Spiele in welches Genre passen.
+%Bild Baum
 Durch die einfache Baumstruktur ist schnell erkennbar, dass sie fünfzehn Videospiele in acht Genres anbieten, wobei \textit{Adventure}, \textit{Racing} und \textit{Shooter} die meisten Spiele aufweisen.
 Dank Einblendung der Titel und Genres beim Hovern über die sich grün färbenden Knoten in beiden Diagrammen sowie das Scrollen im zweiten Diagramm sind konkrete Ein- und Überblicke effektiv möglich. 
 Die Genres \textit{Action} und \textit{Sports} werden aufgrund der bisher eher geringen Ausprägung im eigenen Unternehmen näher betrachtet. 
@@ -947,40 +641,29 @@ Schnell erkennbar durch Struktur und Positionierung der Knoten, zeigen sich vor 
 Das große Angebot in dem Genre kann Potenzial durch möglicherweise viele Käufer bieten.
 \textit{Sports} hat weniger Konkurrenz, allerdings wird es durch Publisher wie \textit{EA Sports} und \textit{2K Sports} dominiert.
 Aufgrunddessen entschied der Präsentator im Vorfeld, nachfolgend \textit{Action} und \textit{Sports} zu fokussieren.
-%Mit Klick auf den Link in der Navigation gelangen die Betrachter zu den detaillierteren Visualisierungen.
 
 Auch ein implizites Baumdiagramm hätte dem Informationsbedarf genügt. 
 Aufwand und Schwierigkeit der Implementierung wären im Vergleich leicht erhöht, das Verständnis bei den potenziell ungeschulten Betrachtern wie bspw. Stakeholdern, gerade in kurzen Momenten einer Präsentation, aber gemindert. 
 Hyperbolische Baumdarstellungen wären möglich, würden gut verstanden, zögen aber erhöhten Aufwand und Schwierigkeiten der Implementierung mit sich. 
-%Somit sind sie für eine Voranalyse der Verkaufszahlen im Videospielmarkt wie hier angenommen, zu aufwändig.
 
 \subsection{Anwendung Visualisierung Zwei}
 Mit der Visualisierung des Parallelen Koordinaten Plots präsentiert der mittlere Manager einen detaillierteren Blick auf die Verkaufszahlen der Videospiele eines Genres in allen Regionen der Welt.
-%Der Blick der Betrachter wird wie zuvor beschrieben gelenkt.
 Es finden sich Erklärungen zu Einheiten und Darstellungsweisen auf der Website.
 
 Das festgelegte Genre \textit{Action} wird ausgewählt, sodass die Visualisierung mit voreingestellten Achsenbelegungen 
 und den gefilterten Videospielen betrachtet werden kann. 
 Schnell fällt Japan auf, das viele Titel mit Verkaufszahlen von null aufweist. 
 Weiterhin scheint es durch im Vergleich besser oder schlechter verkaufte Spiele keine Beziehungen zwischen den Regionen mit Japan zu geben.
-Um Zusammenhänge zwischen den anderen Regionen besser erkennen zu können, wird die letzte Achse unverändert mit Japan belegt (s. Abb. ...).
-%Bild
+Um Zusammenhänge zwischen den anderen Regionen besser erkennen zu können, wird die letzte Achse unverändert mit Japan belegt.
+%Bild ParallelPlot Action
 Es lässt sich immer dasselbe Muster erkennen, bestätigt und verdeutlicht durch diverse Kombinationen der Achsenbelegung und der Röntgenstrahlentechnik.
 Einerseits befindet sich der Großteil der Videospiele in allen Regionen im unteren Drittel der Verkaufszahlen, was durch die Überlappungen der Datenpunkte und damit kräftigeren Grüntöne gut erkennbar ist.
 Andererseits scheint es Abhängigkeiten zwischen allen Regionen außer Japan zu geben, erkenntlich durch die konstant waagerecht verlaufenden Datenpunkte.
 \textit{Grand Theft Auto V} von \textit{Rockstar Games} fällt als Ausreißer auf. 
-%hier evtl ein satz mehr zu achsenwechsel & Abhängigkeiten nur zwischen drei benachbarten Achsen
-%hier nochmal erklärung anschauen ob korrekt
-%Wenn sich Spiele gut in Nordamerika verkauften, so verkauften sie sich in Europa in ähnlicher Weise, ebenso wie im Rest der Welt und global.
-%Dies wird auch durch unterschiedliche Achsenbelegungen bestätigt. Eine Korrelation über alle Regionen hinweg scheint gegeben. 
-%Einzig Japan bildet aus unbekannten Gründen eine Ausnahme, da die meisten Spiele hier wie anfangs erwähnt nicht so gut verkauft werden, wenn nicht sogar gar nicht. 
-%Gleichzeitig schneiden einige wenige Spiele, die in den anderen Regionen durchschnittlich verkauft werden, in Japan vergleichsweise gut ab. 
 
 Durch die positive Korrelation scheint eine möglichst universelle Aufstellung und Nutzung der Synergieeffekte durch Abhängigkeiten nützlich.
 Positive Korrelationen werden zudem als erstrebenswert für global agierende Unternehmen gedeutet, was das Genre \textit{Action} vorteilhafter für eine weitere Investition macht.
 Gleichzeitig weist eine Clusterbildung im unteren Drittel der Verkaufszahlen aller Regionen auf starke Konkurrenz oder mögliche Sättigung im Genre hin. 
-%Der durch Hovern zu identifizierende Ausreißer sollte bei Entscheidung für \textit{Action} genauer untersucht werden.
-%Ein neuer Titel sollte also sehr überzeugend sein oder eventuell doch in einem anderen Genre platziert werden. 
 Sollte die Entscheidung zu weiteren Marktstudien in diesem Genre getroffen werden, 
 müsste anhand weiterer Einflussparameter unter anderem der Grund für die hohen Verkaufszahlen des Ausreißers geprüft sowie die Sättigung des der Märkte und Einflussfaktoren der Verkaufszahlen der weiteren Spiele analysiert werden.
 Aufgrund der unkomplizierten Erkenntnisse aus dieser Visualisierung ist eine Überprüfung im Scatterplot nicht zwingend nötig.
@@ -988,22 +671,16 @@ Aufgrund der unkomplizierten Erkenntnisse aus dieser Visualisierung ist eine Üb
 Im Genre \textit{Sports} gibt es keine Ausreißer über alle Regionen hinweg. Auch die Verkaufszahlen verteilen sich stärker über die Skalen. 
 Japan mit in nahezu allen Titeln erkennbaren Verkaufszahlen von null bleibt bestehen und wird aus weiteren Analysen ausgenommen.
 Im unteren Bild erkennbar ist jedoch die leichte Bildung verschiedener Cluster, die sich auch mit unterschiedlichen Achsenbelegungen bestätigt.
-%Bild 
+%Bild ParallelPlot Sports
 Es scheint eine Gruppe Spieletitel zu geben, die in Nordamerika und dem Rest der Welt gut verkauft werden konnten, global und vor allem in Europa deutlich schlechter.
 Weiterhin deutet sich, wenn auch nur sehr schwach sichtbar, ein Cluster an, in dem Spiele überall gut verkauft werden, in Nordamerika im Vergleich jedoch nicht.
 Die restlichen Spiele bilden ein weiteres Cluster am unteren Skalenrand mit durchgängig positiven Abhängigkeiten. 
 Da sich diese Cluster besonders durch Unterschiede zwischen den Verkaufszahlen in Europa und Nordamerika unterteilen, werden diese im Scatterplot näher betrachtet. 
-%, dass einige Spiele in Nordamerika besser verkauft werden als in Europa, im Rest der Welt und global jedoch wieder ähnlich, wenn auch etwas schlechter als in Nordamerika. 
-%Gleichzeitig verkaufen sich Spiele, die in Europa gut verkauft werden, in Nordamerika etwas schlechter, im Rest der Welt und global wiederum besser. 
-%Daraus ergibt sich eine erste Tendenz, dass eine Konzentration auf eine der Regionen \textit{North America} oder \textit{Europe} sinnvoll ist, um wiederum die positiven Beeinflussungen dieser jeweiligen Regionen auf die restlichen Regionen zu nutzen. 
-%Sie wird im Scatterplot überprüft.
 
 Der Vergleich mehrerer Dimensionen resp. mehrerer Attribute eines Videospiels wäre auch durch Icontechniken möglich. 
 Diese Methode ist jedoch durch die Anzahl der zu erstellenden Icons und Kodierung der Daten auf diese aufwendiger zu erstellen und die Analyse
 gestaltet sich durch möglicherweise zu wenig vorhandene Datenpunkte zur Musterbildung und einer erschwerten Erkennung konkreter Zusammenhängen zwischen allen Regionen kompliziert.
 
-%Wenn bspw. eines seiner Spiele in allen oder einzelnen Regionen nicht gut verkauft werden konnte, ein Spiel eines Konkurrenten in diesen Regionen jedoch gut, dann deutet das auf eine starke Konkurrenz hin. 
-%Sind alle oder die meisten Spiele der Konkurrenz in allen oder einzelnen Regionen besser verkauft worden, als das Videospiel von Publisher X, dann deutet dies auf einen gesättigten Markt des Genres mit starker Konkurrenz hin, in das sich möglicherweise weitere Investititonen nicht lohnen. 
 \subsection{Anwendung Visualisierung Drei}
 In seiner Präsentation wählt der mittlere Manager nun den Scatterplot im Drop-Down-Menü aus.
 Die zuvor getroffene Auswahl des Genres, zuletzt \textit{Sports}, bleibt bestehen und 
@@ -1013,48 +690,26 @@ Die zuvor erkannten Cluster in den Verkaufszahlen im Vergleich von Nordamerika z
 Manager oder Stakeholder, die die vorherige Visualisierung möglicherweise weniger gut nachvollziehen konnten, verstehen nun zumindest deutlich die Abhängigkeiten zwischen zwei visualisierten Dimensionen. 
 Im unten abgebildeten Scatterplot ist deutlich ein positiv korreliertes Cluster sichtbar. 
 Im zweiten zuvor entdeckten Cluster lässt sich auch bei Achsentausch keine Korrelation zwischen den Regionen finden, kennzeichnet duch die rein waagerechte bzw. senkrechte Verteilung.
-%Je besser sich Videospiele in Nordamerika/Eurpa verkaufen hat keine Einfluss auf die Verkaufszahlen in der je anderen Region.
 Einzig das dritte Cluster lässt sich nicht direkt bestätigen, deutet sich aber durch einen Punkthaufen nahe des Ursprungs an.
-%Bild Sports
-%Während bei einigen Spielen zwischen beiden Regionen ein deutlich positiv korreliertes Cluster sichtbar ist, 
-%scheinen die anderen Spiele ein Cluster ohne Korrelation zwischen den Regionen zu bilden.
+%Bild SCatterplot Sports
 Die Erkenntnisse aus der zweiten Visualisierung werden bestätigt. 
 Sportvideospiele des ersten Clusters, die in Nordamerika gut verkauft wurden, hatten auch in Europa einen guten Absatz und durch Achsentausch erkennbar auch umgekehrt.
 Dort zeigt ein flacherer Anstieg zeigt auch, dass gut in Europa verkaufte Spiele in Nordamerika weniger gut verkauft wurden. 
 Sehr gute Verkaufszahlen der anderen Gruppe in Nordamerika haben keinen Einfluss auf die Verkäufe in Europa, schlechte Verkäufe in Europa ebenso nicht auf die nordamerikanischen. 
-Durch Einblenden konkreter Details der Datenpunkte wird ersichtlich, dass jene Cluster mutmaßlich in der unterschiedlichen Popularität der Sportarten in den Regionen begründet sind. 
-Fußball scheint mit Abstrichen auch in Nordamerika beliebt, Football in Europa weniger.
-
-%Dort verkaufen sie sich vergleichsweise schlecht. Jedoch ist durch die Ansammlung der Datenpunkte in einer waagerechte, bzw. in umgekehrter Anordnung der Achsenbelegung senkrechten, Linie auch keine negative Korrelation ersichtlich.
-%Es kann durch etwas geringeren Verkaufszahlen in Nordamerika vermutet werden, dass die europäischen Verkaufszahlen die nordamerikanischen positiv beeinflussen. 
-%Verweist der Präsentator mittels Hovern über die Datenpunkte auf die Titel der Videospiele, wird deutlich, dass diese Cluster mutmaßlich durch die unterschiedliche Popularität der Sportarten in beiden Regionen entsteht. 
-
-%Zuletzt werden die Erkenntnisse im Genre \textit{Action} überprüft, sodass die Filterung angepasst wird. 
-%Durch Belegung der Achsen in allen Kombinationen, außer jenen mit Japan, 
-%bestätigt sich deutlich die leicht bis vollständig positive Korrelation zwischen den jeweiligen Verkaufszahlen der Regionen sowie der Ausreißer.
-%Auch die nicht vorhandene Abhängigkeit zwischen den Regionen und Japan zeigt sich deutlich.
-%Einzelnen Datenpunkte sind im Scatterplot jedoch besser erkenn- und zur näheren Betrachtung auswählbar. 
-%Sollte der Wunsch nach paralleler Betrachtung des Baumdiagramms aufkommen, 
-%so kann dieser durch den Link am jeweiligen Seitenende in einem neuen Fenster geöffnet werden.
+Die konkreten Details der Datenpunkte zeigen, dass jene Cluster mutmaßlich in der unterschiedlichen Popularität der Sportarten in den Regionen begründet sind. 
+Fußball scheint auch in Nordamerika beliebt, Football in Europa weniger.
 
 Eine sinnvolle Alternative zu Scatterplots ist nicht gegeben, 
 da sie die leichteste, deutlichste Darstellung von Beziehungen zweier Attribute eines Datenpunktes liefern. 
-%Aufgrund der Zweidimensionalität der Verteilungen würden auch Q- und QQ-Plots mit nur einer visualisierten Dimension gegen f-Werte bzw. gegeneinander zum Erkennen von Verschiebungen nicht die gewünschten Ergebnisse liefern.
 
-%Japan komplett unfokussiert weil viele Null-Werte oder eben sehr kleine Verkaufsmengen und keine Korrelationen
-%Es besteht jedoch die Möglichkeit, dass der Absatz in Japan schlicht zu gering ist, um hier gezählt zu werden.
 Abschließend kann sich das obere Management und wichtigsten Stakeholder von \textit{505 Games}
-zu einer Investition in eine (kosten-)intensive Marktstudie zur Beurteilung weiterer Einflüsse im Genre \textit{Sports} entscheiden. 
+zu einer Investition in eine (kosten-) intensive Marktstudie zur Beurteilung weiterer Einflüsse im Genre \textit{Sports} entscheiden. 
 Die eigene Präsenz dort ist ausbaufähig, es gibt weniger und in der Masse weniger starke Konkurrenz als bei \textit{Action} sowie keine extremen Ausreißer.
 Zwar verzichtet man auf Nutzung der positiven Korrelationen zwischen allen Regionen, kann aber durch Fokussierung auf beliebte Sportarten des europäischen Marktes diese Abhängigkeiten, begrenzt auch in Nordamerika, nutzen.   
 Für einen vergleichsweise kleineren Publisher ist diese Strategie durch effizienten Einsatz von Mitteln sinnvoller.
-%Weiterhin müssen nicht die Abhängigkeiten zwischen allen Regionen betrachtet werden, sodass eine Fokussierung und Abschöpfung eines Marktes Sinn ergibt. 
-%Die Fokussierung auf den europäischen oder nordamerikanischen Markt ist möglich und für ein kleineren Publisher wie \textit{505 Games} sinnvoller. 
-%Durch die Ausrichtung auf den europäischen Markt kann \textit{505 Games} jedoch die positive Korrelation mit dem nordamerikanischen Markt für seine Verkaufszahlen nutzen und damit auch ihn bedienen.
-%Untersucht werden sollten künftig auch die Einflüsse für die vergleichsweise guten Verkaufszahlen für das eigene Spiel \textit{Rocket League}, um über eine mögliche Fortsetzung zu entscheiden.
  
 \section{Verwandte Arbeiten}
-In diesem Kapitel folgt die Vorstellung zweier ähnlicher Anwendungen zu Videospielverkäufen oder Verkaufsdaten im Allgemeinen im Bereich der Visual Analytics. 
+Dieses Kapitel stellt zwei ähnliche Anwendungen zu Videospielverkäufen oder Verkaufsdaten im Allgemeinen im Bereich der Visual Analytics vor. 
 
 Zuerst sei \textit{VizInteract: Rapid Data Exploration Through Multi-touch Interaction with Multi-dimensional Visualizations} von Chakraborty/Stuerzlinger genannt, 
 in dem das Tool \textit{VizInterct} vorgestellt und getestet wird.\cite{Chakraborty.2021}
@@ -1107,8 +762,6 @@ Trotz Ähnlichkeiten der Parallen Koordinaten Plots ist die Anordnungsmöglichke
 Sie müssen bei Hao et al. zur besseren Erkennung von Mustern und Korrealtionen nicht selbst variabel ausgesucht werden, 
 wenngleich diese Flexibilität auch fehlt.
 Wie zuvor wird weniger die Beantwortung einer Frage aus der Anwendung heraus behandelt, als das Tool allgemein vorgestellt.
-%Führen sie eine kurze Literatursuche in der wissenschaftlichen Literatur zu Informationsvisualisierung und Visual Analytics nach ähnlichen Anwendungen durch. 
-%Diskutieren sie mindestens zwei Artikel. Stellen sie Gemeinsamkeiten und Unterschiede dar.
 
 \section{Zusammenfassung und Ausblick}
 In dieser Arbeit wurde mittels drei Visualisierungstechniken eine grobgranulare Marktanalyse 
@@ -1119,23 +772,17 @@ Sie erhalten ein schnelles Verständnis und Überblick über den aktuellen Video
 Zusammenhänge und Muster zwischen den Regionen in den Genres können ohne Vorwissen im Bereich der Visual Analytics abgelesen, analysiert und präsentiert werden.
 So werden erste Erkenntnisse bezüglich neuer Möglichkeiten und Chancen im Markt sowie Ansatzpunkte für Strategieentscheidungen ermöglicht. 
 Sie dienen als Entscheidungsunterstützung für die Beauftragung detaillierterer und teurerer Marktstudien für neue Investitionen.
-
-%Zum einen wurde ein Überblick über den Markt, das eigene Verlagshaus und die Konkurrenz ermöglicht, der in Präsentationen und zur wiederkehrenden Ansicht und Eigenanalyse der Zielgruppen genutzt werden kann.
-%Zum anderen wurde mittels der Visualisierungen und sich zeigenden Muster und Korrelationen in den Verkaufszahlen zwischen den Regionen pro Genre eine informiertere Entscheidungunterstützung über potenzielle künftige Investitionen in neue Titel oder Fortsetzungen in den entsprechenden Genres bzw. tiefere und teurere Marktstudien hierzu ermöglicht.
-%Die Visualisierungstechniken wurden vom Groben zum Detaillierten angeordnet. 
+ 
 Durch die Implementierung eines expliziten Baumdiagramms konnte eine hierarchische Übersicht über den Markt sowie die Zusammenhänge zwischen Publisher, Genre und Titel des eignen Verlagshauses und der Konkurrenz umgesetzt werden.
-%Gleichzeitig konnte durch diese Technik die Konkurrenz betrachtet und abgeschätzt werden, welche Genres durch die quantitative Anzahl der Spiele und deren Publisher Potenzial bieten und im Folgenden näher betrachtet werden sollten.
 Mittels eines Parallelen Koordinaten Plots zur Darstellung mehrdimensionaler Daten konnten auch durch den Einsatz einer Röntgenstrahlentechnik 
 Abhängigkeitsmuster in den Verkaufszahlen von Videospielen eines Genres über mehrere Dimensionen, also Regionen, hinweg erkannt werden.
 Zuletzt konnten in einem klassischen Scatterplot die Erkenntnisse aus der vorherigen Visualisierung inklusive Clusterbildung, 
 Ausreißern und Korrelationen zwischen zwei Regionen konkretisiert werden. 
-%Korrelationen zwischen zwei gewählten Regionen sowie Ausreißer und die Bildung von Clustern konnten somit detaillierter dargestellt und analysiert werden.
 Für ein verbessertes, komfortables und schnelles Anwendungserlebnis sowie Effektivität und Effizienz wurde die Auswahl der Genres mittels Drop-Down Menü interaktiv gestaltet 
 sowie beim komfortablen Umschalten der Visualisierungen ebenso mittels Drop-Down Menü erhalten.
 Aus demselben Grund wurde ein Beibehalten der flexiblen, individuellen Achsenauswahl für den Parallelen Koordinaten Plot sowie den Scatterplot integriert.
-%Zur nötigen Erkennung von Details zu Publishern, Titeln und konkreten Verkaufszahlen wurden interaktive Anzeigen dieser Informationen beim Hovern über die Datenpunkte in allen Visualisierungen ermöglicht.
 
-Eine sinnvolle Erweiterung ist der Einbezug von (Nutzer-)Kritiken und deren Auswirkungen auf die Verkaufszahlen 
+Eine sinnvolle Erweiterung ist der Einbezug von (Nutzer-) Kritiken und deren Auswirkungen auf die Verkaufszahlen 
 sowie die Analysen von Korrelationen nicht öffentlich zugänglicher Daten zu Entwicklungskosten und Umsätzen pro Spiel.
 Dies ist jedoch Teil der angesprochenen weiterführenden Marktstudien.
 Interessant ist eine weitere Unterteilung der Region \textit{Rest of World}, die unter anderem Afrika, Asien und Südamerika enthält.
