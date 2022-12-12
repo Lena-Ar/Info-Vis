@@ -126,7 +126,7 @@ welches Genre durch positive Korrelationen, Analysen zu Konkurrenz, Mustern und 
 
 \section{Daten}
 Der genutzte Datensatz \textit{Video Games Sales Dataset} entstammt der Plattform \textit{Kaggle}.\cite{SID_TWR.} 
-Die Daten entstanden laut SID\_TWR durch die von Gregory Smith motivierte Erweiterung eines Web Scrapes von \textit{VGChartz Video Games Sales}  
+Die Daten entstanden laut SID\_TWR durch die von Gregory Smith motivierte Erweiterung eines Web Scrapes von \textit{VGChartz Video Games Sales} 
 um Attribute eines Web Scrapes von \textit{Metacrtitic}.
 Aus den drei zur Verfügung gestellten Datensätzen wird \textit{XBoxOne\_GameSales} für dieses Projekt gewählt. 
 Die erwähnten Erweiterungen um Attribute von \textit{Metacrtitics} sind hier nicht enthalten. 
@@ -277,7 +277,12 @@ Hierarchische Beziehungen zwischen den Knoten seien durch gerade Linien, Kurven 
 
 Pfade zwischen den Knoten und die Positionierung von Eltern über Kindknoten stellen die hierarchische Beziehung dar. 
 Publisher sind Elternknoten der Genres, die wiederum Elternknoten der Videospieltitel sind.
-%Bild Baum
+\begin{figure}[h]
+        \centering
+        \includegraphics[height=9.5cm]{Bilder/TreeHierarchy_full.png}
+        \caption{Gesamte Anzeige des expliziten Baumdiagramms}
+        \label{fig:TreeHierarchy}
+\end{figure}
 Um ungewollten Kreuzungen der Pfade zwischen Publishern und Genres zu verhindern, wird letzteren zur eindeutigen Identifikation das Kürzel des zugehörigen Publishers hinzugefügt.
 Andernfalls verlöre die Visualisierung ihre Übersichtlichkeit und die einfache Betrachtung der eigenen abgedeckten Genres und Titel und der Vergleich mit der Konkurrenz.
 Eine erste Eingrenzung der Genres durch oben genannte Analysen ist so möglich.
@@ -315,7 +320,12 @@ Mehrdimensionalität und ein ganzheitlicher Blick werden erfüllt.
 Es können sowohl die expliziten Details zu Videospielen und ihren Verkaufszahlen als auch die in den Daten versteckten Informationen zu Muster- und Clusterbildung, Abhängigkeiten zwischen mehreren Regionen und Ausreißer offengelegt werden.
 Ersteres wird durch die Anzeige der Informationen bei Hovern über ein Polygonzug über dem Plot visualisiert. 
 Zweiteres durch die Verbindung der Attributausprägungen eines Titels durch Polygonzüge sowie die sich durch Überschneidungen, Überlappungen und Ansammlungen der Linien bildenden Muster (s. Abb. 2). 
-%Bild ParallelPlot
+\begin{figure}[h]
+        \centering
+        \includegraphics[height=10cm]{Bilder/ParallelPlot_full.png}
+        \caption{Gesamte Anzeige des Parallelen Koordinaten Plots}
+        \label{fig:ParallelPlot}
+\end{figure}
 Weiterhin eignet sich die Technik durch die Abbildung der Attributwerte auf Position und in gewissem Maße Orientierung gut für quantitative Daten.\cite{Bertin.1982}
 Durch eine freie Wahl der Achsenbelegungen mittels Drop-Down-Menü aller Achsen können zudem weitere interessante Muster, um den gesamten erwünschten Blick von oben zu erhalten, erkannt werden. 
 Das Problem der laut Lehman bestehenden Darstellung von Abhängigkeiten nur zwischen drei benachbarten Achsen kann somit umgangen werden.\cite[594]{Lehmann.2010}
@@ -348,7 +358,12 @@ Die Schwäche des Scatterplots durch Verlust an Informationen von mehreren Dimen
 
 Im diesem Scatterplot ist die Belegung der Achsen zur Darstellung der Wertebereiche der Attribute \textit{North America}, \textit{Europe}, \textit{Japan}, \textit{Rest of World} und \textit{Global} frei wählbar, 
 um den Anforderungen nach Auswahl interessanter Attribute des Parallelen Koordinaten Plots zur Detaillierung dieses nachzukommen (s. Abb. 3).
-%Bild Scatterplot
+\begin{figure}[h]
+        \centering
+        \includegraphics[height=8.5cm]{Bilder/Scatterplot_full.png}
+        \caption{Ausschnitt des Scatterplots}
+        \label{fig:Scatterplot}
+\end{figure}
 Zudem sind Abhängigkeiten zwischen allen Attributkombinationen untersuchbar. 
 Die Datenpunkte werden zur visuellen Ablesbarkeit wie oben beschrieben als Attributwert-Kombinationen kodiert, 
 an den Achsen skaliert und als klassische Kreise im Raum des Koordinatensystems positioniert. 
@@ -407,7 +422,11 @@ in dem das gewünschte zu betrachtende Genre unter Anpassung der visualisierten 
 Die Filterung bleibt bei Umschalten des Plots bestehen und wird direkt auf den anderen angewandt, 
 sodass eine Interaktion mit einem Plot zur Änderung des anderen führt. 
 Durch die Anzeige des Menüs sowie die sich anpassende Unterüberschrift des Plots ist das gewählte Genre nachvollziehbar.
-%Bild Filter
+\begin{wrapfigure}{r}{5cm}
+        \includegraphics[width=4.5cm]{Bilder/filters_global.png}
+        \caption{Filter}
+        \label{fig:Filter}
+\end{wrapfigure}
 Die Zielgruppe kann durch die Interaktion mittels Genrefilter die Spiele und die Abhängigkeiten derer zwischen den Regionen sinnvoller vergleichen 
 und vielversprechende Genres und in diesen möglicherweise Regionen für die Investition in weitere Marktstudien eingrenzen.
 
@@ -469,7 +488,7 @@ auf den Vorgaben der Vorlage zum Arbeiten mit Bäumen und den Abgaben der Autori
 
 Die Implementierung der expliziten Baumdarstellung bereitete keine Schwierigkeiten, 
 da sehr viel auf den abgegebenen Quellcodes der Autorin zu Übung neun basiert. 
-Lediglich der Decoder musste an die Datenfelder angepasst, der Link zum Laden der Daten geändert, das CSS global definiert  
+Lediglich der Decoder musste an die Datenfelder angepasst, der Link zum Laden der Daten geändert, das CSS global definiert 
 sowie die besten Design- und Darstellungsweisen mit zweifacher Darstellung des Baumes gefunden werden. 
 Das Seitendesign im \textit{view} wurde an jenes des \textit{MainScatterParallel} angepasst. 
 
@@ -559,7 +578,11 @@ Weiterhin werden für alle Interaktionen mit dem Model die \textit{Msg}-Variante
 um die Überschreibung der Variante durch Klick auf einen Button das Model festzulegen.
 
 Nachfolgend sind die Button-Funktionen zur Überschreibung des Models implementiert.
-%Bild Button ParallelPlot
+\begin{wrapfigure}{r}{6cm}
+        \includegraphics[width=5.5cm]{Bilder/Code_ButtonsForParallel.png}
+        \caption{Ausschnitt der Buttons zur Achsenwahl im \textit{ParallelPlot}}
+        \label{fig:Buttons}
+\end{wrapfigure}
 Für alle außer den \textit{buttonGenreType} ist die Nutzung der in \textit{Data} definierten Umwandlungsfunktionen 
 von Strings für die Buttons zu den entsprechend definierten Datentypen wichtig. 
 Die Änderungen werden in der \textit{Msg}-Variante gespeichert und durch \textit{update} das Model überschrieben.
@@ -571,7 +594,12 @@ Zunächst wird eine \textit{let-in}-Konstruktion auf erster äußerer Ebene erst
 In lokalen Funktionen werden \textit{gameSalesData} und die Spieleanzahl insgesamt beschrieben 
 sowie der globale \textit{filterGenre} zur Datenfilterung nach Genre angewandt und die Listenlänge berechnet. 
 Zum Wechsel zwischen den Plots werden die Varianten des Datentyps \textit{PlotType} im \textit{in}-Teil angelegt (s. Abb. 6). 
-%Bild Code LetIn
+\begin{figure}[h]
+	\centering
+        \includegraphics[width=9.5cm]{Bilder/Code_letinconstruction.png}
+        \caption{Ausschnitt der verschachtelten Let-In-Konstruktion}
+        \label{fig:LetIn}
+\end{figure}
 Je nachdem, welcher Plot mittels Button ausgewählt und das Model durch \textit{update} überschrieben wird, wird einer der drei Fälle angezeigt. 
 Der Zustand des Models mit gefiltertem Genre soll bestehen bleiben, 
 sodass eine Interaktion mit dem Genrebutton in einer Visualisierung zu einer Änderung der anderen führt.
@@ -631,7 +659,12 @@ Sitzt eine Person mit Farbsehschwäche unter den Präsentationsteilnehmern, so i
 
 Der erste Ausschnitt des Baumdiagramms gewährt den Teilnehmern einen Überblick über alle Publisher sowie die eigene Position im Baum.
 Im zweiten, detaillierteren Ausschnitt wird den Managern und Stakeholdern dargestellt, welche Genres sie mit \textit{505 Games} bedienen und welche ihrer Spiele in welches Genre passen.
-%Bild Baum
+\begin{figure}[h]
+        \centering
+        \includegraphics[height=3.5cm]{Bilder/TreeHierarchy_505Sports.png}
+        \caption{Explizites Baumdiagramm mit Einblendung des Genres \textit{Sports}}
+        \label{fig:TreeHierarchySports}
+\end{figure}
 Durch die einfache Baumstruktur ist schnell erkennbar, dass sie fünfzehn Videospiele in acht Genres anbieten, wobei \textit{Adventure}, \textit{Racing} und \textit{Shooter} die meisten Spiele aufweisen.
 Dank Einblendung der Titel und Genres beim Hovern über die sich grün färbenden Knoten in beiden Diagrammen sowie das Scrollen im zweiten Diagramm sind konkrete Ein- und Überblicke effektiv möglich. 
 Die Genres \textit{Action} und \textit{Sports} werden aufgrund der bisher eher geringen Ausprägung im eigenen Unternehmen näher betrachtet. 
@@ -655,7 +688,12 @@ und den gefilterten Videospielen betrachtet werden kann.
 Schnell fällt Japan auf, das viele Titel mit Verkaufszahlen von null aufweist. 
 Weiterhin scheint es durch im Vergleich besser oder schlechter verkaufte Spiele keine Beziehungen zwischen den Regionen mit Japan zu geben.
 Um Zusammenhänge zwischen den anderen Regionen besser erkennen zu können, wird die letzte Achse unverändert mit Japan belegt.
-%Bild ParallelPlot Action
+\begin{figure}[h]
+        \centering
+        \includegraphics[height=4.5cm]{Bilder/ParallelPlot_Action.png}
+        \caption{Parallele Koordinaten im Genre \textit{Action}}
+        \label{fig:ParallelPlotAction}
+\end{figure}
 Es lässt sich immer dasselbe Muster erkennen, bestätigt und verdeutlicht durch diverse Kombinationen der Achsenbelegung und der Röntgenstrahlentechnik.
 Einerseits befindet sich der Großteil der Videospiele in allen Regionen im unteren Drittel der Verkaufszahlen, was durch die Überlappungen der Datenpunkte und damit kräftigeren Grüntöne gut erkennbar ist.
 Andererseits scheint es Abhängigkeiten zwischen allen Regionen außer Japan zu geben, erkenntlich durch die konstant waagerecht verlaufenden Datenpunkte.
@@ -671,7 +709,12 @@ Aufgrund der unkomplizierten Erkenntnisse aus dieser Visualisierung ist eine Üb
 Im Genre \textit{Sports} gibt es keine Ausreißer über alle Regionen hinweg. Auch die Verkaufszahlen verteilen sich stärker über die Skalen. 
 Japan mit in nahezu allen Titeln erkennbaren Verkaufszahlen von null bleibt bestehen und wird aus weiteren Analysen ausgenommen.
 Im unteren Bild erkennbar ist jedoch die leichte Bildung verschiedener Cluster, die sich auch mit unterschiedlichen Achsenbelegungen bestätigt.
-%Bild ParallelPlot Sports
+\begin{figure}[h]
+        \centering
+        \includegraphics[height=5.5cm]{Bilder/ParallelPlot_Sports.png}
+        \caption{Parallele Koordinaten im Genre \textit{Sports}}
+        \label{fig:ParallelPlotSports}
+\end{figure}
 Es scheint eine Gruppe Spieletitel zu geben, die in Nordamerika und dem Rest der Welt gut verkauft werden konnten, global und vor allem in Europa deutlich schlechter.
 Weiterhin deutet sich, wenn auch nur sehr schwach sichtbar, ein Cluster an, in dem Spiele überall gut verkauft werden, in Nordamerika im Vergleich jedoch nicht.
 Die restlichen Spiele bilden ein weiteres Cluster am unteren Skalenrand mit durchgängig positiven Abhängigkeiten. 
@@ -691,7 +734,12 @@ Manager oder Stakeholder, die die vorherige Visualisierung möglicherweise wenig
 Im unten abgebildeten Scatterplot ist deutlich ein positiv korreliertes Cluster sichtbar. 
 Im zweiten zuvor entdeckten Cluster lässt sich auch bei Achsentausch keine Korrelation zwischen den Regionen finden, kennzeichnet duch die rein waagerechte bzw. senkrechte Verteilung.
 Einzig das dritte Cluster lässt sich nicht direkt bestätigen, deutet sich aber durch einen Punkthaufen nahe des Ursprungs an.
-%Bild SCatterplot Sports
+\begin{figure}[h]
+        \centering
+        \includegraphics[height=4.8cm]{Bilder/Scatterplot_Sports.png}
+        \caption{Scatterplot im Genre \textit{Sports}}
+        \label{fig:ScatterplotSports}
+\end{figure}
 Die Erkenntnisse aus der zweiten Visualisierung werden bestätigt. 
 Sportvideospiele des ersten Clusters, die in Nordamerika gut verkauft wurden, hatten auch in Europa einen guten Absatz und durch Achsentausch erkennbar auch umgekehrt.
 Dort zeigt ein flacherer Anstieg zeigt auch, dass gut in Europa verkaufte Spiele in Nordamerika weniger gut verkauft wurden. 
@@ -705,7 +753,7 @@ da sie die leichteste, deutlichste Darstellung von Beziehungen zweier Attribute 
 Abschließend kann sich das obere Management und wichtigsten Stakeholder von \textit{505 Games}
 zu einer Investition in eine (kosten-) intensive Marktstudie zur Beurteilung weiterer Einflüsse im Genre \textit{Sports} entscheiden. 
 Die eigene Präsenz dort ist ausbaufähig, es gibt weniger und in der Masse weniger starke Konkurrenz als bei \textit{Action} sowie keine extremen Ausreißer.
-Zwar verzichtet man auf Nutzung der positiven Korrelationen zwischen allen Regionen, kann aber durch Fokussierung auf beliebte Sportarten des europäischen Marktes diese Abhängigkeiten, begrenzt auch in Nordamerika, nutzen.   
+Zwar verzichtet man auf Nutzung der positiven Korrelationen zwischen allen Regionen, kann aber durch Fokussierung auf beliebte Sportarten des europäischen Marktes diese Abhängigkeiten, begrenzt auch in Nordamerika, nutzen.
 Für einen vergleichsweise kleineren Publisher ist diese Strategie durch effizienten Einsatz von Mitteln sinnvoller.
  
 \section{Verwandte Arbeiten}
